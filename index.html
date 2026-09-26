@@ -50,7 +50,6 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 .eyebrow{font-size:var(--fs-ui-sm);font-weight:500;color:var(--cyan);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px}
-.eyebrow .tag{font-size:var(--fs-label);font-weight:500;color:var(--royal);border:1px solid #B3E7FA;border-radius:var(--radius);padding:1px 6px;background:#fff}
 h1,h2,h3{font-weight:500;letter-spacing:-.02em;line-height:1.12}
 h1{font-size:var(--fs-display);letter-spacing:-.035em}
 h2{font-size:var(--fs-h2)}
@@ -147,36 +146,33 @@ section{position:relative}
 .stripes .s4{top:44px;left:0;width:14%;background:var(--cyan)}
 
 /* hero UI mockup */
-.stage{position:relative;height:520px}
+.stage{position:relative;height:500px}
 .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--line);position:absolute;overflow:hidden}
-.c-main{top:0;left:0;right:40px;height:370px;display:grid;grid-template-columns:150px 1fr}
-.c-side{border-right:1px solid var(--line);padding:16px 12px;font-size:var(--fs-ui-sm)}
-.c-side .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:var(--fs-ui-sm);margin-bottom:16px}
-.c-side .brand i{width:18px;height:18px;border-radius:var(--radius);background:var(--grad);display:block}
-.c-side .lbl{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:10px 6px 6px}
-.c-side div.it{padding:5px 6px;border-radius:var(--radius);color:var(--slate);display:flex;align-items:center;gap:7px}
-.c-side div.it::before{content:"";width:6px;height:6px;border-radius:var(--radius);background:#CFD7DF}
-.c-side div.on{background:#E6F7FD;color:var(--navy);font-weight:500}
-.c-side div.on::before{background:var(--cyan)}
-.c-body{padding:16px 18px;display:flex;flex-direction:column}
-.c-head{display:flex;justify-content:space-between;align-items:center;font-size:var(--fs-ui-sm);color:var(--muted)}
-.c-head b{color:var(--ink);font-size:var(--fs-small);font-weight:600}
-.pill{font-size:var(--fs-label);font-weight:500;padding:2px 8px;border-radius:var(--radius);background:#E6F7EC;color:#217A3C}
-.c-img{flex:1;margin:12px 0;border-radius:var(--radius);overflow:hidden;background:#2a2a2a}
+.c-main{top:0;left:0;right:56px;height:380px;display:grid;grid-template-columns:156px 1fr}
+.c-side{border-right:1px solid var(--line);padding:18px 12px;font-size:var(--fs-ui-sm);background:var(--soft)}
+.c-logo{height:14px;width:auto;display:block;margin:2px 6px 22px}
+.c-side .lbl{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 6px 8px}
+.c-side div.it{padding:6px 8px;border-radius:var(--radius);color:var(--slate);white-space:nowrap}
+.c-side div.on{background:#fff;color:var(--navy);font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
+.c-body{padding:18px 20px;display:flex;flex-direction:column}
+.c-head{display:block}
+.c-head small{display:block;font-size:var(--fs-label);color:var(--muted);margin-bottom:2px}
+.c-head b{color:var(--ink);font-size:var(--fs-small);font-weight:500}
+.pill{font-size:var(--fs-label);font-weight:500;padding:2px 8px;border-radius:var(--radius);background:#E6F7FD;color:var(--royal);white-space:nowrap}
+.c-img{flex:1;margin-top:14px;border-radius:var(--radius);overflow:hidden;background:#2a2a2a;position:relative}
+.c-img .pill{position:absolute;top:10px;left:10px;background:#fff}
 .c-img img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
-.c-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:var(--fs-label);color:var(--muted)}
-.c-meta b{display:block;color:var(--ink);font-size:var(--fs-ui-sm);font-weight:600}
-.c-stats{right:0;bottom:24px;width:270px;padding:16px 18px;font-size:var(--fs-ui-sm)}
-.c-stats .t{display:flex;justify-content:space-between;color:var(--muted);margin-bottom:6px}
-.c-stats .big{font-size:var(--fs-num);font-weight:500;letter-spacing:-.02em;color:var(--ink)}
-.c-stats .big small{font-size:var(--fs-label);color:#217A3C;font-weight:500;margin-left:6px}
-.spark{height:54px;margin:8px 0 10px}
-.c-stats .rows div{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line);color:var(--slate)}
-.c-stats .rows b{color:var(--ink);font-weight:600}
-.c-note{left:-28px;bottom:70px;width:250px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:var(--fs-ui-sm);color:var(--slate)}
-.c-note .dot{flex:none;width:30px;height:30px;border-radius:var(--radius);background:var(--navy);display:grid;place-items:center}
-.c-note .dot .ic{color:var(--cyan)}
-.c-note b{color:var(--ink);font-weight:600;display:block;font-size:var(--fs-ui-sm)}
+.c-stats{right:0;bottom:0;width:240px;padding:16px 18px;font-size:var(--fs-ui-sm)}
+.c-stats .big{font-size:var(--fs-num);font-weight:500;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin-bottom:12px}
+.c-stats .big small{display:block;font-size:var(--fs-label);color:var(--muted);font-weight:400;letter-spacing:0;margin-top:4px}
+.c-stats .rows div{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);color:var(--slate)}
+.c-stats .rows b{color:var(--ink);font-weight:500}
+.c-note{left:-24px;bottom:28px;width:236px;padding:14px 16px;font-size:var(--fs-ui-sm);color:var(--slate)}
+.c-note .jv-logos{display:flex;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
+.c-note .jv-logos img{height:12px;width:auto;max-width:90px;object-fit:contain}
+.c-note .jv-logos i{font-style:normal;color:var(--muted);font-size:var(--fs-label)}
+.c-note b{color:var(--ink);font-weight:500;display:block;margin-bottom:2px}
+.c-note span{display:block;line-height:1.45}
 .float{animation:float 7s ease-in-out infinite}
 .float.d2{animation-delay:-3s}
 @keyframes float{50%{transform:translateY(-8px)}}
@@ -794,7 +790,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .hero{padding-top:112px}
   .stage{height:400px}
   .c-main{right:0;height:300px;grid-template-columns:1fr}
-  .c-side{display:none}
+    .c-side{display:none}
   .c-stats{width:220px;bottom:0}
   .c-note{display:none}
   .stripes{height:900px}
@@ -934,57 +930,43 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   <div class="stripes" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
   <div class="wrap hero-grid">
     <div class="rv">
-      <div class="eyebrow">ANAND Mobility <span class="tag">Since 1961</span></div>
+      <div class="eyebrow">Since 1961</div>
       <h1>Engineering the <span class="g">Future of Mobility</span></h1>
-      <p class="lede">A global mobility solutions group bringing together world-class technologies and deep manufacturing expertise to serve <b>leading automotive manufacturers across the world.</b></p>
+      <p class="lede">A global mobility solutions group bringing together world-class technologies and deep manufacturing expertise to serve leading automotive manufacturers across the world.</p>
       <div class="hero-ctas">
         <a href="#solutions" class="btn btn-primary">Explore Solutions <i data-lucide="arrow-right" class="ic"></i></a>
-        <a href="#partners" class="btn btn-ghost">Our Partners <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
     </div>
 
     <div class="stage rv" aria-hidden="true">
       <div class="card c-main">
         <div class="c-side">
-          <div class="brand"><i></i>ANAND</div>
+          <img class="c-logo" src="assets/logo.png" alt="">
           <div class="lbl">Portfolio</div>
           <div class="it on">Chassis</div>
-          <div class="it">Emission Control</div>
+          <div class="it">Emission control</div>
           <div class="it">Powertrain</div>
           <div class="it">Safety</div>
           <div class="it">Thermal</div>
-          <div class="it">E-Mobility</div>
-          <div class="lbl">Group</div>
-          <div class="it">Companies</div>
-          <div class="it">Partners</div>
+          <div class="it">E-mobility</div>
         </div>
         <div class="c-body">
-          <div class="c-head"><b>25.4 Dia Rear Suspension</b><span class="pill">In production</span></div>
-          <div class="c-img"><img src="assets/chasis-control.png" alt=""></div>
-          <div class="c-meta">
-            <div>Company<b>Gabriel India</b></div>
-            <div>Segment<b>Two-wheeler</b></div>
-            <div>Portfolio<b>Chassis</b></div>
-          </div>
+          <div class="c-head"><small>Gabriel India · Two-wheeler</small><b>25.4 Dia Rear Suspension</b></div>
+          <div class="c-img"><img src="assets/chasis-control.png" alt=""><span class="pill">In production</span></div>
         </div>
       </div>
       <div class="card c-stats float">
-        <div class="t"><span>Group at a glance</span><span>FY26</span></div>
-        <div class="big">$2.2B+<small>Revenue</small></div>
-        <svg class="spark" viewBox="0 0 240 54" preserveAspectRatio="none">
-          <defs><linearGradient id="sg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#00AEEF" stop-opacity=".25"/><stop offset="1" stop-color="#00AEEF" stop-opacity="0"/></linearGradient></defs>
-          <path d="M0 46 L24 42 L48 44 L72 36 L96 38 L120 28 L144 30 L168 20 L192 22 L216 10 L240 6 V54 H0Z" fill="url(#sg)"/>
-          <path d="M0 46 L24 42 L48 44 L72 36 L96 38 L120 28 L144 30 L168 20 L192 22 L216 10 L240 6" fill="none" stroke="#00AEEF" stroke-width="2"/>
-        </svg>
+        <div class="big">US$2.2B+<small>Group revenue</small></div>
         <div class="rows">
-          <div>Companies<b>25</b></div>
-          <div>Employees<b>22,000+</b></div>
+          <div>Companies<b>17</b></div>
+          <div>People<b>22,000+</b></div>
           <div>Locations<b>87</b></div>
         </div>
       </div>
       <div class="card c-note float d2">
-        <div class="dot"><i data-lucide="handshake" class="ic"></i></div>
-        <div><b>New JV · Gabriel × HL Klemove</b>Bringing autonomous-driving tech to India</div>
+        <div class="jv-logos"><img src="assets/Gabriel.png" alt=""><i>×</i><img src="assets/companies/hl-klemove.png" alt=""></div>
+        <b>New joint venture</b>
+        <span>Bringing autonomous-driving technology to India</span>
       </div>
     </div>
   </div>

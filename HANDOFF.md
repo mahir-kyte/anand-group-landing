@@ -206,9 +206,18 @@ Every section's HTML starts with a `<!-- SECTION NAME -->` comment in `index.htm
 - **Not built yet:** the **mobile menu**. `.menu-btn` shows below 1200px but does nothing.
 
 ### 8.2 Hero (`section.hero`)
-- Stripe-style slanted navy stripes band (`.stripes`) that runs below the hero into the newsroom so no white wedge shows.
-- The hero bottom padding scales with the viewport (`calc(170px + max(0px,(100vw - 1348px)*.0792))`); on mobile it's 40px.
-- Floating cards on the right.
+- **Left:**
+  - eyebrow "SINCE 1961", with no "ANAND Mobility" (the logo already says it) and no chip
+  - h1 "Engineering the Future of Mobility"
+  - a plain lede with no bold words
+  - one button, "Explore Solutions" (the "Our Partners" button was removed)
+- **Right** (a product-style mockup; every figure matches the rest of the page):
+  - **Main card:** a sidebar with the real ANAND logo and the Portfolio list (Chassis active). The body shows "Gabriel India · Two-wheeler", the title "25.4 Dia Rear Suspension", and the product photo with an "In production" tag.
+  - **Revenue card:** US$2.2B+ group revenue (no logo or header), then Companies 17 · People 22,000+ · Locations 87. The invented sparkline and "FY26" were removed.
+  - **JV card:** the Gabriel × HL Klemove logos, "New joint venture" and "Bringing autonomous-driving technology to India".
+  - The two small cards float gently.
+- **Background:** Stripe-style slanted navy stripes run below the hero into the newsroom. Bottom padding is `calc(170px + max(0px,(100vw - 1348px)*.0792))`, and 40px on mobile.
+- **Class names:** the JV logo row is `.jv-logos`, not `.logos`, which is the OEM section's class.
 
 ### 8.3 Newsroom (`section#news.newsroom`, navy)
 - Header "Newsroom / Latest at ANAND" and one white button, "View all news" (`#` for now).
