@@ -130,11 +130,11 @@ section{position:relative}
 @keyframes float{50%{transform:translateY(-8px)}}
 
 /* ---------- LOGOS ---------- */
-.logos{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+.logos{padding:56px 0 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .logos .cap{text-align:center;font-size:14px;color:var(--muted);margin-bottom:26px}
 .marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .track{display:flex;gap:64px;width:max-content;animation:scroll 42s linear infinite;align-items:center}
-.track img{height:34px;width:auto;filter:grayscale(1);opacity:.55;transition:all .3s}
+.track img{width:auto;filter:grayscale(1);opacity:.55;transition:all .3s}
 .track img:hover{filter:none;opacity:1}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
@@ -142,7 +142,6 @@ section{position:relative}
 .sec{padding:120px 0}
 .sec-head{max-width:620px;margin-bottom:56px}
 .sec-head h2{margin-bottom:16px}
-.divider-grad{height:1px;background:linear-gradient(90deg,var(--cyan),var(--cyan),transparent);width:120px;margin-bottom:22px}
 
 /* ---------- ABOUT / FACTS ---------- */
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
@@ -160,16 +159,15 @@ section{position:relative}
 .btn-outline:hover{border-color:var(--cyan)}
 
 /* ---------- STORIES CAROUSEL (mirrors Stripe's case-study carousel) ---------- */
-.stories{background:#fff}
+.stories{background:var(--soft)}
 .st-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:24px}
 .st-head h2{margin-bottom:28px;white-space:nowrap}
 @media (max-width:639px){.st-head h2{white-space:normal}.st-head h2 br{display:none}}
 .st-head .lede{margin-left:auto}
 .st-ctrl{display:flex;justify-content:flex-end;gap:8px;margin-bottom:24px}
-.st-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--radius);cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted);transition:background .2s,color .2s,border-color .2s}
-.st-btn.next{background:#E6F7FD;border-color:#E6F7FD;color:var(--cyan)}
-.st-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
-.st-btn:disabled{cursor:default;background:#fff;border-color:var(--line);color:#C3CCD6}
+.st-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--radius);cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--navy);transition:background .2s,color .2s,border-color .2s}
+.st-btn:hover:not(:disabled){background:var(--navy);border-color:var(--navy);color:#fff}
+.st-btn:disabled{cursor:default;background:transparent;border-color:var(--line);color:#B8C2CC}
 .st-btn .ic{width:18px;height:18px}
 .st-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .st-clip{overflow:hidden;container-type:inline-size}
@@ -262,13 +260,6 @@ section{position:relative}
 .nr-head .eyebrow{color:var(--cyan)}
 .nr-head h2{color:#fff}
 .nr-ctrl{display:flex;align-items:center;gap:8px}
-.nr-count{font-family:"Geist Mono",monospace;font-size:13px;color:#88A3BB;margin-right:10px;font-variant-numeric:tabular-nums}
-.nr-count b{color:#fff;font-weight:500}
-.nr-btn{width:40px;height:40px;border-radius:var(--radius);display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;transition:background .2s,border-color .2s}
-.nr-btn:hover{background:var(--cyan);border-color:var(--cyan)}
-.nr-btn .ic{width:18px;height:18px}
-.nr-all{color:#fff;margin-left:14px}
-.nr-all:hover{color:var(--cyan)}
 /* featured story: image | text panel, so any CMS image (light or dark) stays readable */
 .nr-stage{display:grid;border-radius:var(--radius);overflow:hidden;background:var(--navy-2);touch-action:pan-y}
 .nr-slide{grid-area:1/1;display:grid;grid-template-columns:1.35fr 1fr;opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s}
@@ -298,7 +289,7 @@ section{position:relative}
 .nr-th h4{font-size:15px;font-weight:500;line-height:1.4;color:#A9C1D6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
 .nr-th:hover h4,.nr-th.on h4{color:#fff}
 .nr-th:hover img,.nr-th.on img{opacity:1}
-.nr-th:focus-visible,.nr-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.nr-th:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 
 /* ---------- BENTO (ANAND at a glance) — mechanics mirror Stripe's modular-solutions bento ---------- */
 .bento-sec{background:var(--soft);padding:120px 0}
@@ -672,7 +663,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   .focus{grid-template-columns:1fr}
   .newsroom{padding-bottom:80px}
   .bento-sec{padding:84px 0}
-  .nr-count,.nr-all{display:none}
   .nr-body{padding:22px 20px 26px}
   .nr-meta{margin-top:20px}
   .nr-body p{font-size:15px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -798,10 +788,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
         <h2>Latest at ANAND</h2>
       </div>
       <div class="nr-ctrl">
-        <span class="nr-count" id="nrCount" aria-hidden="true"></span>
-        <button class="nr-btn" id="nrPrev" aria-label="Previous story"><i data-lucide="chevron-left" class="ic"></i></button>
-        <button class="nr-btn" id="nrNext" aria-label="Next story"><i data-lucide="chevron-right" class="ic"></i></button>
-        <a href="#" class="link nr-all">All news<i data-lucide="chevron-right" class="ic"></i></a>
+        <a href="#" class="btn btn-light">View all news <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
     </div>
     <div class="nr-stage" id="nrStage"></div>
@@ -1698,7 +1685,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   <p class="cap">Trusted by the world's leading OEMs</p>
   <div class="marquee">
     <div class="track" id="track">
-      <img src="assets/Toyota.png" alt="Toyota"><img src="assets/Honda.png" alt="Honda"><img src="assets/BMW.png" alt="BMW"><img src="assets/MarutiSuzuki-1.png" alt="Maruti Suzuki"><img src="assets/TataMotors.png" alt="Tata Motors"><img src="assets/MahindraRise.png" alt="Mahindra"><img src="assets/hyundai-2.png" alt="Hyundai"><img src="assets/Volkswagen.png" alt="Volkswagen">
+      <img src="assets/oem/toyota.png" alt="Toyota" style="height:50px"><img src="assets/oem/honda.png" alt="Honda" style="height:42px"><img src="assets/oem/bmw.png" alt="BMW" style="height:50px"><img src="assets/oem/marutisuzuki.png" alt="Maruti Suzuki" style="height:20px"><img src="assets/oem/tatamotors.png" alt="Tata Motors" style="height:19px"><img src="assets/oem/mahindrarise.png" alt="Mahindra" style="height:28px"><img src="assets/oem/hyundai.png" alt="Hyundai" style="height:21px"><img src="assets/oem/volkswagen.png" alt="Volkswagen" style="height:52px">
     </div>
   </div>
 </section>
@@ -1708,7 +1695,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   <div class="wrap">
     <div class="about-grid">
       <div class="rv">
-        <div class="divider-grad"></div>
         <div class="eyebrow">About ANAND</div>
         <h2>Six Decades of Shaping How the World Moves</h2>
       </div>
@@ -2021,7 +2007,6 @@ if (wrap) {
     const root = document.getElementById('news');
     const stage = document.getElementById('nrStage');
     const thumbs = document.getElementById('nrThumbs');
-    const count = document.getElementById('nrCount');
     let items = [];
     try { items = JSON.parse(document.getElementById('cms-news').textContent); } catch (e) {}
     if (!items.length) { root.hidden = true; return; }
@@ -2059,7 +2044,6 @@ if (wrap) {
       cur = (i + items.length) % items.length;
       slides.forEach((s, j) => s.classList.toggle('on', j === cur));
       tabs.forEach((t, j) => { t.classList.toggle('on', j === cur); t.setAttribute('aria-selected', j === cur); });
-      count.innerHTML = `<b>${pad(cur + 1)}</b> / ${pad(items.length)}`;
       const t = tabs[cur];
       thumbs.scrollTo({left: t.offsetLeft - thumbs.offsetLeft, behavior: reduce ? 'auto' : 'smooth'});
       elapsed = 0; bars.forEach(b => b.style.width = '0');
@@ -2067,8 +2051,6 @@ if (wrap) {
     };
     go(0);
 
-    document.getElementById('nrPrev').onclick = () => go(cur - 1);
-    document.getElementById('nrNext').onclick = () => go(cur + 1);
     tabs.forEach((t, i) => t.addEventListener('click', () => go(i)));
     root.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') go(cur - 1);
