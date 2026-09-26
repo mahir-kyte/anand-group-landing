@@ -281,9 +281,9 @@ section{position:relative}
 /* ---------- BEYOND BUSINESS ---------- */
 /* Sustainability & CSR: guide cards, mirrors stripe.com/guides */
 @media (min-width:640px) and (max-width:760px){.gs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-/* desktop: a narrow intro on the left that sticks and fills the screen height (button at the bottom), with two staggered card columns pushed right that scroll past it.
+/* desktop: a narrow intro on the left that sticks while two staggered card columns (4 cards each) scroll past it.
    margin-bottom keeps the button clear of the #trust diagonal that overlaps the bottom of this section */
-.gs{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr) repeat(2,minmax(0,300px));gap:24px;align-items:start}
+.gs{display:grid;grid-template-columns:minmax(0,440px) 81px repeat(2,minmax(0,1fr));gap:24px;align-items:start} /* cards start ~130px after the intro and fill to the right edge */
 .gs-intro{grid-column:1;grid-row:1;position:sticky;top:112px;z-index:1;display:flex;flex-direction:column;height:calc(100svh - 112px - 56px);min-height:min-content;max-height:760px;margin-bottom:280px}
 .gs-intro .lede{margin:20px 0}
 .gs-intro .btn{align-self:flex-start;margin-bottom:32px}
@@ -2144,6 +2144,15 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
             <span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
+        <!-- anandgroupindia.com/anandschool -->
+        <a class="gc gc--navy" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">ANAND School</span><h3 class="gc-title">800+ Students and 100% Class X Board Results (2024–25)</h3></span>
+            <span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
       </div>
       <div class="gs-col gs-b">
         <a class="gc gc--cyan" href="#">
@@ -2167,6 +2176,15 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <span class="gc-card">
             <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
             <span class="gc-text"><span class="gc-cat">Sustainability</span><h3 class="gc-title">Solar Power, Wind Energy and Miyawaki Forests</h3></span>
+            <span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+        <!-- anandgroupindia.com/snsf case studies (SNSF Scholars Scholarship Program, introduced 2018-19) -->
+        <a class="gc gc--royal" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Scholarships</span><h3 class="gc-title">SNSF Scholars: Free English-Medium Schooling Since 2018–19</h3></span>
             <span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>

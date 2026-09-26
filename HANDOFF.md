@@ -332,7 +332,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 ### 8.10 Sustainability & CSR (`section#beyond`)
 - **Structure:** stripe.com/guides.
 - **Left (desktop, ≥1200px): a sticky intro.** A 440px column that pins 112px from the top and is as tall as the screen (100svh − 168px, clamped 460–760px). The eyebrow, heading, lede and "Explore Sustainability & CSR ›" stack at the top with equal 20px gaps (heading→lede→button). An **SNS Foundation card** sits at the bottom of the column (`.gs-fdn`, soft fill with a hairline border): the title "SNS Foundation" (17px), one 14px line on its namesake Sant Nischal Singhji (1882–1978), and its four focus areas (14px) with 18px cyan Lucide icons, matching the product-card badges (Education, Health & hygiene, Skill development, Community conservation). Source: anandgroupindia.com/snsf/about-snsf. On short screens the column grows to fit (min-height: min-content) so the card never overflows; below 1200px it sits 32px under the button. It stays put while the cards scroll past, then leaves with the section. A 280px bottom margin releases it early so the #trust diagonal stripes never cover the button.
-- **Right: 6 guide cards in 2 staggered columns of 3** (300px wide), pushed to the right edge; the left column starts 200px lower. Column A: wildlife, education, skills. Column B: livelihoods, health, sustainability.
+- **Right: 8 guide cards in 2 staggered columns of 4**, starting ~130px after the intro (an 81px spacer column) and filling to the right edge (≈354px wide at 1440, 280px at 1200); the left column starts 200px lower. Column A: wildlife, education, skills, ANAND School. Column B: livelihoods, health, sustainability, scholarships. The intro stays pinned for ~1,240px of scroll at 1440×900.
   - Below 1200px the intro is a normal block above a 3-column (tablet) or 1-column (phone) grid of the same cards.
   - Card format: 254:356, category in 12px caps, title in `--fs-h3`, and "Read more ›" on hover.
   - **Art:** one large **filled ANAND double chevron** (the logo mark) in a lighter tint of the card colour at 55% opacity. It's cropped by the card edge and slides in on scroll.
@@ -350,6 +350,9 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - 27 lakh people (health)
   - solar, wind and Miyawaki forests
   - 45,000+ trained, 80% women
+  - ANAND School: 800+ students, 100% Class X board results 2024–25 (anandgroupindia.com/anandschool)
+  - SNSF Scholars: free English-medium schooling since 2018–19 (SNSF case studies)
+- **Card colours** (no two neighbours the same): A = dark green, royal, cyan, navy-2; B = cyan, navy-2, green, royal. On tablet the 8 cards run 3 across (last row of 2); on phones, one column.
 - **Bottom of the cards: a 6° diagonal cut.**
   - The next section's `.tr-cut` is a soft-grey block with `skewY(-6deg)` and royal and cyan stripes on its edge.
   - `#trust` is pulled up 125px, so the cut crosses the lower card of every column through the art only.
