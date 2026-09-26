@@ -226,30 +226,44 @@ Lucide only (`<i data-lucide>`), with the same stroke everywhere. The four trust
 Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.1 Nav: Stripe mega menu (`header.nav#nav`)
-- **Items** (from `Docs/ANAND_demo_top-nav.txt`): About ANAND ▾ · Vision & strategy · Our companies ▾ · Sustainability & CSR ▾ · Careers ▾ · Newsroom ▾, plus "Explore Careers" (outline) and "Partner with Us ›".
+- **Items** (from `Docs/ANAND_demo_top-nav.txt`): About ANAND ▾ · Our companies ▾ · Sustainability & CSR ▾ · Careers ▾ · Newsroom ▾ · Our Vision (renamed from "Vision & strategy" and moved last as the only plain link, links to #vision; the IA doc still says "Vision & strategy" second), plus "Explore Careers" (outline) and "Partner with Us ›".
 - **Mechanics** (copied from Stripe):
   - a white bar with one shared panel underneath
   - the panel slides ±20% depending on direction, and its height animates
   - other labels dim and the page behind blurs
-  - hover intent 80/180ms; Esc and click-outside close; Arrow Down opens from the keyboard
+  - hover intent 80/180ms; Esc, click-outside and scrolling the page close it; Arrow Down opens from the keyboard
+  - on short screens the panel is capped to the window height and scrolls inside (the Companies panel is ~650px tall)
 - **Widths:**
   - the nav needs about 1200px
-  - at ≤1320px "Explore Careers" hides
+  - at ≤1359px "Explore Careers" hides (the full bar needs ~1,325px of the 1,348px max; gaps are 22px between links, 28px between groups)
   - below 1200px it collapses to the menu button
 - The logo never shrinks (`.nav-logo{flex:none}`).
-- **Not built:** the mobile menu. The button does nothing yet.
+- **Two states:**
+  - **Over the hero film (`.nav.on-hero`):** transparent bar, white logo (filter), white links and chevrons, and "Explore Careers" as a white outline. "Partner with Us" stays cyan.
+  - **Past the film (`.nav.scrolled`):** the normal filled white, blurred bar with dark content.
+  - The bar fills as soon as it would reach the hero text: at `.hero-grid` top − 72px (nav height) − 24px, about 114px of scroll.
+  - **Menu open:** whenever a menu is open, the bar shows the white card with dark text in either state (`.nav-shell.open`).
+- **Phone/tablet menu (below 1200px):** the ☰ button opens a full-height white sheet under the bar (`#mMenu`), and the icon turns into an ✕.
+  - It's **built in JS from the desktop mega menu**, so editing the desktop menu updates both. Each dropdown becomes an accordion item (one open at a time) with its column headings as small caps labels, the "Beyond automotive" list, and the panel's "See all" link. "Our Vision" stays a plain link. "Explore Careers" and "Partner with Us" sit full width at the bottom.
+  - While open: the bar turns solid white with the normal logo (`.nav.m-open`), the page can't scroll behind it, and Esc, tapping any link, or widening past 1200px closes it. "Partner with Us" closes the menu and opens the partner form.
 
 ### 8.2 Hero (`section.hero`)
-- **Left:**
-  - eyebrow "SINCE 1961"
-  - h1 "Engineering the Future of Mobility"
-  - plain lede
+- **Background reel:** one edited, upscaled loop in the repo: `assets/hero-reel.mp4` (15.5s, 1920×1080, H.264, ~5.8 MB) plus `assets/hero-reel-poster.jpg`.
+  - Plain `<video muted loop playsinline>`; it plays only while on screen, and with reduced motion it stays on the poster.
+  - **Shots:** ANAND flag → ANAND building → factory floor → robot arm → robotic car-body welding (Pexels 4468754, **temporary**) → aerial coast road → SUJÁN camp at dawn → dusk over the hills → lantern-lit dinner (slowed to 65%). ANAND shots avoid the film's graphics and titles; SUJÁN shots avoid animals. 0.7s crossfades.
+  - **Sources:** ANAND homepage film (anandgroupindia.com) and SUJÁN main film (`sujan.b-cdn.net`); both need ANAND's permission. Cut by Kyte, upscaled by Mahir.
+  - **Master files:** `Anand Moodboard/hero-reel/` (outside the repo): `ANAND-hero-reel-final-1920x1080.mp4` (high-quality master), `ANAND-hero-reel-final-web.mp4` (same as the site file), and `Final/` (the two upscaled halves it was joined from).
+  - The reel stops 100px above the hero bottom, where the navy band starts (the band sits at `bottom:-680px`; it was moved 80px lower so more of the video shows).
+  - **For the real site:** edit one short optimised loop from ANAND's and SUJÁN's master files, then remove the Pexels clip.
+- **Navy wash for legibility:** a gradient from the top (for the nav) plus a gradient from the left (.88 → .25). On phones it's an even .75 → .6.
+- **Text** (one column, max 720px, white):
+  - eyebrow "SINCE 1961" (cyan)
+  - h1 "Engineering the Future of Mobility", **all white**
+  - lede in 82% white
   - one button, "Explore Solutions"
-- **Right:** a product mockup with real logos and figures:
-  - **Main card:** the ANAND logo sidebar with the Portfolio list, and the Gabriel "25.4 Dia Rear Suspension" photo with an "In production" tag.
-  - **Revenue card:** US$2.2B+ · 17 companies · 22,000+ people · 87 locations.
-  - **JV card:** Gabriel × HL Klemove.
-- **Background:** slanted navy stripes run into the newsroom.
+- **Band:** the slanted navy band with royal and cyan stripes runs below into the newsroom.
+- **Padding:** `150px 0 calc(300px + …)`; 400px bottom on phones so the band clears the text.
+- **History:** first a product mockup, then a Stripe-style video carousel (portrait, then landscape); both were replaced by this single background film on request.
 
 ### 8.3 Newsroom (`section#news`, navy)
 - A split panel: image left, navy text right.
@@ -310,9 +324,9 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.10 Sustainability & CSR (`section#beyond`)
 - **Structure:** stripe.com/guides.
-- **Left:** an intro with "Explore Sustainability & CSR ›".
-- **Right: 6 guide cards in staggered columns**, 2 per column.
-  - The columns start at 360, 240 and 120px, a 120px step.
+- **Left (desktop, ≥1200px): a sticky intro.** A 440px column that pins 112px from the top and is as tall as the screen (100svh − 168px, clamped 460–760px). The eyebrow, heading and lede sit at the top and "Explore Sustainability & CSR ›" at the bottom. It stays put while the cards scroll past, then leaves with the section. A 280px bottom margin releases it early so the #trust diagonal stripes never cover the button.
+- **Right: 6 guide cards in 2 staggered columns of 3** (300px wide), pushed to the right edge; the left column starts 200px lower. Column A: wildlife, education, skills. Column B: livelihoods, health, sustainability.
+  - Below 1200px the intro is a normal block above a 3-column (tablet) or 1-column (phone) grid of the same cards.
   - Card format: 254:356, category in 12px caps, title in `--fs-h3`, and "Read more ›" on hover.
   - **Art:** one large **filled ANAND double chevron** (the logo mark) in a lighter tint of the card colour at 55% opacity. It's cropped by the card edge and slides in on scroll.
   - Hover: an 8px lift and a bigger shadow.
@@ -393,7 +407,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 ## 11. Open items and things to confirm
 | # | Item | Owner |
 |---|---|---|
-| 1 | **Mobile / tablet nav menu** isn't built (the menu button does nothing below 1200px) | Kyte |
+| 1 | ~~Mobile / tablet nav menu~~: built (see §8 Nav). Checked at 375, 768, 1024, 1200, 1280, 1440 and 1920px with no sideways overflow | done |
 | 2 | Real links for the nav, footer, "View All News" and all `#` CTAs | after IA sign-off |
 | 3 | **Official company count:** the page says 17 (anandgroupindia.com); the Jan 2026 presentation says 23, and the nav spec lists 21 | client |
 | 4 | **Figures to confirm:** 40%+ aftermarket share; "170 mn" micro-credit (currency not stated); award wording (ACMA 2025; Great Place to Work 2019, which may be too old) | client |
@@ -405,6 +419,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 | 10 | Bento graphics (revenue, companies, people, SUJÁN): swap in Mahir's 3D components at `[data-slot]` | Mahir |
 | 11 | Partner form: wire it to ANAND's inbox; add spam protection and consent text; confirm the product and country lists | GIDA + client |
 | 12 | **WordPress hasn't caught up** (§12) | Kyte + GIDA |
+| 13 | **Hero reel:** now one optimised loop (`assets/hero-reel.mp4`). Still to do: get ANAND's permission for its and SUJÁN's footage, ideally the **master files** for a sharper re-cut, and replace the Pexels welding shot. The previous note on ANAND's site film still applies (the site copy is 2560×1182 and heavily compressed); host an optimised, short loop (10–20s, plus a poster frame) on the new site instead of streaming the 16 MB original | Kyte + client |
 
 ## 12. WordPress status (the gap)
 The LocalWP site still has the **first concept** homepage. To match this reference it needs:
@@ -415,15 +430,15 @@ The LocalWP site still has the **first concept** homepage. To match this referen
   - weights 400/500 only
   - no Geist Mono
   - the new colour tokens: `on-dark`, `on-dark-2`, `tint`, `tint-2`, `faint`
-- **The mega menu and its mobile menu.**
+- **The mega menu and its mobile menu** (nav order now ends with the plain "Our Vision" link; the mobile accordion is generated from the desktop menu).
 - **Sections (new or rebuilt):**
-  - the hero mockup
+  - the hero background film (one self-hosted loop, `assets/hero-reel.mp4`, with poster) with the inverted nav
   - the newsroom carousel
   - the bento and its dialog
   - stories
   - product cards
   - Vision
-  - CSR guide cards with the ANAND mark
+  - CSR guide cards with the ANAND mark, a sticky left intro and 2 staggered card columns
   - the trust section with the 6° cut
   - the CTA banner and Partner form
   - the full footer

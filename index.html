@@ -77,14 +77,21 @@ section{position:relative}
 
 /* ---------- NAV (mirrors stripe.com's navigation menu) ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+/* over the hero film the bar is transparent with white content; past the hero it fills */
+.nav.on-hero:not(.m-open) .nav-shell:not(.open) .nav-logo img{filter:brightness(0) invert(1)}
+.nav.on-hero:not(.m-open) .nav-shell:not(.open) .nav-trigger,.nav.on-hero:not(.m-open) .nav-shell:not(.open) .nav-link{color:#fff}
+.nav.on-hero:not(.m-open) .nav-shell:not(.open) .nav-sec{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.nav.on-hero:not(.m-open) .nav-shell:not(.open) .nav-sec:hover{background:#fff;color:var(--navy);border-color:#fff}
+.nav.on-hero:not(.m-open) .nav-shell:not(.open) .menu-btn span{background:#fff}
+.nav-logo img,.nav-trigger,.nav-link,.nav-sec,.menu-btn span{transition:color .3s,background-color .3s,border-color .3s,filter .3s}
 .nav.scrolled{background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 var(--line)}
 .nav-shell{position:relative;max-width:var(--max);margin:0 auto}
 .nav-shell::before{content:"";position:absolute;inset:6px 0 0;background:#fff;border-radius:var(--radius);box-shadow:0 30px 60px -50px rgba(0,0,0,.1),0 30px 60px -10px rgba(2,26,44,.18);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
 .nav-shell.open::before{opacity:1;border-bottom-left-radius:0;border-bottom-right-radius:0;box-shadow:none}
-.nav-in{position:relative;padding:0 24px;height:72px;display:flex;align-items:center;gap:32px}
+.nav-in{position:relative;padding:0 24px;height:72px;display:flex;align-items:center;gap:28px}
 .nav-logo{flex:none}
 .nav-logo img{height:22px;width:auto;max-width:none;display:block}
-.nav-links{display:flex;gap:26px;list-style:none;flex:1;margin:0;padding:0}
+.nav-links{display:flex;gap:22px;list-style:none;flex:1;margin:0;padding:0}
 .nav-trigger,.nav-link{display:flex;align-items:center;gap:4px;white-space:nowrap;font:inherit;font-size:var(--fs-ui);font-weight:500;padding:10px 0;background:none;border:0;cursor:pointer;color:var(--navy);transition:color .25s var(--ease)}
 .nav-trigger .ic{width:14px;height:14px;opacity:.6;transition:transform .3s var(--ease)}
 .nav-trigger[aria-expanded=true] .ic{transform:rotate(180deg)}
@@ -94,7 +101,7 @@ section{position:relative}
 .menu-btn{display:none;background:none;border:0;width:40px;height:40px;border-radius:var(--radius);cursor:pointer}
 .menu-btn span{display:block;width:18px;height:2px;background:var(--navy);margin:4px auto;border-radius:var(--radius)}
 /* dropdown panel, attached under the bar */
-.nav-pop{position:absolute;left:0;right:0;top:100%;height:0;overflow:hidden;background:#fff;border-top:1px solid var(--line);border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);box-shadow:0 18px 36px -18px rgba(0,0,0,.1),0 30px 45px -30px rgba(2,26,44,.25);opacity:0;visibility:hidden}
+.nav-pop{position:absolute;left:0;right:0;top:100%;height:0;overflow:hidden;overscroll-behavior:contain;background:#fff;border-top:1px solid var(--line);border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);box-shadow:0 18px 36px -18px rgba(0,0,0,.1),0 30px 45px -30px rgba(2,26,44,.25);opacity:0;visibility:hidden}
 .nav-shell.open .nav-pop{opacity:1;visibility:visible}
 .np{position:absolute;top:0;left:0;width:100%;opacity:0;visibility:hidden;pointer-events:none}
 .np.on{opacity:1;visibility:visible;pointer-events:auto}
@@ -132,17 +139,17 @@ section{position:relative}
   .nav-pop{transition:height .3s var(--ease),opacity .2s var(--ease),visibility .2s}
   .np{transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1),visibility .25s}
 }
-@media (max-width:1320px){.nav-sec{display:none}.nav-links{gap:18px}.nav-in{gap:28px}}
+@media (max-width:1359px){.nav-sec{display:none}.nav-links{gap:18px}}
 
 /* ---------- HERO ---------- */
 /* bottom padding keeps the slanted band below the intro; it grows with width because the slant rises across wide screens */
-.hero{background:var(--soft);padding:150px 0 calc(170px + max(0px, (100vw - 1348px) * .0792));overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;position:relative;z-index:2}
+.hero{background:var(--navy);padding:150px 0 calc(300px + max(0px, (100vw - 1348px) * .0792));overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,720px);gap:48px;position:relative;z-index:2}
 .hero h1{margin-bottom:24px}
 .hero h1 .g{color:var(--cyan)}
 .hero .lede{margin-bottom:32px}
 .hero-ctas{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.stripes{position:absolute;left:0;right:0;bottom:-600px;height:780px;transform:skewY(-9deg);transform-origin:0 100%;z-index:1}
+.stripes{position:absolute;left:0;right:0;bottom:-680px;height:780px;transform:skewY(-9deg);transform-origin:0 100%;z-index:1}
 .stripes::before{content:"";position:absolute;inset:0;background:var(--navy)}
 .stripes span{position:absolute;height:44px}
 .stripes .s1{top:-44px;right:0;width:36%;background:var(--cyan)}
@@ -151,36 +158,14 @@ section{position:relative}
 .stripes .s4{top:44px;left:0;width:14%;background:var(--cyan)}
 
 /* hero UI mockup */
-.stage{position:relative;height:500px}
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--line);position:absolute;overflow:hidden}
-.c-main{top:0;left:0;right:56px;height:380px;display:grid;grid-template-columns:156px 1fr}
-.c-side{border-right:1px solid var(--line);padding:18px 12px;font-size:var(--fs-ui-sm);background:var(--soft)}
-.c-logo{height:14px;width:auto;display:block;margin:2px 6px 22px}
-.c-side .lbl{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 6px 8px}
-.c-side div.it{padding:6px 8px;border-radius:var(--radius);color:var(--slate);white-space:nowrap}
-.c-side div.on{background:#fff;color:var(--navy);font-weight:500;box-shadow:inset 0 0 0 1px var(--line)}
-.c-body{padding:18px 20px;display:flex;flex-direction:column}
-.c-head{display:block}
-.c-head small{display:block;font-size:var(--fs-label);color:var(--muted);margin-bottom:2px}
-.c-head b{color:var(--ink);font-size:var(--fs-small);font-weight:500}
-.pill{font-size:var(--fs-label);font-weight:500;padding:2px 8px;border-radius:var(--radius);background:var(--tint);color:var(--royal);white-space:nowrap}
-.c-img{flex:1;margin-top:14px;border-radius:var(--radius);overflow:hidden;background:#2a2a2a;position:relative}
-.c-img .pill{position:absolute;top:10px;left:10px;background:#fff}
-.c-img img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
-.c-stats{right:0;bottom:0;width:240px;padding:16px 18px;font-size:var(--fs-ui-sm)}
-.c-stats .big{font-size:var(--fs-num);font-weight:500;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin-bottom:12px}
-.c-stats .big small{display:block;font-size:var(--fs-label);color:var(--muted);font-weight:400;letter-spacing:0;margin-top:4px}
-.c-stats .rows div{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);color:var(--slate)}
-.c-stats .rows b{color:var(--ink);font-weight:500}
-.c-note{left:-24px;bottom:28px;width:236px;padding:14px 16px;font-size:var(--fs-ui-sm);color:var(--slate)}
-.c-note .jv-logos{display:flex;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:10px;border-bottom:1px solid var(--line)}
-.c-note .jv-logos img{height:12px;width:auto;max-width:90px;object-fit:contain}
-.c-note .jv-logos i{font-style:normal;color:var(--muted);font-size:var(--fs-label)}
-.c-note b{color:var(--ink);font-weight:500;display:block;margin-bottom:2px}
-.c-note span{display:block;line-height:1.45}
-.float{animation:float 7s ease-in-out infinite}
-.float.d2{animation-delay:-3s}
-@keyframes float{50%{transform:translateY(-8px)}}
+/* Hero background film + navy wash (text sits on it in white) */
+.hero-reel{position:absolute;top:0;left:0;width:100%;height:calc(100% - 100px);z-index:0;background:var(--navy)} /* stops where the navy band starts (100px above the hero bottom), so films are stretched less */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0;transition:opacity .7s ease}
+.hero-video.is-on{opacity:1}
+.hero-wash{position:absolute;top:0;left:0;right:0;height:calc(100% - 100px);z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(2,26,44,.55) 0,rgba(2,26,44,0) 180px),linear-gradient(90deg,rgba(2,26,44,.88) 0%,rgba(2,26,44,.6) 45%,rgba(2,26,44,.25) 100%)}
+.hero .eyebrow{color:var(--cyan)}
+.hero h1,.hero h1 .g{color:#fff}
+.hero .lede{color:rgba(255,255,255,.82);max-width:560px}
 
 /* ---------- LOGOS ---------- */
 .logos{padding:56px 0 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -294,13 +279,15 @@ section{position:relative}
 /* ---------- BEYOND BUSINESS ---------- */
 /* Sustainability & CSR: guide cards, mirrors stripe.com/guides */
 @media (min-width:640px) and (max-width:760px){.gs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
-.gs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:start}
-.gs-intro{grid-column:1/3;grid-row:1;position:relative;z-index:1;max-width:520px}
+/* desktop: a narrow intro on the left that sticks and fills the screen height (button at the bottom), with two staggered card columns pushed right that scroll past it.
+   margin-bottom keeps the button clear of the #trust diagonal that overlaps the bottom of this section */
+.gs{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr) repeat(2,minmax(0,300px));gap:24px;align-items:start}
+.gs-intro{grid-column:1;grid-row:1;position:sticky;top:112px;z-index:1;display:flex;flex-direction:column;height:calc(100svh - 112px - 56px);min-height:460px;max-height:760px;margin-bottom:280px}
 .gs-intro .lede{margin:20px 0 28px}
+.gs-intro .btn{margin-top:auto;align-self:flex-start}
 .gs-col{grid-row:1;display:flex;flex-direction:column;gap:24px}
-.gs-a{grid-column:2;padding-top:var(--gs-a,360px)}
-.gs-b{grid-column:3;padding-top:240px}
-.gs-c{grid-column:4;padding-top:120px}
+.gs-a{grid-column:3;padding-top:200px}
+.gs-b{grid-column:4;padding-top:0}
 .gc{--fill:var(--royal);--stroke:#5584C4;position:relative;display:block;aspect-ratio:254/356;color:#fff;transition:transform .3s}
 .gc--green{--fill:var(--green);--stroke:#9CCB6E}
 .gc--dkgreen{--fill:#3F7A1C;--stroke:#7AAA55}
@@ -329,7 +316,7 @@ section{position:relative}
 @media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-mark{opacity:.55;transform:none;transition:none}}
 
 /* ---------- NEWSROOM CAROUSEL ---------- */
-.newsroom{background:var(--navy);color:#fff;padding:0 0 110px}
+.newsroom{background:var(--navy);color:#fff;padding:56px 0 110px}
 .nr-in{padding-top:8px}
 .nr-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
 .nr-head .eyebrow{color:var(--cyan)}
@@ -812,6 +799,30 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
 .f-bottom div{display:flex;gap:20px;flex-wrap:wrap}
 .f-bottom a:hover{color:var(--cyan)}
 
+/* phone/tablet menu (below 1200px): a full-height sheet under the bar, built in JS from the desktop menu so both stay in sync */
+.m-menu{display:none}
+@media (max-width:1199px){
+  .m-menu{display:block;position:fixed;inset:0;z-index:49;background:#fff;padding-top:72px;overflow-y:auto;overscroll-behavior:contain;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility .25s}
+  body.m-lock{overflow:hidden}
+  body.m-lock .m-menu{opacity:1;visibility:visible}
+  .nav.m-open{background:#fff;box-shadow:0 1px 0 var(--line);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .menu-btn span{transition:transform .25s var(--ease),background-color .3s}
+  .nav.m-open .menu-btn span:first-child{transform:translateY(3px) rotate(45deg)}
+  .nav.m-open .menu-btn span:last-child{transform:translateY(-3px) rotate(-45deg)}
+}
+.m-in{max-width:720px;margin:0 auto;padding:8px 24px 40px}
+.m-item{border-bottom:1px solid var(--line)}
+.m-head,.m-link{display:flex;align-items:center;justify-content:space-between;width:100%;padding:18px 0;background:none;border:0;font:inherit;font-size:var(--fs-title);font-weight:500;color:var(--navy);cursor:pointer;text-align:left}
+.m-head .ic{width:18px;height:18px;color:var(--muted);transition:transform .3s var(--ease)}
+.m-head[aria-expanded=true] .ic{transform:rotate(180deg)}
+.m-body{display:none;padding:0 0 20px}
+.m-head[aria-expanded=true]+.m-body{display:block}
+.m-group+.m-group{margin-top:20px}
+.m-group h4{font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.m-group .np-list{gap:12px}
+.m-body .np-more{margin-top:20px}
+.m-cta{display:flex;flex-direction:column;gap:10px;margin-top:28px}
+.m-cta .btn{justify-content:center;padding-top:12px;padding-bottom:12px}
 /* reveal */
 .rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
 .rv.in{opacity:1;transform:none}
@@ -831,9 +842,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .tr-feats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
   .gs{grid-template-columns:repeat(3,minmax(0,1fr))}
     #trust{margin-top:0}
-  .gs-intro{grid-column:1/-1;max-width:640px;margin-bottom:24px}
+  .gs-intro{grid-column:1/-1;max-width:640px;margin-bottom:24px;position:relative;top:auto;height:auto;min-height:0;max-height:none}
+  .gs-intro .btn{margin-top:0}
   .gs-col{display:contents}
-  .gs-a,.gs-b,.gs-c{padding-top:0}
+  .gs-a,.gs-b{padding-top:0}
   .gc{grid-row:auto;grid-column:auto}
 }
 @media (max-width:1020px){
@@ -843,7 +855,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .nr-media{min-height:0;aspect-ratio:16/9}
   .nr-body{padding:28px 28px 32px}
   .nr-th{flex-basis:calc((100% - 28px) / 2)}
-  .stage{height:480px;max-width:600px}
   .facts{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .sol-grid{grid-template-columns:1fr 1fr;gap:16px}
       .f-grid,.f-comp-grid{grid-template-columns:1fr 1fr}
@@ -855,13 +866,9 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .nav-in{padding:0 16px}
   .nav-cta .btn-primary{display:none}
   .hero{padding-top:112px}
-  .stage{height:400px}
-  .c-main{right:0;height:300px;grid-template-columns:1fr}
-    .c-side{display:none}
-  .c-stats{width:220px;bottom:0}
-  .c-note{display:none}
   .stripes{height:900px}
-  .hero{padding-bottom:40px}
+  .hero{padding-bottom:400px}
+  .hero-wash{background:linear-gradient(180deg,rgba(2,26,44,.75) 0%,rgba(2,26,44,.6) 100%)}
   .sec{padding:84px 0}
   .facts{grid-template-columns:1fr 1fr}
   .sol-grid{grid-template-columns:1fr}
@@ -901,16 +908,16 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       <a href="#" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
       <ul class="nav-links">
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-about" data-panel="about">About ANAND<i data-lucide="chevron-down" class="ic"></i></button></li>
-      <li><a class="nav-link" href="#">Vision &amp; strategy</a></li>
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-companies" data-panel="companies">Our companies<i data-lucide="chevron-down" class="ic"></i></button></li>
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-sustain" data-panel="sustain">Sustainability &amp; CSR<i data-lucide="chevron-down" class="ic"></i></button></li>
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-careers" data-panel="careers">Careers<i data-lucide="chevron-down" class="ic"></i></button></li>
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-news" data-panel="news">Newsroom<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><a class="nav-link" href="#vision">Our Vision</a></li>
       </ul>
       <div class="nav-cta">
         <a href="#careers" class="btn btn-outline2 nav-sec">Explore Careers</a>
         <a href="#contact" class="btn btn-primary" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
-        <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mMenu"><span></span><span></span></button>
       </div>
     </div>
     <div class="nav-pop" id="navPop">
@@ -980,9 +987,9 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
         <section class="np-col"><h4>News</h4><ul class="np-list"><li><a href="#"><b>Latest news</b><span>Stories from across the group</span></a></li><li><a href="#"><b>Media coverage</b><span>ANAND in the press</span></a></li><li><a href="#"><b>Newsletter</b><span>Past issues</span></a></li></ul></section><section class="np-col"><h4>For media</h4><ul class="np-list"><li><a href="#"><b>Media kit</b><span>Brand assets and downloads</span></a></li><li><a href="#"><b>Media contact</b><span>Press enquiries</span></a></li></ul></section>
         <aside class="np-aside">
         <div class="np-feature">
-          <span class="np-img"><img src="assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg" alt=""></span>
-          <span class="np-fk">27 Aug 2026</span>
-          <b>Gabriel India joins hands with South Korea's HL Klemove</b>
+          <span class="np-img"><img src="assets/Gabriel-India-to-acquire-nearly-30-pc-stake.jpg" alt=""></span>
+          <span class="np-fk">26 Aug 2026</span>
+          <b>Gabriel India to acquire nearly 30% stake in South Korean firm's subsidiary</b>
           <a href="#" class="np-more">Read More <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         </aside>
@@ -993,9 +1000,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   </div>
 </header>
 <div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+<div class="m-menu" id="mMenu" aria-hidden="true"><nav class="m-in" aria-label="Menu"></nav></div>
 
 <!-- HERO -->
 <section class="hero">
+  <!-- Background reel: one edited, upscaled loop (assets/hero-reel.mp4, 15.5s, 1920x1080, ~5.8 MB) with a poster frame.
+       Shots: ANAND flag, building, factory, robot arm -> car-body welding (Pexels 4468754, temporary) -> coast road ->
+       SUJÁN camp at dawn, dusk over the hills, lantern dinner. Sources: ANAND homepage film, SUJÁN main film (need ANAND's OK). -->
+  <div class="hero-reel" id="heroReel" aria-hidden="true">
+    <video class="hero-video is-on" muted loop playsinline preload="auto" poster="assets/hero-reel-poster.jpg" src="assets/hero-reel.mp4"></video>
+  </div>
+  <div class="hero-wash" aria-hidden="true"></div>
   <div class="stripes" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
   <div class="wrap hero-grid">
     <div class="rv">
@@ -1007,37 +1022,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       </div>
     </div>
 
-    <div class="stage rv" aria-hidden="true">
-      <div class="card c-main">
-        <div class="c-side">
-          <img class="c-logo" src="assets/logo.png" alt="">
-          <div class="lbl">Portfolio</div>
-          <div class="it on">Chassis</div>
-          <div class="it">Emission control</div>
-          <div class="it">Powertrain</div>
-          <div class="it">Safety</div>
-          <div class="it">Thermal</div>
-          <div class="it">E-mobility</div>
-        </div>
-        <div class="c-body">
-          <div class="c-head"><small>Gabriel India · Two-wheeler</small><b>25.4 Dia Rear Suspension</b></div>
-          <div class="c-img"><img src="assets/chasis-control.png" alt=""><span class="pill">In production</span></div>
-        </div>
-      </div>
-      <div class="card c-stats float">
-        <div class="big">US$2.2B+<small>Group revenue</small></div>
-        <div class="rows">
-          <div>Companies<b>17</b></div>
-          <div>People<b>22,000+</b></div>
-          <div>Locations<b>87</b></div>
-        </div>
-      </div>
-      <div class="card c-note float d2">
-        <div class="jv-logos"><img src="assets/Gabriel.png" alt=""><i>×</i><img src="assets/companies/hl-klemove.png" alt=""></div>
-        <b>New joint venture</b>
-        <span>Bringing autonomous-driving technology to India</span>
-      </div>
-    </div>
   </div>
 
 </section>
@@ -1066,16 +1050,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
 -->
 <script type="application/json" id="cms-news">
 [
-  {
-    "category": "Joint Venture",
-    "date": "2026-08-27",
-    "title": "Gabriel India joins hands with South Korea's HL Klemove: what's inside the joint venture",
-    "excerpt": "A closer look at the new joint venture between Gabriel India and HL Klemove, and what it means for autonomous driving technology in India.",
-    "image": "assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg",
-    "imageAlt": "Gabriel and HL Klemove logos",
-    "source": "Livemint",
-    "url": "https://www.livemint.com/auto-news/autonomous-driving-technology-gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-venture-11787828253279.html"
-  },
   {
     "category": "Acquisition",
     "date": "2026-08-26",
@@ -1576,7 +1550,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           "href": "https://www.thehindubusinessline.com/companies/gabriel-india-unveils-3166-crore-project-jupiter-for-korean-linked-hl-mando-klemove-stakes/article71251030.ece"
         },
         {
-          "img": "assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg",
+          "img": "assets/Gabriel-India-South-Koreas-HL-Klemove.jpg",
           "cover": true,
           "text": "Gabriel India and HL Klemove form a joint venture for autonomous driving.",
           "link": "Read on The Economic Times",
@@ -2133,21 +2107,29 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
             <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
-        <a class="gc gc--cyan" href="#">
-          <span class="gc-shadow" aria-hidden="true"></span>
-          <span class="gc-card">
-            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-            <span class="gc-text"><span class="gc-cat">Community &amp; livelihoods</span><h3 class="gc-title">1,000+ Self-Help Groups Supported with 170 mn in Micro-Credit</h3></span>
-            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
-          </span>
-        </a>
-      </div>
-      <div class="gs-col gs-b">
         <a class="gc gc--royal" href="#">
           <span class="gc-shadow" aria-hidden="true"></span>
           <span class="gc-card">
             <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
             <span class="gc-text"><span class="gc-cat">Education &amp; diversity</span><h3 class="gc-title">3.78 Lakh Students Reached Through 100+ Partner Schools</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+        <a class="gc gc--cyan" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Skill development</span><h3 class="gc-title">45,000+ Young People Trained, 80% of Them Women</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+      </div>
+      <div class="gs-col gs-b">
+        <a class="gc gc--cyan" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Community &amp; livelihoods</span><h3 class="gc-title">1,000+ Self-Help Groups Supported with 170 mn in Micro-Credit</h3></span>
             <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
@@ -2159,21 +2141,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
             <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
-      </div>
-      <div class="gs-col gs-c">
         <a class="gc gc--green" href="#">
           <span class="gc-shadow" aria-hidden="true"></span>
           <span class="gc-card">
             <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
             <span class="gc-text"><span class="gc-cat">Sustainability</span><h3 class="gc-title">Solar Power, Wind Energy and Miyawaki Forests</h3></span>
-            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
-          </span>
-        </a>
-        <a class="gc gc--cyan" href="#">
-          <span class="gc-shadow" aria-hidden="true"></span>
-          <span class="gc-card">
-            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
-            <span class="gc-text"><span class="gc-cat">Skill development</span><h3 class="gc-title">45,000+ Young People Trained, 80% of Them Women</h3></span>
             <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
@@ -2691,11 +2663,25 @@ if (wrap) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }), {threshold: .2});
     document.querySelectorAll('.gc-art').forEach(el => io.observe(el));
   })();
+
+
+  // hero reel: plays only while on screen; with reduced motion it stays on the poster frame
+  (() => {
+    const box = document.getElementById('heroReel'); if (!box) return;
+    const v = box.querySelector('video');
+    if (reduce) { v.removeAttribute('src'); v.load(); return; }
+    new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }).observe(box);
+  })();
   lucide.createIcons();
 
   // nav state
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 10);
+  const heroEl = document.querySelector('.hero');
+  const onScroll = () => {
+    const past = scrollY > heroEl.querySelector('.hero-grid').offsetTop - 72 - 24; // fill before the bar reaches the hero text
+    nav.classList.toggle('on-hero', !past);
+    nav.classList.toggle('scrolled', past);
+  };
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
   // duplicate marquee for seamless loop
@@ -2735,6 +2721,7 @@ if (wrap) {
     const order = triggers.map(t => t.dataset.panel);
     let cur = null, openT = 0, closeT = 0;
     const panelOf = k => pop.querySelector(`.np[data-panel="${k}"]`);
+    const fit = p => { const room = innerHeight - pop.getBoundingClientRect().top - 12; pop.style.height = Math.min(p.offsetHeight, room) + 'px'; pop.style.overflowY = p.offsetHeight > room ? 'auto' : 'hidden'; }; // short screens: cap the panel to the viewport and let it scroll
     const show = key => {
       clearTimeout(closeT);
       if (key === cur) return;
@@ -2747,7 +2734,7 @@ if (wrap) {
       next.offsetWidth; // commit the start position
       next.style.transition = '';
       next.classList.add('on'); next.style.transform = 'none';
-      pop.style.height = next.offsetHeight + 'px';
+      fit(next);
       shell.classList.add('open'); overlay.classList.add('show');
       cur = key;
     };
@@ -2776,7 +2763,44 @@ if (wrap) {
       if (e.key === 'Escape' && cur) { const t = triggers.find(x => x.dataset.panel === cur); hide(); t && t.focus(); }
     });
     shell.addEventListener('focusout', e => { if (!shell.contains(e.relatedTarget)) hide(); });
-    addEventListener('resize', () => { if (cur) pop.style.height = panelOf(cur).offsetHeight + 'px'; });
+    addEventListener('resize', () => { if (cur) fit(panelOf(cur)); });
+    addEventListener('scroll', () => { if (cur) hide(); }, {passive: true});   // the page scrolling closes the menu (scrolling inside a tall panel doesn't)
+  })();
+
+  // phone/tablet menu: an accordion built from the desktop mega menu, opened by the menu button
+  (() => {
+    const nav = document.getElementById('nav'), btn = nav.querySelector('.menu-btn'), menu = document.getElementById('mMenu');
+    if (!btn || !menu) return;
+    const list = menu.querySelector('.m-in');
+    const group = (title, ul) => { const g = document.createElement('div'); g.className = 'm-group'; g.innerHTML = `<h4>${title}</h4>`; g.appendChild(ul.cloneNode(true)); return g; };
+    nav.querySelectorAll('.nav-links > li > *').forEach(el => {
+      if (el.matches('a')) { const a = el.cloneNode(true); a.className = 'm-link'; const w = document.createElement('div'); w.className = 'm-item'; w.appendChild(a); list.appendChild(w); return; }
+      const panel = document.getElementById(el.getAttribute('aria-controls')), id = 'm-' + el.dataset.panel;
+      const item = document.createElement('div'); item.className = 'm-item';
+      item.innerHTML = `<button class="m-head" type="button" aria-expanded="false" aria-controls="${id}">${el.firstChild.textContent}</button><div class="m-body" id="${id}"></div>`;
+      item.querySelector('.m-head').appendChild(el.querySelector('svg, i').cloneNode(true));
+      const body = item.querySelector('.m-body');
+      panel.querySelectorAll('.np-col').forEach(c => body.appendChild(group(c.querySelector('h4').textContent, c.querySelector('.np-list'))));
+      panel.querySelectorAll('.np-aside h4').forEach(h => { const ul = h.nextElementSibling; if (ul && ul.matches('.np-list')) body.appendChild(group(h.textContent, ul)); });
+      const foot = panel.querySelector('.np-foot a'); if (foot) body.appendChild(foot.cloneNode(true));
+      list.appendChild(item);
+    });
+    const cta = document.createElement('div'); cta.className = 'm-cta';
+    nav.querySelectorAll('.nav-cta a').forEach(a => { const c = a.cloneNode(true); c.classList.remove('nav-sec'); cta.appendChild(c); });
+    list.appendChild(cta);
+    list.addEventListener('click', e => {
+      const h = e.target.closest('.m-head');
+      if (h) { const open = h.getAttribute('aria-expanded') === 'true'; list.querySelectorAll('.m-head').forEach(x => x.setAttribute('aria-expanded', 'false')); h.setAttribute('aria-expanded', String(!open)); return; }
+      if (e.target.closest('a')) set(false);
+    });
+    const set = on => {
+      nav.classList.toggle('m-open', on); document.body.classList.toggle('m-lock', on);
+      btn.setAttribute('aria-expanded', String(on)); btn.setAttribute('aria-label', on ? 'Close menu' : 'Open menu');
+      menu.setAttribute('aria-hidden', String(!on));
+    };
+    btn.addEventListener('click', () => set(!nav.classList.contains('m-open')));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && nav.classList.contains('m-open')) { set(false); btn.focus(); } });
+    matchMedia('(min-width:1200px)').addEventListener('change', e => { if (e.matches) set(false); });
   })();
 
   // stories carousel: arrows scroll one card at a time and disable at the ends
