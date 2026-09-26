@@ -168,6 +168,7 @@ section{position:relative}
 .hero-wash{position:absolute;top:0;left:0;right:0;height:calc(100% - 100px);z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(2,26,44,.55) 0,rgba(2,26,44,0) 180px),linear-gradient(90deg,rgba(2,26,44,.88) 0%,rgba(2,26,44,.6) 45%,rgba(2,26,44,.25) 100%)}
 .hero .eyebrow{color:var(--cyan)}
 .hero h1,.hero h1 .g{color:#fff}
+@media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "…Future / of Mobility" on tablet and up; phones wrap naturally */
 .hero .lede{color:rgba(255,255,255,.82);max-width:560px}
 
 /* ---------- LOGOS ---------- */
@@ -1026,7 +1027,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   <div class="wrap hero-grid">
     <div class="rv">
       <div class="eyebrow">Since 1961</div>
-      <h1>Engineering the <span class="g">Future of Mobility</span></h1>
+      <h1>Engineering the <span class="g">Future<br class="br-lg"> of Mobility</span></h1>
       <p class="lede">A global mobility solutions group bringing together world-class technologies and deep manufacturing expertise to serve leading automotive manufacturers across the world.</p>
       <div class="hero-ctas">
         <a href="#solutions" class="btn btn-primary">Explore Solutions <i data-lucide="arrow-right" class="ic"></i></a>

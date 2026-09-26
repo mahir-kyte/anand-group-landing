@@ -266,7 +266,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 - **Navy wash for legibility:** a gradient from the top (for the nav) plus a gradient from the left (.88 → .25). On phones it's an even .75 → .6.
 - **Text** (one column, max 720px, white):
   - eyebrow "SINCE 1961" (cyan)
-  - h1 "Engineering the Future of Mobility", **all white**
+  - h1 "Engineering the Future / of Mobility", **all white**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally)
   - lede in 82% white
   - one button, "Explore Solutions"
 - **Band:** the slanted navy band with royal and cyan stripes runs below into the newsroom.
