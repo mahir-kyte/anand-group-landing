@@ -2,7 +2,7 @@
 
 Read this first. It lets anyone (a person or a new Claude chat) pick up the ANAND Group landing-page design reference from where it stands. It covers the context, the rules, the design system, the language, how each section works, and the open items.
 
-Last updated: 26 Sep 2026, after a full consistency audit (content, type, colours). For the latest commit, run `git log -1`.
+Last updated: 26 Sep 2026 (evening), after the second full consistency audit (content, type, colours) and the hero video, phone menu and sticky CSR changes. For the latest commit, run `git log -1`.
 
 ---
 
@@ -122,19 +122,19 @@ Open `http://localhost:5178`. The preview pane attaches with `.claude/launch.jso
 | `--on-dark-2` | `#88A3BB` | Secondary text on navy |
 | `--tint` / `--tint-2` | `#E6F7FD` / `#B3E7FA` | Cyan tints (soft icon boxes, borders) |
 | `--faint` | `#9AA8B8` | Placeholders, disabled |
+| `--error` | `#DF1B41` | Form validation (border and message) |
 
 The CSS rules use these tokens, not raw hex values. The only hardcoded colours left are:
-- white and black (for masks)
-- `#2a2a2a` behind product photos
-- the form error red `#DF1B41`
+- white and black (white text; black only inside masks)
 - the CSR card fill/tint pairs (§8.10)
+- white at .72/.82 opacity for secondary text on coloured cards and the hero
 
 ### Layout
 - **Width:** `--max:1348px`, which is 1300px of content plus 24px padding on each side.
 - **Section padding:** `.sec` 120px, 84px on phones.
 - **Radius:** `--radius:4px`.
 - **Breakpoints:**
-  - 1320px: "Explore Careers" hides in the nav
+  - 1360px: "Explore Careers" hides in the nav (below 1,360px)
   - 1200px: the nav collapses; several grids reflow
   - 1020px, 940px: layout steps
   - 640px: phone
@@ -156,11 +156,10 @@ The CSS rules use these tokens, not raw hex values. The only hardcoded colours l
 | `--fs-small` | 14 | Secondary text, footer |
 | `--fs-ui-sm` | 13 | Eyebrows; text inside product-style graphics |
 | `--fs-num` | 24 | Numbers inside graphics |
-| `--fs-label` | 12 | Captions and all-caps labels |
+| `--fs-label` | 12 | Captions, all-caps labels, globe and map labels, avatar initials |
+| `--fs-mega` | clamp(72,9vw,128) | The single oversized figure: the trust section's **40%+** ("%+" the same size as the digits) |
 
-**Exceptions:**
-- The trust section's **40%+** is `clamp(72px,9vw,128px)`, with "%+" the same size as the digits.
-- Globe labels are 11px.
+**No exceptions left.** The second 26 Sep audit (evening) replaced the last raw sizes (globe labels 11px, avatar initials 10.5px/600, phone map pin 9px, phone news excerpt 15px, leader initials 16px, body 16px) with tokens. Rendered check at 1440px: 13 sizes, all on the scale; Geist only; weights 400/500 only; text colours all tokens.
 
 **Weights:**
 - 400 for text and stats; **500 for all emphasis**.
@@ -192,7 +191,10 @@ Primary CTAs end with a chevron (›). Every "Partner with Us" button opens the 
 - **Sections:** fade up on scroll (`.rv` → `.in`).
 
 ### Icons
-Lucide only (`<i data-lucide>`), with the same stroke everywhere. The four trust feature icons are 40px cyan at stroke 1.5.
+Lucide only (`<i data-lucide>`, v1.48.0), with the same stroke everywhere. Colour is **cyan** for accent icons. Sizes:
+- 14–16px inline with links and buttons (chevron-right on CTAs, arrow-right on "see all" links, arrow-up-right on external links)
+- **18px** next to 14–15px labels (product-card badges, SNS Foundation focus areas)
+- 32px in the governance tiles (white on the fill), 40px for the four trust feature icons (stroke 1.5)
 
 ---
 
@@ -203,6 +205,11 @@ Lucide only (`<i data-lucide>`), with the same stroke everywhere. The four trust
   - Small words (a, an, the, and, or, for, of, on, in, to, at, by, with) stay lowercase unless they come first.
   - Units stay lowercase ("sq km", "mn").
 - **Sentence case** for nav menu labels, menu items and footer link lists, matching the nav spec.
+  - Exception: "see all" links inside menus and the footer ("All Companies", "All News") are link labels, so Title Case.
+- **Press headlines stay in sentence case** (the newsroom stories quote the publisher's headline); everything we write is Title Case.
+- **Currency:** "US$" with no space and a capital B/M: US$2.2B+, US$10.3B, US$408M. Axis labels may say "US$ Bn". Rupee figures follow the source ("₹316.6 crore", "Rs 94.8 crore") because they quote headlines.
+- **ANEVOLVE** in caps when it's the platform on its own; the company keeps its registered name "Anevolve Mando eMobility". Write "future-tech platform" (hyphenated).
+- **"Our Vision"** is the nav and footer label for the Vision section; the section's eyebrow still reads "Vision & strategy".
 - **UK/Indian English:** programme, honours, enquiries, lakh.
 - **Brand spellings:** ANAND, SUJÁN, Gabriel India, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND.
 - **Numbers used everywhere (must match):**
@@ -324,7 +331,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.10 Sustainability & CSR (`section#beyond`)
 - **Structure:** stripe.com/guides.
-- **Left (desktop, ≥1200px): a sticky intro.** A 440px column that pins 112px from the top and is as tall as the screen (100svh − 168px, clamped 460–760px). The eyebrow, heading and lede sit at the top and "Explore Sustainability & CSR ›" at the bottom. It stays put while the cards scroll past, then leaves with the section. A 280px bottom margin releases it early so the #trust diagonal stripes never cover the button.
+- **Left (desktop, ≥1200px): a sticky intro.** A 440px column that pins 112px from the top and is as tall as the screen (100svh − 168px, clamped 460–760px). The eyebrow, heading, lede and "Explore Sustainability & CSR ›" stack at the top with equal 20px gaps (heading→lede→button). An **SNS Foundation card** sits at the bottom of the column (`.gs-fdn`, soft fill with a hairline border): the title "SNS Foundation" (17px), one 14px line on its namesake Sant Nischal Singhji (1882–1978), and its four focus areas (14px) with 18px cyan Lucide icons, matching the product-card badges (Education, Health & hygiene, Skill development, Community conservation). Source: anandgroupindia.com/snsf/about-snsf. On short screens the column grows to fit (min-height: min-content) so the card never overflows; below 1200px it sits 32px under the button. It stays put while the cards scroll past, then leaves with the section. A 280px bottom margin releases it early so the #trust diagonal stripes never cover the button.
 - **Right: 6 guide cards in 2 staggered columns of 3** (300px wide), pushed to the right edge; the left column starts 200px lower. Column A: wildlife, education, skills. Column B: livelihoods, health, sustainability.
   - Below 1200px the intro is a normal block above a 3-column (tablet) or 1-column (phone) grid of the same cards.
   - Card format: 254:356, category in 12px caps, title in `--fs-h3`, and "Read more ›" on hover.
