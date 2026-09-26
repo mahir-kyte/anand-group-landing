@@ -57,26 +57,64 @@ h3{font-size:17px;letter-spacing:-.01em;line-height:1.35}
 .link:hover{color:var(--navy)}
 section{position:relative}
 
-/* ---------- NAV ---------- */
+/* ---------- NAV (mirrors stripe.com's navigation menu) ---------- */
 .nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
 .nav.scrolled{background:rgba(255,255,255,.86);backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 var(--line)}
-.nav-in{max-width:var(--max);margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;gap:36px}
-.nav-logo img{height:22px;width:auto}
-.nav-links{display:flex;gap:4px;list-style:none;flex:1}
-.nav-links>li{position:relative}
-.nav-links>li>a{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:15px;font-weight:500;padding:8px 12px;border-radius:var(--radius);color:var(--navy)}
-.nav-links>li>a:hover{color:var(--slate)}
-.nav-links .ic{width:14px;height:14px;opacity:.6;transition:transform .2s}
-.nav-links>li:hover .ic{transform:rotate(180deg)}
-.dd{position:absolute;top:calc(100% + 8px);left:-8px;min-width:240px;background:#fff;border-radius:var(--radius);border:1px solid var(--line);box-shadow:none;padding:10px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s var(--ease)}
-.nav-links>li:hover .dd,.nav-links>li:focus-within .dd{opacity:1;visibility:visible;transform:none}
-.dd a{display:block;padding:8px 12px;border-radius:var(--radius);font-size:14px;color:var(--slate)}
-.dd a:hover{background:var(--soft);color:var(--navy)}
-.dd a b{display:block;color:var(--navy);font-weight:500}
-.nav-cta{display:flex;align-items:center;gap:6px}
-.nav-cta .btn-ghost{color:var(--navy)}
+.nav-shell{position:relative;max-width:var(--max);margin:0 auto}
+.nav-shell::before{content:"";position:absolute;inset:6px 0 0;background:#fff;border-radius:var(--radius);box-shadow:0 30px 60px -50px rgba(0,0,0,.1),0 30px 60px -10px rgba(2,26,44,.18);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.nav-shell.open::before{opacity:1;border-bottom-left-radius:0;border-bottom-right-radius:0;box-shadow:none}
+.nav-in{position:relative;padding:0 24px;height:72px;display:flex;align-items:center;gap:32px}
+.nav-logo img{height:22px;width:auto;display:block}
+.nav-links{display:flex;gap:26px;list-style:none;flex:1;margin:0;padding:0}
+.nav-trigger,.nav-link{display:flex;align-items:center;gap:4px;white-space:nowrap;font:inherit;font-size:14.5px;font-weight:500;padding:10px 0;background:none;border:0;cursor:pointer;color:var(--navy);transition:color .25s var(--ease)}
+.nav-trigger .ic{width:14px;height:14px;opacity:.6;transition:transform .3s var(--ease)}
+.nav-trigger[aria-expanded=true] .ic{transform:rotate(180deg)}
+.nav-shell.open .nav-trigger:not([aria-expanded=true]),.nav-shell.open .nav-link{color:var(--muted)}
+.nav-trigger:focus-visible,.nav-link:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:2px}
+.nav-cta{display:flex;align-items:center;gap:8px}
+.nav-cta .btn{font-size:14.5px}
 .menu-btn{display:none;background:none;border:0;width:40px;height:40px;border-radius:var(--radius);cursor:pointer}
 .menu-btn span{display:block;width:18px;height:2px;background:var(--navy);margin:4px auto;border-radius:var(--radius)}
+/* dropdown panel, attached under the bar */
+.nav-pop{position:absolute;left:0;right:0;top:100%;height:0;overflow:hidden;background:#fff;border-top:1px solid var(--line);border-bottom-left-radius:var(--radius);border-bottom-right-radius:var(--radius);box-shadow:0 18px 36px -18px rgba(0,0,0,.1),0 30px 45px -30px rgba(2,26,44,.25);opacity:0;visibility:hidden}
+.nav-shell.open .nav-pop{opacity:1;visibility:visible}
+.np{position:absolute;top:0;left:0;width:100%;opacity:0;visibility:hidden;pointer-events:none}
+.np.on{opacity:1;visibility:visible;pointer-events:auto}
+.np-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr)) 300px}
+.np-col{padding:28px 28px 20px}
+.np-col+.np-col{border-left:1px solid var(--line)}
+.np-col h4,.np-aside h4{font-size:14.5px;font-weight:400;color:var(--ink);margin-bottom:18px}
+.np-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.np-list a{display:block;color:inherit}
+.np-list b{display:block;font-size:14.5px;font-weight:500;color:var(--cyan);line-height:1.35;transition:color .2s}
+.np-list span{display:block;font-size:13px;color:var(--slate);line-height:1.4;margin-top:2px}
+.np-list a:hover b{color:var(--navy)}
+.np-aside{grid-column:calc(var(--cols) + 1);grid-row:1 / span 2;background:var(--soft);border-left:1px solid var(--line);padding:28px}
+.np-foot{grid-column:1 / span var(--cols);border-top:1px solid var(--line);padding:16px 28px}
+.np-more{display:inline-flex;align-items:center;gap:4px;font-size:14.5px;font-weight:500;color:var(--cyan)}
+.np-more .ic{width:15px;height:15px;transition:transform .2s var(--ease)}
+.np-more:hover{color:var(--navy)}
+.np-more:hover .ic{transform:translateX(2px)}
+.np-feature{display:flex;flex-direction:column;gap:8px}
+.np-feature b{font-size:16px;font-weight:500;color:var(--ink);line-height:1.3}
+.np-feature p{font-size:13.5px;color:var(--slate);line-height:1.5}
+.np-fk{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.np-portrait{width:64px;height:64px;border-radius:50%;object-fit:cover;margin-bottom:6px}
+.np-img{display:block;aspect-ratio:16/10;border-radius:var(--radius);overflow:hidden;margin-bottom:6px;background:var(--line)}
+.np-img img{width:100%;height:100%;object-fit:cover}
+.np-btn{align-self:flex-start;margin-top:6px}
+.np-quote{margin-top:22px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:16px}
+.np-quote p{font-size:15px;line-height:1.35;margin-bottom:8px}
+.np-quote span{font-size:12px;color:#A9C1D6}
+.np-aside .np-list{gap:12px}
+/* page behind blurs while a menu is open */
+.nav-overlay{position:fixed;inset:72px 0 0;z-index:40;background:rgba(246,249,252,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
+.nav-overlay.show{opacity:1;pointer-events:auto}
+@media (prefers-reduced-motion:no-preference){
+  .nav-pop{transition:height .3s var(--ease),opacity .2s var(--ease),visibility .2s}
+  .np{transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1),visibility .25s}
+}
+@media (max-width:1320px){.nav-sec{display:none}.nav-links{gap:20px}}
 
 /* ---------- HERO ---------- */
 /* bottom padding keeps the slanted band below the intro; it grows with width because the slant rises across wide screens */
@@ -620,7 +658,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:1020px){
-  .nav-links,.nav-cta .btn-ghost{display:none}
+  .nav-links,.nav-pop,.nav-overlay{display:none}
   .nav-in{justify-content:space-between}
   .menu-btn{display:block}
   .hero-grid,.about-grid,.p-top,.bb-grid,.bento-head{grid-template-columns:1fr}
@@ -682,40 +720,105 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
 </head>
 <body>
 
-<!-- NAV -->
+<!-- NAV (mega menu mirrors stripe.com; structure from Docs/ANAND_demo_top-nav.txt) -->
 <header class="nav" id="nav">
-  <div class="nav-in">
-    <a href="#" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
-    <ul class="nav-links">
-      <li><a href="#about">Who we are <i data-lucide="chevron-down" class="ic"></i></a>
-        <div class="dd">
-          <a href="#"><b>The ANAND Way</b>Values that guide us</a>
-          <a href="#"><b>History</b>Since 1961</a>
-          <a href="#"><b>Corporate Governance</b></a>
-          <a href="#"><b>Awards &amp; Recognition</b></a>
-        </div></li>
-      <li><a href="#solutions">What we do <i data-lucide="chevron-down" class="ic"></i></a>
-        <div class="dd">
-          <a href="#solutions"><b>Products &amp; Solutions</b>Six mobility portfolios</a>
-          <a href="#"><b>Customers</b>Leading global OEMs</a>
-          <a href="#"><b>Aftermarket</b></a>
-          <a href="#verticals"><b>Hospitality</b>SUJÁN</a>
-        </div></li>
-      <li><a href="#partners">Our companies</a></li>
-      <li><a href="#beyond">Beyond business <i data-lucide="chevron-down" class="ic"></i></a>
-        <div class="dd">
-          <a href="#beyond"><b>Sustainability</b></a>
-          <a href="#beyond"><b>CSR</b>SNS Foundation</a>
-        </div></li>
-      <li><a href="#careers">Careers</a></li>
-    </ul>
-    <div class="nav-cta">
-      <a href="#news" class="btn btn-ghost">Newsroom <i data-lucide="arrow-right" class="ic"></i></a>
-      <a href="#contact" class="btn btn-primary">Partner with us <i data-lucide="arrow-right" class="ic"></i></a>
-      <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
+  <div class="nav-shell" id="navShell">
+    <div class="nav-in">
+      <a href="#" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
+      <ul class="nav-links">
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-about" data-panel="about">About ANAND<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><a class="nav-link" href="#">Vision &amp; strategy</a></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-companies" data-panel="companies">Our companies<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-sustain" data-panel="sustain">Sustainability &amp; CSR<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-careers" data-panel="careers">Careers<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-news" data-panel="news">Newsroom<i data-lucide="chevron-down" class="ic"></i></button></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#careers" class="btn btn-outline2 nav-sec">Explore careers</a>
+        <a href="#contact" class="btn btn-primary">Partner with us <i data-lucide="chevron-right" class="ic"></i></a>
+        <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="nav-pop" id="navPop">
+    <div class="np" id="np-about" data-panel="about" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>Who we are</h4><ul class="np-list"><li><a href="#"><b>The ANAND Way</b><span>Our principles and beliefs</span></a></li><li><a href="#"><b>Heritage</b><span>Our story since 1961</span></a></li><li><a href="#"><b>Awards &amp; recognition</b><span>Group awards and honours</span></a></li></ul></section><section class="np-col"><h4>Leadership &amp; governance</h4><ul class="np-list"><li><a href="#"><b>Leadership</b><span>Our leadership team and board</span></a></li><li><a href="#"><b>Chairperson&#x27;s message</b><span>A word from our Chairperson</span></a></li><li><a href="#"><b>Corporate governance</b><span>Governance and code of conduct</span></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <img class="np-portrait" src="assets/leader-anjali-singh.jpg" alt="">
+          <span class="np-fk">Featured</span>
+          <b>Chairperson's message</b>
+          <p>Anjali Singh, Chairperson of the ANAND Supervisory Board, on the Group's next chapter.</p>
+          <a href="#" class="np-more">Read the message <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">About ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-companies" data-panel="companies" style="--cols:4">
+      <div class="np-grid">
+        <section class="np-col"><h4>Chassis, body &amp; safety</h4><ul class="np-list"><li><a href="#"><b>Gabriel India</b><span>Shock absorbers, struts and front forks</span></a></li><li><a href="#"><b>HL Mando Anand India</b><span>Brakes, steering and suspension</span></a></li><li><a href="#"><b>Joyson ANAND Abhishek Safety Systems</b><span>Seat belts, airbags and steering wheels</span></a></li><li><a href="#"><b>Henkel ANAND India</b><span>Sealants, adhesives and NVH products</span></a></li><li><a href="#"><b>Inalfa Roof Systems</b><span>Sunroof systems</span></a></li><li><a href="#"><b>Haldex ANAND India</b><span>Commercial-vehicle brake components</span></a></li></ul></section><section class="np-col"><h4>Powertrain &amp; drivetrain</h4><ul class="np-list"><li><a href="#"><b>Dana Anand India</b><span>Axles and driveshafts</span></a></li><li><a href="#"><b>ANAND CY Myutec Automotive (ACYM)</b><span>Synchroniser rings</span></a></li><li><a href="#"><b>CY Myutec ANAND</b><span>Synchroniser rings</span></a></li><li><a href="#"><b>ANAND I-Power</b><span>Piston rings and cast-iron components</span></a></li><li><a href="#"><b>Valeo Friction Materials India</b><span>Clutch facings</span></a></li><li><a href="#"><b>Jinhap Gabriel Auto India</b><span>Precision bolts and fasteners</span></a></li></ul></section><section class="np-col"><h4>Thermal, emissions &amp; fluids</h4><ul class="np-list"><li><a href="#"><b>MAHLE ANAND Thermal Systems</b><span>Air conditioning and engine cooling</span></a></li><li><a href="#"><b>MAHLE ANAND Filter Systems</b><span>Filters and air-intake systems</span></a></li><li><a href="#"><b>Faurecia Clean Mobility</b><span>Exhaust systems and catalytic converters</span></a></li><li><a href="#"><b>SK Enmove Gabriel India</b><span>Engine oils and e-fluids</span></a></li><li><a href="#"><b>Anchemco ANAND</b><span>Coolants, brake fluids and AdBlue</span></a></li><li><a href="#"><b>Ansysco ANAND</b><span>Lubricants and car-care products</span></a></li></ul></section><section class="np-col"><h4>Electronics &amp; e-mobility</h4><ul class="np-list"><li><a href="#"><b>HL Klemove</b><span>Autonomous driving, ADAS and automotive electronics</span></a></li><li><a href="#"><b>APAG CoSyst</b><span>Lighting and electronic control systems</span></a></li><li><a href="#"><b>Anevolve Mando eMobility</b><span>EV motors and controllers</span></a></li></ul></section>
+        <aside class="np-aside">
+        <h4>Beyond automotive</h4>
+        <ul class="np-list">
+          <li><a href="#"><b>SUJÁN</b><span>Luxury camps and palaces</span></a></li>
+          <li><a href="#"><b>Anevolve</b><span>ANAND's future-tech platform</span></a></li>
+          <li><a href="#"><b>Technology partners</b><span>KONI, KYB and Yamaha Motor Hydraulic Systems</span></a></li>
+        </ul>
+        <div class="np-quote">
+          <p>“Power of People, Power of Partnership”</p>
+          <span>11 global JV partners · 4 technical collaborations</span>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">All companies <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-sustain" data-panel="sustain" style="--cols:3">
+      <div class="np-grid">
+        <section class="np-col"><h4>Sustainability</h4><ul class="np-list"><li><a href="#"><b>Our approach</b><span>Group sustainability commitments</span></a></li></ul></section><section class="np-col"><h4>SNS Foundation</h4><ul class="np-list"><li><a href="#"><b>About SNSF</b><span>Vision, mission and associations</span></a></li><li><a href="#"><b>Education</b></a></li><li><a href="#"><b>Skill development</b></a></li><li><a href="#"><b>Health &amp; hygiene</b></a></li><li><a href="#"><b>Community conservation</b></a></li><li><a href="#"><b>Projects &amp; impact</b><span>Stories from the ground</span></a></li><li><a href="#"><b>Financial reports</b></a></li></ul></section><section class="np-col"><h4>ANAND School</h4><ul class="np-list"><li><a href="#"><b>About the school</b></a></li><li><a href="#"><b>Admissions</b></a></li><li><a href="#"><b>Curriculum</b></a></li><li><a href="#"><b>Achievements</b></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-fk">Featured</span>
+          <b>Donate</b>
+          <p>Support the SNS Foundation's work in education, skills, health and conservation.</p>
+          <a href="#" class="btn btn-primary np-btn">Donate <i data-lucide="arrow-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">Sustainability &amp; CSR <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-careers" data-panel="careers" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>Life at ANAND</h4><ul class="np-list"><li><a href="#"><b>Culture at ANAND</b><span>How we work</span></a></li><li><a href="#"><b>Diversity &amp; inclusion</b></a></li><li><a href="#"><b>Shop floor excellence</b></a></li></ul></section><section class="np-col"><h4>People development</h4><ul class="np-list"><li><a href="#"><b>ANAND U</b></a></li><li><a href="#"><b>ALDP &amp; ATA</b></a></li><li><a href="#"><b>VSME &amp; VLFM</b></a></li><li><a href="#"><b>External programmes</b></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-img"><img src="assets/ANAND-banner-scaled-1.jpeg" alt=""></span>
+          <b>Join us</b>
+          <p>Explore opportunities across the Group.</p>
+          <a href="#" class="np-more">View openings <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">Careers at ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-news" data-panel="news" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>News</h4><ul class="np-list"><li><a href="#"><b>Latest news</b><span>Stories from across the group</span></a></li><li><a href="#"><b>Media coverage</b><span>ANAND in the press</span></a></li><li><a href="#"><b>Newsletter</b><span>Past issues</span></a></li></ul></section><section class="np-col"><h4>For media</h4><ul class="np-list"><li><a href="#"><b>Media kit</b><span>Brand assets and downloads</span></a></li><li><a href="#"><b>Media contact</b><span>Press enquiries</span></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-img"><img src="assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg" alt=""></span>
+          <span class="np-fk">27 Aug 2026</span>
+          <b>Gabriel India joins hands with South Korea's HL Klemove</b>
+          <a href="#" class="np-more">Read more <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">All news <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
     </div>
   </div>
 </header>
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -2315,6 +2418,58 @@ if (wrap) {
     el.style.transitionDelay = (i % 5) * 60 + 'ms';
     io.observe(el);
   });
+
+  // mega menu (behaviour mirrors stripe.com): hover to open, panel slides by direction, height animates, page blurs
+  (() => {
+    const shell = document.getElementById('navShell'), pop = document.getElementById('navPop'), overlay = document.getElementById('navOverlay');
+    if (!shell || !pop) return;
+    const triggers = [...shell.querySelectorAll('.nav-trigger')];
+    const order = triggers.map(t => t.dataset.panel);
+    let cur = null, openT = 0, closeT = 0;
+    const panelOf = k => pop.querySelector(`.np[data-panel="${k}"]`);
+    const show = key => {
+      clearTimeout(closeT);
+      if (key === cur) return;
+      const next = panelOf(key), prev = cur && panelOf(cur);
+      const dir = cur ? Math.sign(order.indexOf(key) - order.indexOf(cur)) : 0;
+      triggers.forEach(t => t.setAttribute('aria-expanded', t.dataset.panel === key));
+      if (prev) { prev.classList.remove('on'); prev.style.transform = reduce ? '' : `translateX(${-dir * 20}%)`; }
+      next.style.transition = 'none';
+      next.style.transform = dir && !reduce ? `translateX(${dir * 20}%)` : 'none';
+      next.offsetWidth; // commit the start position
+      next.style.transition = '';
+      next.classList.add('on'); next.style.transform = 'none';
+      pop.style.height = next.offsetHeight + 'px';
+      shell.classList.add('open'); overlay.classList.add('show');
+      cur = key;
+    };
+    const hide = () => {
+      clearTimeout(openT);
+      if (!cur) return;
+      triggers.forEach(t => t.setAttribute('aria-expanded', 'false'));
+      panelOf(cur).classList.remove('on');
+      shell.classList.remove('open'); overlay.classList.remove('show');
+      pop.style.height = '0px';
+      cur = null;
+    };
+    const later = fn => { clearTimeout(closeT); closeT = setTimeout(fn, 180); };
+    triggers.forEach(t => {
+      t.addEventListener('mouseenter', () => { clearTimeout(openT); openT = setTimeout(() => show(t.dataset.panel), cur ? 0 : 80); });
+      t.addEventListener('mouseleave', () => clearTimeout(openT));
+      t.addEventListener('click', () => (cur === t.dataset.panel ? hide() : show(t.dataset.panel)));
+      t.addEventListener('keydown', e => { if (e.key === 'ArrowDown') { e.preventDefault(); show(t.dataset.panel); panelOf(t.dataset.panel).querySelector('a')?.focus(); } });
+    });
+    shell.querySelectorAll('.nav-link, .nav-logo, .nav-cta a').forEach(a => a.addEventListener('mouseenter', () => later(hide)));
+    shell.addEventListener('mouseleave', () => later(hide));
+    shell.addEventListener('mouseenter', () => clearTimeout(closeT));
+    overlay.addEventListener('mouseenter', () => later(hide));
+    overlay.addEventListener('click', hide);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && cur) { const t = triggers.find(x => x.dataset.panel === cur); hide(); t && t.focus(); }
+    });
+    shell.addEventListener('focusout', e => { if (!shell.contains(e.relatedTarget)) hide(); });
+    addEventListener('resize', () => { if (cur) pop.style.height = panelOf(cur).offsetHeight + 'px'; });
+  })();
 
   // stories carousel: arrows scroll one card at a time and disable at the ends
   (() => {
