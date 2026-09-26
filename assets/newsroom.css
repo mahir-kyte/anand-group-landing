@@ -14,13 +14,6 @@
 .acc--cat{color:var(--cyan);font-weight:500}
 .acc--date{color:var(--slate)}
 
-/* sub-navigation under the main bar */
-.nw-sub{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px;border-bottom:1px solid var(--line)}
-.nw-sub-t{font-size:var(--fs-ui);font-weight:500;color:var(--cyan)}
-.nw-sub nav{display:flex;gap:32px;overflow-x:auto;scrollbar-width:none}
-.nw-sub nav::-webkit-scrollbar{display:none}
-.nw-sub nav a{font-size:var(--fs-ui);font-weight:500;color:var(--cyan);white-space:nowrap;transition:color .2s}
-.nw-sub nav a:hover,.nw-sub nav a[aria-current=page]{color:var(--ink)}
 
 /* ---------- index: featured stories (Stripe's NewsroomStoryCarousel) ----------
    Each story has a brand-blue layer with its photo at 50% on top and a shade that fades to the colour at the bottom.
@@ -132,13 +125,27 @@
 .nw-feat-ctrl{position:absolute;right:32px;bottom:32px;z-index:4}
 .nw-feat.no-fade,.nw-feat.no-fade .nw-feat-mark,.nw-feat.no-fade .nw-feat-slide{transition:none}   /* the swap happens under the wipe, so no crossfade */
 .nw-feat-slide:focus-visible{outline:2px solid #fff;outline-offset:-6px}
-.nw-cov-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px}
-.nw-cov-card{display:flex;flex-direction:column;gap:10px;padding:24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;transition:background-color .2s}
-.nw-cov-card:hover{background:var(--soft)}
-.nw-cov-card .nw-k{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.nw-cov-card h4{font-size:var(--fs-title);font-weight:500;line-height:1.35;color:var(--ink);transition:color .2s}
-.nw-cov-card:hover h4{color:var(--cyan)}
-.nw-cov-card .link{margin-top:auto;padding-top:6px}
+/* Recent highlights: Stripe blog strip of tall coloured cards, as an endless carousel */
+.nw-hl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin:96px 0 24px}
+.nw-hl-head h3{font-size:var(--fs-num);font-weight:500;color:var(--ink)}
+.nw-hl-nav{display:flex;gap:8px}
+/* whole cards only, inside the page margins: the row is clipped at the content edges (the 12px clip margin lets the hover
+   shadow show without revealing the next card, which sits 16px away) and loops forever */
+.nw-hl{--n:4;overflow-x:clip;overflow-clip-margin:12px;padding:8px 0 16px;outline:none;touch-action:pan-y}
+.nw-hl-track{display:flex;gap:16px;will-change:transform}
+.nw-hl-track.anim{transition:transform .6s cubic-bezier(.7,0,0,1)}
+.nw-hl:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}
+.nw-hl-card{flex:0 0 calc((100% - 16px * (var(--n) - 1)) / var(--n));min-height:368px;display:flex;flex-direction:column;padding:28px 24px 24px;border-radius:var(--radius);background:var(--c);color:#fff;box-shadow:0 1px 2px rgba(2,26,44,.06);transition:transform .25s,box-shadow .25s}
+.nw-hl-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -18px rgba(2,26,44,.45)}
+.nw-hl-card h4{font-size:var(--fs-title);font-weight:500;line-height:1.35;color:#fff;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.nw-hl-date{margin-top:8px;font-size:var(--fs-small);color:rgba(255,255,255,.72)}
+.nw-hl-card p{margin-top:20px;font-size:var(--fs-small);line-height:1.6;color:rgba(255,255,255,.88);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.nw-hl-link{margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);font-weight:500;color:#fff}
+.nw-hl-link .ic{width:16px;height:16px;transition:transform .2s}
+.nw-hl-card:hover .nw-hl-link .ic{transform:translate(2px,-2px)}
+@media (max-width:1099px){.nw-hl{--n:3}}
+@media (max-width:779px){.nw-hl{--n:2}}
+@media (max-width:539px){.nw-hl{--n:1}}
 
 /* ---------- index: newsletter ---------- */
 .nw-nl{padding:120px 0}
@@ -193,10 +200,10 @@
 
 /* ---------- article ---------- */
 .na{padding:72px 0 120px}
-.na-head{grid-column:1/4;padding-bottom:48px;border-left:1px solid var(--line)}   /* padding, not margin, so the line runs on into the side column */
+.na-head{grid-column:1/4;margin-bottom:48px;border-left:1px solid var(--line)}   /* the line stops with the title; the gap below breaks it */
 .na-head .acc{margin-bottom:16px}
 .na-head h1{font-size:var(--fs-h2);line-height:1.18;padding-left:16px;padding-right:32px}
-.na-side{grid-column:1;display:flex;flex-direction:column;gap:24px;padding-right:16px;border-left:1px solid var(--line);align-self:stretch}
+.na-side{grid-column:1;display:flex;flex-direction:column;gap:24px;padding-right:16px;border-left:1px solid var(--line);align-self:start}   /* the line runs from the date to Copy Link */
 .na-meta dt{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-left:16px;margin-bottom:4px}
 .na-meta dd{margin:0 0 16px;padding-left:16px;font-size:var(--fs-ui);color:var(--slate);line-height:1.6}
 .na-meta dd a{color:var(--cyan);font-weight:500}
@@ -241,7 +248,6 @@
   .nw-feat{grid-column:1}
   .nw-mc .nw-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
   .nw-mc-intro{grid-column:1/-1;padding-right:0}
-  .nw-cov-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .nw-nl-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .nw-about-top{grid-template-columns:1fr;gap:24px}
   .nw-facts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
@@ -267,8 +273,6 @@
   .nw-story-copy{padding-right:0;padding-bottom:52px}
   .nw-row-main h3{font-size:var(--fs-body)}
   .na-head h1{font-size:var(--fs-h3);line-height:1.25}
-  .nw-sub{flex-direction:column;align-items:flex-start;gap:8px;padding:16px 0}
-  .nw-sub nav{gap:20px;width:100%}
   .nw-guides{padding:72px 0 240px}
   .nw-cut .c1{height:22px}.nw-cut .c2{height:18px;bottom:calc(100% + 22px)}
   .nw-guides .nw-grid{grid-template-columns:1fr}
@@ -280,7 +284,8 @@
   .nw-feat-slide{padding:24px 24px 88px}
   .nw-feat-pub{top:24px;left:24px}
   .nw-feat-ctrl{right:24px;bottom:24px}
-  .nw-cov-grid{grid-template-columns:1fr}
+  .nw-hl-head{margin-top:64px}
+  .nw-hl-card{min-height:340px}
   .nw-nl-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .nw-facts{margin-bottom:64px}
   .na{padding-top:40px}

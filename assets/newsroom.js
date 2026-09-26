@@ -202,12 +202,50 @@
       fe.querySelectorAll('.nw-story-btn').forEach(b => b.addEventListener('click', () => fgo(fc + +b.dataset.dir)));
       fe.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') fgo(fc + (e.key === 'ArrowRight' ? 1 : -1)); });
     }
-    document.getElementById('nwCovGrid').innerHTML = rest.slice(0, 6).map(it => `
-      <a class="nw-cov-card rv" href="${esc(href(it))}" target="_blank" rel="noopener">
-        <span class="nw-k">${esc(it.publisher || '')} · ${esc(shortDate(it.date))}</span>
+    // the rest as Stripe's "Recent highlights" row: tall coloured cards, whole cards only, looping forever.
+    // The list is rendered three times; we sit in the middle copy and, after a move lands in an outer copy,
+    // jump back to the same card in the middle copy with no animation, so the loop never ends.
+    const HL = ['var(--cyan)', 'var(--royal)', 'var(--navy-2)', 'var(--navy)', '#3F7A1C', 'var(--green)'];
+    const hlTrack = document.getElementById('nwCovGrid'), hl = hlTrack.parentElement, R = rest.length;
+    // colour by position; where the loop joins, the last card must not repeat the first card's colour
+    const hlCol = i => HL[(i === R - 1 && R > 1 && i % HL.length === 0) ? 2 : i % HL.length];
+    const hlCard = (it, i, clone) => `
+      <a class="nw-hl-card" href="${esc(href(it))}" target="_blank" rel="noopener" style="--c:${hlCol(i)}"${clone ? ' aria-hidden="true" tabindex="-1"' : ''}>
         <h4>${esc(it.title)}</h4>
-        <span class="link">Read Article <i data-lucide="arrow-up-right" class="ic"></i></span>
-      </a>`).join('');
+        <span class="nw-hl-date">${esc(it.publisher || '')} · ${esc(shortDate(it.date))}</span>
+        <p>${esc(it.excerpt || '')}</p>
+        <span class="nw-hl-link">Read Article <i data-lucide="arrow-up-right" class="ic"></i></span>
+      </a>`;
+    hlTrack.innerHTML = [0, 1, 2].map(k => rest.map((it, i) => hlCard(it, i, k !== 1)).join('')).join('');
+    let hi = R, hbusy = false;
+    const hlPlace = anim => {
+      const c = hlTrack.children[0], step = c ? c.offsetWidth + 16 : 0;
+      hlTrack.classList.toggle('anim', anim);
+      hlTrack.style.transform = `translateX(${-hi * step}px)`;
+    };
+    const hlGo = d => {
+      if (hbusy || !R) return;
+      hi += d;
+      if (reduce) { hi = (hi % R + R) % R + R; hlPlace(false); return; }
+      hbusy = true; hlPlace(true);
+    };
+    hlTrack.addEventListener('transitionend', e => {
+      if (e.target !== hlTrack) return;
+      hbusy = false;
+      if (hi < R || hi >= 2 * R) { hi = (hi % R + R) % R + R; hlPlace(false); }
+    });
+    document.querySelectorAll('.nw-hl-nav .st-btn').forEach(b => b.addEventListener('click', () => hlGo(+b.dataset.dir)));
+    hl.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); hlGo(e.key === 'ArrowRight' ? 1 : -1); } });
+    // swipe on touch screens
+    let hx = null;
+    hl.addEventListener('touchstart', e => { hx = e.touches[0].clientX; }, {passive: true});
+    hl.addEventListener('touchend', e => {
+      if (hx === null) return;
+      const dx = e.changedTouches[0].clientX - hx; hx = null;
+      if (Math.abs(dx) > 40) hlGo(dx < 0 ? 1 : -1);
+    });
+    addEventListener('resize', () => hlPlace(false));
+    hlPlace(false);
 
     // newsletter issues
     document.getElementById('nwIssues').innerHTML = data.newsletters.map(n => `
@@ -293,7 +331,7 @@
       </article>
       <section class="na-related nw-soft">
         <div class="wrap">
-          <div class="na-related-head"><div><div class="eyebrow">Newsroom</div><h2>More From ANAND</h2></div><a class="btn btn-outline2" href="newsroom.html#news">All News <i data-lucide="arrow-right" class="ic"></i></a></div>
+          <div class="na-related-head"><div><div class="eyebrow">Newsroom</div><h2>More From ANAND</h2></div><a class="btn btn-primary" href="newsroom.html#news">See All News <i data-lucide="chevron-right" class="ic"></i></a></div>
           <div class="nw-rows">${related(it, items).map(row).join('')}</div>
         </div>
       </section>`;

@@ -120,19 +120,6 @@
 <!-- NEWSROOM INDEX (mirrors stripe.com/newsroom). Everything below the sub-nav is rendered from data/newsroom.json by assets/newsroom.js. -->
 <main class="nw-page" id="nwMain">
   <div class="nw-soft">
-    <div class="wrap">
-      <div class="nw-sub">
-        <a class="nw-sub-t" href="newsroom.html">Newsroom</a>
-        <nav aria-label="Newsroom">
-          <a href="newsroom.html" aria-current="page">Overview</a>
-          <a href="#news">Latest News</a>
-          <a href="#coverage">Media Coverage</a>
-          <a href="#newsletter">Newsletter</a>
-          <a href="#media-kit">Media Kit</a>
-          <a href="#media-contact">Media Contact</a>
-        </nav>
-      </div>
-    </div>
 
     <!-- Featured stories: Stripe's NewsroomStoryCarousel (items with featured: true), with an intro on the left -->
     <section class="nw-hero" aria-label="Latest updates">
@@ -184,7 +171,7 @@
     <div class="wrap">
       <div class="nw-news-head">
         <div><div class="eyebrow">Latest at ANAND</div><h2>News</h2></div>
-        <a class="btn btn-outline2" href="#news" data-page="newsroom/news">See All News <i data-lucide="arrow-right" class="ic"></i></a>
+        <a class="btn btn-primary" href="#news" data-page="newsroom/news">See All News <i data-lucide="chevron-right" class="ic"></i></a>
       </div>
       <div class="nw-filters" id="nwFilters" role="group" aria-label="Filter news"></div>
       <p class="nw-count" id="nwCount" aria-live="polite"></p>
@@ -201,18 +188,26 @@
           <div class="eyebrow">In the press</div>
           <h2>Media Coverage</h2>
           <p>How the business press covers ANAND and its companies.</p>
-          <a class="btn btn-outline2" href="#coverage" data-page="newsroom/media-coverage">See All Coverage <i data-lucide="arrow-right" class="ic"></i></a>
+          <a class="btn btn-primary" href="#coverage" data-page="newsroom/media-coverage">See All Coverage <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         <div id="nwFeat"></div>
       </div>
-      <div class="nw-cov-grid" id="nwCovGrid"></div>
+      <!-- More coverage: Stripe blog "Recent highlights" strip (coloured cards running off the right edge) -->
+      <div class="nw-hl-head rv">
+        <h3>Recent Highlights</h3>
+        <div class="nw-hl-nav">
+          <button type="button" class="st-btn" data-dir="-1" aria-label="Previous stories"><i data-lucide="chevron-left" class="ic"></i></button>
+          <button type="button" class="st-btn" data-dir="1" aria-label="Next stories"><i data-lucide="chevron-right" class="ic"></i></button>
+        </div>
+      </div>
+      <div class="nw-hl" tabindex="0" aria-roledescription="carousel" aria-label="More press coverage"><div class="nw-hl-track" id="nwCovGrid"></div></div>
     </div>
   </section>
 
   <!-- Newsletter -->
   <section class="nw-nl" id="newsletter">
     <div class="wrap">
-      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">ANAND Newsletter</div><h2>ANAND Interaction</h2><p class="lede">The Group newsletter, with stories from our plants, people and partners.</p></div><a class="btn btn-outline2" href="#newsletter" data-page="newsroom/newsletter">See All Newsletters <i data-lucide="arrow-right" class="ic"></i></a></div>
+      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">ANAND Newsletter</div><h2>ANAND Interaction</h2><p class="lede">The Group newsletter, with stories from our plants, people and partners.</p></div><a class="btn btn-primary" href="#newsletter" data-page="newsroom/newsletter">See All Newsletters <i data-lucide="chevron-right" class="ic"></i></a></div>
       <div class="nw-nl-grid" id="nwIssues"></div>
     </div>
   </section>
@@ -233,7 +228,7 @@
         <div><b>87</b><span>Locations across 14 Indian states</span></div>
         <div><b>US$2.2B+</b><span>Group revenue</span></div>
       </div>
-      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">Media kit</div><h2>Brand Assets and Downloads</h2></div><a class="btn btn-outline2" href="#media-kit" data-page="newsroom/media-kit">See Full Media Kit <i data-lucide="arrow-right" class="ic"></i></a></div>
+      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">Media kit</div><h2>Brand Assets and Downloads</h2></div><a class="btn btn-primary" href="#media-kit" data-page="newsroom/media-kit">See Full Media Kit <i data-lucide="chevron-right" class="ic"></i></a></div>
       <div class="nw-kit" id="nwKit"></div>
     </div>
   </section>
