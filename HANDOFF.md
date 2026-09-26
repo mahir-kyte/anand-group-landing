@@ -330,7 +330,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.9 Vision & Strategy (`section.dark#vision`)
 - **Structure:** Stripe's "Why Stripe" stat row, on dark navy.
-- **Top:** 6° slanted stripes, with 300px of top padding.
+- **Top:** 6° slanted stripes, with 300px of top padding. A 6° slant rises 10.5% of the screen width, so on screens wider than about 1,430px the white band (`max(150px, 10.6vw)`) and the top padding (`max(300px, 10.6vw + 150px)`) grow with the width; otherwise the diagonal ran out on large monitors and the right stripe was cut flat. Any new slanted cut needs the same check: band height ≥ 10.6vw.
 - **Text:**
   - eyebrow "VISION & STRATEGY"
   - h2 "Creating Value Sustainably, Through Excellence and Good Governance"

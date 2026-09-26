@@ -250,8 +250,8 @@ section{position:relative}
 .sol-cta:hover .ic{transform:translateX(2px)}
 
 /* ---------- PARTNERS (dark) ---------- */
-.dark{background:var(--navy);color:#fff;overflow:hidden;padding:300px 0 120px;margin-top:40px}
-.dark .band{position:absolute;top:-2px;left:0;right:0;height:150px;transform:skewY(-6deg);transform-origin:0 0;background:#fff}
+.dark{background:var(--navy);color:#fff;overflow:hidden;padding:max(300px, calc(10.6vw + 150px)) 0 120px;margin-top:40px}
+.dark .band{position:absolute;top:-2px;left:0;right:0;height:max(150px, 10.6vw);transform:skewY(-6deg);transform-origin:0 0;background:#fff}   /* a 6° slant rises 10.5% of the width, so the band (and the section's top padding) grow with it: the diagonal always reaches the top-right corner on wide monitors */
 .dark .band i{position:absolute;bottom:-36px;height:36px;display:block}
 .dark .band .b1{left:0;width:26%;background:var(--cyan)}
 .dark .band .b2{left:0;width:12%;bottom:-72px;background:var(--royal)}
