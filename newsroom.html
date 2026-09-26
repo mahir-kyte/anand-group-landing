@@ -19,7 +19,7 @@
 <header class="nav" id="nav">
   <div class="nav-shell" id="navShell">
     <div class="nav-in">
-      <a href="#" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
+      <a href="index.html" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
       <ul class="nav-links">
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-about" data-panel="about">About ANAND<i data-lucide="chevron-down" class="ic"></i></button></li>
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-companies" data-panel="companies">Our companies<i data-lucide="chevron-down" class="ic"></i></button></li>
@@ -179,7 +179,8 @@
   </div>
 
   <!-- Latest news: every item, filterable by category, company and year -->
-  <section class="nw-news" id="news">
+  <section class="nw-news nw-cutin" id="news">
+    <div class="nw-cut" aria-hidden="true"><i class="c1"></i><i class="c2"></i></div>
     <div class="wrap">
       <div class="nw-news-head">
         <div><div class="eyebrow">Latest at ANAND</div><h2>News</h2></div>
@@ -221,7 +222,6 @@
     <div class="wrap">
       <div class="nw-about-top rv">
         <div>
-          <div class="bar" aria-hidden="true"><i></i><i></i></div>
           <div class="eyebrow">About ANAND</div>
           <h2>Engineering the Future of Mobility Since 1961</h2>
         </div>
@@ -238,16 +238,21 @@
     </div>
   </section>
 
-  <!-- Media contact: its own section above the closing banner -->
+  <!-- Media contact: its own section above the closing banner. Mirrors Stripe's "Ready to get started?" block:
+       intro with a primary button + link across columns 1-2, then two accented items (icon, title, text, link) in columns 3-4 -->
   <section class="nw-mc" id="media-contact">
     <div class="wrap nw-grid">
       <div class="nw-mc-intro rv">
         <div class="eyebrow">For media</div>
         <h2>Media Contact</h2>
         <p>For press enquiries, interviews and images, contact ANAND Group Corporate Communications.</p>
-        <a class="btn btn-outline2" href="#media-contact" data-page="newsroom/media-contact">See All Media Contacts <i data-lucide="arrow-right" class="ic"></i></a>
+        <div class="nw-mc-ctas">
+          <a class="btn btn-primary" id="nwMcMail" href="mailto:group.comms@anandgroupindia.com">Email the Media Team <i data-lucide="chevron-right" class="ic"></i></a>
+          <a class="link" href="#media-contact" data-page="newsroom/media-contact">See All Media Contacts <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
       </div>
-      <div class="nw-contact rv" id="nwContact"></div>
+      <div class="nw-guide rv" id="nwMcPress"></div>
+      <div class="nw-guide rv" id="nwMcCorp"></div>
     </div>
   </section>
 </main>
@@ -296,7 +301,7 @@
   <div class="wrap">
     <div class="f-grid">
       <div class="f-brand">
-        <img src="assets/logo.png" alt="ANAND">
+        <a href="index.html" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
         <p>ANAND Corporate Headquarters<br>1, Sri Aurobindo Marg, Hauz Khas,<br>New Delhi 110016<br>+91-11-42092300<br><a href="mailto:contact@anandgroupindia.com">contact@anandgroupindia.com</a></p>
         <a href="#contact" class="btn btn-primary f-cta" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
       </div>

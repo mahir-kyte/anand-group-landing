@@ -191,7 +191,7 @@ section{position:relative}
 .fact p{font-size:var(--fs-small);color:var(--muted);margin-top:8px;line-height:1.45}
 
 .btn-outline{border:1px solid var(--line);color:var(--cyan);background:#fff;font-size:var(--fs-small);padding:7px 14px}
-.btn-outline:hover{border-color:var(--cyan)}
+.btn-outline:hover{background:var(--soft);color:var(--navy)}
 
 /* ---------- STORIES CAROUSEL (mirrors Stripe's case-study carousel) ---------- */
 .stories{background:var(--soft)}
@@ -547,7 +547,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-intro p{color:var(--slate);font-size:var(--fs-lede);line-height:1.55;margin-top:16px}
 .bd-btns{display:flex;gap:10px;flex-wrap:wrap}
 .btn-outline2{border:1px solid var(--line);color:var(--cyan);background:#fff}
-.btn-outline2:hover{border-color:var(--cyan)}
+.btn-outline2:hover{background:var(--soft);color:var(--navy)}   /* hovers: neutral fill + text colour, never a brand-coloured border */
 .bd-list{grid-column:8/span 5;list-style:none;display:flex;flex-direction:column;margin-top:3px}
 .bd-list li{display:flex;gap:10px;color:var(--slate);font-size:var(--fs-body);line-height:1.5;padding:12px 0}
 .bd-list li+li{border-top:1px solid var(--line)}
@@ -788,6 +788,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
 .f-more .ic{width:14px;height:14px}
 .f-more:hover{color:var(--navy)}
 .f-brand img{height:20px;width:auto;margin-bottom:18px}
+.f-brand>a:first-child{display:block;width:max-content}   /* the logo links home */
 .f-brand p{color:var(--muted);line-height:1.7}
 .f-brand p a{color:var(--slate)}
 .f-brand p a:hover{color:var(--cyan)}
@@ -836,7 +837,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .menu-btn{display:block}
   .f-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
   .f-brand{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 48px}
-  .f-brand img{flex-basis:100%;max-width:max-content}
+  .f-brand>a:first-child{flex:0 0 100%;width:auto}   /* logo on its own line above the address */
   .f-cta{margin-top:0}
   .f-comp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .v-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}

@@ -12,7 +12,7 @@
   const extAttrs = it => isExt(it) ? ' target="_blank" rel="noopener"' : '';
   const label = it => isExt(it) ? 'Media Coverage' : (it.categories.find(c => c !== 'Highlights') || it.categories[0] || 'News');
   const icons = () => window.lucide && lucide.createIcons();
-  const mark = '<svg class="nw-feat-mark" viewBox="0 0 120 60" aria-hidden="true"><path fill="#fff" d="M0 0h26l30 30-30 30H0l30-30z"/><path fill="#fff" d="M40 0h26l30 30-30 30H40l30-30z"/></svg>';
+  const mark = '<svg class="nw-feat-mark" viewBox="0 0 120 60" aria-hidden="true"><path d="M0 0h26l30 30-30 30H0l30-30z"/><path d="M40 0h26l30 30-30 30H40l30-30z"/></svg>';
 
   // one news row: date | category + title (+ companies) | picture (or the publication on a soft tile)
   const row = it => `
@@ -68,9 +68,11 @@
           </div>
         </a>`).join('')}
         <div class="nw-story-wipe" aria-hidden="true"></div>
-        <div class="nw-story-arrows">
-          <button type="button" class="nw-story-btn" data-dir="-1" aria-label="Previous story"><i data-lucide="arrow-left" class="ic"></i></button>
-          <button type="button" class="nw-story-btn" data-dir="1" aria-label="Next story"><i data-lucide="arrow-right" class="ic"></i></button>
+        <div class="nw-story-ctrl">
+          <div class="nw-story-arrows">
+            <button type="button" class="nw-story-btn" data-dir="-1" aria-label="Previous story"><i data-lucide="chevron-left" class="ic"></i></button>
+            <button type="button" class="nw-story-btn" data-dir="1" aria-label="Next story"><i data-lucide="chevron-right" class="ic"></i></button>
+          </div>
         </div>
       </div>`;
     // optical sizing: wide and tall logos get the same visual area (height = sqrt(area / aspect))
@@ -101,18 +103,26 @@
     };
     const play = () => { clearInterval(timer); if (!reduce && feat.length > 1) timer = setInterval(() => go(cur + 1), 8000); };
     story.querySelectorAll('.nw-story-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); go(cur + +b.dataset.dir); play(); }));
-    story.addEventListener('mouseenter', () => clearInterval(timer));
+    const pause = () => clearInterval(timer);
+    story.addEventListener('mouseenter', pause);
     story.addEventListener('mouseleave', play);
-    story.addEventListener('focusin', () => clearInterval(timer));
+    story.addEventListener('focusin', pause);
     story.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { go(cur + (e.key === 'ArrowRight' ? 1 : -1)); play(); } });
     play();
 
-    // media contact card
+    // media contact: two accented items beside the intro (Stripe's "Ready to get started?" layout)
     const mc = data.mediaContact;
-    document.getElementById('nwContact').innerHTML = `
-      <div><h4>Press and media enquiries:</h4><a href="mailto:${esc(mc.email)}">${esc(mc.email)}</a></div>
-      <div><h4>Corporate communications:</h4><p>${mc.phone.map(esc).join('<br>')}</p></div>
-      <div><h4>${esc(mc.company)}</h4><p>${esc(mc.address)}</p></div>`;
+    document.getElementById('nwMcMail').href = `mailto:${mc.email}`;
+    document.getElementById('nwMcPress').innerHTML = `
+      <i data-lucide="mail" class="ic"></i>
+      <h3 class="acc">Press and media enquiries</h3>
+      <p>Statements, interviews and images from ${esc(mc.name)}.</p>
+      <a class="link" href="mailto:${esc(mc.email)}">${esc(mc.email)} <i data-lucide="chevron-right" class="ic"></i></a>`;
+    document.getElementById('nwMcCorp').innerHTML = `
+      <i data-lucide="building-2" class="ic"></i>
+      <h3 class="acc">Corporate communications</h3>
+      <p>${esc(mc.company)}, ${esc(mc.address)}.<br>${mc.phone.map(esc).join(' · ')}</p>
+      <a class="link" href="tel:${esc(mc.phone[0].replace(/[^+0-9]/g, ''))}">Call the Office <i data-lucide="chevron-right" class="ic"></i></a>`;
 
     // news list: our own articles only (items that link out to other sites stay in Media Coverage),
     // filterable by category, company and year (the old site's three filters)
@@ -145,17 +155,53 @@
     more.addEventListener('click', () => { state.shown += 8; draw(); });
     draw();
 
-    // media coverage: the newest story as a large navy card, then the next six as cards
+    // media coverage: the newest stories in a carousel card, each in one of the home page's CSR card colours
+    // (fill + lighter tint for the ANAND mark); the next six below as cards
     const cov = items.filter(isExt);
-    const [top, ...rest] = cov;
-    if (top) document.getElementById('nwFeat').outerHTML = `
-      <a class="nw-feat rv" href="${esc(href(top))}" target="_blank" rel="noopener">${mark}
-        <span class="nw-feat-pub">${esc(top.publisher || '')}</span>
-        <p class="nr-meta">${esc(shortDate(top.date))}</p>
-        <h3>${esc(top.title)}</h3>
-        <p>${esc(top.excerpt)}</p>
-        <span class="nr-read">Read on ${esc(top.publisher || 'the publisher')} <i data-lucide="arrow-up-right" class="ic"></i></span>
-      </a>`;
+    const CSR = [['var(--royal)', '#5584C4'], ['#3F7A1C', '#7AAA55'], ['var(--cyan)', '#66CEF5'], ['var(--navy-2)', '#3D5A78'], ['var(--green)', '#9CCB6E']];
+    const top = cov.slice(0, 5), rest = cov.slice(5);
+    const featEl = document.getElementById('nwFeat');
+    if (top.length) {
+      featEl.outerHTML = `
+      <div class="nw-feat rv" id="nwFeat" aria-roledescription="carousel" aria-label="Latest press coverage" style="--c:${CSR[0][0]};--t:${CSR[0][1]}">${mark}
+        ${top.map((it, i) => `
+        <a class="nw-feat-slide${i ? '' : ' on'}" href="${esc(href(it))}" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="${i + 1} of ${top.length}"${i ? ' tabindex="-1" aria-hidden="true"' : ''}>
+          <span class="nw-feat-pub">${esc(it.publisher || '')}</span>
+          <p class="nr-meta">${esc(shortDate(it.date))}</p>
+          <h3>${esc(it.title)}</h3>
+          <p>${esc(it.excerpt)}</p>
+          <span class="nr-read">Read on ${esc(it.publisher || 'the publisher')} <i data-lucide="arrow-up-right" class="ic"></i></span>
+        </a>`).join('')}
+        <div class="nw-story-wipe" aria-hidden="true"></div>
+        <div class="nw-story-arrows nw-feat-ctrl">
+          <button type="button" class="nw-story-btn" data-dir="-1" aria-label="Previous article"><i data-lucide="chevron-left" class="ic"></i></button>
+          <button type="button" class="nw-story-btn" data-dir="1" aria-label="Next article"><i data-lucide="chevron-right" class="ic"></i></button>
+        </div>
+      </div>`;
+      const fe = document.getElementById('nwFeat'), fs = [...fe.querySelectorAll('.nw-feat-slide')];
+      const fwipe = fe.querySelector('.nw-story-wipe');
+      let fc = 0, fbusy = false;
+      const fshow = i => {
+        fc = i;
+        fe.style.setProperty('--c', CSR[fc % CSR.length][0]); fe.style.setProperty('--t', CSR[fc % CSR.length][1]);
+        fs.forEach((sl, j) => { sl.classList.toggle('on', j === fc); sl.setAttribute('aria-hidden', j !== fc); sl.tabIndex = j === fc ? 0 : -1; });
+      };
+      // the hero's interaction: a panel in the next story's colour wipes across, the story swaps under it, the panel wipes off
+      const fgo = i => {
+        i = (i + top.length) % top.length;
+        if (i === fc || fbusy) return;
+        if (reduce) { fshow(i); return; }
+        fbusy = true;
+        fe.style.setProperty('--wc', CSR[i % CSR.length][0]);
+        const ease = 'cubic-bezier(.7,0,0,1)';
+        fwipe.animate([{transform: 'translateX(-101%)'}, {transform: 'translateX(0)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished.then(() => {
+          fe.classList.add('no-fade'); fshow(i); void fe.offsetWidth; fe.classList.remove('no-fade');
+          return fwipe.animate([{transform: 'translateX(0)'}, {transform: 'translateX(101%)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished;
+        }).then(() => { fbusy = false; });
+      };
+      fe.querySelectorAll('.nw-story-btn').forEach(b => b.addEventListener('click', () => fgo(fc + +b.dataset.dir)));
+      fe.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') fgo(fc + (e.key === 'ArrowRight' ? 1 : -1)); });
+    }
     document.getElementById('nwCovGrid').innerHTML = rest.slice(0, 6).map(it => `
       <a class="nw-cov-card rv" href="${esc(href(it))}" target="_blank" rel="noopener">
         <span class="nw-k">${esc(it.publisher || '')} · ${esc(shortDate(it.date))}</span>
