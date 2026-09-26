@@ -115,12 +115,12 @@
     document.getElementById('nwMcMail').href = `mailto:${mc.email}`;
     document.getElementById('nwMcPress').innerHTML = `
       <i data-lucide="mail" class="ic"></i>
-      <h3 class="acc">Press and media enquiries</h3>
+      <h3 class="acc">Press and Media Enquiries</h3>
       <p>Statements, interviews and images from ${esc(mc.name)}.</p>
       <a class="link" href="mailto:${esc(mc.email)}">${esc(mc.email)} <i data-lucide="chevron-right" class="ic"></i></a>`;
     document.getElementById('nwMcCorp').innerHTML = `
       <i data-lucide="building-2" class="ic"></i>
-      <h3 class="acc">Corporate communications</h3>
+      <h3 class="acc">Corporate Communications</h3>
       <p>${esc(mc.company)}, ${esc(mc.address)}.<br>${mc.phone.map(esc).join(' · ')}</p>
       <a class="link" href="tel:${esc(mc.phone[0].replace(/[^+0-9]/g, ''))}">Call the Office <i data-lucide="chevron-right" class="ic"></i></a>`;
 

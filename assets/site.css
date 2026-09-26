@@ -44,6 +44,7 @@
 /* no sideways page scroll on phones: clip (not hidden) on both html and body, so mobile Safari can't pan and position:sticky still works */
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
 body{font-family:"Geist",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
+button,input,select,textarea{font-family:inherit}   /* form controls do not inherit the page font by default */
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
@@ -201,7 +202,7 @@ section{position:relative}
 .st-head .lede{margin-left:auto}
 .st-ctrl{display:flex;justify-content:flex-end;gap:8px;margin-bottom:24px}
 .st-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--radius);cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--navy);transition:background .2s,color .2s,border-color .2s}
-.st-btn:hover:not(:disabled){background:var(--navy);border-color:var(--navy);color:#fff}
+.st-btn:hover:not(:disabled){background:var(--soft);color:var(--cyan)}   /* neutral hover: grey fill + text colour, border stays --line */
 .st-btn:disabled{cursor:default;background:transparent;border-color:var(--line);color:var(--faint)}
 .st-btn .ic{width:18px;height:18px}
 .st-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}

@@ -139,7 +139,7 @@
 .nw-hl-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px -18px rgba(2,26,44,.45)}
 .nw-hl-card h4{font-size:var(--fs-title);font-weight:500;line-height:1.35;color:#fff;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .nw-hl-date{margin-top:8px;font-size:var(--fs-small);color:rgba(255,255,255,.72)}
-.nw-hl-card p{margin-top:20px;font-size:var(--fs-small);line-height:1.6;color:rgba(255,255,255,.88);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.nw-hl-card p{margin-top:20px;font-size:var(--fs-small);line-height:1.6;color:rgba(255,255,255,.82);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .nw-hl-link{margin-top:auto;padding-top:20px;display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);font-weight:500;color:#fff}
 .nw-hl-link .ic{width:16px;height:16px;transition:transform .2s}
 .nw-hl-card:hover .nw-hl-link .ic{transform:translate(2px,-2px)}
@@ -203,7 +203,7 @@
 .na-head{grid-column:1/4;margin-bottom:48px;border-left:1px solid var(--line)}   /* the line stops with the title; the gap below breaks it */
 .na-head .acc{margin-bottom:16px}
 .na-head h1{font-size:var(--fs-h2);line-height:1.18;padding-left:16px;padding-right:32px}
-.na-side{grid-column:1;display:flex;flex-direction:column;gap:24px;padding-right:16px;border-left:1px solid var(--line);align-self:start}   /* the line runs from the date to Copy Link */
+.na-side{grid-column:1;display:flex;flex-direction:column;gap:24px;padding-right:16px;border-left:1px solid var(--line);align-self:start;position:sticky;top:112px}   /* the line runs from the date to Copy Link; stays in view (below the nav) until the article ends */
 .na-meta dt{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-left:16px;margin-bottom:4px}
 .na-meta dd{margin:0 0 16px;padding-left:16px;font-size:var(--fs-ui);color:var(--slate);line-height:1.6}
 .na-meta dd a{color:var(--cyan);font-weight:500}
@@ -254,7 +254,7 @@
   .nw-kit{grid-template-columns:1fr}
   .na .nw-grid{grid-template-columns:1fr}
   .na-head,.na-side,.na-main{grid-column:1}
-  .na-side{flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin-bottom:32px;padding-right:0}
+  .na-side{flex-direction:row;flex-wrap:wrap;justify-content:space-between;margin-bottom:32px;padding-right:0;position:static}
 }
 @media (max-width:760px){
   .nw-row{grid-template-columns:1fr 120px;row-gap:8px}

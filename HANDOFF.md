@@ -2,7 +2,7 @@
 
 Read this first. It lets anyone (a person or a new Claude chat) pick up the ANAND Group landing-page design reference from where it stands. It covers the context, the rules, the design system, the language, how each section works, and the open items.
 
-Last updated: 26 Sep 2026 (evening), after the second full consistency audit (content, type, colours) and the hero video, phone menu and sticky CSR changes. For the latest commit, run `git log -1`.
+Last updated: 27 Sep 2026, after the third full consistency audit (content, type, colours, hovers) across all three pages, the newsroom's Recent Highlights carousel and the sticky article sidebar. For the latest commit, run `git log -1`.
 
 ---
 
@@ -133,7 +133,7 @@ Open `http://localhost:5178`. The preview pane attaches with `.claude/launch.jso
 The CSS rules use these tokens, not raw hex values. The only hardcoded colours left are:
 - white and black (white text; black only inside masks)
 - the CSR card fill/tint pairs (§8.10)
-- white at .72/.82 opacity for secondary text on coloured cards and the hero
+- white at .72/.82 opacity for secondary text on coloured cards and the hero (.72 for dates and meta, .82 for excerpts; nothing else)
 
 ### Layout
 - **Width:** `--max:1348px`, which is 1300px of content plus 24px padding on each side.
@@ -168,6 +168,8 @@ The CSS rules use these tokens, not raw hex values. The only hardcoded colours l
 
 **No exceptions left.** The second 26 Sep audit (evening) replaced the last raw sizes (globe labels 11px, avatar initials 10.5px/600, phone map pin 9px, phone news excerpt 15px, leader initials 16px, body 16px) with tokens. Rendered check at 1440px: 13 sizes, all on the scale; Geist only; weights 400/500 only; text colours all tokens.
 
+**Form controls:** `button, input, select, textarea` inherit the page font (`font-family:inherit` in `site.css`); browsers otherwise draw buttons in Arial. The 27 Sep audit caught this on the newsroom's "Load More".
+
 **Weights:**
 - 400 for text and stats; **500 for all emphasis**.
 - 300 only for pull quotes.
@@ -184,6 +186,7 @@ The CSS rules use these tokens, not raw hex values. The only hardcoded colours l
 | `.btn-primary` | cyan fill, white text | navy fill |
 | `.btn-light` (on dark backgrounds) | white fill, navy text | cyan fill, white text |
 | `.btn-outline2` | white, `--line` border, cyan text | `--soft` fill, navy text; the border stays `--line` |
+| `.st-btn` (square arrow buttons: home stories, newsroom Recent Highlights) | white, `--line` border, navy icon | `--soft` fill, cyan icon; the border stays `--line` |
 | `.cb-btn` / `.cb-btn-2` (banner) | white with cyan text / white outline | cyan / white fill |
 
 Primary CTAs end with a chevron (›). Every "Partner with Us" button opens the form (§8.12).
@@ -226,6 +229,7 @@ Lucide only (`<i data-lucide>`, v1.48.0), with the same stroke everywhere. Colou
 | Founded | 1961 | site |
 | Companies | **17** | anandgroupindia.com. The Jan 2026 presentation says 23; see §11. |
 | People | 22,000+ | site, presentation |
+| **Fact labels** (home About facts and newsroom About ANAND, word for word) | "Companies in the ANAND family" · "People across the Group" · "Locations across 14 Indian states" · "Group revenue". Write "people", not "employees" | |
 | Locations | 87, across 14 Indian states | site, presentation |
 | Revenue | **US$2.2B+**. Always write "US$", never "$". | presentation |
 | JV partners / technical collaborations | 11 / 4 | presentation partner list |
@@ -311,7 +315,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 ### 8.7 Stories: Stripe case-study carousel (`section#verticals`, soft)
 - Six stories with real links.
 - **Cards:** 332×448 media with a white logo. On hover **only the photo** zooms 1.036 inside a fixed frame (scaling the whole frame got clipped by the scroller).
-- **Arrows:** white with a navy icon. Each click moves **exactly one card** (card width + 16px gap, e.g. 348px at 1440): it goes to the next card's snap position rather than scrolling a set distance, and fast clicks stack (two clicks = two cards). The last step is shorter, just enough to line the final card up with the edge. The arrows disable at either end.
+- **Arrows:** white with a navy icon (`.st-btn`; hover: `--soft` fill and cyan icon, border stays `--line`). Each click moves **exactly one card** (card width + 16px gap, e.g. 348px at 1440): it goes to the next card's snap position rather than scrolling a set distance, and fast clicks stack (two clicks = two cards). The last step is shorter, just enough to line the final card up with the edge. The arrows disable at either end.
 
 ### 8.8 Products & solutions (`section#solutions`)
 - **Structure:** Stripe's ProductFeatureCard (from stripe.com/industries/retail).
@@ -420,14 +424,14 @@ Measured on stripe.com/newsroom and stripe.com/newsroom/news/* on 26 Sep 2026, t
 - **Diagonal break into News:** the same cut as the home page's CSR → trust break. The white News section overlaps the grey guides area by 125px; its top edge is a slab skewed 6° (rising to the right) with a royal stripe (34% wide, 40px) and a cyan one (19%, 34px) on the left (22/18px on phones). The guides get `calc(260px + 10.5vw)` of bottom padding (≈410px at 1440; 240px on phones) so the slant never covers their links.
 - **News** (`#news`, white): **our own articles only** (items that link out to other sites were taken out of this list for the prototype; they live in Media Coverage). The old site's three filters (category chips, company select, year select), "Showing X of Y", then rows: date | category + title + companies | 2:1 picture. 8 rows, then "Load More". The row component can still show a coverage item (publication name on a soft tile, ↗), if coverage is ever mixed back in.
 - **Media coverage** (`#coverage`, soft): Stripe's Stories block. Intro on the left (with "See All Coverage"); on a 3-column grid, a **carousel card two cards wide** for the 5 newest coverage items (publication, date, title, 3-line excerpt, "Read on Mint ↗" with the underline only under the label). Each story takes a colour pair from the home page's CSR cards (royal, dark green, cyan, navy-2, green; the ANAND chevron mark in the lighter tint at 55%). Changing story uses **the hero's wipe**: a panel in the next story's colour sweeps across (0.6s), the story swaps under it, and it sweeps off (0.6s), `cubic-bezier(.7,0,0,1)`. The same frosted previous/next pair as the hero sits bottom-right; no autoplay (the hero already autoplays). Below it, **Recent Highlights** (Stripe blog's strip of tall coloured cards, min 368px, 340 on phones), as an **endless carousel of whole cards** inside the page margins: 4 across on desktop, 3 under 1100px, 2 under 780px, 1 under 540px; no card is ever cut off at the left or right. Colours cycle cyan, royal, navy-2, navy, dark green, green (the last card never repeats the first card's colour where the loop joins); white title, publication · date at 72%, 5-line excerpt, "Read Article ↗" pinned to the bottom. Hover lifts the card 4px with a soft shadow (no border). Previous/next buttons (`.st-btn`, as on the home stories carousel) move one card with the site's `cubic-bezier(.7,0,0,1)` 0.6s slide and never stop at an end; arrow keys and swipe work too. (How it loops: the cards are rendered three times and it jumps silently back to the middle copy.)
-- **Media contact** (`#media-contact`, white, just above the closing banner, whose band is also white on this page): mirrors Stripe's "Ready to get started?" block. Columns 1–2: "For media" eyebrow, "Media Contact", one line, then a primary "Email the Media Team" button and a "See All Media Contacts ›" link. Columns 3–4: two guide-style items (hairline + cyan tick, 40px cyan Lucide icon): *Press and media enquiries* (mail; email link) and *Corporate communications* (building-2; ANAND Automotive Limited's address and both numbers; "Call the Office"). No card. Tablet: intro full width, items side by side; phone: one column.
+- **Media contact** (`#media-contact`, white, just above the closing banner, whose band is also white on this page): mirrors Stripe's "Ready to get started?" block. Columns 1–2: "For media" eyebrow, "Media Contact", one line, then a primary "Email the Media Team" button and a "See All Media Contacts ›" link. Columns 3–4: two guide-style items (hairline + cyan tick, 40px cyan Lucide icon): *Press and Media Enquiries* (mail; email link) and *Corporate Communications* (building-2; ANAND Automotive Limited's address and both numbers; "Call the Office"). No card. Tablet: intro full width, items side by side; phone: one column.
 - **Newsletter** (`#newsletter`): the 8 newest issues of *ANAND Interaction* as **3D books** (a plain-CSS port of a React "Book" component Mahir supplied; this static site has no React/Tailwind). Each cover sits on a 4:5 portrait soft tile (the "shelf"; book 58% of its width): 2:3 book (the component is 49:60, but the covers are magazine-shaped), binding sheen on the left, a page edge on the right, a back cover behind, the component's book shadow; hover tilts it `rotateY(-20deg) scale(1.066) translateX(-8px)` over 0.5s. Covers were cropped out of the old thumbnails (which had a white frame and baked-in shadow) into `assets/news/covers/`; the originals are kept as `imageOriginal`. Under each: "Vol. LXXIV, November 2020", date, "Download PDF".
 - **About + media kit** (`#media-kit`, soft): Stripe's About page (without its colour bar). "Engineering the Future of Mobility Since 1961", the same facts as the home page, then Group Presentation (Sept 2026), Brand Guidelines, Gallery Downloads.
 - **Phones:** single column; long headlines drop to `--fs-h3`; rows become title + small square picture.
 
 ### 8.15 Newsroom article (`newsroom-article.html?slug=…`, mirrors stripe.com/newsroom/news/*)
 - **Head:** category (accented) and the title across columns 1–3 at `--fs-h2` (Stripe uses 56px, but ANAND headlines are much longer).
-- **Left column:** date (accented), Categories, Companies, attachment, then share links (LinkedIn, X, Email, Copy Link). Lucide has no brand icons, so share uses text labels with `share-2`/`mail`/`link`.
+- **Left column:** date (accented), Categories, Companies, attachment, then share links (LinkedIn, X, Email, Copy Link). Lucide has no brand icons, so share uses text labels with `share-2`/`mail`/`link`. On desktop the column is **sticky** (112px below the top, clear of the nav) and stays in view until the article body ends; on tablet and phone it sits above the body as a normal row.
 - **Main (columns 2–4):** 2:1 hero picture, then the body at 18px/1.6 slate, max 800px; old line breaks are tidied (mid-sentence breaks become spaces, "•" lines become lists); extra images become a 2-up gallery; then an "About ANAND Group" boilerplate and the media contact.
 - **More From ANAND:** 3 related rows (our own articles only) (most shared companies first, then same category, then newest) on soft, plus "All News".
 - **Title and meta description** are set from the item. An unknown slug shows a "We couldn't find that story" state with a link back.
