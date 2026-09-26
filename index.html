@@ -190,6 +190,9 @@ section{position:relative}
 .sec{padding:120px 0}
 .sec-head{max-width:620px;margin-bottom:56px}
 .sec-head h2{margin-bottom:16px}
+.sec-head--cta{max-width:none;display:flex;align-items:flex-end;justify-content:space-between;gap:32px}
+.sec-head--cta>div{max-width:620px}
+.sec-head--cta .btn{flex:none}
 
 /* ---------- ABOUT / FACTS ---------- */
 .about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
@@ -244,19 +247,25 @@ section{position:relative}
 @media (max-width:639px){.st-item{flex-basis:84%}.st-media{aspect-ratio:336/350}}
 
 /* ---------- SOLUTIONS ---------- */
-.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.sol{border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);transition:border-color .2s;display:flex;flex-direction:column}
-.sol:hover{border-color:var(--cyan)}
-.sol .im{aspect-ratio:3/2;overflow:hidden;background:#333}
-.sol .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
-.sol:hover .im img{transform:scale(1.04)}
-.sol .tx{padding:18px 20px 20px}
-.sol .tx h3{margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.sol .tx h3 i{width:3px;height:14px;background:var(--grad);border-radius:var(--radius)}
-.sol .tx p{font-size:var(--fs-ui);color:var(--slate);line-height:1.5}
+/* product cards: mirror Stripe's ProductFeatureCard (stripe.com/industries/retail) */
+.sol-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.sol{display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);box-shadow:0 18px 36px -18px rgba(0,0,0,.1),0 30px 45px -30px rgba(50,50,93,.25)}
+.sol-g{position:relative;margin:4px 4px 0;aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden;background:#2a2a2a}
+.sol-g img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.165,.84,.44,1)}
+.sol-g::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(190,201,220,0),rgba(190,201,220,.4));pointer-events:none}
+.sol:hover .sol-g img{transform:scale(1.036)}
+.sol-b{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:32px}
+.sol-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 14px 8px 10px;border-radius:var(--radius);background:var(--soft);font-size:var(--fs-label);font-weight:500;color:var(--ink);margin-bottom:8px}
+.sol-badge .ic{width:18px;height:18px;color:var(--cyan)}
+.sol-b h3{font-size:var(--fs-h3);letter-spacing:-.02em;line-height:1.25}
+.sol-b p{font-size:var(--fs-body);color:var(--slate);line-height:1.6;flex:1}
+.sol-cta{display:inline-flex;align-items:center;gap:4px;margin-top:12px;font-size:var(--fs-ui);font-weight:500;color:var(--cyan)}
+.sol-cta .ic{width:16px;height:16px;transition:transform .2s var(--ease)}
+.sol-cta:hover{color:var(--navy)}
+.sol-cta:hover .ic{transform:translateX(2px)}
 
 /* ---------- PARTNERS (dark) ---------- */
-.dark{background:var(--navy);color:#fff;overflow:hidden;padding:230px 0 140px;margin-top:40px}
+.dark{background:var(--navy);color:#fff;overflow:hidden;padding:300px 0 120px;margin-top:40px}
 .dark .band{position:absolute;top:-2px;left:0;right:0;height:150px;transform:skewY(-6deg);transform-origin:0 0;background:#fff}
 .dark .band i{position:absolute;bottom:-36px;height:36px;display:block}
 .dark .band .b1{left:0;width:26%;background:var(--cyan)}
@@ -265,40 +274,55 @@ section{position:relative}
 .dark .eyebrow{color:var(--cyan)}
 .dark h2{color:#fff}
 .dark .lede{color:#A9C1D6}
-#wave{position:absolute;left:0;right:0;top:300px;height:420px;width:100%;opacity:.95;pointer-events:none}
 .dark-inner{position:relative;z-index:2}
-.p-top{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:start}
-.p-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:230px 0 70px}
-.p-nums .n{font-size:var(--fs-stat);font-weight:300;letter-spacing:-.03em;color:#fff}
-.p-nums p{color:#88A3BB;font-size:var(--fs-small)}
-.p-logos{display:grid;border-radius:var(--radius);overflow:hidden;grid-template-columns:repeat(6,1fr);border-top:1px solid rgba(255,255,255,.1);border-left:1px solid rgba(255,255,255,.1)}
-.p-logos div{border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);height:96px;display:grid;place-items:center;padding:20px;transition:background .3s}
-.p-logos div:hover{background:rgba(255,255,255,.04)}
-.p-logos img{max-height:36px;max-width:110px;width:auto;filter:brightness(0) invert(1);opacity:.75}
-.p-logos img.raw{filter:none;opacity:.9;max-height:44px}
-.p-list{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:64px;font-size:var(--fs-ui)}
-.p-list h4{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:500;margin-bottom:14px}
-.p-list ul{list-style:none;columns:2;column-gap:24px}
-.p-list li{color:#A9C1D6;padding:4px 0;break-inside:avoid}
-.p-list li span{color:#5F7C96}
-.quote-row{margin-top:80px;display:flex;align-items:center;gap:20px}
-.quote-row blockquote{font-size:var(--fs-quote);font-weight:300;letter-spacing:-.02em;line-height:1.3}
-.quote-row blockquote b{font-weight:500;color:var(--cyan)}
+/* Vision & strategy: mirrors Stripe's "Why Stripe" stat row, on dark */
+.v-head{max-width:880px}
+.v-head .lede{max-width:none;margin-top:24px}
+.v-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:72px}
+.v-stats>div{padding-left:16px;border-left:1px solid rgba(255,255,255,.14)}
+.v-stats .n{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.1;color:var(--cyan);font-variant-numeric:tabular-nums}
+.v-stats .n::before{content:"";display:block;width:1px;height:18px;background:var(--cyan);margin:0 0 10px -17px}
+.v-stats p{color:#A9C1D6;font-size:var(--fs-body);line-height:1.6;margin-top:10px}
+.v-stats p a{color:var(--cyan)}
+.v-stats p a:hover{color:#fff}
 
 /* ---------- BEYOND BUSINESS ---------- */
-.bb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.bb{border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
-.bb.sus{background:linear-gradient(160deg,#F1F8EA,#fff 60%);border:1px solid #DCEBCD}
-.bb.csr{background:linear-gradient(160deg,#E6F7FD,#fff 60%);border:1px solid #B3E7FA}
-.bb.sus .eyebrow{color:var(--green)}
-.bb h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;margin-bottom:14px;line-height:1.2}
-.bb>p{color:var(--slate);font-size:var(--fs-body);margin-bottom:26px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{font-size:var(--fs-small);padding:6px 12px;border-radius:var(--radius);background:#fff;border:1px solid #DCEBCD;color:#3D6B17}
-.focus{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}
-.focus div{font-size:var(--fs-small);color:var(--slate);line-height:1.5}
-.focus .ic{width:24px;height:24px;color:var(--cyan);margin-bottom:10px;display:block}
-.focus b{display:block;color:var(--ink);font-weight:600;font-size:var(--fs-ui);margin-bottom:4px}
+/* Sustainability & CSR: guide cards, mirrors stripe.com/guides */
+@media (min-width:640px) and (max-width:760px){.gs{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+.gs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:start}
+.gs-intro{grid-column:1/3;grid-row:1;position:relative;z-index:1;max-width:520px}
+.gs-intro .lede{margin:20px 0 28px}
+.gs-col{grid-row:1;display:flex;flex-direction:column;gap:24px}
+.gs-a{grid-column:2;padding-top:420px}
+.gs-b{grid-column:3;padding-top:180px}
+.gs-c{grid-column:4}
+.gc{--fill:#0B4EA2;--stroke:#5584C4;position:relative;display:block;aspect-ratio:254/356;color:#fff;transition:transform .3s}
+.gc--green{--fill:#61A229;--stroke:#9CCB6E}
+.gc--dkgreen{--fill:#3F7A1C;--stroke:#7AAA55}
+.gc--royal{--fill:#0B4EA2;--stroke:#5584C4}
+.gc--cyan{--fill:#00AEEF;--stroke:#66CEF5}
+.gc--navy{--fill:#06294A;--stroke:#3D5A78}
+.gc-shadow{position:absolute;inset:0}
+.gc-shadow::before,.gc-shadow::after{content:"";position:absolute;inset:0;border-radius:var(--radius);transition:opacity .3s}
+.gc-shadow::before{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3)}
+.gc-shadow::after{box-shadow:0 50px 100px -20px rgba(50,50,93,.25),0 30px 60px -30px rgba(0,0,0,.3);opacity:0}
+.gc-card{position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:22px 24px;background:var(--fill);border-radius:var(--radius);overflow:hidden}
+.gc-art{position:absolute;inset:0;width:100%;height:100%;transition:transform .3s}
+.gc-art path,.gc-art circle,.gc-art line{fill:var(--fill);stroke:var(--stroke);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+.gc-art.drawn path,.gc-art.drawn circle,.gc-art.drawn line{stroke-dashoffset:0;transition:stroke-dashoffset 3s ease-out var(--d,0ms)}
+.gc-art line{fill:none}
+.gc-text{position:relative}
+.gc-cat{display:block;font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:12px}
+.gc-title{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.gc-cta{position:relative;display:inline-flex;align-items:center;gap:4px;font-size:var(--fs-ui);font-weight:500;opacity:0;transition:opacity .3s}
+.gc-cta .ic{width:16px;height:16px}
+.gc:hover{transform:translateY(-8px)}
+.gc:hover .gc-art{transform:translateY(8px)}
+.gc:hover .gc-shadow::before{opacity:0}
+.gc:hover .gc-shadow::after{opacity:1}
+.gc:hover .gc-cta,.gc:focus-visible .gc-cta{opacity:1}
+.gc:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:var(--radius)}
+@media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-art path,.gc-art circle,.gc-art line{stroke-dashoffset:0}}
 
 /* ---------- NEWSROOM CAROUSEL ---------- */
 .newsroom{background:var(--navy);color:#fff;padding:0 0 110px}
@@ -315,7 +339,7 @@ section{position:relative}
 .nr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 7s linear}
 .nr-slide.on .nr-media img{transform:scale(1)}
 .nr-body{display:flex;flex-direction:column;align-items:flex-start;padding:40px 44px}
-.nr-tag{border-radius:var(--radius);font-size:var(--fs-label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,174,239,.5);padding:5px 10px;margin-bottom:auto}
+.nr-tag{border-radius:var(--radius);font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,174,239,.5);padding:5px 10px;margin-bottom:auto}
 .nr-meta{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin:28px 0 12px}
 .nr-meta span{color:#fff}
 .nr-body h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
@@ -416,7 +440,7 @@ section{position:relative}
 
 /* shared mini-UI used inside card graphics */
 .g-ui{position:absolute;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 32px -14px rgba(2,26,44,.22);font-size:var(--fs-ui-sm);color:var(--slate)}
-.g-ui b{color:var(--ink);font-weight:600}
+.g-ui b{color:var(--ink);font-weight:500}
 .g-glow{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;pointer-events:none}
 .g-fade-b{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,#fff);z-index:2}
 
@@ -628,7 +652,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .pm-tip{position:absolute;z-index:3;width:270px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 44px -18px rgba(2,26,44,.4);padding:14px 16px 8px;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s}
 .pm-tip.show{opacity:1;transform:none}
 .pm-tip .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
-.pm-tip .hd b{font-weight:600;color:var(--ink);font-size:var(--fs-small)}
+.pm-tip .hd b{font-weight:500;color:var(--ink);font-size:var(--fs-small)}
 .pm-tip .hd span{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid #B3E7FA;border-radius:2px;padding:2px 6px;white-space:nowrap}
 .pm-tip .pr{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
 .bd-g .pm-tip .pr img,.bd-overlay>.pm-tip .pr img{position:static;inset:auto;width:auto;height:auto;max-width:64px;max-height:22px;object-fit:contain;justify-self:start}
@@ -728,7 +752,7 @@ textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
 }
 footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-small)}
 .f-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:32px}
-.f-grid h5,.f-companies h5{font-size:var(--fs-small);font-weight:600;color:var(--ink)}
+.f-grid h5,.f-companies h5{font-size:var(--fs-small);font-weight:500;color:var(--ink)}
 .f-col h5{margin-bottom:16px}
 .f-grid h6,.f-companies h6{font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
 .f-col h5+h6,.f-comp-grid h6{margin-top:0}
@@ -767,20 +791,24 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .f-brand img{flex-basis:100%;max-width:max-content}
   .f-cta{margin-top:0}
   .f-comp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .v-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .gs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gs-intro{grid-column:1/-1;max-width:640px;margin-bottom:24px}
+  .gs-col{display:contents}
+  .gs-a,.gs-b,.gs-c{padding-top:0}
+  .gc{grid-row:auto;grid-column:auto}
 }
 @media (max-width:1020px){
-  .hero-grid,.about-grid,.p-top,.bb-grid,.bento-head{grid-template-columns:1fr}
+  .hero-grid,.about-grid,.bento-head{grid-template-columns:1fr}
   .nr-slide{grid-template-columns:1fr}
   .nr-media{min-height:0;aspect-ratio:16/9}
   .nr-body{padding:28px 28px 32px}
   .nr-th{flex-basis:calc((100% - 28px) / 2)}
   .stage{height:480px;max-width:600px}
   .facts{grid-template-columns:repeat(3,1fr);row-gap:40px}
-  .sol-grid{grid-template-columns:1fr 1fr}
-  .p-logos{grid-template-columns:repeat(4,1fr)}
+  .sol-grid{grid-template-columns:1fr 1fr;gap:16px}
       .f-grid,.f-comp-grid{grid-template-columns:1fr 1fr}
     .f-comp-head{flex-direction:column;align-items:flex-start;gap:6px}
-  .p-nums{margin-top:180px}
 }
 @media (max-width:640px){
   body{font-size:16px}
@@ -798,13 +826,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .sec{padding:84px 0}
   .facts{grid-template-columns:1fr 1fr}
   .sol-grid{grid-template-columns:1fr}
-  .p-logos{grid-template-columns:repeat(3,1fr)}
-  .p-logos div{height:76px;padding:14px}
-  .p-nums{grid-template-columns:1fr;gap:18px;margin:290px 0 50px}
-  .p-list{grid-template-columns:1fr;gap:32px}
-  .p-list ul{columns:1}
-  .bb{padding:28px 22px}
-  .focus{grid-template-columns:1fr}
+  .sol-b{padding:24px}
+  .sec-head--cta{flex-direction:column;align-items:flex-start;gap:24px}
+  .v-stats{grid-template-columns:1fr;margin-top:48px}
+  .gs{grid-template-columns:1fr}
+  .gc{aspect-ratio:1/1}
+  .gc-art{-webkit-mask-image:linear-gradient(180deg,transparent 35%,#000 65%);mask-image:linear-gradient(180deg,transparent 35%,#000 65%)}
   .newsroom{padding-bottom:80px}
   .bento-sec{padding:84px 0}
   .nr-body{padding:22px 20px 26px}
@@ -815,8 +842,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     .f-grid{grid-template-columns:1fr 1fr}
   .dark{padding:170px 0 100px}
   .dark .band{height:110px}
-  #wave{top:500px;height:300px}
-}
+  }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
@@ -1215,7 +1241,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "ctas": [
       {
         "label": "Explore Our Partners",
-        "href": "#partners",
+        "href": "#",
         "primary": true
       },
       {
@@ -1416,7 +1442,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           "img": "assets/Forvia.png",
           "text": "Eleven global joint-venture partners and four technical collaborations bring advanced engineering to India and the world.",
           "link": "Our partners",
-          "href": "#partners"
+          "href": "#"
         },
         {
           "img": "assets/Toyota.png",
@@ -1912,7 +1938,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     <div class="st-head">
       <div class="rv">
         <h2>One Group, Many Journeys <br>Across Mobility and Beyond</h2>
-        <a href="#partners" class="btn btn-primary">Explore Our Companies <i data-lucide="arrow-right" class="ic"></i></a>
+        <a href="#" class="btn btn-primary">Explore Our Companies <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
       <p class="lede rv">Beyond automotive, the Group continues to expand its impact through complementary businesses and initiatives, from clean mobility to conservation-led hospitality.</p>
     </div>
@@ -1960,117 +1986,146 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
 <!-- SOLUTIONS -->
 <section class="sec" id="solutions">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">Products &amp; solutions</div>
-      <h2>A Portfolio Built for Every Part of the Mobility Ecosystem</h2>
-      <p class="lede">ANAND's diverse portfolio addresses the evolving needs of the mobility ecosystem, from ride comfort to clean power.</p>
+    <div class="sec-head sec-head--cta rv">
+      <div>
+        <div class="eyebrow">Products &amp; solutions</div>
+        <h2>A Portfolio Built for Every Part of the Mobility Ecosystem</h2>
+        <p class="lede">ANAND's diverse portfolio addresses the evolving needs of the mobility ecosystem, from ride comfort to clean power.</p>
+      </div>
+      <a href="#" class="btn btn-primary">Explore All Products <i data-lucide="chevron-right" class="ic"></i></a>
     </div>
     <div class="sol-grid">
-      <a href="#" class="sol rv"><div class="im"><img src="assets/chasis-control.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>Chassis Products</h3><p>Suspension and ride-control systems tuned for comfort and handling.</p></div></a>
-      <a href="#" class="sol rv"><div class="im"><img src="assets/emission-control.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>Emission Control</h3><p>Clean-mobility systems that help OEMs meet stricter norms.</p></div></a>
-      <a href="#" class="sol rv"><div class="im"><img src="assets/powertrain.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>Powertrain</h3><p>Precision components that deliver efficient, reliable power.</p></div></a>
-      <a href="#" class="sol rv"><div class="im"><img src="assets/safety.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>Safety</h3><p>Occupant safety and braking technologies from global leaders.</p></div></a>
-      <a href="#" class="sol rv"><div class="im"><img src="assets/thermal-management.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>Thermal Management</h3><p>Cooling and climate systems for ICE and electric vehicles.</p></div></a>
-      <a href="#" class="sol rv"><div class="im"><img src="assets/e-mobility.png" alt="" loading="lazy"></div><div class="tx"><h3><i></i>E-Mobility</h3><p>Hub motors and EV subsystems for the electric transition.</p></div></a>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/chasis-control.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="car" class="ic"></i>Chassis</span>
+          <h3>Ride Control for Every Vehicle Segment</h3>
+          <p>Shock absorbers, struts, front forks and semi-active suspension from Gabriel India, with brakes and steering from HL Mando Anand India.</p>
+          <a href="#" class="sol-cta">Explore Chassis <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/emission-control.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="wind" class="ic"></i>Emission control</span>
+          <h3>Cleaner Exhaust for Stricter Norms</h3>
+          <p>Catalytic converters, particulate filters and SCR systems from Faurecia Clean Mobility, with filtration and air intake from MAHLE ANAND.</p>
+          <a href="#" class="sol-cta">Explore Emission Control <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/powertrain.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="cog" class="ic"></i>Powertrain</span>
+          <h3>Precision Across the Driveline</h3>
+          <p>Axles and drive shafts from Dana Anand India, synchroniser rings from ANAND CY Myutec and piston rings from ANAND I-Power.</p>
+          <a href="#" class="sol-cta">Explore Powertrain <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/safety.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="shield-check" class="ic"></i>Safety</span>
+          <h3>Protection for Every Occupant</h3>
+          <p>Seat belts, airbags and steering wheels from Joyson ANAND Abhishek Safety Systems, plus ABS and ESC from HL Mando Anand India.</p>
+          <a href="#" class="sol-cta">Explore Safety <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/thermal-management.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="thermometer" class="ic"></i>Thermal management</span>
+          <h3>Climate Control for ICE and EV</h3>
+          <p>HVAC systems, engine cooling modules, e-compressors and battery cooling plates from MAHLE ANAND Thermal Systems.</p>
+          <a href="#" class="sol-cta">Explore Thermal Management <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
+      <article class="sol rv">
+        <div class="sol-g"><img src="assets/e-mobility.png" alt="" loading="lazy"></div>
+        <div class="sol-b">
+          <span class="sol-badge"><i data-lucide="zap" class="ic"></i>E-mobility</span>
+          <h3>Powering the Electric Transition</h3>
+          <p>Hub wheel and mid-drive motors, motor controllers and EV chargers from ANEVOLVE, ANAND's future tech platform.</p>
+          <a href="#" class="sol-cta">Explore E-Mobility <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- PARTNERS (dark) -->
-<section class="dark" id="partners">
+<!-- VISION & STRATEGY (dark; mirrors stripe.com/industries "Why Stripe"; content from the ANAND Group Corporate Presentation, Jan 2026) -->
+<section class="dark" id="vision">
   <div class="band" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
-  <canvas id="wave" aria-hidden="true"></canvas>
   <div class="wrap dark-inner">
-    <div class="p-top">
-      <div class="rv">
-        <div class="eyebrow">Our companies</div>
-        <h2>Rooted in India.<br>Connected to the World.</h2>
-      </div>
-      <p class="lede rv">For over six decades, our partnerships have been at the heart of our growth. Working with global technology leaders, we bring advanced engineering, modern manufacturing and future-ready mobility solutions to India and the world.</p>
+    <div class="v-head rv">
+      <div class="eyebrow">Vision &amp; strategy</div>
+      <h2>Creating Value Sustainably, Through Excellence and Good Governance</h2>
+      <p class="lede">Our vision guides every ANAND company: to be the first choice for customers, to attain leadership in technology, and to achieve superior business performance and growth.</p>
     </div>
-
-    <div class="p-nums">
-      <div class="rv"><div class="n">11</div><p>Global joint-venture partners</p></div>
-      <div class="rv"><div class="n">4</div><p>Technical collaborations</p></div>
-      <div class="rv"><div class="n">60+</div><p>Years of partnering with global leaders</p></div>
-    </div>
-
-    <div class="p-logos rv">
-      <div><img src="assets/DANA.png" alt="Dana" class="raw"></div>
-      <div><img src="assets/Forvia.png" alt="Forvia"></div>
-      <div><img src="assets/Henkel.png" alt="Henkel"></div>
-      <div><img src="assets/mahle.png" alt="MAHLE"></div>
-      <div><img src="assets/valeo.png" alt="Valeo"></div>
-      <div><img src="assets/Joyson.png" alt="Joyson Safety Systems"></div>
-      <div><img src="assets/HL_mando.png" alt="HL Mando"></div>
-      <div><img src="assets/SK_enmove.png" alt="SK Enmove"></div>
-      <div><img src="assets/Jinhap.png" alt="Jinhap"></div>
-      <div><img src="assets/APAG.png" alt="APAG"></div>
-      <div><img src="assets/Inalfa.png" alt="Inalfa"></div>
-      <div><img src="assets/Gabriel.png" alt="Gabriel"></div>
-    </div>
-
-    <div class="p-list">
-      <div class="rv">
-        <h4>Joint Venture Partners</h4>
-        <ul>
-          <li>APAG Holding AG <span>· Switzerland</span></li>
-          <li>CY Myutec <span>· South Korea</span></li>
-          <li>Dana Incorporated <span>· USA</span></li>
-          <li>Forvia Clean Mobility <span>· France</span></li>
-          <li>Henkel KGaA <span>· Germany</span></li>
-          <li>HL Klemove <span>· South Korea</span></li>
-          <li>HL Mando <span>· South Korea</span></li>
-          <li>JINHAP <span>· South Korea</span></li>
-          <li>Joyson Safety Systems <span>· USA</span></li>
-          <li>MAHLE GmbH <span>· Germany</span></li>
-          <li>SK Enmove <span>· South Korea</span></li>
-          <li>Valeo <span>· France</span></li>
-        </ul>
-      </div>
-      <div class="rv">
-        <h4>Technical Collaborations</h4>
-        <ul>
-          <li>KONI BV <span>· Netherlands</span></li>
-          <li>KYB Corporation <span>· Spain / Japan</span></li>
-          <li>Inalfa Roof Systems <span>· Netherlands</span></li>
-          <li>Yamaha Motor Hydraulic Systems <span>· Japan</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="quote-row rv">
-      <blockquote>“Power of People, <b>Power of Partnership</b>”</blockquote>
+    <div class="v-stats">
+      <div class="rv"><div class="n">Top 3</div><p>Aim to be a top 3 player in each segment we operate in: automotive, future tech with <a href="#">ANEVOLVE</a> and hospitality with <a href="#">SUJÁN</a>.</p></div>
+      <div class="rv"><div class="n">8%</div><p>Return on sales target, as the Group aims to grow ahead of the market.</p></div>
+      <div class="rv"><div class="n">2%</div><p>Of sales to be invested in R&amp;D, backed by <a href="#">Gabriel technology centres</a> in Chakan, Hosur and Belgium.</p></div>
+      <div class="rv"><div class="n">600</div><p>Suppliers developed through the <a href="#">VSME programme</a> since 2009, strengthening manufacturing across the value chain.</p></div>
     </div>
   </div>
 </section>
 
-<!-- BEYOND BUSINESS -->
+<!-- SUSTAINABILITY & CSR (mirrors stripe.com/guides; figures from the ANAND Group Corporate Presentation, Jan 2026) -->
 <section class="sec" id="beyond">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div class="eyebrow">Beyond business</div>
-      <h2>Progress That Reaches Past the Factory Floor</h2>
-    </div>
-    <div class="bb-grid">
-      <div class="bb sus rv">
-        <div class="eyebrow">Sustainability</div>
-        <h3>Advancing Sustainability Through Action</h3>
-        <p>Guided by ESG principles, ANAND's businesses are using resources more responsibly, adopting cleaner technologies and reducing their environmental impact.</p>
-        <div class="chips">
-          <span>Concentrating Solar Power</span><span>Wind Turbines</span><span>Miyawaki Forests</span><span>Rainwater Harvesting</span><span>Check Dams</span><span>Energy Management Systems</span><span>High-Rate Transpiration</span><span>Organic Waste Composters</span><span>Open Space Reservation</span>
-        </div>
+    <div class="gs">
+      <div class="gs-intro rv">
+        <div class="eyebrow">Sustainability &amp; CSR</div>
+        <h2>Progress That Reaches Past the Factory Floor</h2>
+        <p class="lede">Guided by ESG principles, ANAND's businesses use resources more responsibly, while the SNS Foundation, our CSR arm since 1976, builds capabilities and protects wildlife in line with the UN SDGs.</p>
+        <a href="#" class="btn btn-primary">Explore Sustainability &amp; CSR <i data-lucide="chevron-right" class="ic"></i></a>
       </div>
-      <div class="bb csr rv">
-        <div class="eyebrow">CSR · SNS Foundation</div>
-        <h3>Transforming Communities. Creating Opportunity.</h3>
-        <p>Established in 1976, the SNS Foundation is ANAND's CSR arm, building capabilities and promoting conservation in line with the UN SDGs.</p>
-        <div class="focus">
-          <div><i data-lucide="graduation-cap" class="ic"></i><b>Education &amp; Diversity</b>School infrastructure, libraries and the Medhavi Scholarship for girls.</div>
-          <div><i data-lucide="wrench" class="ic"></i><b>Skill Development</b>Vocational training, digital literacy, ITI and polytechnic labs.</div>
-          <div><i data-lucide="heart-pulse" class="ic"></i><b>Health &amp; Hygiene</b>Mobile medical services and National Health Mission initiatives.</div>
-          <div><i data-lucide="leaf" class="ic"></i><b>Community &amp; Wildlife</b>Self-help groups, livestock care and conservation in Rajasthan.</div>
-        </div>
+      <div class="gs-col gs-a">
+        <a class="gc gc--dkgreen" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Community &amp; wildlife</span><h3 class="gc-title">100 sq km of Wilderness Protected in Rajasthan</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+      </div>
+      <div class="gs-col gs-b">
+        <a class="gc gc--royal" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Education &amp; diversity</span><h3 class="gc-title">3.78 Lakh Students Reached Through 100+ Partner Schools</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+        <a class="gc gc--navy" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Health &amp; hygiene</span><h3 class="gc-title">Health Services for 27 Lakh People in Rural India</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+      </div>
+      <div class="gs-col gs-c">
+        <a class="gc gc--green" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Sustainability</span><h3 class="gc-title">Solar Power, Wind Energy and Miyawaki Forests</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
+        <a class="gc gc--cyan" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Skill development</span><h3 class="gc-title">45,000+ Young People Trained, 80% of Them Women</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
@@ -2532,6 +2587,32 @@ if (wrap) {
   })();
 
 
+
+  // guide-card line art (Stripe guides style): a 4-col grid of 63.5 cells, shapes drawn in when on screen
+  (() => {
+    const S = 63.5, NS = 'http://www.w3.org/2000/svg';
+    const rnd = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    document.querySelectorAll('.gc-art').forEach((svg, n) => {
+      const r = rnd(97 + n * 131), out = [];
+      const add = (tag, attrs) => out.push(`<${tag} pathLength="1" ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')} style="--d:${Math.round(r() * 600)}ms"/>`);
+      for (let x = S; x < 254; x += S) add('line', {x1: x, y1: 2.6 * S, x2: x, y2: 356});
+      for (let y = 3 * S; y < 356; y += S) add('line', {x1: 0, y1: y, x2: 254, y2: y});
+      for (let row = 3; row < 6; row++) for (let col = 0; col < 4; col++) {
+        const x = col * S, y = row * S - .4 * S, k = r();
+        if (k < .22) { const c = Math.floor(r() * 4), cx = x + (c % 2) * S, cy = y + (c > 1) * S, sx = c % 2 ? -1 : 1, sy = c > 1 ? -1 : 1;
+          add('path', {d: `M${cx} ${cy}h${sx * S}A${S} ${S} 0 0 ${sx * sy > 0 ? 1 : 0} ${cx} ${cy + sy * S}Z`}); }
+        else if (k < .38) for (let i = 1; i < 7; i++) add('line', {x1: x, y1: y + i * S / 7, x2: x + S, y2: y + i * S / 7});
+        else if (k < .54) [S / 2, S / 3, S / 6].forEach(rr => add('circle', {cx: x + S / 2, cy: y + S / 2, r: rr}));
+        else if (k < .66) add('circle', {cx: x + S / 2, cy: y + S / 2, r: S / 2});
+        else if (k < .76) add('line', {x1: x, y1: y + S, x2: x + S, y2: y});
+      }
+      const bx = Math.floor(r() * 3) * S, by = 3.6 * S; // one large arc per card
+      add('path', {d: `M${bx} ${by + 2 * S}A${2 * S} ${2 * S} 0 0 1 ${bx + 2 * S} ${by}V${by + 2 * S}Z`});
+      svg.innerHTML = out.join('');
+    });
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }), {threshold: .2});
+    document.querySelectorAll('.gc-art').forEach(el => io.observe(el));
+  })();
   lucide.createIcons();
 
   // nav state
@@ -2637,40 +2718,6 @@ if (wrap) {
     update();
   })();
 
-  // wave lines (Stripe "scale with confidence" style)
-  const cv = document.getElementById('wave'), ctx = cv.getContext('2d');
-  let W, H, dpr;
-  const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0); };
-  size(); addEventListener('resize', size);
-  const LINES = 42;
-  let visible = true;
-  new IntersectionObserver(([e]) => visible = e.isIntersecting).observe(cv);
-  const draw = t => {
-    if (visible) {
-      ctx.clearRect(0,0,W,H);
-      for (let i = 0; i < LINES; i++) {
-        const k = i / (LINES - 1);
-        const g = ctx.createLinearGradient(0,0,W,0);
-        g.addColorStop(0,'rgba(0,174,239,0)');
-        g.addColorStop(.35,`rgba(0,174,239,${.15 + .5*k})`);
-        g.addColorStop(.6,`rgba(0,174,239,${.25 + .5*(1-k)})`);
-        g.addColorStop(1,'rgba(11,78,162,0)');
-        ctx.strokeStyle = g; ctx.lineWidth = 1;
-        ctx.beginPath();
-        for (let x = 0; x <= W; x += 8) {
-          const u = x / W;
-          const env = Math.exp(-Math.pow((u - .55) / .22, 2));
-          const y = H*.55 + Math.sin(u*6 + t*.0006 + k*2.2) * 70 * env * (0.4 + k)
-                          + Math.sin(u*14 - t*.0009 + k*5) * 12 * env
-                          + (k - .5) * 90 * env;
-          x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
-        }
-        ctx.stroke();
-      }
-    }
-    if (!reduce) requestAnimationFrame(draw);
-  };
-  requestAnimationFrame(draw);
 })();
 </script>
 </body>

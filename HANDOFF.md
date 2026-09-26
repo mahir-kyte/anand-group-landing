@@ -142,7 +142,17 @@ Cyan tints in use: `#E6F7FD` and `#B3E7FA`. Only use tints of `#00AEEF`.
 | `--fs-num` | 24px | Big numbers inside graphics |
 | `--fs-label` | 12px | Captions and all-caps labels |
 
-Headings use weight 500 (not bold) with tight negative tracking, in the Stripe style.
+**Weights:**
+- 400 for text and big stats.
+- **500 for all emphasis**: headings, card titles, labels, buttons and footer headings.
+- 300 only for pull quotes.
+- **Never 600 or bold.** The only exception is avatar initials.
+Headings use tight negative tracking, in the Stripe style.
+
+**Stats:** the About facts use this style (the Vision section uses the Stripe "Why Stripe" variant with cyan numbers, see §8.11):
+- `--fs-stat`, weight 400, line-height 1.1
+- a 1px line on the left with an 18px cyan tick at the top
+- a 14px label under the figure
 
 **Label rules (one style each):**
 - **Section eyebrow** (the small cyan text above a section heading): `.eyebrow`, `--fs-ui-sm` (13px), weight 500, cyan, **ALL CAPS**, letter-spacing .08em. Write it in sentence case in the HTML; CSS capitalises it.
@@ -322,8 +332,68 @@ This banner is also the page's contact section; it replaced the old three-column
   - ≤1020px and phones: 2 columns
 - **Links are `#`,** like the nav.
 
+### 8.11 Vision & Strategy (`section.dark#vision`), copying Stripe's "Why Stripe" stat row (stripe.com/industries/retail)
+- **Why it exists:** it replaced the old dark "Our companies / Partners" section, whose content was already covered by the bento. It fills the "Vision & strategy" nav item.
+- **Kept:** the dark navy background and the slanted cyan/royal band at the top. **Removed:** the animated line wave, the focus cards and the CTA (simplified on request).
+- **Content:** from the **ANAND Group Corporate Presentation, Jan 2026**.
+  - eyebrow "VISION & STRATEGY"
+  - h2 "Creating Value Sustainably, Through Excellence and Good Governance" (the vision)
+  - a wide lede on the three pillars
+- **Four stats:** a cyan tick plus a faint line on the left, the number in cyan (`--fs-h3`, weight 500), and a 16px description with key terms as cyan links (`#`):
+  1. **Top 3:** in each segment (automotive, future tech with ANEVOLVE, hospitality with SUJÁN)
+  2. **8%:** return on sales target, as the Group aims to grow ahead of the market
+  3. **2%:** of sales for R&D, backed by the Gabriel technology centres (Chakan, Hosur, Belgium)
+  4. **600:** suppliers developed through the VSME programme since 2009
+- **Grid by width:** 4 columns; 2 below 1200px; 1 on phones.
+
+### 8.12 Sustainability & CSR (`section#beyond`), copying stripe.com/guides
+- **Layout:**
+  - left intro: eyebrow "SUSTAINABILITY & CSR", h2 "Progress That Reaches Past the Factory Floor", lede, "Explore Sustainability & CSR ›"
+  - on the right, **5 guide cards in staggered columns** on a 4-column grid: col 2 has 1 card starting 420px down, col 3 has 2 cards starting 180px down, col 4 has 2 cards at the top
+- **Card** (Stripe's GuidesCard values):
+  - 254:356 aspect, padding 22/24, 4px radius, flex column (text top, CTA bottom)
+  - category label: 12px caps (our label rule) at 72% white
+  - title: `--fs-h3`, weight 500
+  - "Read more ›" appears only on hover or focus
+- **Hover:** the card lifts 8px while its line art moves down 8px (so the art appears to stay put), and the shadow swaps from medium (`0 13px 27px -5px …`) to XL (`0 50px 100px -20px …`), all 0.3s.
+- **Line art:** generated in JS from a seed per card.
+  - built on 63.5px cells (the lower ~55% of the card): pie arcs, stripes, rings, circles, diagonals, grid lines and one large arc
+  - stroke is a lighter tint of the card colour, fill is the card colour (so shapes cover the lines)
+  - lines draw in (stroke-dashoffset, 3s ease-out, staggered) when the card scrolls into view
+- **Colours** (fill / stroke), ANAND palette only:
+  - green #61A229 / #9CCB6E
+  - dark green #3F7A1C / #7AAA55
+  - royal #0B4EA2 / #5584C4
+  - cyan #00AEEF / #66CEF5
+  - navy #06294A / #3D5A78
+- **Cards** (figures from the ANAND Corporate Presentation, Jan 2026):
+  - Community & wildlife: 100 sq km of wilderness protected in Rajasthan
+  - Education & diversity: 3.78 lakh students through 100+ partner schools
+  - Health & hygiene: health services for 27 lakh people in rural India
+  - Sustainability: solar power, wind energy and Miyawaki forests
+  - Skill development: 45,000+ young people trained, 80% women
+- **Responsive:**
+  - below 1200px: 3 columns, no stagger
+  - 640–760px: 2 columns
+  - phones: 1 column, 1:1 cards, with the art masked away from the text
+- **Links:** "Read more" and the section CTA are `#`.
+
+### 8.13 Products & solutions (`section#solutions`), copying Stripe's ProductFeatureCard (stripe.com/industries/retail)
+- **Card:**
+  - white, 4px radius, Stripe's shadow `0 18px 36px -18px rgba(0,0,0,.1), 0 30px 45px -30px rgba(50,50,93,.25)`
+  - graphic inset 4px (3:2 product photo) with Stripe's bottom fade `linear-gradient(rgba(190,201,220,0), rgba(190,201,220,.4))`; the photo zooms 1.036 on hover
+  - body with 32px padding: a product badge (soft background, cyan Lucide icon, 12px label), a title (`--fs-h3`, weight 500), a 16px paragraph and an "Explore … ›" link (`#`)
+- **Grid:** 3 columns (Stripe uses 2; 3 keeps six products to two rows); 2 columns at ≤1020px; 1 on phones.
+- **Content** (areas from the portfolio; companies and products from the Corporate Presentation's product pages):
+  - Chassis (Gabriel India, HL Mando Anand)
+  - Emission control (Faurecia Clean Mobility, MAHLE ANAND)
+  - Powertrain (Dana Anand, ANAND CY Myutec, ANAND I-Power)
+  - Safety (Joyson ANAND Abhishek, HL Mando ABS/ESC)
+  - Thermal management (MAHLE ANAND Thermal)
+  - E-mobility (ANEVOLVE)
+
 ### 8.9 After the stories
-Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
+Products & solutions (§8.13) · Vision & Strategy (§8.11) · Sustainability & CSR (§8.12) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
 These sections date from the first concept and haven't had a Stripe-exact pass yet.
 
 ---
@@ -356,7 +426,7 @@ The JS renders the newsroom and the modals from these feeds. **To change content
 | 5 | **SUJÁN image usage rights** | client |
 | 6 | Nav: Federal-Mogul ANAND Sealings, Federal-Mogul ANAND Bearings and Valeo Service India are left out; confirm. Also confirm Haldex ANAND India's description | client |
 | 7 | Bento graphics for revenue, companies, people and sujan are placeholders; swap in Mahir's 3D components at `[data-slot]` | Mahir |
-| 8 | Stripe-exact pass on Solutions, Partners, Beyond, CTA and Footer | Kyte |
+| 8 | Confirm the product copy (companies and products per area) with the client | Kyte + client |
 | 9 | **The WordPress build hasn't caught up** (see §12) | Kyte + GIDA |
 | 10 | Partner form: wire the submission to ANAND's enquiry inbox; confirm the product list, the country list and consent/privacy text | GIDA + client |
 
