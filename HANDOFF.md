@@ -274,6 +274,23 @@ This banner is also the page's contact section; it replaced the old three-column
 - **On phones** the text stacks on navy and the photo sits at the bottom of the card.
 - **Anchors:** `#contact` (the nav's "Partner with Us") and `#careers` (the nav's "Explore Careers") both land here.
 
+### 8.8a Partner with Us form (opens in the bento modal shell)
+- **What opens it:** every "Partner with Us" button (the nav, the CTA banner, and the CTAs inside the bento modals). It's a delegated click: any link or button with `data-partner` or the label "Partner with Us". Clicked from inside an open modal, the modal swaps its content to the form in place.
+- **Shell:** the same slide-up motion, Esc/outside-click close and focus trap as the bento modals. The dialog gets `.is-form` (760px wide, 36/40px padding, Stripe's soft card shadow). The overlay gets `.is-form`: **a plain navy overlay at 60% (`rgba(2,26,44,.6)`) with no gradient orbs**, because the orbs don't read behind a small dialog.
+- **Layout:** a **single-step** form that fits in one screen without scrolling (about 660px tall):
+  - a 760px dialog, centred vertically
+  - labels sit above 44px-tall fields on a 12-column grid:
+    - Name / Email (6/6)
+    - Mobile / Country (6/6)
+    - Company / Products (6/6)
+    - Description (an 88px textarea)
+  - "All fields are mandatory" and "Submit ›" at the bottom
+  - on phones, everything stacks in one column
+- The field styling (radius, border, cyan focus ring, label size) follows stripe.com/in/contact/sales.
+- **Fields** (from anandgroupindia.com/contact-us, all mandatory, in this order; salutation dropped and first/last name merged into one Name field on request): Name, Email, Mobile number (with country code), Country (India by default), Company, Products interested (the nav's four product groups plus Aftermarket and Other), Description.
+- **Validation:** on Submit, each empty or invalid field gets a red border and an inline message, and focus jumps to the first one.
+- **Submit** shows a "Thank You, {first name}" screen. **Nothing is sent: this is a design reference.** The WordPress build needs to wire it to ANAND's enquiry inbox (GIDA), plus spam protection and consent text, which are open items.
+
 ### 8.9 After the stories
 Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
 These sections date from the first concept and haven't had a Stripe-exact pass yet.
@@ -310,6 +327,7 @@ The JS renders the newsroom and the modals from these feeds. **To change content
 | 7 | Bento graphics for revenue, companies, people and sujan are placeholders; swap in Mahir's 3D components at `[data-slot]` | Mahir |
 | 8 | Stripe-exact pass on Solutions, Partners, Beyond, CTA and Footer | Kyte |
 | 9 | **The WordPress build hasn't caught up** (see §12) | Kyte + GIDA |
+| 10 | Partner form: wire the submission to ANAND's enquiry inbox; confirm the product list, the country list and consent/privacy text | GIDA + client |
 
 ## 12. WordPress status (the gap)
 The LocalWP site (`http://anand-group.local`) has the **older** homepage (the first concept: navbar, hero, stats, story cards and a news list). It still needs:

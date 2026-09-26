@@ -535,8 +535,9 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-btns{display:flex;gap:10px;flex-wrap:wrap}
 .btn-outline2{border:1px solid var(--line);color:var(--cyan);background:#fff}
 .btn-outline2:hover{border-color:var(--cyan)}
-.bd-list{grid-column:8/span 5;list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:13px}
-.bd-list li{display:flex;gap:10px;color:var(--slate);font-size:var(--fs-body);line-height:1.5}
+.bd-list{grid-column:8/span 5;list-style:none;display:flex;flex-direction:column;margin-top:3px}
+.bd-list li{display:flex;gap:10px;color:var(--slate);font-size:var(--fs-body);line-height:1.5;padding:12px 0}
+.bd-list li+li{border-top:1px solid var(--line)}
 .bd-list li i{flex:none;width:18px;height:18px;border-radius:50%;background:#E6F7FD;color:var(--cyan);display:grid;place-items:center;margin-top:3px}
 .bd-list li i .ic{width:12px;height:12px;stroke-width:3}
 .bd-graphics{display:grid;grid-template-columns:7fr 5fr;gap:16px}
@@ -659,6 +660,43 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 /* ---------- CTA ---------- */
 
 /* ---------- FOOTER ---------- */
+/* Partner form: opens in the bento modal shell; layout mirrors stripe.com/contact/sales, fields from anandgroupindia.com/contact-us */
+.bd-dialog.is-form{width:min(760px,calc(100vw - 48px));margin:auto;padding:36px 40px;box-shadow:0 20px 80px -16px rgba(0,55,112,.14),0 10px 60px -16px rgba(0,59,137,.06)}
+.bd-dialog.is-form .bd-body{gap:0}
+.bd-overlay.is-form{background:rgba(2,26,44,.6)}
+.bd-overlay.is-form .bd-orbs{display:none}
+.pf-head{padding-right:48px}
+.bd-dialog.is-form .bd-close{top:20px;right:20px;width:36px;height:36px}
+.pf-head h2{font-size:var(--fs-h3);letter-spacing:-.02em;line-height:1.12;margin-bottom:6px}
+.bd-overlay.is-form{padding:24px 0}
+.pf-head p{font-size:var(--fs-lede);color:var(--slate);line-height:1.4}
+.pf-page{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px 16px;margin-top:28px}
+.pf-f{grid-column:span var(--span,12);display:flex;flex-direction:column;gap:6px;min-width:0}
+.pf-f label{font-size:var(--fs-small);color:var(--ink);line-height:1.3}
+.pf-f label em{font-style:normal;color:var(--cyan)}
+.pf-in{width:100%;height:44px;padding:0 15px;font:inherit;font-size:var(--fs-body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:var(--radius);outline:3px solid transparent;transition:border-color .3s cubic-bezier(.25,1,.5,1),outline-color .3s cubic-bezier(.25,1,.5,1)}
+.pf-in::placeholder{color:#9AA8B8}
+.pf-in:hover{border-color:#C9D4E0}
+.pf-in:focus{border-color:var(--cyan);outline-color:rgba(0,174,239,.2)}
+.pf-in.bad{border-color:#DF1B41;outline-color:rgba(223,27,65,.12)}
+select.pf-in{appearance:none;-webkit-appearance:none;padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23021A2C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;cursor:pointer}
+select.pf-in:invalid{color:#9AA8B8}
+textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
+.pf-pair{display:grid;grid-template-columns:104px minmax(0,1fr);gap:8px}
+.pf-err{font-size:var(--fs-label);color:#DF1B41;margin-top:-2px}
+.pf-err:empty{display:none}
+.pf-note{font-size:var(--fs-label);color:var(--muted)}
+.pf-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px}
+.pf-next{border:0;cursor:pointer;font-family:inherit}
+.pf-done{margin-top:40px;display:grid;gap:24px;justify-items:start}
+.pf-done .ok{width:48px;height:48px;border-radius:50%;background:#E6F7FD;color:var(--cyan);display:grid;place-items:center}
+.pf-done .ok svg{width:22px;height:22px}
+@media (max-width:639px){
+  .bd-dialog.is-form{width:100%;margin:auto 0 0;padding:24px 20px 32px}
+  .bd-overlay.is-form{padding:8vh 0 0}
+  .pf-f{grid-column:1/-1}
+  .pf-foot{padding-left:0}
+}
 /* CTA banner (mirrors Stripe's Sessions banner); also the page's contact section */
 .cta-banner{padding:0 0 96px}
 .cb-card{position:relative;display:flex;min-height:clamp(440px,40vw,544px);border-radius:var(--radius);overflow:hidden;background:var(--navy)}
@@ -784,7 +822,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       </ul>
       <div class="nav-cta">
         <a href="#careers" class="btn btn-outline2 nav-sec">Explore Careers</a>
-        <a href="#contact" class="btn btn-primary">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
+        <a href="#contact" class="btn btn-primary" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
         <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
       </div>
     </div>
@@ -1433,7 +1471,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "graphics": {
       "left": {
         "type": "chart",
-        "caption": "JV partners' global revenue"
+        "caption": "JV partners' global revenue, US$ Bn (CY 2024)"
       },
       "right": [
         {
@@ -2045,7 +2083,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <h2 class="cb-title">Ready to Shape the Future of Mobility?</h2>
           <p class="cb-lede">Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
           <div class="cb-actions">
-            <a href="#" class="btn cb-btn">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
+            <a href="#contact" class="btn cb-btn" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
             <a href="#" class="btn cb-btn cb-btn-2">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a>
           </div>
         </div>
@@ -2271,7 +2309,7 @@ if (wrap) {
     const graphic = (g, cls, delay) => {
       const cap = g.caption ? `<span class="cap">${esc(g.caption)}</span>` : '';
       let inner = '';
-      if (g.type === 'chart') inner = `<div class="bd-g-dom"><div class="bd-chart"><div class="cap">Global revenue of ANAND's JV partners, US$ Bn (CY 2024)</div>${partnerRevenue.map(([n, v]) => `<div class="g-bar" style="--w:${(v / 29.5 * 100).toFixed(1)}%"><span>${n}</span><u><i></i></u><em>${v < 1 ? (v * 1000).toFixed(0) + ' Mn' : v}</em></div>`).join('')}</div></div>`;
+      if (g.type === 'chart') inner = `<div class="bd-g-dom"><div class="bd-chart">${partnerRevenue.map(([n, v]) => `<div class="g-bar" style="--w:${(v / 29.5 * 100).toFixed(1)}%"><span>${n}</span><u><i></i></u><em>${v < 1 ? (v * 1000).toFixed(0) + ' Mn' : v}</em></div>`).join('')}</div></div>`;
       else if (g.type === 'logos') inner = `<div class="bd-g-dom"><div class="bd-logos">${logoFiles.map(f => `<span><img src="assets/${f}.png" alt=""></span>`).join('')}</div></div>`;
       else if (g.type === 'map') inner = `<div class="pmap" data-pmap><canvas></canvas></div><div class="pm-legend"><div><span><i></i>Joint venture partners</span><span><i class="t"></i>Technical collaborations</span></div><small>Partner revenue and employees for CY 2024. Map not to scale.</small></div>`;
       else if (g.type === 'values') inner = `<div class="bd-g-dom"><div class="bd-values">${values.map(v => `<span>${esc(v)}</span>`).join('')}</div></div>`;
@@ -2390,11 +2428,11 @@ if (wrap) {
       el.addEventListener('click', e => { if (!e.target.closest('.pm-mk')) hide(); });
     };
     let opener = null, closing = 0;
-    const open = card => {
-      const d = data[card.dataset.bento]; if (!d) return;
+    const openShell = (el, paint) => {
       clearTimeout(closing);
-      opener = card; card.setAttribute('aria-expanded', 'true');
-      render(d);
+      opener = el; el.setAttribute('aria-expanded', 'true');
+      dialog.classList.remove('is-form'); overlay.classList.remove('is-form');
+      paint();
       document.documentElement.style.setProperty('--sbw', (innerWidth - document.documentElement.clientWidth) + 'px');
       document.documentElement.classList.add('bd-lock');
       overlay.hidden = false; overlay.scrollTop = 0;
@@ -2402,16 +2440,71 @@ if (wrap) {
       requestAnimationFrame(() => requestAnimationFrame(() => { overlay.dataset.status = dialog.dataset.status = 'open'; }));
       dialog.focus({preventScroll: true});
     };
+    const open = card => { const d = data[card.dataset.bento]; if (d) openShell(card, () => render(d)); };
     const close = () => {
       if (overlay.hidden || overlay.dataset.status === 'close') return;
       overlay.dataset.status = dialog.dataset.status = 'close';
       closing = setTimeout(() => {
-        overlay.hidden = true; body.innerHTML = '';
+        overlay.hidden = true; body.innerHTML = ''; dialog.classList.remove('is-form'); overlay.classList.remove('is-form');
         overlay.querySelectorAll('.pm-tip').forEach(t => t.remove());
         document.documentElement.classList.remove('bd-lock');
         if (opener) { opener.setAttribute('aria-expanded', 'false'); opener.focus({preventScroll: true}); }
       }, reduce ? 0 : 300);
     };
+
+    // ---- Partner with Us form (any "Partner with Us" button opens it) ----
+    const opt = (list, ph) => (ph ? `<option value="" disabled selected>${ph}</option>` : '') + list.map(o => Array.isArray(o) ? `<option value="${esc(o[0])}"${o[2] ? ' selected' : ''}>${esc(o[1])}</option>` : `<option>${esc(o)}</option>`).join('');
+    const COUNTRIES = ['India', 'France', 'Germany', 'Japan', 'Netherlands', 'South Korea', 'Spain', 'Switzerland', 'United Arab Emirates', 'United Kingdom', 'United States', 'Other'];
+    const CODES = [['+91', 'IN +91', 1], ['+33', 'FR +33'], ['+49', 'DE +49'], ['+81', 'JP +81'], ['+31', 'NL +31'], ['+82', 'KR +82'], ['+34', 'ES +34'], ['+41', 'CH +41'], ['+971', 'AE +971'], ['+44', 'UK +44'], ['+1', 'US +1']];
+    const PRODUCTS = ['Chassis, body & safety', 'Powertrain & drivetrain', 'Thermal, emissions & fluids', 'Electronics & e-mobility', 'Aftermarket', 'Other'];
+    const row = (id, label, field, span) => `<div class="pf-f" style="--span:${span}"><label for="${id}">${label} <em aria-hidden="true">*</em></label>${field}<p class="pf-err" id="${id}-err"></p></div>`;
+    const inp = (id, type, ph, extra = '') => `<input class="pf-in" id="${id}" name="${id}" type="${type}" placeholder="${ph}" required aria-describedby="${id}-err"${extra}>`;
+    const sel = (id, list, ph) => `<select class="pf-in" id="${id}" name="${id}" required aria-describedby="${id}-err">${opt(list, ph)}</select>`;
+    const renderForm = () => {
+      dialog.classList.add('is-form'); overlay.classList.add('is-form');
+      body.innerHTML = `
+        <form class="pf" novalidate>
+          <div class="pf-head bd-reveal"><h2 id="bdTitle">Let's Build What's Next, Together</h2><p>Tell us a little about you, and the right ANAND team will get in touch.</p></div>
+          <div class="pf-page bd-reveal" style="--rd:80ms">
+            ${row('pf-name', 'Name', inp('pf-name', 'text', 'Priya Sharma', ' autocomplete="name"'), 6)}
+            ${row('pf-email', 'Email', inp('pf-email', 'email', 'priya@company.com', ' autocomplete="email"'), 6)}
+            ${row('pf-mobile', 'Mobile number', `<div class="pf-pair">${sel('pf-code', CODES)}${inp('pf-mobile', 'tel', '98765 43210', ' autocomplete="tel-national" pattern="[0-9 ]{6,15}"')}</div>`, 6)}
+            ${row('pf-country', 'Country', sel('pf-country', COUNTRIES.map(c => [c, c, c === 'India'])), 6)}
+            ${row('pf-company', 'Company', inp('pf-company', 'text', 'Company name', ' autocomplete="organization"'), 6)}
+            ${row('pf-products', 'Products interested', sel('pf-products', PRODUCTS, 'Select a product area'), 6)}
+            ${row('pf-desc', 'Description', `<textarea class="pf-in" id="pf-desc" name="pf-desc" placeholder="How can we work together?" required aria-describedby="pf-desc-err"></textarea>`, 12)}
+          </div>
+          <div class="pf-foot bd-reveal" style="--rd:160ms">
+            <p class="pf-note">All fields are mandatory.</p>
+            <button type="submit" class="btn btn-primary pf-next">Submit <i data-lucide="chevron-right" class="ic"></i></button>
+          </div>
+        </form>`;
+      if (window.lucide) lucide.createIcons();
+      const form = body.querySelector('.pf');
+      const msg = f => f.validity.valueMissing ? 'This field is required.' : f.type === 'email' ? 'Enter a valid email address.' : f.type === 'tel' ? 'Enter a valid mobile number.' : 'Check this field.';
+      const check = f => { const ok = f.checkValidity(); f.classList.toggle('bad', !ok); f.setAttribute('aria-invalid', !ok); const e = document.getElementById(f.id + '-err'); if (e) e.textContent = ok ? '' : msg(f); return ok; };
+      form.addEventListener('input', e => { if (e.target.classList.contains('bad')) check(e.target); });
+      form.addEventListener('change', e => { if (e.target.classList.contains('bad')) check(e.target); });
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const bad = [...form.querySelectorAll('.pf-in')].filter(f => !check(f));
+        if (bad.length) { bad[0].focus(); return; }
+        // Design reference only: nothing is sent. The WordPress build wires this to ANAND's enquiry inbox.
+        const name = form.querySelector('#pf-name').value.trim().split(/\s+/)[0];
+        form.querySelector('.pf-page').remove(); form.querySelector('.pf-foot').remove();
+        form.querySelector('.pf-head').innerHTML = `<h2 id="bdTitle">Thank You, ${esc(name)}</h2><p>We've received your enquiry. The right ANAND team will be in touch shortly.</p>`;
+        form.insertAdjacentHTML('beforeend', `<div class="pf-done bd-reveal"><button type="button" class="btn btn-primary pf-close">Close</button></div>`);
+        form.querySelector('.pf-close').addEventListener('click', close);
+      });
+    };
+    const isPartner = el => el && (el.hasAttribute('data-partner') || /^partner with us/i.test(el.textContent.trim()));
+    document.addEventListener('click', e => {
+      const t = e.target.closest('a,button');
+      if (!isPartner(t)) return;
+      e.preventDefault();
+      if (!overlay.hidden && overlay.dataset.status !== 'close') { renderForm(); overlay.scrollTop = 0; dialog.focus({preventScroll: true}); return; }
+      openShell(t, renderForm);
+    });
     cards.forEach(c => c.addEventListener('click', () => open(c)));
     document.getElementById('bdClose').addEventListener('click', close);
     overlay.addEventListener('click', e => { if (!dialog.contains(e.target)) close(); });
@@ -2419,7 +2512,7 @@ if (wrap) {
       if (overlay.hidden) return;
       if (e.key === 'Escape') close();
       if (e.key === 'Tab') { // keep focus inside the dialog
-        const f = [...dialog.querySelectorAll('a[href],button')];
+        const f = [...dialog.querySelectorAll('a[href],button,input,select,textarea')].filter(x => x.offsetParent);
         if (!f.length) return;
         const first = f[0], last = f[f.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
