@@ -292,6 +292,27 @@ This banner is also the page's contact section; it replaced the old three-column
 - **Validation:** on Submit, each empty or invalid field gets a red border and an inline message, and focus jumps to the first one.
 - **Submit** shows a "Thank You, {first name}" screen. **Nothing is sent: this is a design reference.** The WordPress build needs to wire it to ANAND's enquiry inbox (GIDA), plus spam protection and consent text, which are open items.
 
+### 8.10 Footer
+- **Coverage:** covers **every item in the nav spec** (`Docs/ANAND_demo_top-nav.txt`), with the spec's column names as all-caps sub-labels and items in sentence case.
+- **Top band:** a 5-column grid:
+  - **Brand:** the logo, the HQ address, phone and email, and a "Partner with Us" button that opens the form.
+  - **About ANAND:** Who we are / Leadership & governance / Direction (Vision & strategy), then "About ANAND ›".
+  - **Sustainability & CSR:** Sustainability / SNS Foundation (7) / ANAND School (4) / Donate, then "Sustainability & CSR ›".
+  - **Careers:** Life at ANAND / People development / Join us (Explore opportunities), then "Careers at ANAND ›".
+  - **Newsroom:** News / For media, then "All news ›".
+- **Our companies band:** full width, with "All companies ›" on the right and 5 columns listing every company:
+  - Chassis, body & safety (6)
+  - Powertrain & drivetrain (6)
+  - Thermal, emissions & fluids (6)
+  - Electronics & e-mobility (3)
+  - Beyond automotive (SUJÁN, Anevolve, Technology partners)
+- **Labels added for the footer** (not in the spec): "Direction" and "Join us"; confirm them.
+- **Bottom bar:** © line; Code of Conduct, Privacy, Cookies, Terms, LinkedIn, Instagram.
+- **Layout by width:**
+  - below 1200px: the brand block takes its own row, then 4 section columns, and the companies band goes to 3 columns
+  - ≤1020px and phones: 2 columns
+- **Links are `#`,** like the nav.
+
 ### 8.9 After the stories
 Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
 These sections date from the first concept and haven't had a Stripe-exact pass yet.

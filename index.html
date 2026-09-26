@@ -731,14 +731,27 @@ textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
   .cb-logo{height:20px}
 }
 footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-small)}
-.f-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
-.f-grid h5{font-size:var(--fs-small);font-weight:600;margin-bottom:14px}
-.f-grid ul{list-style:none}
-.f-grid li{padding:4px 0}
-.f-grid a{color:var(--slate)}
-.f-grid a:hover{color:var(--cyan)}
+.f-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:32px}
+.f-grid h5,.f-companies h5{font-size:var(--fs-small);font-weight:600;color:var(--ink)}
+.f-col h5{margin-bottom:16px}
+.f-grid h6,.f-companies h6{font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+.f-col h5+h6,.f-comp-grid h6{margin-top:0}
+.f-grid ul,.f-companies ul{list-style:none}
+.f-grid li,.f-companies li{padding:4px 0;line-height:1.4}
+.f-grid ul a,.f-companies ul a{color:var(--slate)}
+.f-grid ul a:hover,.f-companies ul a:hover{color:var(--cyan)}
+.f-more{display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-weight:500;color:var(--cyan)}
+.f-more .ic{width:14px;height:14px}
+.f-more:hover{color:var(--navy)}
 .f-brand img{height:20px;width:auto;margin-bottom:18px}
 .f-brand p{color:var(--muted);line-height:1.7}
+.f-brand p a{color:var(--slate)}
+.f-brand p a:hover{color:var(--cyan)}
+.f-cta{margin-top:20px}
+.f-companies{margin-top:48px;padding-top:40px;border-top:1px solid var(--line)}
+.f-comp-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px}
+.f-comp-head .f-more{margin-top:0}
+.f-comp-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:32px}
 .f-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;color:var(--muted);font-size:var(--fs-small)}
 .f-bottom div{display:flex;gap:20px;flex-wrap:wrap}
 .f-bottom a:hover{color:var(--cyan)}
@@ -753,6 +766,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .nav-links,.nav-pop,.nav-overlay{display:none}
   .nav-in{justify-content:space-between}
   .menu-btn{display:block}
+  .f-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .f-brand{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-start;gap:12px 48px}
+  .f-brand img{flex-basis:100%;max-width:max-content}
+  .f-cta{margin-top:0}
+  .f-comp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:1020px){
   .hero-grid,.about-grid,.p-top,.bb-grid,.bento-head{grid-template-columns:1fr}
@@ -764,8 +782,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .facts{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .sol-grid{grid-template-columns:1fr 1fr}
   .p-logos{grid-template-columns:repeat(4,1fr)}
-      .f-grid{grid-template-columns:1fr 1fr 1fr}
-  .f-brand{grid-column:1/-1}
+      .f-grid,.f-comp-grid{grid-template-columns:1fr 1fr}
+    .f-comp-head{flex-direction:column;align-items:flex-start;gap:6px}
   .p-nums{margin-top:180px}
 }
 @media (max-width:640px){
@@ -2106,12 +2124,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     <div class="f-grid">
       <div class="f-brand">
         <img src="assets/logo.png" alt="ANAND">
-        <p>ANAND Automotive Private Limited<br>Hauz Khas, New Delhi<br>+91-11-42092300</p>
+        <p>ANAND Corporate Headquarters<br>1, Sri Aurobindo Marg, Hauz Khas,<br>New Delhi 110016<br>+91-11-42092300<br><a href="mailto:contact@anandgroupindia.com">contact@anandgroupindia.com</a></p>
+        <a href="#contact" class="btn btn-primary f-cta" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
       </div>
-      <div><h5>Who We Are</h5><ul><li><a href="#">The ANAND Way</a></li><li><a href="#">History</a></li><li><a href="#">Corporate Governance</a></li><li><a href="#">Our Partners</a></li><li><a href="#">Awards</a></li></ul></div>
-      <div><h5>What We Do</h5><ul><li><a href="#">Automotive</a></li><li><a href="#">Hospitality</a></li><li><a href="#">Our Companies</a></li><li><a href="#">Products &amp; Solutions</a></li><li><a href="#">Customers</a></li></ul></div>
-      <div><h5>Careers</h5><ul><li><a href="#">Culture at ANAND</a></li><li><a href="#">Shop Floor Excellence</a></li><li><a href="#">People Development</a></li><li><a href="#">Join Us</a></li></ul></div>
-      <div><h5>News &amp; Media</h5><ul><li><a href="#">Media Coverage</a></li><li><a href="#">Latest at ANAND</a></li><li><a href="#">Media Kit</a></li><li><a href="#">Contact Us</a></li></ul></div>
+      <div class="f-col"><h5>About ANAND</h5><h6>Who we are</h6><ul><li><a href="#">The ANAND Way</a></li><li><a href="#">Heritage</a></li><li><a href="#">Awards &amp; recognition</a></li></ul><h6>Leadership &amp; governance</h6><ul><li><a href="#">Leadership</a></li><li><a href="#">Chairperson's message</a></li><li><a href="#">Corporate governance</a></li></ul><h6>Direction</h6><ul><li><a href="#">Vision &amp; strategy</a></li></ul><a class="f-more" href="#">About ANAND <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Sustainability &amp; CSR</h5><h6>Sustainability</h6><ul><li><a href="#">Our approach</a></li></ul><h6>SNS Foundation</h6><ul><li><a href="#">About SNSF</a></li><li><a href="#">Education</a></li><li><a href="#">Skill development</a></li><li><a href="#">Health &amp; hygiene</a></li><li><a href="#">Community conservation</a></li><li><a href="#">Projects &amp; impact</a></li><li><a href="#">Financial reports</a></li></ul><h6>ANAND School</h6><ul><li><a href="#">About the school</a></li><li><a href="#">Admissions</a></li><li><a href="#">Curriculum</a></li><li><a href="#">Achievements</a></li></ul><ul><li><a href="#">Donate</a></li></ul><a class="f-more" href="#">Sustainability &amp; CSR <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Careers</h5><h6>Life at ANAND</h6><ul><li><a href="#">Culture at ANAND</a></li><li><a href="#">Diversity &amp; inclusion</a></li><li><a href="#">Shop floor excellence</a></li></ul><h6>People development</h6><ul><li><a href="#">ANAND U</a></li><li><a href="#">ALDP &amp; ATA</a></li><li><a href="#">VSME &amp; VLFM</a></li><li><a href="#">External programmes</a></li></ul><h6>Join us</h6><ul><li><a href="#">Explore opportunities</a></li></ul><a class="f-more" href="#">Careers at ANAND <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Newsroom</h5><h6>News</h6><ul><li><a href="#">Latest news</a></li><li><a href="#">Media coverage</a></li><li><a href="#">Newsletter</a></li></ul><h6>For media</h6><ul><li><a href="#">Media kit</a></li><li><a href="#">Media contact</a></li></ul><a class="f-more" href="#">All news <i data-lucide="chevron-right" class="ic"></i></a></div>
+    </div>
+    <div class="f-companies">
+      <div class="f-comp-head"><h5>Our companies</h5><a class="f-more" href="#">All companies <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-comp-grid"><div><h6>Chassis, body &amp; safety</h6><ul><li><a href="#">Gabriel India</a></li><li><a href="#">HL Mando Anand India</a></li><li><a href="#">Joyson ANAND Abhishek Safety Systems</a></li><li><a href="#">Henkel ANAND India</a></li><li><a href="#">Inalfa Roof Systems</a></li><li><a href="#">Haldex ANAND India</a></li></ul></div><div><h6>Powertrain &amp; drivetrain</h6><ul><li><a href="#">Dana Anand India</a></li><li><a href="#">ANAND CY Myutec Automotive</a></li><li><a href="#">CY Myutec ANAND</a></li><li><a href="#">ANAND I-Power</a></li><li><a href="#">Valeo Friction Materials India</a></li><li><a href="#">Jinhap Gabriel Auto India</a></li></ul></div><div><h6>Thermal, emissions &amp; fluids</h6><ul><li><a href="#">MAHLE ANAND Thermal Systems</a></li><li><a href="#">MAHLE ANAND Filter Systems</a></li><li><a href="#">Faurecia Clean Mobility</a></li><li><a href="#">SK Enmove Gabriel India</a></li><li><a href="#">Anchemco ANAND</a></li><li><a href="#">Ansysco ANAND</a></li></ul></div><div><h6>Electronics &amp; e-mobility</h6><ul><li><a href="#">HL Klemove</a></li><li><a href="#">APAG CoSyst</a></li><li><a href="#">Anevolve Mando eMobility</a></li></ul></div><div><h6>Beyond automotive</h6><ul><li><a href="#">SUJÁN</a></li><li><a href="#">Anevolve</a></li><li><a href="#">Technology partners</a></li></ul></div></div>
     </div>
     <div class="f-bottom">
       <span>© 2026 ANAND Group. All rights reserved.</span>
