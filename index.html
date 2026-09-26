@@ -485,15 +485,22 @@ img.g-av{display:block;object-fit:cover;background:var(--soft)}
 
 
 /* 5 · SUJÁN (full-bleed photo) */
-.g-sujan img.g-photo-full{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center bottom}
-@media (prefers-reduced-motion:no-preference){.g-sujan img.g-photo-full{transition:transform 1.2s var(--card-ease)}}
-.bento-card:hover .g-sujan img.g-photo-full{transform:scale(1.04)}
-.g-sujan::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,10,20,0) 50%,rgba(2,10,20,.55) 100%);pointer-events:none}
-.g-sj{position:absolute;left:28px;right:28px;bottom:26px;z-index:2;color:#fff}
-.g-sj-logo{display:block;height:20px;width:auto;margin-bottom:10px}
-.g-sj-k{display:block;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
-.g-sj-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(255,255,255,.2);font-size:var(--fs-ui-sm)}
-.g-sj-row span:last-child{color:rgba(255,255,255,.7)}
+/* SUJÁN: photo card with the same white panel as the other cards */
+.bento-card[data-bento=sujan] .bento-title{color:#fff}
+.g-sujan{background:var(--navy)}
+.g-sujan img.g-photo-full{position:absolute;left:0;top:0;width:100%;height:78%;object-fit:cover;object-position:45% 62%}
+@media (prefers-reduced-motion:no-preference){.g-sujan img.g-photo-full{transition:transform .8s var(--card-ease);transform-origin:50% 60%}}
+.bento-card:hover .g-sujan img.g-photo-full{transform:scale(1.036)}
+.g-sujan::after{content:"";position:absolute;left:0;right:0;top:0;height:78%;background:linear-gradient(180deg,rgba(2,26,44,.88) 0%,rgba(2,26,44,.6) 30%,rgba(2,26,44,.2) 48%,rgba(2,26,44,0) 62%,rgba(2,26,44,.4) 80%,var(--navy) 100%);pointer-events:none}
+.g-sj{left:20px;right:20px;bottom:20px;z-index:2}
+.g-sj-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--line)}
+.g-sj-head img{height:16px;width:auto;display:block}
+.g-sj-head span{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.g-sj-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.g-sj-head+.g-sj-row{border-top:0}
+.g-sj-row img{width:40px;height:40px;border-radius:var(--radius);object-fit:cover;flex:none}
+.g-sj-row b{display:block;color:var(--ink);font-weight:500;line-height:1.3}
+.g-sj-row small{display:block;font-size:var(--fs-label);color:var(--muted);line-height:1.3}
 
 /* ---------- BENTO MODAL (mirrors Stripe's hds-dialog) ---------- */
 html.bd-lock{overflow:hidden}
@@ -1110,13 +1117,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
         <span class="bento-text"><h3 class="bento-title" id="bt-sujan">Experiential Luxury, Rooted in Conservation</h3></span>
         <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
         <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-sujan" data-slot="sujan">
-          <img class="g-photo-full" src="assets/sujan-leopard-dusk.jpg" alt="">
-          <span class="g-sj">
-            <img class="g-sj-logo" src="assets/sujan-wordmark.svg" alt="SUJÁN">
-            <span class="g-sj-k">ANAND's hospitality vertical</span>
-            <span class="g-sj-row"><span>SUJÁN Jawai</span><span>Jawai Bandh</span></span>
-            <span class="g-sj-row"><span>SUJÁN The Serai</span><span>Jaisalmer</span></span>
-            <span class="g-sj-row"><span>SUJÁN Sher Bagh</span><span>Ranthambhore</span></span>
+          <img class="g-photo-full" src="assets/sujan-leopard-rocks.jpg" alt="">
+          <span class="g-ui g-sj">
+            <span class="g-sj-head"><img src="assets/sujan-wordmark-navy.svg" alt="SUJÁN"><span>Hospitality</span></span>
+            <span class="g-sj-row" style="--d:0"><img src="assets/sujan-jawai.jpg" alt=""><span><b>SUJÁN Jawai</b><small>Jawai Bandh</small></span></span>
+            <span class="g-sj-row" style="--d:1"><img src="assets/sujan-the-serai.jpg" alt=""><span><b>SUJÁN The Serai</b><small>Jaisalmer</small></span></span>
+            <span class="g-sj-row" style="--d:2"><img src="assets/sujan-sher-bagh.jpg" alt=""><span><b>SUJÁN Sher Bagh</b><small>Ranthambhore</small></span></span>
           </span>
         </span></span></span>
       </button>

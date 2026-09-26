@@ -232,7 +232,7 @@ Every section's HTML starts with a `<!-- SECTION NAME -->` comment in `index.htm
   2. **revenue:** US$2.2B+, the 8% RoS target, and bars for the top 5 JV partners (CY 2024).
   3. **companies:** "17 Companies, One Unified Group". A repeating logo grid (duplicate logos are `aria-hidden`) with a bottom mask fade.
   4. **people:** "22,000+ People, Led with Purpose". A leadership card with headshots (Deep C. Anand, Anjali Singh, Mahendra K. Goyal). The photo starts at 210px with a short fade, so no head is covered.
-  5. **sujan:** "Experiential Luxury, Rooted in Conservation". A full-bleed leopard photo, the white SUJÁN wordmark and the 3 camps. (This replaced a weak "ANAND Way" card.)
+  5. **sujan:** "Experiential Luxury, Rooted in Conservation". The leopard-on-rocks photo (`sujan-leopard-rocks.jpg`) with a navy fade at the top so the title can be white. A white panel at the bottom matches the other cards: the navy SUJÁN wordmark (`sujan-wordmark-navy.svg`) with a HOSPITALITY label, then the 3 camps, each with a thumbnail and its place. On hover only the photo zooms (1.036, 800ms); the camp thumbnails stay still. (This replaced a weak "ANAND Way" card.)
 - **Modal** (Stripe `hds-dialog`):
   - Overlay `rgb(229 237 245/.8)` with blurred cyan and royal orbs.
   - Opens and closes with the modal motion in §6.
