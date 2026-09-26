@@ -156,32 +156,46 @@ section{position:relative}
 .fact .n::before{content:"";display:block;width:1px;height:18px;background:var(--cyan);margin:0 0 10px -17px}
 .fact p{font-size:13.5px;color:var(--muted);margin-top:8px;line-height:1.45}
 
-/* ---------- VERTICALS (what's happening) ---------- */
-.verticals{background:var(--soft)}
-.v-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:36px;gap:24px}
-.v-head h2 span{display:block;color:var(--muted)}
-.arrows{display:flex;gap:8px}
-.arrows .ic{width:16px;height:16px}
-.arrows button{width:34px;height:34px;border-radius:var(--radius);border:0;background:#E6EBF1;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:background .2s}
-.arrows button:hover{background:var(--cyan);color:#fff}
-.v-rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
-.v-rail::-webkit-scrollbar{display:none}
-.v-card{position:relative;flex:0 0 auto;width:560px;height:360px;border-radius:var(--radius);overflow:hidden;scroll-snap-align:start;color:#fff;transition:width .5s var(--ease)}
-.v-card.slim{width:150px}
-.v-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.v-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(2,26,44,.85))}
-.v-card .v-txt{position:absolute;left:24px;right:24px;bottom:22px;z-index:2;transition:opacity .3s}
-.v-card.slim .v-txt{opacity:0}
-.v-card .v-txt small{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--cyan)}
-.v-card .v-txt h3{font-size:26px;font-weight:400;letter-spacing:-.02em;margin-top:4px}
-.v-card.gradcard{background:radial-gradient(120% 90% at 100% 0%,var(--cyan) 0%,var(--cyan) 35%,var(--royal) 60%,var(--navy) 100%)}
-.v-card.gradcard::after{background:none}
-.v-card.gradcard svg.lines{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
-.v-caption{display:flex;justify-content:space-between;align-items:start;margin-top:22px;gap:24px}
-.v-caption p{color:var(--slate);max-width:620px;font-size:15.5px}
-.v-caption p b{color:var(--ink);font-weight:500}
 .btn-outline{border:1px solid var(--line);color:var(--cyan);background:#fff;font-size:14px;padding:7px 14px}
 .btn-outline:hover{border-color:var(--cyan)}
+
+/* ---------- STORIES CAROUSEL (mirrors Stripe's case-study carousel) ---------- */
+.stories{background:#fff}
+.st-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-bottom:24px}
+.st-head h2{margin-bottom:28px;white-space:nowrap}
+@media (max-width:639px){.st-head h2{white-space:normal}.st-head h2 br{display:none}}
+.st-head .lede{margin-left:auto}
+.st-ctrl{display:flex;justify-content:flex-end;gap:8px;margin-bottom:24px}
+.st-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--radius);cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--muted);transition:background .2s,color .2s,border-color .2s}
+.st-btn.next{background:#E6F7FD;border-color:#E6F7FD;color:var(--cyan)}
+.st-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+.st-btn:disabled{cursor:default;background:#fff;border-color:var(--line);color:#C3CCD6}
+.st-btn .ic{width:18px;height:18px}
+.st-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.st-clip{overflow:hidden;container-type:inline-size}
+.st-scroller{--st-hover:cubic-bezier(.165,.84,.44,1);display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.st-scroller::-webkit-scrollbar{display:none}
+.st-item{flex:0 0 clamp(240px,26.27cqi,332px);scroll-snap-align:start}
+.st-item:last-child{scroll-snap-align:end}
+.st-card{display:flex;flex-direction:column;gap:16px;height:100%;color:inherit}
+.st-media{position:relative;aspect-ratio:332/448;overflow:hidden;border-radius:var(--radius);background:var(--navy)}
+.st-media img.ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.st-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,26,44,0) 55%,rgba(2,26,44,.7) 100%)}
+.st-logo{position:absolute;left:20px;bottom:18px;z-index:2;height:28px;width:auto;max-width:65%;object-fit:contain;object-position:left bottom;filter:brightness(0) invert(1)}
+.st-logo.keep{filter:none}
+.st-title{font-size:16px;line-height:1.45;color:var(--ink);padding-right:16px;text-wrap:balance}
+.st-link{margin-top:auto;display:inline-flex;align-items:center;gap:4px;color:var(--cyan);font-size:15px;font-weight:500;transition:color .2s}
+.st-link .ic{width:16px;height:16px;transition:transform .2s var(--ease)}
+@media (prefers-reduced-motion:no-preference){.st-media{transition:transform 800ms var(--st-hover)}}
+@media (hover:hover) and (pointer:fine){
+  .st-card:hover .st-media{transform:scale(1.036)}
+  .st-card:hover .st-link{color:var(--navy)}
+  .st-card:hover .st-link .ic{transform:translateX(2px)}
+}
+.st-card:focus-visible{outline:none}
+.st-card:focus-visible .st-link{outline:2px solid var(--cyan);outline-offset:3px;border-radius:2px}
+@media (max-width:939px){.st-head{grid-template-columns:1fr;gap:12px}.st-head .lede{margin-left:0}}
+@media (max-width:639px){.st-item{flex-basis:84%}.st-media{aspect-ratio:336/350}}
 
 /* ---------- SOLUTIONS ---------- */
 .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -486,10 +500,17 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-card .gfx img{max-width:62%;max-height:40%;object-fit:contain;mix-blend-mode:multiply}
 .bd-card .gfx img.cover{position:absolute;inset:0;max-width:none;max-height:none;width:100%;height:100%;object-fit:cover}
 .bd-card p{color:var(--slate);font-size:15px;line-height:1.55;margin-bottom:10px;padding-right:16px}
-.bd-dir{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;border-top:1px solid var(--line)}
-.bd-dir div{padding:14px 0;border-bottom:1px solid var(--line)}
-.bd-dir b{display:block;font-weight:500;color:var(--ink);font-size:15px}
-.bd-dir span{color:var(--muted);font-size:13.5px;line-height:1.45}
+.bd-dir{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:12px}
+.bd-co{display:grid;grid-template-columns:76px minmax(0,1fr) 16px;gap:16px;align-items:center;padding:16px 18px;border:1px solid var(--line);border-radius:var(--radius);color:inherit;background:#fff;transition:background .2s}
+.bd-co:hover{background:var(--soft)}
+.bd-co b{transition:color .2s}
+.bd-co:hover b{color:var(--cyan)}
+.bd-co .lg{height:44px;display:grid;place-items:center}
+.bd-co .lg img{max-width:76px;max-height:40px;width:auto;height:auto;object-fit:contain}
+.bd-co b{display:block;font-weight:500;color:var(--ink);font-size:15px;line-height:1.3;margin-bottom:3px}
+.bd-co .tx span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:13.5px;line-height:1.45}
+.bd-co .ic{width:16px;height:16px;color:var(--muted);align-self:start;transition:transform .2s var(--ease),color .2s}
+.bd-co:hover .ic{color:var(--cyan);transform:translate(2px,-2px)}
 .bd-leaders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .bd-leaders div{border:1px solid var(--line);border-radius:var(--radius);padding:24px}
 .bd-leaders .g-av{width:52px;height:52px;font-size:16px;margin-bottom:18px}
@@ -642,9 +663,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   .sec{padding:84px 0}
   .facts{grid-template-columns:1fr 1fr}
   .sol-grid{grid-template-columns:1fr}
-  .v-card{width:86vw;height:300px}
-  .v-card.slim{width:70px}
-  .v-caption{flex-direction:column}
   .p-logos{grid-template-columns:repeat(3,1fr)}
   .p-logos div{height:76px;padding:14px}
   .p-nums{grid-template-columns:1fr;gap:18px;margin:290px 0 50px}
@@ -1378,74 +1396,108 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
       "type": "directory",
       "title": "All 17 Companies",
       "items": [
-        [
-          "ANAND CY Myutec Automotive",
-          "High-precision synchronizer rings"
-        ],
-        [
-          "Anevolve Mando eMobility",
-          "Motors and controllers"
-        ],
-        [
-          "APAG CoSyst",
-          "Interior and exterior lighting; motor control units"
-        ],
-        [
-          "CY Myutec ANAND",
-          "High-precision synchronizer rings"
-        ],
-        [
-          "Dana Anand India",
-          "Axles, drive shafts and drivetrain components"
-        ],
-        [
-          "Faurecia Clean Mobility",
-          "Exhaust mufflers, catalytic converters and reinforcements"
-        ],
-        [
-          "Gabriel India",
-          "Shock absorbers, struts, front forks and gas springs"
-        ],
-        [
-          "Henkel ANAND India",
-          "Sealants, adhesives, coatings and NVH products"
-        ],
-        [
-          "HL Klemove",
-          "Autonomous driving and ADAS technology"
-        ],
-        [
-          "HL Mando Anand India",
-          "Hydraulic brakes, electric power steering and struts"
-        ],
-        [
-          "ANAND I-Power",
-          "Piston rings and cast iron covers"
-        ],
-        [
-          "Jinhap Gabriel Auto India",
-          "Bearing cap, head cover and transmission bolts"
-        ],
-        [
-          "MAHLE ANAND Filter Systems",
-          "Air intake, air cleaner, fuel and oil filter modules"
-        ],
-        [
-          "MAHLE ANAND Thermal Systems",
-          "Air conditioning, engine cooling and EGR coolers"
-        ],
-        [
-          "Joyson ANAND Abhishek Safety Systems",
-          "Seat belts, airbags and steering wheels"
-        ],
-        [
-          "SK Enmove Gabriel India",
-          "Engine oils, e-fluids, lubricants and greases"
-        ],
-        [
-          "Valeo Friction Materials India",
-          "Non-asbestos, lead-free clutch facings"
-        ]
+        {
+          "name": "ANAND CY Myutec Automotive",
+          "products": "High-precision synchronizer rings",
+          "logo": "assets/companies/anand-cy-myutec-automotive.png",
+          "url": "https://www.anandgroupindia.com/acymautomotive/"
+        },
+        {
+          "name": "Anevolve Mando eMobility",
+          "products": "Motors and controllers",
+          "logo": "assets/companies/anevolve-mando-emobility.png",
+          "url": "https://www.anandgroupindia.com/anevolvemandoemobility/"
+        },
+        {
+          "name": "APAG CoSyst",
+          "products": "Interior and exterior lighting; motor control units",
+          "logo": "assets/companies/apag-cosyst.png",
+          "url": "https://www.anandgroupindia.com/automotive/our-companies/"
+        },
+        {
+          "name": "CY Myutec ANAND",
+          "products": "High-precision synchronizer rings",
+          "logo": "assets/companies/cy-myutec-anand.png",
+          "url": "https://www.anandgroupindia.com/cymyutecanand/"
+        },
+        {
+          "name": "Dana Anand India",
+          "products": "Axles, drive shafts and drivetrain components",
+          "logo": "assets/companies/dana-anand-india.png",
+          "url": "https://www.anandgroupindia.com/danaanandindia/"
+        },
+        {
+          "name": "Faurecia Clean Mobility",
+          "products": "Exhaust mufflers, catalytic converters and reinforcements",
+          "logo": "assets/companies/faurecia-clean-mobility.png",
+          "url": "https://www.anandgroupindia.com/faureciacleanmobility/"
+        },
+        {
+          "name": "Gabriel India",
+          "products": "Shock absorbers, struts, front forks and gas springs",
+          "logo": "assets/companies/gabriel-india.png",
+          "url": "https://www.anandgroupindia.com/gabrielindia/"
+        },
+        {
+          "name": "Henkel ANAND India",
+          "products": "Sealants, adhesives, coatings and NVH products",
+          "logo": "assets/companies/henkel-anand-india.png",
+          "url": "https://www.anandgroupindia.com/henkelanandindia/"
+        },
+        {
+          "name": "HL Klemove",
+          "products": "Autonomous driving and ADAS technology",
+          "logo": "assets/companies/hl-klemove.png",
+          "url": "https://www.anandgroupindia.com/automotive/our-companies/"
+        },
+        {
+          "name": "HL Mando Anand India",
+          "products": "Hydraulic brakes, electric power steering and struts",
+          "logo": "assets/companies/hl-mando-anand-india.png",
+          "url": "https://www.anandgroupindia.com/mandoautomotiveindia/"
+        },
+        {
+          "name": "ANAND I-Power",
+          "products": "Piston rings and cast iron covers",
+          "logo": "assets/companies/anand-i-power.png",
+          "url": "https://www.anandgroupindia.com/anandipower/"
+        },
+        {
+          "name": "Jinhap Gabriel Auto India",
+          "products": "Bearing cap, head cover and transmission bolts",
+          "logo": "assets/companies/jinhap-gabriel-auto-india.png",
+          "url": "https://www.anandgroupindia.com/automotive/our-companies/"
+        },
+        {
+          "name": "MAHLE ANAND Filter Systems",
+          "products": "Air intake, air cleaner, fuel and oil filter modules",
+          "logo": "assets/companies/mahle-anand-filter-systems.png",
+          "url": "https://www.anandgroupindia.com/mahleanandfiltersystems/"
+        },
+        {
+          "name": "MAHLE ANAND Thermal Systems",
+          "products": "Air conditioning, engine cooling and EGR coolers",
+          "logo": "assets/companies/mahle-anand-thermal-systems.png",
+          "url": "https://www.anandgroupindia.com/mahleanandthermalsystems/"
+        },
+        {
+          "name": "Joyson ANAND Abhishek Safety Systems",
+          "products": "Seat belts, airbags and steering wheels",
+          "logo": "assets/companies/joyson-anand-abhishek-safety-systems.png",
+          "url": "https://www.anandgroupindia.com/joysonanandabhisheksafetysystems/"
+        },
+        {
+          "name": "SK Enmove Gabriel India",
+          "products": "Engine oils, e-fluids, lubricants and greases",
+          "logo": "assets/companies/sk-enmove-gabriel-india.png",
+          "url": "https://www.anandgroupindia.com/sites/sk-enmove-gabriel-india/"
+        },
+        {
+          "name": "Valeo Friction Materials India",
+          "products": "Non-asbestos, lead-free clutch facings",
+          "logo": "assets/companies/valeo-friction-materials-india.png",
+          "url": "https://www.anandgroupindia.com/valeofrictionmaterialsindia/"
+        }
       ]
     },
     "quote": {
@@ -1676,34 +1728,53 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   </div>
 </section>
 
-<!-- VERTICALS -->
-<section class="sec verticals" id="verticals">
+<!-- STORIES (mirrors Stripe's case-study carousel) -->
+<section class="sec stories" id="verticals">
   <div class="wrap">
-    <div class="v-head">
-      <h2 class="rv">One Group, Many Journeys<span>Mobility, Future Tech and Hospitality.</span></h2>
-      <div class="arrows"><button id="vPrev" aria-label="Previous"><i data-lucide="chevron-left" class="ic"></i></button><button id="vNext" aria-label="Next"><i data-lucide="chevron-right" class="ic"></i></button></div>
+    <div class="st-head">
+      <div class="rv">
+        <h2>One Group, Many Journeys <br>Across Mobility and Beyond</h2>
+        <a href="#partners" class="btn btn-primary">Explore our companies <i data-lucide="arrow-right" class="ic"></i></a>
+      </div>
+      <p class="lede rv">Beyond automotive, the Group continues to expand its impact through complementary businesses and initiatives, from clean mobility to conservation-led hospitality.</p>
     </div>
-    <div class="v-rail" id="vRail">
-      <div class="v-card" data-i="0">
-        <img src="assets/ANAND-banner-scaled-1.jpeg" alt="ANAND team at tech shows 2026">
-        <div class="v-txt"><small>ANAND Mobility</small><h3>Engineering the Future of Mobility</h3></div>
-      </div>
-      <div class="v-card slim" data-i="1">
-        <img src="assets/hero-sujan.jpg" alt="Leopards in the wild, SUJÁN" style="object-position:30% center">
-        <div class="v-txt"><small>SUJÁN Hospitality</small><h3>Experiential Luxury, Rooted in Conservation</h3></div>
-      </div>
-      <div class="v-card slim gradcard" data-i="2">
-        <svg class="lines" viewBox="0 0 560 360" preserveAspectRatio="none"><g fill="none" stroke="#fff" stroke-width=".6"><path d="M0 300 C140 240 260 320 560 120"/><path d="M0 310 C140 250 270 330 560 140"/><path d="M0 320 C150 262 280 338 560 160"/><path d="M0 330 C150 274 290 346 560 180"/><path d="M0 340 C160 286 300 352 560 200"/></g></svg>
-        <div class="v-txt"><small>ANEVOLVE</small><h3>Future Tech for Clean Mobility</h3></div>
-      </div>
-      <div class="v-card slim" data-i="3">
-        <img src="assets/e-mobility.png" alt="Hub motor, E-Mobility">
-        <div class="v-txt"><small>E-Mobility</small><h3>Hub Motors and EV Systems</h3></div>
-      </div>
+    <div class="st-ctrl">
+      <button class="st-btn prev" id="stPrev" aria-label="Previous stories"><i data-lucide="arrow-left" class="ic"></i></button>
+      <button class="st-btn next" id="stNext" aria-label="Next stories"><i data-lucide="arrow-right" class="ic"></i></button>
     </div>
-    <div class="v-caption">
-      <p id="vCap"><b>ANAND Mobility at Tech Shows 2026.</b> Our teams showcased chassis, safety and e-mobility technologies built with global partners for India and the world.</p>
-      <a href="#" class="btn btn-outline">Learn more <i data-lucide="arrow-right" class="ic"></i></a>
+    <div class="st-clip">
+      <ul class="st-scroller" id="stScroller" role="list" style="list-style:none;padding:0;margin:0">
+        <li class="st-item"><a class="st-card" href="https://www.anandgroupindia.com/gabrielindia/" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/news2-scaled-1.jpeg" alt="" loading="lazy"><img class="st-logo " src="assets/Gabriel.png" alt=""></span>
+          <span class="st-title">Gabriel India, ANAND's flagship since 1961, makes shock absorbers, struts and front forks for leading OEMs.</span>
+          <span class="st-link">Explore Gabriel India<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+        <li class="st-item"><a class="st-card" href="https://thesujanlife.com" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/sujan-leopard-rocks.jpg" alt="" loading="lazy"><img class="st-logo " src="assets/sujan-wordmark.svg" alt=""></span>
+          <span class="st-title">SUJÁN redefines experiential luxury through conservation-led hospitality in Rajasthan.</span>
+          <span class="st-link">Discover SUJÁN<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+        <li class="st-item"><a class="st-card" href="https://www.anandgroupindia.com/anevolvemandoemobility/" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/e-mobility.png" alt="" loading="lazy"><img class="st-logo " src="assets/ANEVOLVE.png" alt=""></span>
+          <span class="st-title">ANEVOLVE, ANAND's future-tech platform, is advancing solutions for clean mobility.</span>
+          <span class="st-link">Explore ANEVOLVE<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+        <li class="st-item"><a class="st-card" href="https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/Gabriel-India-South-Koreas-HL-Klemove.jpg" alt="" loading="lazy"><img class="st-logo " src="assets/HL-Klemove.png" alt=""></span>
+          <span class="st-title">Gabriel India and HL Klemove form a joint venture to bring autonomous driving to India.</span>
+          <span class="st-link">Read the story<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+        <li class="st-item"><a class="st-card" href="https://www.anandgroupindia.com/mahleanandthermalsystems/" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/thermal-management.png" alt="" loading="lazy"><img class="st-logo " src="assets/mahle.png" alt=""></span>
+          <span class="st-title">MAHLE ANAND builds air conditioning, engine cooling and filter systems for India's automakers.</span>
+          <span class="st-link">Explore MAHLE ANAND<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+        <li class="st-item"><a class="st-card" href="https://www.anandgroupindia.com/joysonanandabhisheksafetysystems/" target="_blank" rel="noopener">
+          <span class="st-media"><img class="ph" src="assets/safety.png" alt="" loading="lazy"><img class="st-logo " src="assets/Joyson.png" alt=""></span>
+          <span class="st-title">Joyson ANAND Abhishek makes seat belts, airbags and steering wheels that keep drivers safe.</span>
+          <span class="st-link">Explore Joyson ANAND<i data-lucide="chevron-right" class="ic"></i></span>
+        </a></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -2080,7 +2151,7 @@ if (wrap) {
       if (!x) return '';
       const head = `<div class="bd-sub">${esc(x.title)}</div>`;
       if (x.type === 'cards') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-cards">${x.items.map(i => `<div class="bd-card"><div class="gfx"><img src="${esc(i.img)}" alt="" class="${i.cover ? 'cover' : ''}"></div><p>${esc(i.text)}</p><a class="link" href="${esc(i.href)}"${/^http/.test(i.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(i.link)}<i data-lucide="chevron-right" class="ic"></i></a></div>`).join('')}</div></div>`;
-      if (x.type === 'directory') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-dir">${x.items.map(([n, p]) => `<div><b>${esc(n)}</b><span>${esc(p)}</span></div>`).join('')}</div></div>`;
+      if (x.type === 'directory') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-dir">${x.items.map(c => `<a class="bd-co" href="${esc(c.url)}" target="_blank" rel="noopener"><span class="lg">${c.logo ? `<img src="${esc(c.logo)}" alt="">` : ''}</span><span class="tx"><b>${esc(c.name)}</b><span>${esc(c.products)}</span></span><i data-lucide="arrow-up-right" class="ic"></i></a>`).join('')}</div></div>`;
       if (x.type === 'leaders') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-leaders">${x.items.map(l => `<div>${l.photo ? `<img class="g-av" src="${esc(l.photo)}" alt="${esc(l.name)}">` : `<i class="g-av ${l.tone}">${esc(l.initials)}</i>`}<b>${esc(l.name)}</b><small>${esc(l.role)}</small><p>${esc(l.text)}</p></div>`).join('')}</div></div>`;
       if (x.type === 'details') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-details">${x.items.map(d => `<div><i><i data-lucide="${esc(d.icon)}" class="ic"></i></i><b>${esc(d.title)}</b><p>${esc(d.text)}</p></div>`).join('')}</div></div>`;
       return '';
@@ -2263,24 +2334,22 @@ if (wrap) {
     io.observe(el);
   });
 
-  // verticals rail: expanding cards
-  const cards = [...document.querySelectorAll('.v-card')];
-  const caps = [
-    '<b>ANAND Mobility at Tech Shows 2026.</b> Our teams showcased chassis, safety and e-mobility technologies built with global partners for India and the world.',
-    '<b>SUJÁN redefines experiential luxury.</b> Conservation-led hospitality set in some of India\'s most remarkable wild landscapes.',
-    '<b>ANEVOLVE is ANAND\'s future-tech platform,</b> advancing solutions for clean mobility and emerging technologies.',
-    '<b>E-Mobility for the electric transition.</b> From hub motors to EV subsystems, built for India\'s next generation of vehicles.'
-  ];
-  const cap = document.getElementById('vCap');
-  let cur = 0;
-  const show = i => {
-    cur = (i + cards.length) % cards.length;
-    cards.forEach((c, j) => c.classList.toggle('slim', j !== cur));
-    cap.innerHTML = caps[cur];
-  };
-  cards.forEach((c, i) => c.addEventListener('click', () => show(i)));
-  document.getElementById('vPrev').onclick = () => show(cur - 1);
-  document.getElementById('vNext').onclick = () => show(cur + 1);
+  // stories carousel: arrows scroll one card at a time and disable at the ends
+  (() => {
+    const sc = document.getElementById('stScroller');
+    if (!sc) return;
+    const prev = document.getElementById('stPrev'), next = document.getElementById('stNext');
+    const step = () => { const it = sc.querySelector('.st-item'); return it ? it.getBoundingClientRect().width + 16 : 300; };
+    const update = () => {
+      prev.disabled = sc.scrollLeft <= 2;
+      next.disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 2;
+    };
+    prev.onclick = () => sc.scrollBy({left: -step(), behavior: reduce ? 'auto' : 'smooth'});
+    next.onclick = () => sc.scrollBy({left: step(), behavior: reduce ? 'auto' : 'smooth'});
+    sc.addEventListener('scroll', update, {passive: true});
+    addEventListener('resize', update);
+    update();
+  })();
 
   // wave lines (Stripe "scale with confidence" style)
   const cv = document.getElementById('wave'), ctx = cv.getContext('2d');
