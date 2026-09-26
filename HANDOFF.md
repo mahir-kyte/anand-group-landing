@@ -258,18 +258,24 @@ The facts count up on scroll. The divider line above it was removed on request.
 - Arrows (`.st-btn`): white with a navy icon, navy on hover, faded when disabled.
 - Six cards (332×448 media, a white logo over the image, media scale 1.036 on hover over 800ms): Gabriel, SUJÁN, ANEVOLVE, HL Klemove JV, MAHLE ANAND and Joyson ANAND, each with a real link.
 
-### 8.8 CTA banner, above the footer (`section.cta-banner`)
-- A copy of Stripe's Sessions banner:
-  - a photo card 400–544px tall with a 4px radius
-  - a light-weight (300) white headline at `--fs-banner` (48px max)
-  - a white button with cyan text that turns cyan with white text on hover
+### 8.8 CTA banner, above the footer (`section.cta-banner#contact`)
+This banner is also the page's contact section; it replaced the old three-column CTA/contact block.
+- **Styled on Stripe's Sessions banner:**
+  - a navy photo card with a 4px radius, at least 440–544px tall
+  - a white headline in the standard section h2 style (`--fs-h2`, weight 500) and an 18px lede (`--fs-lede`), like every other section
+  - standard-size buttons (15px, 42px tall), like every other button on the page
   - the white ANAND logo in the bottom-right corner
-- **Content:** "Join 22,000+ People Shaping the Future of Mobility" and "Explore Careers" (the link is `#` for now). The photo is `news1-scaled-1.jpeg` (Mahendra K. Goyal at an ANAND event), placed on the right and fading into navy on the left.
-- **On phones** the photo drops to the lower part of the card so the headline doesn't cover the speaker.
-- **Overlap to note:** the CTA section just above it also has a "Careers at ANAND" column.
+- **Content:**
+  - eyebrow "Driving mobility & sustainability"
+  - h2 "Ready to Shape the Future of Mobility?" with the partner/innovate/grow line under it
+  - buttons: "Partner with Us" (white with cyan text; turns cyan with white text on hover) and "Explore Careers" (white outline; turns white with navy text on hover)
+  - bottom strip: Corporate Headquarters address, phone and email
+- **Photo:** `news1-scaled-1.jpeg` (Mahendra K. Goyal at an ANAND event), on the right and fading into navy on the left.
+- **On phones** the text stacks on navy and the photo sits at the bottom of the card.
+- **Anchors:** `#contact` (the nav's "Partner with Us") and `#careers` (the nav's "Explore Careers") both land here.
 
 ### 8.9 After the stories
-Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA/contact · CTA banner (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
+Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
 These sections date from the first concept and haven't had a Stripe-exact pass yet.
 
 ---

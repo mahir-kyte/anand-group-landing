@@ -30,7 +30,6 @@
   --ease:cubic-bezier(.2,.7,.2,1);
   /* type scale: use these, never raw px */
   --fs-display:clamp(40px,5.6vw,64px);
-  --fs-banner:clamp(32px,4vw,48px);
   --fs-h2:clamp(28px,3.4vw,38px);
   --fs-h3:clamp(22px,2.2vw,28px);
   --fs-quote:clamp(22px,2.4vw,30px);
@@ -397,7 +396,9 @@ section{position:relative}
   /* keeps room for the title + mini bento on narrower screens */
   .bento-card--lg,.bento-card[data-bento=revenue]{min-height:456px}
   .bento-card .g-global .g-globe{width:min(70%,640px);right:-13%;bottom:-50%}
-  .bento-text{top:28px;left:28px;max-width:min(100% - 110px,21ch)}
+  .bento-text{top:28px;left:28px;max-width:calc(100% - 110px)}
+  /* measured in the title's own size, so wrapping stays the same at every width */
+  .bento-title{max-width:13.5ch}
   .bento-border-color{display:block}
   /* the card is drawn a few px inset; hovering expands it to full size */
   .bento-inner{inset:calc(-1 * var(--grow-y)) calc(-1 * var(--grow-x));border-radius:0;clip-path:inset(var(--grow-y) var(--grow-x) round calc(var(--card-radius) - 1px))}
@@ -656,30 +657,39 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 }
 
 /* ---------- CTA ---------- */
-.cta-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:48px;padding:120px 0}
-.cta-grid h2{font-size:var(--fs-h2);margin-bottom:14px}
-.cta-grid p{color:var(--slate);font-size:var(--fs-body);margin-bottom:20px}
-.cta-grid .col .ic{width:24px;height:24px;color:var(--cyan);margin-bottom:14px;display:block}
-.cta-grid .col h3{margin-bottom:6px}
-.cta-grid .col p{font-size:var(--fs-ui);margin-bottom:10px}
 
 /* ---------- FOOTER ---------- */
-/* CTA banner (mirrors Stripe's Sessions banner) */
+/* CTA banner (mirrors Stripe's Sessions banner); also the page's contact section */
 .cta-banner{padding:0 0 96px}
-.cb-card{position:relative;display:flex;height:clamp(400px,38vw,544px);border-radius:var(--radius);overflow:hidden;background:var(--navy)}
-.cb-img{position:absolute;top:0;bottom:0;left:30%;width:70%;height:100%;object-fit:cover;object-position:50% 22%}
-.cb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 30%,rgba(2,26,44,.55) 46%,rgba(2,26,44,0) 62%),linear-gradient(0deg,rgba(2,26,44,.55) 0%,rgba(2,26,44,0) 35%);pointer-events:none}
-.cb-content{position:relative;z-index:1;flex:1;display:grid;grid-template-rows:auto auto 1fr;justify-items:start;padding:clamp(24px,3vw,40px)}
-.cb-title{font-size:var(--fs-banner);font-weight:300;line-height:1.03;letter-spacing:-.02em;color:#fff;max-width:min(520px,48%);margin-bottom:32px}
-.cb-btn{background:#fff;color:var(--cyan);font-size:var(--fs-body);padding:15px 22px 15px 24px;gap:8px}
+.cb-card{position:relative;display:flex;min-height:clamp(440px,40vw,544px);border-radius:var(--radius);overflow:hidden;background:var(--navy)}
+.cb-img{position:absolute;top:0;bottom:0;left:34%;width:66%;height:100%;object-fit:cover;object-position:50% 22%}
+.cb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 34%,rgba(2,26,44,.55) 50%,rgba(2,26,44,0) 66%),linear-gradient(0deg,rgba(2,26,44,.7) 0%,rgba(2,26,44,0) 30%);pointer-events:none}
+.cb-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:clamp(24px,3.4vw,48px)}
+.cb-main{max-width:min(520px,48%)}
+.cb-title{color:#fff;margin-bottom:16px}
+.cb-lede{color:#A9C1D6;font-size:var(--fs-lede);line-height:1.6;margin-bottom:28px;max-width:460px}
+.cb-actions{display:flex;flex-wrap:wrap;gap:12px}
+.cb-btn{background:#fff;color:var(--cyan)}
 .cb-btn:hover{background:var(--cyan);color:#fff}
-.cb-logo{align-self:end;justify-self:end;height:24px;width:auto;filter:brightness(0) invert(1)}
+.cb-btn-2{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.cb-btn-2:hover{background:#fff;color:var(--navy);box-shadow:none}
+.cb-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.cb-hq{font-style:normal;font-size:var(--fs-small);color:#A9C1D6;line-height:1.5;max-width:420px}
+.cb-hq b{display:block;color:#fff;font-weight:500;margin-bottom:2px}
+.cb-hq a{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4)}
+.cb-hq a:hover{text-decoration-color:#fff}
+.cb-hq .nw{white-space:nowrap}
+.cb-logo{height:24px;width:auto;flex:none;filter:brightness(0) invert(1)}
+@media (max-width:939px){
+  .cb-main{max-width:62%}
+}
 @media (max-width:639px){
-  .cb-card{height:auto;min-height:460px}
-  .cb-img{left:0;width:100%;top:auto;height:58%;object-position:62% 18%}
-  .cb-card::after{background:linear-gradient(180deg,var(--navy) 0%,var(--navy) 42%,rgba(2,26,44,.2) 60%,rgba(2,26,44,0) 75%,rgba(2,26,44,.5) 100%)}
+  .cb-card{min-height:0;flex-direction:column}
+  .cb-card::after{display:none}
+  .cb-main{max-width:none}
+  .cb-img{position:relative;order:2;left:auto;width:100%;height:240px;object-position:62% 18%;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 35%);mask-image:linear-gradient(180deg,transparent 0%,#000 35%)}
+  .cb-foot{flex-direction:column;align-items:flex-start}
   .cb-logo{height:20px}
-  .cb-title{max-width:none}
 }
 footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-small)}
 .f-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
@@ -712,9 +722,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .facts{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .sol-grid{grid-template-columns:1fr 1fr}
   .p-logos{grid-template-columns:repeat(4,1fr)}
-  .cta-grid{grid-template-columns:1fr 1fr}
-  .cta-grid>div:first-child{grid-column:1/-1}
-  .f-grid{grid-template-columns:1fr 1fr 1fr}
+      .f-grid{grid-template-columns:1fr 1fr 1fr}
   .f-brand{grid-column:1/-1}
   .p-nums{margin-top:180px}
 }
@@ -748,8 +756,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .nr-body p{font-size:15px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
   .nr-thumbs{gap:18px}
   .nr-th{flex-basis:82%;grid-template-columns:96px 1fr;gap:12px}
-  .cta-grid{grid-template-columns:1fr;padding:84px 0}
-  .f-grid{grid-template-columns:1fr 1fr}
+    .f-grid{grid-template-columns:1fr 1fr}
   .dark{padding:170px 0 100px}
   .dark .band{height:110px}
   #wave{top:500px;height:300px}
@@ -2027,39 +2034,25 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   </div>
 </section>
 
-<!-- CTA -->
-<section id="contact">
-  <div class="wrap cta-grid">
-    <div class="rv">
-      <div class="eyebrow">Driving mobility &amp; sustainability</div>
-      <h2>Ready to Shape the Future of Mobility?</h2>
-      <p>Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
-      <a href="#" class="btn btn-primary">Partner with Us <i data-lucide="arrow-right" class="ic"></i></a>
-    </div>
-    <div class="col rv" id="careers">
-      <i data-lucide="users" class="ic"></i>
-      <h3>Careers at ANAND</h3>
-      <p>Join 22,000+ people across shop-floor excellence, engineering and people development.</p>
-      <a href="#" class="link">Explore Careers<i data-lucide="chevron-right" class="ic"></i></a>
-    </div>
-    <div class="col rv">
-      <i data-lucide="building-2" class="ic"></i>
-      <h3>Corporate Headquarters</h3>
-      <p>1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016<br>+91-11-42092300</p>
-      <a href="mailto:contact@anandgroupindia.com" class="link">contact@anandgroupindia.com<i data-lucide="chevron-right" class="ic"></i></a>
-    </div>
-  </div>
-</section>
-
 <!-- CTA BANNER (mirrors Stripe's Sessions banner) -->
-<section class="cta-banner">
+<section class="cta-banner" id="contact">
   <div class="wrap">
-    <div class="cb-card rv">
+    <div class="cb-card rv" id="careers">
       <img class="cb-img" src="assets/news1-scaled-1.jpeg" alt="ANAND leadership speaking at a group event" loading="lazy">
       <div class="cb-content">
-        <h2 class="cb-title">Join 22,000+ People Shaping the Future of Mobility</h2>
-        <a href="#" class="btn cb-btn">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a>
-        <img class="cb-logo" src="assets/logo.png" alt="ANAND">
+        <div class="cb-main">
+          <div class="eyebrow">Driving mobility &amp; sustainability</div>
+          <h2 class="cb-title">Ready to Shape the Future of Mobility?</h2>
+          <p class="cb-lede">Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
+          <div class="cb-actions">
+            <a href="#" class="btn cb-btn">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
+            <a href="#" class="btn cb-btn cb-btn-2">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a>
+          </div>
+        </div>
+        <div class="cb-foot">
+          <address class="cb-hq"><b>Corporate Headquarters</b>1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016<br><span class="nw">+91-11-42092300</span> · <a href="mailto:contact@anandgroupindia.com">contact@anandgroupindia.com</a></address>
+          <img class="cb-logo" src="assets/logo.png" alt="ANAND">
+        </div>
       </div>
     </div>
   </div>
