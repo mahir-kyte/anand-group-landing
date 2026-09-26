@@ -25,7 +25,7 @@
   --grad:linear-gradient(90deg,var(--cyan),var(--royal));
   --shadow-lg:0 12px 32px -12px rgba(2,26,44,.18);
   --shadow-md:none;
-  --radius:0;
+  --radius:4px;
   --max:1080px;
   --ease:cubic-bezier(.2,.7,.2,1);
 }
@@ -36,14 +36,14 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
 .eyebrow{font-size:15px;font-weight:500;color:var(--cyan);letter-spacing:0;margin-bottom:14px;display:inline-flex;align-items:center;gap:10px}
-.eyebrow .tag{font-size:11px;font-weight:500;color:var(--royal);border:1px solid #B3E7FA;border-radius:0;padding:1px 6px;background:#fff}
+.eyebrow .tag{font-size:11px;font-weight:500;color:var(--royal);border:1px solid #B3E7FA;border-radius:var(--radius);padding:1px 6px;background:#fff}
 h1,h2,h3{font-weight:500;letter-spacing:-.02em;line-height:1.12}
 h1{font-size:clamp(40px,5.6vw,64px);letter-spacing:-.035em}
 h2{font-size:clamp(28px,3.4vw,38px)}
 h3{font-size:17px;letter-spacing:-.01em;line-height:1.35}
 .lede{color:var(--slate);font-size:18px;line-height:1.6;max-width:520px}
 .lede b{color:var(--ink);font-weight:500}
-.btn{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;padding:9px 16px 9px 18px;border-radius:0;transition:background .2s,color .2s,opacity .2s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;padding:9px 16px 9px 18px;border-radius:var(--radius);transition:background .2s,color .2s,opacity .2s;white-space:nowrap}
 .ic{width:16px;height:16px;stroke-width:1.75;flex:none}
 .btn .ic,.link .ic{transition:transform .2s var(--ease)}
 .btn:hover .ic,.link:hover .ic{transform:translateX(2px)}
@@ -64,56 +64,53 @@ section{position:relative}
 .nav-logo img{height:22px;width:auto}
 .nav-links{display:flex;gap:4px;list-style:none;flex:1}
 .nav-links>li{position:relative}
-.nav-links>li>a{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:15px;font-weight:500;padding:8px 12px;border-radius:0;color:var(--navy)}
+.nav-links>li>a{display:flex;align-items:center;gap:4px;white-space:nowrap;font-size:15px;font-weight:500;padding:8px 12px;border-radius:var(--radius);color:var(--navy)}
 .nav-links>li>a:hover{color:var(--slate)}
 .nav-links .ic{width:14px;height:14px;opacity:.6;transition:transform .2s}
 .nav-links>li:hover .ic{transform:rotate(180deg)}
-.dd{position:absolute;top:calc(100% + 8px);left:-8px;min-width:240px;background:#fff;border-radius:0;border:1px solid var(--line);box-shadow:none;padding:10px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s var(--ease)}
+.dd{position:absolute;top:calc(100% + 8px);left:-8px;min-width:240px;background:#fff;border-radius:var(--radius);border:1px solid var(--line);box-shadow:none;padding:10px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all .2s var(--ease)}
 .nav-links>li:hover .dd,.nav-links>li:focus-within .dd{opacity:1;visibility:visible;transform:none}
-.dd a{display:block;padding:8px 12px;border-radius:0;font-size:14px;color:var(--slate)}
+.dd a{display:block;padding:8px 12px;border-radius:var(--radius);font-size:14px;color:var(--slate)}
 .dd a:hover{background:var(--soft);color:var(--navy)}
 .dd a b{display:block;color:var(--navy);font-weight:500}
 .nav-cta{display:flex;align-items:center;gap:6px}
 .nav-cta .btn-ghost{color:var(--navy)}
-.menu-btn{display:none;background:none;border:0;width:40px;height:40px;border-radius:0;cursor:pointer}
-.menu-btn span{display:block;width:18px;height:2px;background:var(--navy);margin:4px auto;border-radius:0}
+.menu-btn{display:none;background:none;border:0;width:40px;height:40px;border-radius:var(--radius);cursor:pointer}
+.menu-btn span{display:block;width:18px;height:2px;background:var(--navy);margin:4px auto;border-radius:var(--radius)}
 
 /* ---------- HERO ---------- */
-.hero{background:var(--soft);padding:150px 0 0;overflow:hidden}
+/* bottom padding keeps the slanted band below the intro; it grows with width because the slant rises across wide screens */
+.hero{background:var(--soft);padding:150px 0 calc(170px + max(0px, (100vw - 1080px) * .0792));overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;position:relative;z-index:2}
 .hero h1{margin-bottom:24px}
 .hero h1 .g{color:var(--cyan)}
 .hero .lede{margin-bottom:32px}
 .hero-ctas{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.stripes{position:absolute;left:0;right:0;bottom:0;height:340px;transform:skewY(-9deg);transform-origin:0 100%;z-index:1}
+.stripes{position:absolute;left:0;right:0;bottom:-600px;height:780px;transform:skewY(-9deg);transform-origin:0 100%;z-index:1}
 .stripes::before{content:"";position:absolute;inset:0;background:var(--navy)}
 .stripes span{position:absolute;height:44px}
 .stripes .s1{top:-44px;right:0;width:36%;background:var(--cyan)}
 .stripes .s2{top:-88px;right:0;width:18%;background:var(--royal)}
 .stripes .s3{top:0;left:0;width:30%;background:var(--royal)}
 .stripes .s4{top:44px;left:0;width:14%;background:var(--cyan)}
-.hero-bottom{position:relative;z-index:2;padding:170px 0 70px;color:#fff}
-.hero-bottom .row{display:flex;justify-content:space-between;gap:32px;align-items:end;flex-wrap:wrap}
-.hero-bottom p{color:#A9C1D6;max-width:520px;font-size:16px}
-.hero-bottom p b{color:#fff;font-weight:500}
 
 /* hero UI mockup */
 .stage{position:relative;height:520px}
-.card{background:#fff;border-radius:0;box-shadow:var(--shadow-lg);border:1px solid var(--line);position:absolute;overflow:hidden}
+.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--line);position:absolute;overflow:hidden}
 .c-main{top:0;left:0;right:40px;height:370px;display:grid;grid-template-columns:150px 1fr}
 .c-side{border-right:1px solid var(--line);padding:16px 12px;font-size:12px}
 .c-side .brand{display:flex;align-items:center;gap:8px;font-weight:600;font-size:12px;margin-bottom:16px}
-.c-side .brand i{width:18px;height:18px;border-radius:0;background:var(--grad);display:block}
+.c-side .brand i{width:18px;height:18px;border-radius:var(--radius);background:var(--grad);display:block}
 .c-side .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:10px 6px 6px}
-.c-side div.it{padding:5px 6px;border-radius:0;color:var(--slate);display:flex;align-items:center;gap:7px}
-.c-side div.it::before{content:"";width:6px;height:6px;border-radius:0;background:#CFD7DF}
+.c-side div.it{padding:5px 6px;border-radius:var(--radius);color:var(--slate);display:flex;align-items:center;gap:7px}
+.c-side div.it::before{content:"";width:6px;height:6px;border-radius:var(--radius);background:#CFD7DF}
 .c-side div.on{background:#E6F7FD;color:var(--navy);font-weight:500}
 .c-side div.on::before{background:var(--cyan)}
 .c-body{padding:16px 18px;display:flex;flex-direction:column}
 .c-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
 .c-head b{color:var(--ink);font-size:14px;font-weight:600}
-.pill{font-size:10.5px;font-weight:500;padding:2px 8px;border-radius:0;background:#E6F7EC;color:#217A3C}
-.c-img{flex:1;margin:12px 0;border-radius:0;overflow:hidden;background:#2a2a2a}
+.pill{font-size:10.5px;font-weight:500;padding:2px 8px;border-radius:var(--radius);background:#E6F7EC;color:#217A3C}
+.c-img{flex:1;margin:12px 0;border-radius:var(--radius);overflow:hidden;background:#2a2a2a}
 .c-img img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
 .c-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:11px;color:var(--muted)}
 .c-meta b{display:block;color:var(--ink);font-size:13px;font-weight:600}
@@ -125,7 +122,7 @@ section{position:relative}
 .c-stats .rows div{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--line);color:var(--slate)}
 .c-stats .rows b{color:var(--ink);font-weight:600}
 .c-note{left:-28px;bottom:70px;width:250px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--slate)}
-.c-note .dot{flex:none;width:30px;height:30px;border-radius:0;background:var(--navy);display:grid;place-items:center}
+.c-note .dot{flex:none;width:30px;height:30px;border-radius:var(--radius);background:var(--navy);display:grid;place-items:center}
 .c-note .dot .ic{color:var(--cyan)}
 .c-note b{color:var(--ink);font-weight:600;display:block;font-size:12.5px}
 .float{animation:float 7s ease-in-out infinite}
@@ -165,11 +162,11 @@ section{position:relative}
 .v-head h2 span{display:block;color:var(--muted)}
 .arrows{display:flex;gap:8px}
 .arrows .ic{width:16px;height:16px}
-.arrows button{width:34px;height:34px;border-radius:0;border:0;background:#E6EBF1;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.arrows button{width:34px;height:34px;border-radius:var(--radius);border:0;background:#E6EBF1;color:var(--navy);cursor:pointer;display:grid;place-items:center;transition:background .2s}
 .arrows button:hover{background:var(--cyan);color:#fff}
 .v-rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
 .v-rail::-webkit-scrollbar{display:none}
-.v-card{position:relative;flex:0 0 auto;width:560px;height:360px;border-radius:0;overflow:hidden;scroll-snap-align:start;color:#fff;transition:width .5s var(--ease)}
+.v-card{position:relative;flex:0 0 auto;width:560px;height:360px;border-radius:var(--radius);overflow:hidden;scroll-snap-align:start;color:#fff;transition:width .5s var(--ease)}
 .v-card.slim{width:150px}
 .v-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .v-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(2,26,44,.85))}
@@ -188,14 +185,14 @@ section{position:relative}
 
 /* ---------- SOLUTIONS ---------- */
 .sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.sol{border-radius:0;overflow:hidden;background:#fff;border:1px solid var(--line);transition:border-color .2s;display:flex;flex-direction:column}
+.sol{border-radius:var(--radius);overflow:hidden;background:#fff;border:1px solid var(--line);transition:border-color .2s;display:flex;flex-direction:column}
 .sol:hover{border-color:var(--cyan)}
 .sol .im{aspect-ratio:3/2;overflow:hidden;background:#333}
 .sol .im img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 .sol:hover .im img{transform:scale(1.04)}
 .sol .tx{padding:18px 20px 20px}
 .sol .tx h3{margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.sol .tx h3 i{width:3px;height:14px;background:var(--grad);border-radius:0}
+.sol .tx h3 i{width:3px;height:14px;background:var(--grad);border-radius:var(--radius)}
 .sol .tx p{font-size:14.5px;color:var(--slate);line-height:1.5}
 
 /* ---------- PARTNERS (dark) ---------- */
@@ -214,7 +211,7 @@ section{position:relative}
 .p-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:230px 0 70px}
 .p-nums .n{font-size:clamp(34px,4vw,48px);font-weight:300;letter-spacing:-.03em;color:#fff}
 .p-nums p{color:#88A3BB;font-size:14px}
-.p-logos{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid rgba(255,255,255,.1);border-left:1px solid rgba(255,255,255,.1)}
+.p-logos{display:grid;border-radius:var(--radius);overflow:hidden;grid-template-columns:repeat(6,1fr);border-top:1px solid rgba(255,255,255,.1);border-left:1px solid rgba(255,255,255,.1)}
 .p-logos div{border-right:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);height:96px;display:grid;place-items:center;padding:20px;transition:background .3s}
 .p-logos div:hover{background:rgba(255,255,255,.04)}
 .p-logos img{max-height:36px;max-width:110px;width:auto;filter:brightness(0) invert(1);opacity:.75}
@@ -230,7 +227,7 @@ section{position:relative}
 
 /* ---------- BEYOND BUSINESS ---------- */
 .bb-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.bb{border-radius:0;padding:40px;position:relative;overflow:hidden}
+.bb{border-radius:var(--radius);padding:40px;position:relative;overflow:hidden}
 .bb.sus{background:linear-gradient(160deg,#F1F8EA,#fff 60%);border:1px solid #DCEBCD}
 .bb.csr{background:linear-gradient(160deg,#E6F7FD,#fff 60%);border:1px solid #B3E7FA}
 .bb .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase}
@@ -238,24 +235,307 @@ section{position:relative}
 .bb h3{font-size:26px;font-weight:500;letter-spacing:-.02em;margin-bottom:14px;line-height:1.2}
 .bb>p{color:var(--slate);font-size:15.5px;margin-bottom:26px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chips span{font-size:13px;padding:6px 12px;border-radius:0;background:#fff;border:1px solid #DCEBCD;color:#3D6B17}
+.chips span{font-size:13px;padding:6px 12px;border-radius:var(--radius);background:#fff;border:1px solid #DCEBCD;color:#3D6B17}
 .focus{display:grid;grid-template-columns:1fr 1fr;gap:22px 26px}
 .focus div{font-size:13.5px;color:var(--slate);line-height:1.5}
 .focus .ic{width:24px;height:24px;color:var(--cyan);margin-bottom:10px;display:block}
 .focus b{display:block;color:var(--ink);font-weight:600;font-size:14.5px;margin-bottom:4px}
 
-/* ---------- NEWS ---------- */
-.news{background:var(--soft)}
-.news-grid{display:grid;grid-template-columns:260px 1fr;gap:48px}
-.news-grid h2{font-size:28px;margin-bottom:10px}
-.n-list{border-top:1px solid var(--line)}
-.n-item{display:grid;grid-template-columns:150px 1fr 150px;gap:28px;padding:22px 0;border-bottom:1px solid var(--line);align-items:center;transition:padding .3s var(--ease)}
-.n-item time{font-size:13px;color:var(--muted);font-family:"Geist Mono",monospace}
-.n-item .cat{font-size:12.5px;color:var(--cyan);font-weight:500;padding-left:12px;border-left:1px solid var(--line);display:block;margin-bottom:6px}
-.n-item h3{font-size:16px;font-weight:500;padding-left:12px;border-left:1px solid transparent}
-.n-item:hover h3{color:var(--cyan)}
-.n-item .th{aspect-ratio:16/10;border-radius:0;overflow:hidden;background:var(--navy)}
-.n-item .th img{width:100%;height:100%;object-fit:cover}
+/* ---------- NEWSROOM CAROUSEL ---------- */
+.newsroom{background:var(--navy);color:#fff;padding:0 0 110px}
+.nr-in{padding-top:8px}
+.nr-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.nr-head .eyebrow{color:var(--cyan)}
+.nr-head h2{color:#fff}
+.nr-ctrl{display:flex;align-items:center;gap:8px}
+.nr-count{font-family:"Geist Mono",monospace;font-size:13px;color:#88A3BB;margin-right:10px;font-variant-numeric:tabular-nums}
+.nr-count b{color:#fff;font-weight:500}
+.nr-btn{width:40px;height:40px;border-radius:var(--radius);display:grid;place-items:center;border:1px solid rgba(255,255,255,.2);background:transparent;color:#fff;cursor:pointer;transition:background .2s,border-color .2s}
+.nr-btn:hover{background:var(--cyan);border-color:var(--cyan)}
+.nr-btn .ic{width:18px;height:18px}
+.nr-all{color:#fff;margin-left:14px}
+.nr-all:hover{color:var(--cyan)}
+/* featured story: image | text panel, so any CMS image (light or dark) stays readable */
+.nr-stage{display:grid;border-radius:var(--radius);overflow:hidden;background:var(--navy-2);touch-action:pan-y}
+.nr-slide{grid-area:1/1;display:grid;grid-template-columns:1.35fr 1fr;opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s}
+.nr-slide.on{opacity:1;visibility:visible}
+.nr-media{position:relative;overflow:hidden;min-height:440px;background:#0B2A44}
+.nr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 7s linear}
+.nr-slide.on .nr-media img{transform:scale(1)}
+.nr-body{display:flex;flex-direction:column;align-items:flex-start;padding:40px 44px}
+.nr-tag{border-radius:var(--radius);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,174,239,.5);padding:5px 10px;margin-bottom:auto}
+.nr-meta{font-family:"Geist Mono",monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:#88A3BB;margin:28px 0 12px}
+.nr-meta span{color:#fff}
+.nr-body h3{font-size:clamp(22px,2.3vw,30px);font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.nr-body p{color:#A9C1D6;font-size:15.5px;line-height:1.6;margin-bottom:24px}
+.nr-read{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:500;color:#fff;border-bottom:1px solid var(--cyan);padding-bottom:2px}
+.nr-read:hover{color:var(--cyan)}
+.nr-read .ic{transition:transform .2s var(--ease)}
+.nr-read:hover .ic{transform:translate(2px,-2px)}
+/* story list; the active item's top line doubles as the autoplay progress bar */
+.nr-thumbs{display:flex;gap:28px;margin-top:32px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.nr-thumbs::-webkit-scrollbar{display:none}
+.nr-th{position:relative;flex:0 0 calc((100% - 56px) / 3);display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;padding:20px 0 0;margin:0;border:0;border-radius:var(--radius);background:none;color:inherit;text-align:left;font:inherit;cursor:pointer;scroll-snap-align:start}
+.nr-th .bar{position:absolute;left:0;right:0;top:0;height:2px;border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.14)}
+.nr-th .bar i{display:block;height:100%;width:0;background:var(--cyan)}
+.nr-th .im{aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius);background:#0B2A44}
+.nr-th img{width:100%;height:100%;object-fit:cover;opacity:.6;transition:opacity .3s}
+.nr-th time{display:block;font-family:"Geist Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#88A3BB;margin-bottom:6px}
+.nr-th h4{font-size:15px;font-weight:500;line-height:1.4;color:#A9C1D6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
+.nr-th:hover h4,.nr-th.on h4{color:#fff}
+.nr-th:hover img,.nr-th.on img{opacity:1}
+.nr-th:focus-visible,.nr-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* ---------- BENTO (ANAND at a glance) — mechanics mirror Stripe's modular-solutions bento ---------- */
+.bento-sec{background:var(--soft);padding:120px 0}
+.bento-head{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;margin-bottom:48px}
+.bento-head .lede{max-width:460px}
+.bento-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.bento-card{--card-ease:cubic-bezier(.165,.84,.44,1);--card-duration:800ms;--card-radius:var(--radius);--grow-x:0px;--grow-y:0px;--shift-x:0px;--shift-y:0px;--mouse-x:0px;--mouse-y:0px;position:relative;display:flex;aspect-ratio:344/504;max-height:576px;width:100%;border:0;background:none;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;contain:layout style;-webkit-appearance:none;appearance:none}
+.bento-card:focus-visible{outline:none}
+.bento-card:focus-visible .bento-entry-wrap{outline:2px solid var(--cyan);outline-offset:3px;border-radius:var(--radius)}
+.bento-card img,.bento-card svg,.bento-card canvas{pointer-events:none}
+.bento-inner{pointer-events:none;position:absolute;inset:0;z-index:2;border-radius:calc(var(--card-radius) - 1px);background:#fff}
+.bento-content{position:absolute;z-index:2;inset:0;border-radius:calc(var(--card-radius) - 1px);overflow:hidden}
+.bento-graphic{position:absolute;inset:0;z-index:1}
+.bento-text{pointer-events:none;position:absolute;top:20px;left:20px;z-index:3;max-width:min(100% - 80px,21ch)}
+.bento-title{font-size:clamp(20px,2.1vw,28px);font-weight:500;letter-spacing:-.02em;line-height:1.15;text-wrap:balance;color:var(--ink)}
+.bento-entry{position:absolute;right:16px;top:16px;width:38px;height:38px;z-index:3;pointer-events:none}
+.bento-entry::before,.bento-entry::after{content:"";position:absolute;inset:0;border-radius:var(--radius)}
+.bento-entry::before{opacity:0;background:var(--cyan)}
+.bento-entry::after{background:#E6F7FD}
+.bento-entry-wrap{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.bento-entry svg{width:14px;height:14px;overflow:visible}
+.bento-entry svg path{fill:var(--cyan)}
+.bento-border{position:absolute;inset:-1px;z-index:1;border-radius:var(--card-radius);background:var(--line);overflow:hidden;pointer-events:none}
+.bento-border-color{position:absolute;top:50%;left:50%;height:80%;aspect-ratio:1;opacity:0;transform:translate(-50%,-50%);display:none}
+.bento-border-grad{position:absolute;inset:0;opacity:.5;background:radial-gradient(circle,var(--cyan),var(--royal) 33%,var(--line) 66%);transform:translate3d(var(--mouse-x),var(--mouse-y),0)}
+.bento-card--lg .bento-border-color{width:130%;height:auto}
+.bento-card--lg .bento-border-grad{inset:15%}
+@media (prefers-reduced-motion:no-preference){
+  .bento-title{transition:transform var(--card-duration) var(--card-ease)}
+  .bento-entry{transition:transform var(--card-duration) var(--card-ease)}
+  .bento-entry::before,.bento-entry::after{transition:opacity .6s cubic-bezier(.16,1,.3,1)}
+  .bento-entry svg path{transition:transform .6s cubic-bezier(.16,1,.3,1),fill .6s cubic-bezier(.16,1,.3,1)}
+  .bento-border-color{transition:opacity .25s linear}
+  .bento-border-grad{transition:transform 1s cubic-bezier(.16,1,.3,1);will-change:transform}
+}
+@media (hover:hover){
+  .bento-card:hover .bento-entry::before{opacity:1}
+  .bento-card:hover .bento-entry::after{opacity:0}
+  .bento-card:hover .bento-entry svg path{fill:#fff}
+  .bento-card:hover .bento-entry svg path:first-child{transform:translate(1px,-1px)}
+  .bento-card:hover .bento-entry svg path:nth-child(2){transform:translate(-1px,1px)}
+}
+@media (min-width:640px){
+  .bento-grid{grid-template-columns:1fr 1fr}
+  .bento-card{max-height:none}
+  .bento-card--lg{grid-column:1/-1;aspect-ratio:816/560}
+}
+@media (min-width:940px){
+  .bento-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bento-card--lg{grid-column:span 2;aspect-ratio:auto}
+  .bento-card--sm{aspect-ratio:400/676}
+  .bento-text{top:28px;left:28px;max-width:min(100% - 110px,21ch)}
+  .bento-border-color{display:block}
+  /* the card is drawn a few px inset; hovering expands it to full size */
+  .bento-inner{inset:calc(-1 * var(--grow-y)) calc(-1 * var(--grow-x));border-radius:0;clip-path:inset(var(--grow-y) var(--grow-x) round calc(var(--card-radius) - 1px))}
+  .bento-border{inset:calc(-1 * var(--grow-y) - 1px) calc(-1 * var(--grow-x) - 1px);clip-path:inset(var(--grow-y) var(--grow-x) round var(--card-radius))}
+}
+@media (min-width:940px) and (prefers-reduced-motion:no-preference){
+  .bento-inner,.bento-border{transition:clip-path var(--card-duration) var(--card-ease)}
+}
+@media (min-width:940px) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .bento-card:hover .bento-border-color{opacity:1}
+  .bento-card:hover .bento-inner{clip-path:inset(0 round calc(var(--card-radius) - 1px))}
+  .bento-card:hover .bento-border{clip-path:inset(0 round var(--card-radius))}
+  .bento-card:hover .bento-title{transform:translate(var(--shift-x),var(--shift-y))}
+  .bento-card:hover .bento-entry{transform:translate(calc(var(--shift-x) * -1),var(--shift-y))}
+  .bento-card:hover .bento-entry svg path:first-child{transform:translate(2px,-2px)}
+  .bento-card:hover .bento-entry svg path:nth-child(2){transform:translate(-2px,2px)}
+}
+
+/* shared mini-UI used inside card graphics */
+.g-ui{position:absolute;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 32px -14px rgba(2,26,44,.22);font-size:12px;color:var(--slate)}
+.g-ui b{color:var(--ink);font-weight:600}
+.g-glow{position:absolute;border-radius:50%;filter:blur(40px);opacity:.55;pointer-events:none}
+.g-fade-b{position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(transparent,#fff);z-index:2}
+
+/* 1 · global footprint */
+.g-global .g-glow.a{width:70%;aspect-ratio:1;left:-22%;bottom:-40%;background:var(--cyan)}
+.g-global .g-glow.b{width:50%;aspect-ratio:1;right:-10%;bottom:-30%;background:var(--royal);opacity:.3}
+.g-globe{position:absolute;right:-2%;bottom:-30%;width:min(72%,540px);aspect-ratio:1}
+.g-globe canvas{width:100%;height:100%;display:block}
+.g-global .g-hq{top:34%;left:28px;padding:12px 14px;display:flex;gap:10px;align-items:center}
+.g-global .g-hq i{width:30px;height:30px;border-radius:var(--radius);background:var(--navy);display:grid;place-items:center;color:var(--cyan)}
+.g-global .g-hq i .ic{width:16px;height:16px}
+.g-global .g-hq span{display:block;line-height:1.35}
+.g-global .g-list{left:28px;bottom:28px;width:min(300px,46%);padding:14px 16px}
+.g-global .g-list .h{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.g-global .g-list div.r{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
+.g-global .g-list div.r span:last-child{color:var(--ink);text-align:right}
+.g-global .g-stat{top:28px;right:76px;padding:10px 14px;text-align:center}
+.g-global .g-stat b{display:block;font-size:22px;font-weight:500;letter-spacing:-.02em}
+
+/* 2 · revenue */
+.g-rev .g-glow.a{width:120%;aspect-ratio:1;left:-40%;bottom:-70%;background:var(--cyan)}
+.g-rev .g-glow.b{width:90%;aspect-ratio:1;right:-45%;bottom:-40%;background:var(--royal);opacity:.35}
+.g-rev .g-top{left:20px;right:20px;top:136px;padding:16px}
+.g-rev .g-top .row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.g-rev .g-top .row i{width:30px;height:30px;border-radius:var(--radius);border:1px solid var(--line);display:grid;place-items:center}
+.g-rev .g-top .row i img{width:18px;height:auto}
+.g-rev .g-top .big{font-size:30px;font-weight:500;letter-spacing:-.03em;color:var(--ink);line-height:1.1}
+.g-rev .g-top .kv{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:8px;margin-top:10px}
+.g-rev .g-chart{left:20px;right:20px;top:calc(136px + 150px);padding:14px 16px}
+.g-rev .g-chart .cap{font-size:11px;color:var(--muted);margin-bottom:10px}
+.g-bar{display:grid;grid-template-columns:62px 1fr 34px;gap:8px;align-items:center;font-size:11.5px;margin:7px 0}
+.g-bar em{font-style:normal;color:var(--ink);text-align:right;font-variant-numeric:tabular-nums}
+.g-bar u{display:block;height:8px;background:#E6F7FD;border-radius:2px;overflow:hidden;text-decoration:none}
+.g-bar u i{display:block;height:100%;width:calc(var(--w) * .82);background:linear-gradient(90deg,var(--cyan),var(--royal));border-radius:2px}
+@media (prefers-reduced-motion:no-preference){.g-bar u i{transition:width .9s var(--card-ease) calc(var(--d) * 60ms)}}
+.bento-card:hover .g-bar u i{width:var(--w)}
+
+/* 3 · companies */
+.g-cos .g-chip{top:136px;left:28px;padding:6px 10px;font-size:12px}
+.g-cos .g-chip b{color:var(--cyan)}
+.g-logos{position:absolute;left:20px;right:20px;top:180px;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:72px;gap:8px}
+.g-logos span{background:#fff;border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center;padding:12px}
+.g-logos img{max-width:100%;max-height:30px;width:auto;filter:grayscale(1);opacity:.6}
+@media (prefers-reduced-motion:no-preference){.g-logos img{transition:filter .5s ease calc(var(--d) * 40ms),opacity .5s ease calc(var(--d) * 40ms)}}
+.bento-card:hover .g-logos img{filter:none;opacity:1}
+
+/* 4 · people & leadership */
+.g-ppl .g-photo{position:absolute;left:0;right:0;bottom:0;height:48%;background:url(assets/news1-scaled-1.jpeg) center 30%/cover}
+.g-ppl .g-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(#fff 0%,rgba(255,255,255,0) 45%)}
+.g-ppl .g-count{left:20px;right:20px;top:136px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.g-ppl .g-count .big{font-size:26px;font-weight:500;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.g-ppl .g-lead{left:20px;right:20px;top:218px;padding:6px 14px;z-index:3}
+.g-ppl .g-lead div{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
+.g-ppl .g-lead div:first-child{border-top:0}
+.g-av{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:600;color:#fff;background:var(--navy)}
+.g-av.c{background:var(--cyan)}.g-av.r{background:var(--royal)}
+.g-avs{display:flex}.g-avs .g-av{border:2px solid #fff;margin-left:-8px}
+.g-lead span{line-height:1.3}.g-lead small{display:block;color:var(--muted);font-size:11px}
+
+/* 5 · the ANAND way */
+.g-way .g-glow.a{width:110%;aspect-ratio:1;right:-50%;top:10%;background:var(--cyan);opacity:.35}
+.g-way .g-vision{left:20px;right:20px;top:136px;padding:18px}
+.g-way .g-vision small{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.g-way .g-vision p{font-size:16px;line-height:1.35;color:var(--ink);letter-spacing:-.01em}
+.g-pills{position:absolute;left:20px;right:20px;top:300px;display:flex;flex-wrap:wrap;gap:8px}
+.g-pills span{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:7px 10px;font-size:12px;color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.g-pills span{transition:transform .7s var(--card-ease) calc(var(--d) * 35ms),border-color .4s}}
+.bento-card:hover .g-pills span{transform:translateY(-4px);border-color:#B3E7FA}
+.g-motto{position:absolute;left:20px;right:20px;bottom:20px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:18px;font-size:15px;line-height:1.35;letter-spacing:-.01em}
+
+/* ---------- BENTO MODAL (mirrors Stripe's hds-dialog) ---------- */
+html.bd-lock{overflow:hidden}
+html.bd-lock body{padding-right:var(--sbw,0px)}
+.bd-overlay{position:fixed;inset:0;z-index:100;display:flex;justify-content:center;align-items:flex-start;overflow:auto;background:rgb(229 237 245/.8);transition-property:opacity}
+.bd-overlay[hidden]{display:none}
+.bd-overlay[data-status=initial]{opacity:0}
+.bd-overlay[data-status=open]{opacity:1;transition-duration:.25s}
+.bd-overlay[data-status=close]{opacity:0;transition-duration:.3s}
+.bd-orbs{position:fixed;inset:0;pointer-events:none;overflow:hidden;animation:bd-fade .8s both}
+@keyframes bd-fade{from{opacity:0}to{opacity:1}}
+.bd-orbs i{position:absolute;bottom:0;border-radius:50%;filter:blur(10px);will-change:transform}
+.bd-orbs i:nth-child(1){left:0;width:70%;aspect-ratio:1238/2077;background:radial-gradient(50% 50% at 50% 50%,var(--cyan) 23.56%,transparent 100%);transform:rotate(25.862deg) translate(31%,75%)}
+.bd-orbs i:nth-child(2){left:0;width:45%;aspect-ratio:926/1068;background:radial-gradient(50% 50% at 50% 50%,var(--cyan) 0,transparent 100%);transform:rotate(25.862deg) translate(44%,71%)}
+.bd-orbs i:nth-child(3){right:0;width:60%;aspect-ratio:1141/971;background:radial-gradient(50% 50% at 50% 50%,var(--royal) 27.4%,transparent 100%);transform:rotate(27.305deg) translate(40%,56%)}
+.bd-orbs i:nth-child(4){right:0;width:45%;aspect-ratio:771/338;background:radial-gradient(50% 50% at 50% 50%,var(--royal) 0,transparent 100%);transform:rotate(36.009deg) translate(39%,34%)}
+.bd-dialog{position:relative;z-index:1;width:min(1180px,calc(100vw - 48px));margin:5vh 0;background:#fff;border-radius:var(--radius);padding:72px 72px 112px;transform-origin:top;transition-property:transform;outline:none}
+.bd-dialog[data-status=initial]{transform:translateY(200px)}
+.bd-dialog[data-status=open]{transform:translateY(0);transition-duration:.8s;transition-timing-function:cubic-bezier(.22,1,.36,1)}
+.bd-dialog[data-status=close]{transform:translateY(100px);transition-duration:.3s}
+.bd-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border:0;border-radius:var(--radius);background:#E6F7FD;color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
+.bd-close:hover{background:var(--cyan);color:#fff}
+.bd-close .ic{width:18px;height:18px}
+.bd-close:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.bd-body{display:flex;flex-direction:column;gap:64px}
+.bd-header{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.bd-intro{grid-column:span 7;display:flex;flex-direction:column;gap:32px}
+.bd-intro h2{font-size:clamp(28px,3vw,40px);letter-spacing:-.025em;line-height:1.12}
+.bd-intro p{color:var(--slate);font-size:18px;line-height:1.55;margin-top:16px}
+.bd-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-outline2{border:1px solid var(--line);color:var(--cyan);background:#fff}
+.btn-outline2:hover{border-color:var(--cyan)}
+.bd-list{grid-column:8/span 5;list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:13px}
+.bd-list li{display:flex;gap:10px;color:var(--slate);font-size:16px;line-height:1.5}
+.bd-list li i{flex:none;width:18px;height:18px;border-radius:50%;background:#E6F7FD;color:var(--cyan);display:grid;place-items:center;margin-top:3px}
+.bd-list li i .ic{width:12px;height:12px;stroke-width:3}
+.bd-graphics{display:grid;grid-template-columns:7fr 5fr;gap:16px}
+.bd-graphics.one{grid-template-columns:1fr}
+.bd-g{position:relative;overflow:hidden;border-radius:var(--radius);background:var(--soft);min-height:0}
+.bd-g.left{aspect-ratio:1}
+.bd-graphics.one .bd-g.left{aspect-ratio:16/8}
+.bd-graphics .rcol{display:grid;gap:16px;grid-auto-rows:1fr}
+.bd-g img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bd-g img.contain{object-fit:contain;padding:8%;mix-blend-mode:multiply}
+.bd-g .cap{position:absolute;left:16px;bottom:14px;z-index:2;background:#fff;border-radius:var(--radius);padding:6px 10px;font-size:12.5px;color:var(--ink);box-shadow:0 8px 20px -10px rgba(2,26,44,.3)}
+.bd-g-dom{position:absolute;inset:0;padding:40px;display:flex;flex-direction:column;justify-content:center}
+.bd-sub{font-size:22px;font-weight:500;letter-spacing:-.02em;margin-bottom:24px}
+.bd-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bd-card .gfx{aspect-ratio:.93;border-radius:var(--radius);background:var(--soft);border:1px solid var(--line);overflow:hidden;position:relative;display:grid;place-items:center;margin-bottom:16px}
+.bd-card .gfx img{max-width:62%;max-height:40%;object-fit:contain;mix-blend-mode:multiply}
+.bd-card .gfx img.cover{position:absolute;inset:0;max-width:none;max-height:none;width:100%;height:100%;object-fit:cover}
+.bd-card p{color:var(--slate);font-size:15px;line-height:1.55;margin-bottom:10px;padding-right:16px}
+.bd-dir{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 24px;border-top:1px solid var(--line)}
+.bd-dir div{padding:14px 0;border-bottom:1px solid var(--line)}
+.bd-dir b{display:block;font-weight:500;color:var(--ink);font-size:15px}
+.bd-dir span{color:var(--muted);font-size:13.5px;line-height:1.45}
+.bd-leaders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bd-leaders div{border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.bd-leaders .g-av{width:52px;height:52px;font-size:16px;margin-bottom:18px}
+.bd-leaders b{display:block;font-weight:500;font-size:18px;color:var(--ink)}
+.bd-leaders small{display:block;color:var(--cyan);font-size:13.5px;margin:2px 0 10px}
+.bd-leaders p{color:var(--slate);font-size:14.5px;line-height:1.55}
+.bd-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 16px}
+.bd-details div i{width:36px;height:36px;border-radius:var(--radius);border:1px solid #B3E7FA;display:grid;place-items:center;color:var(--cyan);margin-bottom:14px}
+.bd-details div i .ic{width:18px;height:18px}
+.bd-details b{display:block;font-weight:500;color:var(--ink);margin-bottom:6px}
+.bd-details p{color:var(--slate);font-size:14.5px;line-height:1.55;padding-right:16px}
+.bd-divider{height:1px;border:0;background:var(--line)}
+.bd-quote{text-align:center;max-width:860px;margin:0 auto}
+.bd-quote .logo{height:22px;width:auto;margin:0 auto 24px}
+.bd-quote q{display:block;font-size:clamp(22px,2.4vw,32px);line-height:1.3;letter-spacing:-.02em;color:#425466;quotes:"\201C" "\201D"}
+.bd-quote .by{margin-top:24px;font-size:16px;color:var(--slate)}
+.bd-quote .by b{color:var(--ink);font-weight:500}
+.bd-footer{display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
+.bd-footer h3{font-size:clamp(22px,2.2vw,30px);font-weight:500;letter-spacing:-.02em}
+.bd-reveal{opacity:0;transform:translate3d(0,30px,0);animation:bd-reveal .75s cubic-bezier(.2,0,0,1) var(--rd,0ms) forwards}
+@keyframes bd-reveal{to{opacity:1;transform:none}}
+.bd-chart{width:100%}
+.bd-chart .g-bar{grid-template-columns:120px 1fr 56px;font-size:14px;margin:10px 0}
+.bd-chart .g-bar u{height:12px}
+.bd-chart .g-bar u i{width:var(--w)}
+.bd-chart .cap{font-size:13px;color:var(--muted);margin-bottom:12px}
+.bd-values{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bd-values span{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-size:15px;color:var(--ink)}
+.bd-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.bd-logos span{background:#fff;border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center;height:78px;padding:14px}
+.bd-logos img{max-width:100%;max-height:32px;width:auto}
+@media (max-width:939px){
+  .bd-dialog{padding:64px 32px 80px}
+  .bd-intro,.bd-list{grid-column:1/-1}
+  .bd-cards,.bd-leaders,.bd-details,.bd-dir{grid-template-columns:1fr 1fr}
+}
+@media (max-width:639px){
+  .bd-overlay{align-items:flex-start}
+  .bd-dialog{width:100%;margin:12vh 0 0;padding:56px 20px 64px;border-bottom-left-radius:0;border-bottom-right-radius:0}
+  .bd-orbs{display:none}
+  .bd-graphics{grid-template-columns:1fr}
+  .bd-cards,.bd-leaders,.bd-details,.bd-dir{grid-template-columns:1fr}
+  .bd-body{gap:48px}
+  .bd-g-dom{padding:22px}
+}
+@media (prefers-reduced-motion:reduce){.bd-reveal{animation:none;opacity:1;transform:none}}
+@media (max-width:639px){
+  .g-global .g-hq{display:none}
+  .g-global .g-stat{top:20px;right:70px}
+  .g-global .g-list{left:20px;right:20px;width:auto;bottom:20px}
+  .g-globe{width:92%;right:-20%;bottom:-38%}
+  .bd-intro h2{padding-right:44px}
+}
 
 /* ---------- CTA ---------- */
 .cta-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:48px;padding:120px 0}
@@ -288,7 +568,11 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   .nav-links,.nav-cta .btn-ghost{display:none}
   .nav-in{justify-content:space-between}
   .menu-btn{display:block}
-  .hero-grid,.about-grid,.p-top,.news-grid,.bb-grid{grid-template-columns:1fr}
+  .hero-grid,.about-grid,.p-top,.bb-grid,.bento-head{grid-template-columns:1fr}
+  .nr-slide{grid-template-columns:1fr}
+  .nr-media{min-height:0;aspect-ratio:16/9}
+  .nr-body{padding:28px 28px 32px}
+  .nr-th{flex-basis:calc((100% - 28px) / 2)}
   .stage{height:480px;max-width:600px}
   .facts{grid-template-columns:repeat(3,1fr);row-gap:40px}
   .sol-grid{grid-template-columns:1fr 1fr}
@@ -310,8 +594,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   .c-side{display:none}
   .c-stats{width:220px;bottom:0}
   .c-note{display:none}
-  .stripes{height:300px}
-  .hero-bottom{padding:150px 0 48px}
+  .stripes{height:900px}
+  .hero{padding-bottom:40px}
   .sec{padding:84px 0}
   .facts{grid-template-columns:1fr 1fr}
   .sol-grid{grid-template-columns:1fr}
@@ -325,8 +609,14 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   .p-list ul{columns:1}
   .bb{padding:28px 22px}
   .focus{grid-template-columns:1fr}
-  .n-item{grid-template-columns:1fr 96px;gap:14px}
-  .n-item time{grid-column:1/-1}
+  .newsroom{padding-bottom:80px}
+  .bento-sec{padding:84px 0}
+  .nr-count,.nr-all{display:none}
+  .nr-body{padding:22px 20px 26px}
+  .nr-meta{margin-top:20px}
+  .nr-body p{font-size:15px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .nr-thumbs{gap:18px}
+  .nr-th{flex-basis:82%;grid-template-columns:96px 1fr;gap:12px}
   .cta-grid{grid-template-columns:1fr;padding:84px 0}
   .f-grid{grid-template-columns:1fr 1fr}
   .dark{padding:170px 0 100px}
@@ -436,13 +726,323 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
     </div>
   </div>
 
-  <div class="hero-bottom">
-    <div class="wrap row">
-      <p><b>What began in 1961 has grown into a global mobility group.</b> ANAND works with 11 joint-venture partners and holds 4 technical collaborations with global technology leaders.</p>
-      <a href="#about" class="btn btn-light">About ANAND <i data-lucide="arrow-right" class="ic"></i></a>
+</section>
+
+<!-- NEWSROOM CAROUSEL (content rendered from the CMS feed below) -->
+<section class="newsroom" id="news" aria-roledescription="carousel" aria-label="Latest announcements and news">
+  <div class="wrap nr-in">
+    <div class="nr-head">
+      <div>
+        <div class="eyebrow">Newsroom</div>
+        <h2>Latest at ANAND</h2>
+      </div>
+      <div class="nr-ctrl">
+        <span class="nr-count" id="nrCount" aria-hidden="true"></span>
+        <button class="nr-btn" id="nrPrev" aria-label="Previous story"><i data-lucide="chevron-left" class="ic"></i></button>
+        <button class="nr-btn" id="nrNext" aria-label="Next story"><i data-lucide="chevron-right" class="ic"></i></button>
+        <a href="#" class="link nr-all">All news<i data-lucide="chevron-right" class="ic"></i></a>
+      </div>
+    </div>
+    <div class="nr-stage" id="nrStage"></div>
+    <div class="nr-thumbs" id="nrThumbs" role="tablist" aria-label="Choose a story"></div>
+  </div>
+</section>
+
+<!--
+  CMS feed. On the live site this array comes from the CMS
+  (e.g. WordPress REST: /wp-json/wp/v2/posts?categories=news&_embed).
+  Fields: category, date (ISO), title, excerpt, image, source, url.
+-->
+<script type="application/json" id="cms-news">
+[
+  {
+    "category": "Joint Venture",
+    "date": "2026-08-27",
+    "title": "Gabriel India joins hands with South Korea's HL Klemove: what's inside the joint venture",
+    "excerpt": "A closer look at the new joint venture between Gabriel India and HL Klemove, and what it means for autonomous driving technology in India.",
+    "image": "assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg",
+    "imageAlt": "Gabriel and HL Klemove logos",
+    "source": "Livemint",
+    "url": "https://www.livemint.com/auto-news/autonomous-driving-technology-gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-venture-11787828253279.html"
+  },
+  {
+    "category": "Acquisition",
+    "date": "2026-08-26",
+    "title": "Gabriel India to acquire nearly 30% stake in South Korean firm's subsidiary for USD 98.44 mn",
+    "excerpt": "The ANAND Group company is set to take a stake of close to 30% in the subsidiary of a South Korean technology firm, in a deal worth USD 98.44 million.",
+    "image": "assets/Gabriel-India-to-acquire-nearly-30-pc-stake.jpg",
+    "imageAlt": "Gabriel India manufacturing facility",
+    "source": "PTI",
+    "url": "https://www.ptinews.com/detail/business/Gabriel-India-to-acquire-nearly-30-pc-stake-in-South-Korean-firm-s-subsidiary-for-USD-98-44-mn/4007262"
+  },
+  {
+    "category": "Autonomous Driving",
+    "date": "2026-08-26",
+    "title": "Gabriel India and South Korea's HL Klemove form a joint venture for autonomous driving",
+    "excerpt": "The two companies come together in a joint venture focused on bringing autonomous driving technology to Indian roads.",
+    "image": "assets/Gabriel-India-South-Koreas-HL-Klemove.jpg",
+    "imageAlt": "Driver with a navigation screen in a modern car",
+    "source": "The Economic Times",
+    "url": "https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms"
+  },
+  {
+    "category": "Leadership",
+    "date": "2026-07-22",
+    "title": "Gabriel India appoints Mahendra K. Goyal as new CEO and MD",
+    "excerpt": "Mahendra K. Goyal takes charge as Chief Executive Officer and Managing Director of Gabriel India.",
+    "image": "assets/news1-scaled-1.jpeg",
+    "imageAlt": "Speaker at an ANAND event",
+    "source": "ET Auto",
+    "url": "https://auto.economictimes.indiatimes.com/news/auto-components/gabriel-india-appoints-mahendra-k-goyal-as-new-ceo-and-md/132551265"
+  },
+  {
+    "category": "Investment",
+    "date": "2026-07-22",
+    "title": "Gabriel India unveils ₹316.6 crore 'Project Jupiter' for HL Mando and HL Klemove stakes",
+    "excerpt": "Named 'Project Jupiter', the ₹316.6 crore plan covers stakes in Korean-linked HL Mando and HL Klemove businesses.",
+    "image": "assets/news3.jpg",
+    "imageAlt": "HL Mando and HL Klemove office building",
+    "source": "BusinessLine",
+    "url": "https://www.thehindubusinessline.com/companies/gabriel-india-unveils-3166-crore-project-jupiter-for-korean-linked-hl-mando-klemove-stakes/article71251030.ece"
+  },
+  {
+    "category": "Acquisition",
+    "date": "2026-07-21",
+    "title": "Gabriel to buy 30% stake in HL Klemove India for Rs 94.8 crore",
+    "excerpt": "Gabriel India will buy a 30% stake in HL Klemove India for Rs 94.8 crore.",
+    "image": "assets/news2-scaled-1.jpeg",
+    "imageAlt": "Gabriel India campus",
+    "source": "Autocar Professional",
+    "url": "https://www.autocarpro.in/news/gabriel-to-buy-30-percent-stake-in-hl-klemove-india-for-rs-948-crore-133697"
+  },
+  {
+    "category": "Manufacturing",
+    "date": "2026-07-16",
+    "title": "Gabriel India to invest Rs 180 crore in new capacity and automation in FY27",
+    "excerpt": "Gabriel India will invest Rs 180 crore in FY27 to add manufacturing capacity and expand automation.",
+    "image": "assets/cnc-closeup.jpg",
+    "imageAlt": "CNC machine cutting metal",
+    "source": "Autocar Professional",
+    "url": "https://www.autocarpro.in/news/gabriel-india-to-invest-rs-180-crore-in-new-capacity-automation-in-fy27-133632"
+  }
+]
+</script>
+
+<!-- ANAND AT A GLANCE (bento). Card graphics are placeholders: swap each [data-slot] for the final 3D component. -->
+<section class="bento-sec" id="glance">
+  <div class="wrap">
+    <div class="bento-head">
+      <div class="rv">
+        <div class="eyebrow">ANAND at a glance</div>
+        <h2>A global mobility group, built on six decades of partnership</h2>
+      </div>
+      <p class="lede rv">Seventeen automotive companies, 22,000+ people and world-class partners, working together to engineer the future of mobility.</p>
+    </div>
+
+    <div class="bento-grid">
+      <button class="bento-card bento-card--lg" data-bento="global" data-grow="4" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="bt-global">
+        <span class="bento-entry" aria-hidden="true"><span class="bento-entry-wrap"><svg viewBox="0 0 14 14"><path d="M8 1h5v5h-1.6V3.7L8.9 6.2 7.8 5.1l2.5-2.5H8z"/><path d="M6 13H1V8h1.6v2.3l2.5-2.5 1.1 1.1-2.5 2.5H6z"/></svg></span></span>
+        <span class="bento-text"><h3 class="bento-title" id="bt-global">A global footprint, rooted in India</h3></span>
+        <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
+        <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-global">
+          <i class="g-glow a"></i><i class="g-glow b"></i>
+          <span class="g-globe" data-slot="globe"><canvas></canvas></span>
+          <span class="g-ui g-hq"><i><i data-lucide="map-pin" class="ic"></i></i><span><b>Corporate HQ</b><br>New Delhi, India</span></span>
+          <span class="g-ui g-stat"><b>87</b>locations</span>
+          <span class="g-ui g-list">
+            <span class="h">Partners around the world</span>
+            <div class="r"><span>USA</span><span>Dana · Joyson</span></div>
+            <div class="r"><span>France</span><span>Forvia · Valeo</span></div>
+            <div class="r"><span>Germany</span><span>Henkel · MAHLE</span></div>
+            <div class="r"><span>South Korea</span><span>HL Mando · HL Klemove</span></div>
+            <div class="r"><span>Japan</span><span>KYB · Yamaha</span></div>
+          </span>
+        </span></span></span>
+      </button>
+
+      <button class="bento-card bento-card--sm" data-bento="revenue" data-grow="6" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="bt-revenue">
+        <span class="bento-entry" aria-hidden="true"><span class="bento-entry-wrap"><svg viewBox="0 0 14 14"><path d="M8 1h5v5h-1.6V3.7L8.9 6.2 7.8 5.1l2.5-2.5H8z"/><path d="M6 13H1V8h1.6v2.3l2.5-2.5 1.1 1.1-2.5 2.5H6z"/></svg></span></span>
+        <span class="bento-text"><h3 class="bento-title" id="bt-revenue">US$2.2B+ in group revenue</h3></span>
+        <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
+        <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-rev" data-slot="revenue">
+          <i class="g-glow a"></i><i class="g-glow b"></i>
+          <span class="g-ui g-top">
+            <span class="row"><i><i data-lucide="trending-up" class="ic" style="width:16px;height:16px;color:var(--cyan)"></i></i><span><b>ANAND Group</b><br>Annual revenue</span></span>
+            <span class="big">US$2.2B+</span>
+            <span class="kv"><span>Return on sales target</span><b>8%</b></span>
+          </span>
+          <span class="g-ui g-chart">
+            <span class="cap" style="display:block">JV partners' global revenue, US$ Bn (CY 2024)</span>
+            <span class="g-bar" style="--w:100%;--d:0"><span>Forvia</span><u><i></i></u><em>29.5</em></span>
+            <span class="g-bar" style="--w:80.7%;--d:1"><span>Valeo</span><u><i></i></u><em>23.8</em></span>
+            <span class="g-bar" style="--w:79%;--d:2"><span>Henkel</span><u><i></i></u><em>23.3</em></span>
+            <span class="g-bar" style="--w:47.1%;--d:3"><span>MAHLE</span><u><i></i></u><em>13.9</em></span>
+            <span class="g-bar" style="--w:34.9%;--d:4"><span>Dana</span><u><i></i></u><em>10.3</em></span>
+            <span class="g-bar" style="--w:21.7%;--d:5"><span>HL Mando</span><u><i></i></u><em>6.4</em></span>
+          </span>
+        </span></span></span>
+      </button>
+
+      <button class="bento-card bento-card--sm" data-bento="companies" data-grow="6" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="bt-companies">
+        <span class="bento-entry" aria-hidden="true"><span class="bento-entry-wrap"><svg viewBox="0 0 14 14"><path d="M8 1h5v5h-1.6V3.7L8.9 6.2 7.8 5.1l2.5-2.5H8z"/><path d="M6 13H1V8h1.6v2.3l2.5-2.5 1.1 1.1-2.5 2.5H6z"/></svg></span></span>
+        <span class="bento-text"><h3 class="bento-title" id="bt-companies">17 companies, one unified group</h3></span>
+        <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
+        <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-cos" data-slot="companies">
+          <span class="g-ui g-chip"><b>17</b> automotive companies</span>
+          <span class="g-logos">
+            <span style="--d:0"><img src="assets/Gabriel.png" alt=""></span>
+            <span style="--d:1"><img src="assets/DANA.png" alt=""></span>
+            <span style="--d:2"><img src="assets/Forvia.png" alt=""></span>
+            <span style="--d:3"><img src="assets/mahle.png" alt=""></span>
+            <span style="--d:4"><img src="assets/Henkel.png" alt=""></span>
+            <span style="--d:5"><img src="assets/valeo.png" alt=""></span>
+            <span style="--d:6"><img src="assets/Joyson.png" alt=""></span>
+            <span style="--d:7"><img src="assets/HL_mando.png" alt=""></span>
+            <span style="--d:8"><img src="assets/HL-Klemove.png" alt=""></span>
+            <span style="--d:9"><img src="assets/SK_enmove.png" alt=""></span>
+            <span style="--d:10"><img src="assets/Jinhap.png" alt=""></span>
+            <span style="--d:11"><img src="assets/APAG.png" alt=""></span>
+            <span style="--d:12"><img src="assets/CY_Myutec.png" alt=""></span>
+            <span style="--d:13"><img src="assets/ANEVOLVE.png" alt=""></span>
+            <span style="--d:14"><img src="assets/iPower.png" alt=""></span>
+          </span>
+          <i class="g-fade-b"></i>
+        </span></span></span>
+      </button>
+
+      <button class="bento-card bento-card--sm" data-bento="people" data-grow="6" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="bt-people">
+        <span class="bento-entry" aria-hidden="true"><span class="bento-entry-wrap"><svg viewBox="0 0 14 14"><path d="M8 1h5v5h-1.6V3.7L8.9 6.2 7.8 5.1l2.5-2.5H8z"/><path d="M6 13H1V8h1.6v2.3l2.5-2.5 1.1 1.1-2.5 2.5H6z"/></svg></span></span>
+        <span class="bento-text"><h3 class="bento-title" id="bt-people">22,000+ people, led with purpose</h3></span>
+        <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
+        <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-ppl" data-slot="people">
+          <i class="g-photo"></i>
+          <span class="g-ui g-count"><span><span class="big" style="display:block">22,000+</span>people across ANAND</span><span class="g-avs"><i class="g-av">DA</i><i class="g-av c">AS</i><i class="g-av r">MG</i></span></span>
+          <span class="g-ui g-lead">
+            <div><i class="g-av">DA</i><span><b>Deep C. Anand</b><small>Founder</small></span></div>
+            <div><i class="g-av c">AS</i><span><b>Anjali Singh</b><small>Chairperson, Supervisory Board</small></span></div>
+            <div><i class="g-av r">MG</i><span><b>Mahendra K. Goyal</b><small>CEO &amp; MD, Gabriel India</small></span></div>
+          </span>
+        </span></span></span>
+      </button>
+
+      <button class="bento-card bento-card--sm" data-bento="way" data-grow="6" aria-haspopup="dialog" aria-expanded="false" aria-labelledby="bt-way">
+        <span class="bento-entry" aria-hidden="true"><span class="bento-entry-wrap"><svg viewBox="0 0 14 14"><path d="M8 1h5v5h-1.6V3.7L8.9 6.2 7.8 5.1l2.5-2.5H8z"/><path d="M6 13H1V8h1.6v2.3l2.5-2.5 1.1 1.1-2.5 2.5H6z"/></svg></span></span>
+        <span class="bento-text"><h3 class="bento-title" id="bt-way">Creating value, the ANAND Way</h3></span>
+        <span class="bento-border"><span class="bento-border-color"><span class="bento-border-grad"></span></span></span>
+        <span class="bento-inner"><span class="bento-content"><span class="bento-graphic g-way" data-slot="way">
+          <i class="g-glow a"></i>
+          <span class="g-ui g-vision"><small>Our vision</small><p>To create value sustainably through pursuit of excellence and good governance.</p></span>
+          <span class="g-pills">
+            <span style="--d:0">First choice of customers</span><span style="--d:1">Strategic partnership</span><span style="--d:2">Good governance</span><span style="--d:3">Grow people</span><span style="--d:4">Dare to innovate</span><span style="--d:5">Technology leadership</span><span style="--d:6">Entrepreneurial spirit</span><span style="--d:7">Performance &amp; growth</span>
+          </span>
+          <span class="g-motto">“Power of People, Power of Partnership”</span>
+        </span></span></span>
+      </button>
     </div>
   </div>
 </section>
+
+<!-- Bento modal shell (content rendered from the feed below) -->
+<div class="bd-overlay" id="bdOverlay" hidden>
+  <div class="bd-orbs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="bd-dialog" id="bdDialog" role="dialog" aria-modal="true" aria-labelledby="bdTitle" tabindex="-1">
+    <button class="bd-close" id="bdClose" aria-label="Close"><i data-lucide="x" class="ic"></i></button>
+    <div class="bd-body" id="bdBody"></div>
+  </div>
+</div>
+
+<!-- Bento modal content. CMS-ready: one entry per card. -->
+<script type="application/json" id="cms-bento">
+{
+  "global": {
+    "title": "A global mobility group, rooted in India",
+    "body": "What began in 1961 has evolved into a global mobility solutions group, bringing together world-class technologies and deep manufacturing expertise to serve leading automotive manufacturers across the world.",
+    "ctas": [{"label": "Explore our partners", "href": "#partners", "primary": true}, {"label": "Partner with us", "href": "#contact"}],
+    "list": ["87 locations across the ANAND Group", "Joint ventures with partners from the USA, France, Germany, South Korea and Switzerland", "Technical collaborations with partners in the Netherlands, Spain and Japan", "Trusted by OEMs including Toyota, Honda, BMW, Maruti Suzuki and Tata Motors"],
+    "graphics": {"left": {"src": "assets/global.png", "contain": true, "caption": "ANAND's global partner network"}, "right": [{"src": "assets/global-partners.jpeg", "caption": "Our global partners"}, {"src": "assets/ANAND-banner-scaled-1.jpeg", "caption": "ANAND at Tech Shows 2026"}]},
+    "extra": {"type": "cards", "title": "More to discover", "items": [
+      {"img": "assets/Forvia.png", "text": "Eleven global joint-venture partners and four technical collaborations bring advanced engineering to India and the world.", "link": "Our partners", "href": "#partners"},
+      {"img": "assets/Toyota.png", "text": "ANAND supplies leading OEMs across passenger cars, two-wheelers and commercial vehicles.", "link": "Our customers", "href": "#"},
+      {"img": "assets/global.png", "text": "Corporate headquarters in New Delhi, with offices and clusters in Mumbai, Pune and Chennai.", "link": "ANAND locations", "href": "#contact"}
+    ]},
+    "quote": {"text": "Power of People, Power of Partnership", "name": "ANAND Group", "role": "Our guiding philosophy"},
+    "footer": {"title": "Build the future of mobility with ANAND", "ctas": [{"label": "Partner with us", "href": "#contact", "primary": true}, {"label": "Contact us", "href": "mailto:contact@anandgroupindia.com"}]}
+  },
+  "revenue": {
+    "title": "US$2.2B+ in group revenue, built through partnership",
+    "body": "ANAND grows by partnering with global technology leaders. Its joint ventures bring the engineering of some of the world's largest automotive suppliers to Indian manufacturing.",
+    "ctas": [{"label": "Explore our companies", "href": "#glance", "primary": true}, {"label": "Latest news", "href": "#news"}],
+    "list": ["US$2.2B+ group revenue", "Aim to be among the top 3 players in each segment", "Target 8% return on sales", "Aim to spend 2% of sales on R&D"],
+    "graphics": {"left": {"type": "chart", "caption": "JV partners' global revenue"}, "right": [{"src": "assets/cnc-closeup.jpg", "caption": "Investing in capacity and automation"}, {"src": "assets/news2-scaled-1.jpeg", "caption": "Gabriel India"}]},
+    "extra": {"type": "cards", "title": "Recent milestones", "items": [
+      {"img": "assets/cnc-closeup.jpg", "cover": true, "text": "Gabriel India to invest Rs 180 crore in new capacity and automation in FY27.", "link": "Read on Autocar Professional", "href": "https://www.autocarpro.in/news/gabriel-india-to-invest-rs-180-crore-in-new-capacity-automation-in-fy27-133632"},
+      {"img": "assets/news3.jpg", "cover": true, "text": "Gabriel India unveils a ₹316.6 crore 'Project Jupiter' for HL Mando and HL Klemove stakes.", "link": "Read on BusinessLine", "href": "https://www.thehindubusinessline.com/companies/gabriel-india-unveils-3166-crore-project-jupiter-for-korean-linked-hl-mando-klemove-stakes/article71251030.ece"},
+      {"img": "assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg", "cover": true, "text": "Gabriel India and HL Klemove form a joint venture for autonomous driving.", "link": "Read on The Economic Times", "href": "https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms"}
+    ]},
+    "quote": {"text": "To create value sustainably through pursuit of excellence and good governance.", "name": "The ANAND Way", "role": "Our vision"},
+    "footer": {"title": "Grow with ANAND", "ctas": [{"label": "Partner with us", "href": "#contact", "primary": true}, {"label": "Contact us", "href": "mailto:contact@anandgroupindia.com"}]}
+  },
+  "companies": {
+    "title": "17 automotive companies, one unified group",
+    "body": "Almost all ANAND companies are successful partnership firms with a leading global automotive player. The core values of transparency, good governance and mutual trust have formed the foundation of these partnerships.",
+    "ctas": [{"label": "Explore products & solutions", "href": "#solutions", "primary": true}, {"label": "Partner with us", "href": "#contact"}],
+    "list": ["Partnerships with global leaders such as MAHLE, Valeo, Dana, Henkel and HL Mando", "Six decades of integrating partners' technical expertise with local resources", "Products across chassis, powertrain, safety, thermal and e-mobility", "Driven by the ANAND value of forging lasting associations"],
+    "graphics": {"left": {"type": "logos", "caption": "Our automotive companies"}, "right": [{"src": "assets/chasis-control.png", "caption": "Chassis: Gabriel India"}, {"src": "assets/safety.png", "caption": "Safety: Joyson ANAND Abhishek"}]},
+    "extra": {"type": "directory", "title": "All 17 companies", "items": [
+      ["ANAND CY Myutec Automotive", "High-precision synchronizer rings"],
+      ["Anevolve Mando eMobility", "Motors and controllers"],
+      ["APAG CoSyst", "Interior and exterior lighting; motor control units"],
+      ["CY Myutec ANAND", "High-precision synchronizer rings"],
+      ["Dana Anand India", "Axles, drive shafts and drivetrain components"],
+      ["Faurecia Clean Mobility", "Exhaust mufflers, catalytic converters and reinforcements"],
+      ["Gabriel India", "Shock absorbers, struts, front forks and gas springs"],
+      ["Henkel ANAND India", "Sealants, adhesives, coatings and NVH products"],
+      ["HL Klemove", "Autonomous driving and ADAS technology"],
+      ["HL Mando Anand India", "Hydraulic brakes, electric power steering and struts"],
+      ["ANAND I-Power", "Piston rings and cast iron covers"],
+      ["Jinhap Gabriel Auto India", "Bearing cap, head cover and transmission bolts"],
+      ["MAHLE ANAND Filter Systems", "Air intake, air cleaner, fuel and oil filter modules"],
+      ["MAHLE ANAND Thermal Systems", "Air conditioning, engine cooling and EGR coolers"],
+      ["Joyson ANAND Abhishek Safety Systems", "Seat belts, airbags and steering wheels"],
+      ["SK Enmove Gabriel India", "Engine oils, e-fluids, lubricants and greases"],
+      ["Valeo Friction Materials India", "Non-asbestos, lead-free clutch facings"]
+    ]},
+    "quote": {"text": "Power of People, Power of Partnership", "name": "ANAND Group", "role": "Our guiding philosophy"},
+    "footer": {"title": "Find the right ANAND company for you", "ctas": [{"label": "Explore our companies", "href": "#", "primary": true}, {"label": "Contact us", "href": "mailto:contact@anandgroupindia.com"}]}
+  },
+  "people": {
+    "title": "22,000+ people, guided by the ANAND Way",
+    "body": "ANAND lives by the belief that business is 90% people. Founded by Deep C. Anand in 1961, the Group is governed today through the ANAND Supervisory Board.",
+    "ctas": [{"label": "Explore careers", "href": "#careers", "primary": true}, {"label": "Culture at ANAND", "href": "#"}],
+    "list": ["Attract and retain talent", "Empower people and encourage accountability", "Develop people for the skills and experience they need", "Shop-floor excellence and people development programmes"],
+    "graphics": {"left": {"src": "assets/news1-scaled-1.jpeg", "caption": "Powered by people"}, "right": [{"src": "assets/ANAND-banner-scaled-1.jpeg", "caption": "ANAND teams at Tech Shows 2026"}, {"src": "assets/news2-scaled-1.jpeg", "caption": "Gabriel India campus"}]},
+    "extra": {"type": "leaders", "title": "Leadership", "items": [
+      {"initials": "DA", "tone": "", "name": "Deep C. Anand", "role": "Founder", "text": "Established Gabriel India, ANAND's first business venture, in 1961 at the age of 27."},
+      {"initials": "AS", "tone": "c", "name": "Anjali Singh", "role": "Chairperson, ANAND Supervisory Board", "text": "Succeeded her father as Chairperson of the Supervisory Board in February 2011."},
+      {"initials": "MG", "tone": "r", "name": "Mahendra K. Goyal", "role": "CEO & MD, Gabriel India", "text": "Appointed Chief Executive Officer and Managing Director of Gabriel India in July 2026."}
+    ]},
+    "quote": {"text": "Business is 90% people.", "name": "The ANAND Way", "role": "Beliefs and business philosophy"},
+    "footer": {"title": "Grow your career at ANAND", "ctas": [{"label": "Explore careers", "href": "#careers", "primary": true}, {"label": "Join us", "href": "#"}]}
+  },
+  "way": {
+    "title": "Creating value sustainably, the ANAND Way",
+    "body": "Our vision is to create value sustainably through pursuit of excellence and good governance. These values and philosophy govern every decision, and our engagement with society at large.",
+    "ctas": [{"label": "Read the ANAND Way", "href": "#", "primary": true}, {"label": "Corporate governance", "href": "#"}],
+    "list": ["Be the first choice of the customers", "Build and sustain strategic partnerships", "Aspire and dare to be innovative", "Attain leadership in technology"],
+    "graphics": {"left": {"type": "values", "caption": "Our values"}, "right": []},
+    "extra": {"type": "details", "title": "Beliefs and business philosophy", "items": [
+      {"icon": "trending-up", "title": "Growth", "text": "Be among the top 3 players in each segment, grow faster than the market and target 8% return on sales."},
+      {"icon": "cog", "title": "Manufacturing and technology", "text": "Operational excellence through lean production, with an aim to spend 2% of sales on R&D."},
+      {"icon": "handshake", "title": "Partnerships", "text": "Build and sustain strategic partnerships and exchange best-in-class practices between partners."},
+      {"icon": "badge-check", "title": "Quality", "text": "Foster a culture of quality and deploy world-class quality standards, tools and systems."},
+      {"icon": "heart-handshake", "title": "Customers", "text": "Become the preferred supplier of our customers and nurture strong, enduring relationships."},
+      {"icon": "landmark", "title": "Citizenship and governance", "text": "Be always ethical, enhance transparency and strengthen CSR through the SNS Foundation."}
+    ]},
+    "quote": {"text": "Power of People, Power of Partnership", "name": "ANAND Group", "role": "Our guiding philosophy"},
+    "footer": {"title": "Discover what drives ANAND", "ctas": [{"label": "Read the ANAND Way", "href": "#", "primary": true}, {"label": "Contact us", "href": "mailto:contact@anandgroupindia.com"}]}
+  }
+}
+</script>
 
 <!-- OEM LOGOS -->
 <section class="logos">
@@ -630,38 +1230,6 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
   </div>
 </section>
 
-<!-- NEWS -->
-<section class="sec news" id="news">
-  <div class="wrap news-grid">
-    <div class="rv">
-      <h2>Latest at ANAND</h2>
-      <a href="#" class="link">All news<i data-lucide="chevron-right" class="ic"></i></a>
-    </div>
-    <div class="n-list">
-      <a class="n-item rv" href="https://www.livemint.com/auto-news/autonomous-driving-technology-gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-venture-11787828253279.html" target="_blank" rel="noopener">
-        <time>27 Aug 2026</time>
-        <div><span class="cat">Partnerships</span><h3>Gabriel India joins hands with South Korea's HL Klemove: what's inside the joint venture</h3></div>
-        <div class="th"><img src="assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg" alt="" loading="lazy"></div>
-      </a>
-      <a class="n-item rv" href="https://www.ptinews.com/detail/business/Gabriel-India-to-acquire-nearly-30-pc-stake-in-South-Korean-firm-s-subsidiary-for-USD-98-44-mn/4007262" target="_blank" rel="noopener">
-        <time>26 Aug 2026</time>
-        <div><span class="cat">Corporate</span><h3>Gabriel India to acquire nearly 30% stake in South Korean firm's subsidiary for USD 98.44 mn</h3></div>
-        <div class="th"><img src="assets/news3.jpg" alt="" loading="lazy"></div>
-      </a>
-      <a class="n-item rv" href="https://auto.economictimes.indiatimes.com/news/auto-components/gabriel-india-appoints-mahendra-k-goyal-as-new-ceo-and-md/132551265" target="_blank" rel="noopener">
-        <time>22 Jul 2026</time>
-        <div><span class="cat">Leadership</span><h3>Gabriel India appoints Mahendra K. Goyal as new CEO and MD</h3></div>
-        <div class="th"><img src="assets/news1-scaled-1.jpeg" alt="" loading="lazy"></div>
-      </a>
-      <a class="n-item rv" href="https://www.autocarpro.in/news/gabriel-india-to-invest-rs-180-crore-in-new-capacity-automation-in-fy27-133632" target="_blank" rel="noopener">
-        <time>16 Jul 2026</time>
-        <div><span class="cat">Manufacturing</span><h3>Gabriel India to invest Rs 180 crore in new capacity and automation in FY27</h3></div>
-        <div class="th"><img src="assets/cnc-closeup.jpg" alt="" loading="lazy"></div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- CTA -->
 <section id="contact">
   <div class="wrap cta-grid">
@@ -709,8 +1277,269 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:14px}
 <script src="https://cdn.jsdelivr.net/npm/lucide@1.48.0/dist/umd/lucide.min.js"></script>
 <script>
 (() => {
-  lucide.createIcons();
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // newsroom carousel, rendered from the CMS feed
+  (() => {
+    const root = document.getElementById('news');
+    const stage = document.getElementById('nrStage');
+    const thumbs = document.getElementById('nrThumbs');
+    const count = document.getElementById('nrCount');
+    let items = [];
+    try { items = JSON.parse(document.getElementById('cms-news').textContent); } catch (e) {}
+    if (!items.length) { root.hidden = true; return; }
+
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const fmtDate = d => new Date(d + 'T00:00:00').toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}).toUpperCase();
+    const pad = n => String(n).padStart(2, '0');
+
+    stage.innerHTML = items.map((n, i) => `
+      <article class="nr-slide" role="group" aria-roledescription="slide" aria-label="${i + 1} of ${items.length}">
+        <div class="nr-media"><img src="${esc(n.image)}" alt="${esc(n.imageAlt || '')}" ${i ? 'loading="lazy"' : ''}></div>
+        <div class="nr-body">
+          <span class="nr-tag">${esc(n.category)}</span>
+          <div class="nr-meta"><time datetime="${esc(n.date)}">${fmtDate(n.date)}</time> · <span>${esc(n.source)}</span></div>
+          <h3>${esc(n.title)}</h3>
+          <p>${esc(n.excerpt)}</p>
+          <a class="nr-read" href="${esc(n.url)}" target="_blank" rel="noopener">Read on ${esc(n.source)} <i data-lucide="arrow-up-right" class="ic"></i></a>
+        </div>
+      </article>`).join('');
+
+    thumbs.innerHTML = items.map((n, i) => `
+      <button class="nr-th" role="tab" aria-selected="false" aria-label="${esc(n.title)}">
+        <span class="bar"><i></i></span>
+        <span class="im"><img src="${esc(n.image)}" alt="" loading="lazy"></span>
+        <span><time datetime="${esc(n.date)}">${fmtDate(n.date)}</time><h4>${esc(n.title)}</h4></span>
+      </button>`).join('');
+
+    const slides = [...stage.querySelectorAll('.nr-slide')];
+    const tabs = [...thumbs.children];
+    const bars = tabs.map(t => t.querySelector('.bar i'));
+    const DURATION = 7000;
+    let cur = 0, elapsed = 0, last = 0, paused = false, inView = false;
+
+    const go = i => {
+      cur = (i + items.length) % items.length;
+      slides.forEach((s, j) => s.classList.toggle('on', j === cur));
+      tabs.forEach((t, j) => { t.classList.toggle('on', j === cur); t.setAttribute('aria-selected', j === cur); });
+      count.innerHTML = `<b>${pad(cur + 1)}</b> / ${pad(items.length)}`;
+      const t = tabs[cur];
+      thumbs.scrollTo({left: t.offsetLeft - thumbs.offsetLeft, behavior: reduce ? 'auto' : 'smooth'});
+      elapsed = 0; bars.forEach(b => b.style.width = '0');
+      if (reduce) bars[cur].style.width = '100%';
+    };
+    go(0);
+
+    document.getElementById('nrPrev').onclick = () => go(cur - 1);
+    document.getElementById('nrNext').onclick = () => go(cur + 1);
+    tabs.forEach((t, i) => t.addEventListener('click', () => go(i)));
+    root.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') go(cur - 1);
+      if (e.key === 'ArrowRight') go(cur + 1);
+    });
+
+    // swipe on touch devices
+    let x0 = null;
+    stage.addEventListener('pointerdown', e => { x0 = e.clientX; });
+    stage.addEventListener('pointerup', e => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
+    });
+
+    // autoplay with progress bar; pauses on hover/focus, off-screen, or reduced motion
+    root.addEventListener('mouseenter', () => paused = true);
+    root.addEventListener('mouseleave', () => paused = false);
+    root.addEventListener('focusin', () => paused = true);
+    root.addEventListener('focusout', () => paused = false);
+    new IntersectionObserver(([e]) => inView = e.isIntersecting).observe(stage);
+    if (reduce) return;
+    const tick = t => {
+      const dt = last ? t - last : 0; last = t;
+      if (!paused && inView && !document.hidden) {
+        elapsed += dt;
+        bars[cur].style.width = Math.min(elapsed / DURATION, 1) * 100 + '%';
+        if (elapsed >= DURATION) go(cur + 1);
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
+
+  // bento cards + modal (behaviour mirrors Stripe's modular-solutions bento)
+  (() => {
+    const cards = [...document.querySelectorAll('.bento-card')];
+    if (!cards.length) return;
+    let data = {};
+    try { data = JSON.parse(document.getElementById('cms-bento').textContent); } catch (e) {}
+
+    // each card rests a few px inset and grows to full size on hover; x is scaled so the card keeps its shape
+    const sizeCards = () => cards.forEach(c => {
+      const gy = +(c.dataset.grow || 6), r = c.getBoundingClientRect();
+      const gx = r.height ? gy * r.width / r.height : gy;
+      c.style.setProperty('--grow-y', gy + 'px'); c.style.setProperty('--grow-x', gx + 'px');
+      c.style.setProperty('--shift-y', -gy + 'px'); c.style.setProperty('--shift-x', -gx + 'px');
+    });
+    sizeCards(); addEventListener('resize', sizeCards);
+
+    // gradient border follows the pointer
+    cards.forEach(c => c.addEventListener('pointermove', e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mouse-x', (e.clientX - r.left - r.width / 2) + 'px');
+      c.style.setProperty('--mouse-y', (e.clientY - r.top - r.height / 2) + 'px');
+    }));
+
+    // ---- modal ----
+    const overlay = document.getElementById('bdOverlay');
+    const dialog = document.getElementById('bdDialog');
+    const body = document.getElementById('bdBody');
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const btns = arr => (arr || []).map(b => `<a class="btn ${b.primary ? 'btn-primary' : 'btn-outline2'}" href="${esc(b.href)}">${esc(b.label)}${b.primary ? ' <i data-lucide="arrow-right" class="ic"></i>' : ''}</a>`).join('');
+    const partnerRevenue = [['Forvia',29.5],['Valeo',23.8],['Henkel',23.3],['MAHLE',13.9],['Dana',10.3],['HL Mando',6.4],['Joyson',5],['SK Enmove',3.5],['HL Klemove',1.3],['Jinhap',0.408]];
+    const logoFiles = ['Gabriel','DANA','Forvia','mahle','Henkel','valeo','Joyson','HL_mando','HL-Klemove','SK_enmove','Jinhap','APAG','CY_Myutec','ANEVOLVE','iPower'];
+    const values = ['Be the first choice of the customers','Build and sustain strategic partnership','Strengthen corporate governance and citizenship','Develop, empower and grow people','Aspire and dare to be innovative','Attain leadership in technology','Create inspired leadership and promote entrepreneurial spirit','Achieve superior business performance and growth'];
+
+    const graphic = (g, cls, delay) => {
+      const cap = g.caption ? `<span class="cap">${esc(g.caption)}</span>` : '';
+      let inner = '';
+      if (g.type === 'chart') inner = `<div class="bd-g-dom"><div class="bd-chart"><div class="cap">Global revenue of ANAND's JV partners, US$ Bn (CY 2024)</div>${partnerRevenue.map(([n, v]) => `<div class="g-bar" style="--w:${(v / 29.5 * 100).toFixed(1)}%"><span>${n}</span><u><i></i></u><em>${v < 1 ? (v * 1000).toFixed(0) + ' Mn' : v}</em></div>`).join('')}</div></div>`;
+      else if (g.type === 'logos') inner = `<div class="bd-g-dom"><div class="bd-logos">${logoFiles.map(f => `<span><img src="assets/${f}.png" alt=""></span>`).join('')}</div></div>`;
+      else if (g.type === 'values') inner = `<div class="bd-g-dom"><div class="bd-values">${values.map(v => `<span>${esc(v)}</span>`).join('')}</div></div>`;
+      else inner = `<img src="${esc(g.src)}" alt="" class="${g.contain ? 'contain' : ''}">`;
+      return `<div class="bd-g ${cls} bd-reveal" style="--rd:${delay}ms">${inner}${cap}</div>`;
+    };
+
+    const extra = x => {
+      if (!x) return '';
+      const head = `<div class="bd-sub">${esc(x.title)}</div>`;
+      if (x.type === 'cards') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-cards">${x.items.map(i => `<div class="bd-card"><div class="gfx"><img src="${esc(i.img)}" alt="" class="${i.cover ? 'cover' : ''}"></div><p>${esc(i.text)}</p><a class="link" href="${esc(i.href)}"${/^http/.test(i.href) ? ' target="_blank" rel="noopener"' : ''}>${esc(i.link)}<i data-lucide="chevron-right" class="ic"></i></a></div>`).join('')}</div></div>`;
+      if (x.type === 'directory') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-dir">${x.items.map(([n, p]) => `<div><b>${esc(n)}</b><span>${esc(p)}</span></div>`).join('')}</div></div>`;
+      if (x.type === 'leaders') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-leaders">${x.items.map(l => `<div><i class="g-av ${l.tone}">${esc(l.initials)}</i><b>${esc(l.name)}</b><small>${esc(l.role)}</small><p>${esc(l.text)}</p></div>`).join('')}</div></div>`;
+      if (x.type === 'details') return `<div class="bd-reveal" style="--rd:150ms">${head}<div class="bd-details">${x.items.map(d => `<div><i><i data-lucide="${esc(d.icon)}" class="ic"></i></i><b>${esc(d.title)}</b><p>${esc(d.text)}</p></div>`).join('')}</div></div>`;
+      return '';
+    };
+
+    const render = d => {
+      const right = d.graphics.right || [];
+      body.innerHTML = `
+        <div class="bd-header">
+          <div class="bd-intro bd-reveal">
+            <div><h2 id="bdTitle">${esc(d.title)}</h2><p>${esc(d.body)}</p></div>
+            <div class="bd-btns">${btns(d.ctas)}</div>
+          </div>
+          <ul class="bd-list bd-reveal" style="--rd:100ms">${d.list.map(t => `<li><i><i data-lucide="check" class="ic"></i></i>${esc(t)}</li>`).join('')}</ul>
+        </div>
+        <div class="bd-graphics ${right.length ? '' : 'one'}">
+          ${graphic(d.graphics.left, 'left', 0)}
+          ${right.length ? `<div class="rcol">${right.map((g, i) => graphic(g, 'right', 100 + i * 100)).join('')}</div>` : ''}
+        </div>
+        ${extra(d.extra)}
+        ${d.quote ? `<hr class="bd-divider"><div class="bd-quote"><img class="logo" src="assets/logo.png" alt="ANAND"><q>${esc(d.quote.text)}</q><div class="by"><b>${esc(d.quote.name)},</b> ${esc(d.quote.role)}</div></div>` : ''}
+        <hr class="bd-divider">
+        <div class="bd-footer"><h3>${esc(d.footer.title)}</h3><div class="bd-btns">${btns(d.footer.ctas)}</div></div>`;
+      if (window.lucide) lucide.createIcons();
+    };
+
+    let opener = null, closing = 0;
+    const open = card => {
+      const d = data[card.dataset.bento]; if (!d) return;
+      clearTimeout(closing);
+      opener = card; card.setAttribute('aria-expanded', 'true');
+      render(d);
+      document.documentElement.style.setProperty('--sbw', (innerWidth - document.documentElement.clientWidth) + 'px');
+      document.documentElement.classList.add('bd-lock');
+      overlay.hidden = false; overlay.scrollTop = 0;
+      overlay.dataset.status = dialog.dataset.status = 'initial';
+      requestAnimationFrame(() => requestAnimationFrame(() => { overlay.dataset.status = dialog.dataset.status = 'open'; }));
+      dialog.focus({preventScroll: true});
+    };
+    const close = () => {
+      if (overlay.hidden || overlay.dataset.status === 'close') return;
+      overlay.dataset.status = dialog.dataset.status = 'close';
+      closing = setTimeout(() => {
+        overlay.hidden = true; body.innerHTML = '';
+        document.documentElement.classList.remove('bd-lock');
+        if (opener) { opener.setAttribute('aria-expanded', 'false'); opener.focus({preventScroll: true}); }
+      }, reduce ? 0 : 300);
+    };
+    cards.forEach(c => c.addEventListener('click', () => open(c)));
+    document.getElementById('bdClose').addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (!dialog.contains(e.target)) close(); });
+    document.addEventListener('keydown', e => {
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'Tab') { // keep focus inside the dialog
+        const f = [...dialog.querySelectorAll('a[href],button')];
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+
+    // ---- placeholder globe (replace [data-slot="globe"] with the final 3D component) ----
+    const slot = document.querySelector('[data-slot="globe"]');
+    const cv = slot && slot.querySelector('canvas');
+    if (!cv) return;
+    const ctx = cv.getContext('2d');
+    const card = slot.closest('.bento-card');
+    const N = 1100, pts = [];
+    for (let i = 0; i < N; i++) { // even spread of points on a sphere
+      const y = 1 - (i / (N - 1)) * 2, r = Math.sqrt(1 - y * y), th = i * 2.399963;
+      pts.push([Math.cos(th) * r, y, Math.sin(th) * r]);
+    }
+    const ll = (lat, lon) => { const a = lat * Math.PI / 180, b = lon * Math.PI / 180; return [Math.cos(a) * Math.sin(b), Math.sin(a), Math.cos(a) * Math.cos(b)]; };
+    const home = ll(28.6, 77.2); // New Delhi
+    const sites = [[38, -97], [46, 2], [51, 10], [47, 8], [52, 5], [40, -4], [36, 128], [36, 138]].map(p => ll(p[0], p[1]));
+    let size = 0, dpr = 1, rot = -1.9, speed = 0.0022, onScreen = false;
+    const fit = () => { dpr = Math.min(devicePixelRatio || 1, 2); size = cv.clientWidth; cv.width = cv.height = size * dpr; };
+    fit(); addEventListener('resize', fit);
+    new IntersectionObserver(([e]) => onScreen = e.isIntersecting).observe(cv);
+    card.addEventListener('mouseenter', () => speed = 0.006);
+    card.addEventListener('mouseleave', () => speed = 0.0022);
+    const tilt = -0.38, ct = Math.cos(tilt), st = Math.sin(tilt);
+    const proj = ([x, y, z]) => {
+      const cr = Math.cos(rot), sr = Math.sin(rot);
+      let X = x * cr + z * sr, Z = -x * sr + z * cr;
+      let Y = y * ct - Z * st; Z = y * st + Z * ct;
+      return [X, Y, Z];
+    };
+    const draw = () => {
+      const R = size * dpr * 0.46, c = size * dpr / 2;
+      ctx.clearRect(0, 0, cv.width, cv.height);
+      for (const p of pts) {
+        const [X, Y, Z] = proj(p);
+        if (Z < -0.05) continue;
+        ctx.fillStyle = `rgba(11,78,162,${0.2 + Z * 0.6})`;
+        ctx.beginPath(); ctx.arc(c + X * R, c - Y * R, 1.5 * dpr, 0, 6.283); ctx.fill();
+      }
+      const h = proj(home);
+      ctx.lineWidth = 1.4 * dpr;
+      for (const s of sites) { // arcs from India to partner countries
+        ctx.beginPath(); let started = false;
+        for (let t = 0; t <= 1.0001; t += 0.04) {
+          const v = [0, 1, 2].map(k => home[k] * (1 - t) + s[k] * t);
+          const len = Math.hypot(...v), lift = 1 + 0.22 * Math.sin(Math.PI * t);
+          const [X, Y, Z] = proj(v.map(k => k / len * lift));
+          if (Z < 0) { started = false; continue; }
+          started ? ctx.lineTo(c + X * R, c - Y * R) : ctx.moveTo(c + X * R, c - Y * R); started = true;
+        }
+        ctx.strokeStyle = 'rgba(0,174,239,.75)'; ctx.stroke();
+        const [X, Y, Z] = proj(s);
+        if (Z > 0) { ctx.fillStyle = '#0B4EA2'; ctx.beginPath(); ctx.arc(c + X * R, c - Y * R, 3 * dpr, 0, 6.283); ctx.fill(); }
+      }
+      if (h[2] > 0) {
+        ctx.fillStyle = 'rgba(0,174,239,.25)'; ctx.beginPath(); ctx.arc(c + h[0] * R, c - h[1] * R, 9 * dpr, 0, 6.283); ctx.fill();
+        ctx.fillStyle = '#00AEEF'; ctx.beginPath(); ctx.arc(c + h[0] * R, c - h[1] * R, 4.5 * dpr, 0, 6.283); ctx.fill();
+      }
+    };
+    const loop = () => { if (onScreen && !document.hidden) { rot += speed; draw(); } requestAnimationFrame(loop); };
+    draw();
+    if (!reduce) requestAnimationFrame(loop);
+  })();
+
+
+  lucide.createIcons();
 
   // nav state
   const nav = document.getElementById('nav');
