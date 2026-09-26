@@ -51,7 +51,7 @@ Then open `http://localhost:5178`. The preview pane attaches with `.claude/launc
 `{"version":"0.0.1","configurations":[{"name":"anand-landing","url":"http://localhost:5178","port":5178}]}`
 
 **External libraries (CDN, no npm):**
-- Google Fonts: **Geist** and **Geist Mono**
+- Google Fonts: **Geist** (weights 300–600). Geist Mono was dropped on purpose; don't reintroduce it.
 - **Lucide** 1.48.0 UMD (icons; call `lucide.createIcons()` after injecting HTML)
 - **cobe** 2.0.1 ESM (`https://cdn.jsdelivr.net/npm/cobe@2.0.1/dist/index.esm.js`), loaded in a `<script type="module">` for the globe
 
@@ -123,7 +123,7 @@ Cyan tints in use: `#E6F7FD` and `#B3E7FA`. Only use tints of `#00AEEF`.
   - 940px: the bento and stories layouts change
   - 640px: phone
 
-### Typography: Geist (UI) and Geist Mono (dates and map/globe tags)
+### Typography: Geist only (no Geist Mono)
 **Every font size is a token in `:root`. Never write a raw px size.** The scale below replaced 33 ad-hoc sizes (audit, 26 Sep 2026).
 
 | Token | Size | Used for |
@@ -147,7 +147,7 @@ Headings use weight 500 (not bold) with tight negative tracking, in the Stripe s
 **Label rules (one style each):**
 - **Section eyebrow** (the small cyan text above a section heading): `.eyebrow`, `--fs-ui-sm` (13px), weight 500, cyan, **ALL CAPS**, letter-spacing .08em. Write it in sentence case in the HTML; CSS capitalises it.
 - **In-card key label** (a label above a value, or a group heading inside a card or menu, e.g. HEADQUARTERS, PARTNERS AROUND THE WORLD, JOINT VENTURE PARTNERS): `--fs-label`, **ALL CAPS**, letter-spacing .08em, muted grey (cyan in the dark partners section).
-- **Dates and map/globe tags:** Geist Mono, all caps, .08em, `--fs-label` (globe labels 11px).
+- **Dates and map/globe tags:** Geist, all caps, .08em, `--fs-label` (globe labels 11px).
 - **Captions** (e.g. "JV partners' global revenue, US$ Bn"): `--fs-label`, sentence case, muted.
 
 ### Buttons (`.btn`: 15px/500, padding 9px 16px 9px 18px, 4px radius)
@@ -175,7 +175,7 @@ Use Lucide only (`<i data-lucide="name">`), with the same stroke everywhere. Don
 
 ## 7. Language and copy
 - **Voice:** confident, factual and restrained, like an established industrial group and not a startup. Short sentences. No hype words or buzzword stacks.
-- **Title Case** for headings, card titles, nav labels and buttons (e.g. "A Global Mobility Group, Built on Six Decades of Partnership"). Keep "&" in names such as "Sustainability & CSR".
+- **Title Case** for headings, card titles and **all button and link labels** ("Partner with Us", "View All News", "Explore Our Companies"). Small words (a, an, the, and, or, for, of, on, in, to, at, by, with) stay lowercase unless they come first. Nav menu labels and menu item names stay sentence case, as in the nav spec (e.g. "A Global Mobility Group, Built on Six Decades of Partnership"). Keep "&" in names such as "Sustainability & CSR".
 - **Brand spellings:** **ANAND** (capitals), **SUJÁN** (with the accent), Gabriel India, ANEVOLVE and Anevolve as on the source, HL Klemove, MAHLE ANAND, Joyson ANAND, and the partner names as on ANAND's partner map.
 - **UK/Indian English** (programme, honours, enquiries). Currency is "US$2.2B+". Use "22,000+ people", "87 locations" and "17 companies".
 - **Facts in use** (from anandgroupindia.com, CY 2024):
@@ -258,8 +258,18 @@ The facts count up on scroll. The divider line above it was removed on request.
 - Arrows (`.st-btn`): white with a navy icon, navy on hover, faded when disabled.
 - Six cards (332×448 media, a white logo over the image, media scale 1.036 on hover over 800ms): Gabriel, SUJÁN, ANEVOLVE, HL Klemove JV, MAHLE ANAND and Joyson ANAND, each with a real link.
 
-### 8.8 After the stories
-Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA/contact · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
+### 8.8 CTA banner, above the footer (`section.cta-banner`)
+- A copy of Stripe's Sessions banner:
+  - a photo card 400–544px tall with a 4px radius
+  - a light-weight (300) white headline at `--fs-banner` (48px max)
+  - a white button with cyan text that turns cyan with white text on hover
+  - the white ANAND logo in the bottom-right corner
+- **Content:** "Join 22,000+ People Shaping the Future of Mobility" and "Explore Careers" (the link is `#` for now). The photo is `news1-scaled-1.jpeg` (Mahendra K. Goyal at an ANAND event), placed on the right and fading into navy on the left.
+- **On phones** the photo drops to the lower part of the card so the headline doesn't cover the speaker.
+- **Overlap to note:** the CTA section just above it also has a "Careers at ANAND" column.
+
+### 8.9 After the stories
+Solutions (6 product cards) · Partners (dark, wave canvas) · Beyond business (sustainability and CSR) · CTA/contact · CTA banner (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
 These sections date from the first concept and haven't had a Stripe-exact pass yet.
 
 ---

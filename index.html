@@ -8,7 +8,7 @@
 <link rel="icon" href="https://www.anandgroupindia.com/wp-content/uploads/2026/08/favicon-32x32-1.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#021A2C;
@@ -30,6 +30,7 @@
   --ease:cubic-bezier(.2,.7,.2,1);
   /* type scale: use these, never raw px */
   --fs-display:clamp(40px,5.6vw,64px);
+  --fs-banner:clamp(32px,4vw,48px);
   --fs-h2:clamp(28px,3.4vw,38px);
   --fs-h3:clamp(22px,2.2vw,28px);
   --fs-quote:clamp(22px,2.4vw,30px);
@@ -182,7 +183,7 @@ section{position:relative}
 
 /* ---------- LOGOS ---------- */
 .logos{padding:56px 0 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.logos .cap{text-align:center;font-size:var(--fs-small);color:var(--muted);margin-bottom:26px}
+.logos .cap{text-align:center;font-size:var(--fs-ui-sm);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-bottom:26px}
 .marquee{overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
 .track{display:flex;gap:64px;width:max-content;animation:scroll 42s linear infinite;align-items:center}
 .track img{width:auto;filter:grayscale(1);opacity:.55;transition:all .3s}
@@ -200,7 +201,7 @@ section{position:relative}
 .about-copy p{color:var(--slate);margin-bottom:18px;font-size:var(--fs-body)}
 .about-copy p b{color:var(--ink);font-weight:500}
 .facts{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:80px}
-.fact{padding-left:16px}
+.fact{padding-left:16px;border-left:1px solid var(--line)}
 .fact .n{font-size:var(--fs-stat);font-weight:400;letter-spacing:-.03em;line-height:1.1;color:var(--navy);font-variant-numeric:tabular-nums}
 .fact:nth-child(1) .n{border:0}
 .fact .n::before{content:"";display:block;width:1px;height:18px;background:var(--cyan);margin:0 0 10px -17px}
@@ -319,7 +320,7 @@ section{position:relative}
 .nr-slide.on .nr-media img{transform:scale(1)}
 .nr-body{display:flex;flex-direction:column;align-items:flex-start;padding:40px 44px}
 .nr-tag{border-radius:var(--radius);font-size:var(--fs-label);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,174,239,.5);padding:5px 10px;margin-bottom:auto}
-.nr-meta{font-family:"Geist Mono",monospace;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin:28px 0 12px}
+.nr-meta{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin:28px 0 12px}
 .nr-meta span{color:#fff}
 .nr-body h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
 .nr-body p{color:#A9C1D6;font-size:var(--fs-body);line-height:1.6;margin-bottom:24px}
@@ -335,7 +336,7 @@ section{position:relative}
 .nr-th .bar i{display:block;height:100%;width:0;background:var(--cyan)}
 .nr-th .im{aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius);background:#0B2A44}
 .nr-th img{width:100%;height:100%;object-fit:cover;opacity:.6;transition:opacity .3s}
-.nr-th time{display:block;font-family:"Geist Mono",monospace;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin-bottom:6px}
+.nr-th time{display:block;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin-bottom:6px}
 .nr-th h4{font-size:var(--fs-ui);font-weight:500;line-height:1.4;color:#A9C1D6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
 .nr-th:hover h4,.nr-th.on h4{color:#fff}
 .nr-th:hover img,.nr-th.on img{opacity:1}
@@ -436,7 +437,7 @@ section{position:relative}
 .g-globe{position:absolute;right:-13%;bottom:-24%;width:min(76%,680px);aspect-ratio:1}
 .g-globe canvas{width:100%;height:100%;display:block;border-radius:50%;opacity:0;transition:opacity 1.2s ease}
 /* marker labels ride on cobe's CSS anchors; hidden where anchor positioning isn't supported */
-.cobe-label{display:none;position:absolute;bottom:anchor(top);left:anchor(center);translate:-50% 0;margin-bottom:8px;padding:2px 6px;background:var(--navy);color:#fff;font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;pointer-events:none;border-radius:2px;transition:opacity .8s,filter .8s}
+.cobe-label{display:none;position:absolute;bottom:anchor(top);left:anchor(center);translate:-50% 0;margin-bottom:8px;padding:2px 6px;background:var(--navy);color:#fff;font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;pointer-events:none;border-radius:2px;transition:opacity .8s,filter .8s}
 .cobe-label::after{content:"";position:absolute;top:100%;left:50%;transform:translate3d(-50%,-1px,0);border:5px solid transparent;border-top-color:var(--navy)}
 .cobe-label.hq{background:var(--cyan)}
 .cobe-label.hq::after{border-top-color:var(--cyan)}
@@ -623,7 +624,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .pm-mk .core{fill:var(--cyan)}
 .pm-mk.tech .core{fill:#fff;stroke:var(--cyan);stroke-width:.45}
 .pm-mk:focus-visible .core{stroke:var(--navy);stroke-width:.4}
-.pm-hq{position:absolute;transform:translate(-50%,calc(-100% - 10px));background:var(--cyan);color:#fff;font-family:"Geist Mono",monospace;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:3px 8px;border-radius:2px;pointer-events:none}
+.pm-hq{position:absolute;transform:translate(-50%,calc(-100% - 10px));background:var(--cyan);color:#fff;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:3px 8px;border-radius:2px;pointer-events:none}
 .pm-hq::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--cyan)}
 .pm-tip{position:absolute;z-index:3;width:270px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 44px -18px rgba(2,26,44,.4);padding:14px 16px 8px;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .2s,transform .2s}
 .pm-tip.show{opacity:1;transform:none}
@@ -663,6 +664,23 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .cta-grid .col p{font-size:var(--fs-ui);margin-bottom:10px}
 
 /* ---------- FOOTER ---------- */
+/* CTA banner (mirrors Stripe's Sessions banner) */
+.cta-banner{padding:0 0 96px}
+.cb-card{position:relative;display:flex;height:clamp(400px,38vw,544px);border-radius:var(--radius);overflow:hidden;background:var(--navy)}
+.cb-img{position:absolute;top:0;bottom:0;left:30%;width:70%;height:100%;object-fit:cover;object-position:50% 22%}
+.cb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 30%,rgba(2,26,44,.55) 46%,rgba(2,26,44,0) 62%),linear-gradient(0deg,rgba(2,26,44,.55) 0%,rgba(2,26,44,0) 35%);pointer-events:none}
+.cb-content{position:relative;z-index:1;flex:1;display:grid;grid-template-rows:auto auto 1fr;justify-items:start;padding:clamp(24px,3vw,40px)}
+.cb-title{font-size:var(--fs-banner);font-weight:300;line-height:1.03;letter-spacing:-.02em;color:#fff;max-width:min(520px,48%);margin-bottom:32px}
+.cb-btn{background:#fff;color:var(--cyan);font-size:var(--fs-body);padding:15px 22px 15px 24px;gap:8px}
+.cb-btn:hover{background:var(--cyan);color:#fff}
+.cb-logo{align-self:end;justify-self:end;height:24px;width:auto;filter:brightness(0) invert(1)}
+@media (max-width:639px){
+  .cb-card{height:auto;min-height:460px}
+  .cb-img{left:0;width:100%;top:auto;height:58%;object-position:62% 18%}
+  .cb-card::after{background:linear-gradient(180deg,var(--navy) 0%,var(--navy) 42%,rgba(2,26,44,.2) 60%,rgba(2,26,44,0) 75%,rgba(2,26,44,.5) 100%)}
+  .cb-logo{height:20px}
+  .cb-title{max-width:none}
+}
 footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-small)}
 .f-grid{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
 .f-grid h5{font-size:var(--fs-small);font-weight:600;margin-bottom:14px}
@@ -758,8 +776,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-news" data-panel="news">Newsroom<i data-lucide="chevron-down" class="ic"></i></button></li>
       </ul>
       <div class="nav-cta">
-        <a href="#careers" class="btn btn-outline2 nav-sec">Explore careers</a>
-        <a href="#contact" class="btn btn-primary">Partner with us <i data-lucide="chevron-right" class="ic"></i></a>
+        <a href="#careers" class="btn btn-outline2 nav-sec">Explore Careers</a>
+        <a href="#contact" class="btn btn-primary">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
         <button class="menu-btn" aria-label="Menu"><span></span><span></span></button>
       </div>
     </div>
@@ -773,7 +791,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <span class="np-fk">Featured</span>
           <b>Chairperson's message</b>
           <p>Anjali Singh, Chairperson of the ANAND Supervisory Board, on the Group's next chapter.</p>
-          <a href="#" class="np-more">Read the message <i data-lucide="chevron-right" class="ic"></i></a>
+          <a href="#" class="np-more">Read the Message <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         </aside>
         <div class="np-foot"><a href="#" class="np-more">About ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
@@ -794,7 +812,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <span>11 global JV partners · 4 technical collaborations</span>
         </div>
         </aside>
-        <div class="np-foot"><a href="#" class="np-more">All companies <i data-lucide="arrow-right" class="ic"></i></a></div>
+        <div class="np-foot"><a href="#" class="np-more">All Companies <i data-lucide="arrow-right" class="ic"></i></a></div>
       </div>
     </div>
     <div class="np" id="np-sustain" data-panel="sustain" style="--cols:3">
@@ -819,7 +837,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <span class="np-img"><img src="assets/ANAND-banner-scaled-1.jpeg" alt=""></span>
           <b>Join us</b>
           <p>Explore opportunities across the Group.</p>
-          <a href="#" class="np-more">View openings <i data-lucide="chevron-right" class="ic"></i></a>
+          <a href="#" class="np-more">View Openings <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         </aside>
         <div class="np-foot"><a href="#" class="np-more">Careers at ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
@@ -833,10 +851,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
           <span class="np-img"><img src="assets/Gabriel-India-joins-hands-with-South-Koreas-HL-Klemove.jpg" alt=""></span>
           <span class="np-fk">27 Aug 2026</span>
           <b>Gabriel India joins hands with South Korea's HL Klemove</b>
-          <a href="#" class="np-more">Read more <i data-lucide="chevron-right" class="ic"></i></a>
+          <a href="#" class="np-more">Read More <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         </aside>
-        <div class="np-foot"><a href="#" class="np-more">All news <i data-lucide="arrow-right" class="ic"></i></a></div>
+        <div class="np-foot"><a href="#" class="np-more">All News <i data-lucide="arrow-right" class="ic"></i></a></div>
       </div>
     </div>
     </div>
@@ -853,8 +871,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       <h1>Engineering the <span class="g">Future of Mobility</span></h1>
       <p class="lede">A global mobility solutions group bringing together world-class technologies and deep manufacturing expertise to serve <b>leading automotive manufacturers across the world.</b></p>
       <div class="hero-ctas">
-        <a href="#solutions" class="btn btn-primary">Explore solutions <i data-lucide="arrow-right" class="ic"></i></a>
-        <a href="#partners" class="btn btn-ghost">Our partners <i data-lucide="arrow-right" class="ic"></i></a>
+        <a href="#solutions" class="btn btn-primary">Explore Solutions <i data-lucide="arrow-right" class="ic"></i></a>
+        <a href="#partners" class="btn btn-ghost">Our Partners <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
     </div>
 
@@ -915,7 +933,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
         <h2>Latest at ANAND</h2>
       </div>
       <div class="nr-ctrl">
-        <a href="#" class="btn btn-light">View all news <i data-lucide="arrow-right" class="ic"></i></a>
+        <a href="#" class="btn btn-light">View All News <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
     </div>
     <div class="nr-stage" id="nrStage"></div>
@@ -1147,12 +1165,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "body": "What began in 1961 has evolved into a global mobility solutions group, bringing together world-class technologies and deep manufacturing expertise to serve leading automotive manufacturers across the world.",
     "ctas": [
       {
-        "label": "Explore our partners",
+        "label": "Explore Our Partners",
         "href": "#partners",
         "primary": true
       },
       {
-        "label": "Partner with us",
+        "label": "Partner with Us",
         "href": "#contact"
       }
     ],
@@ -1374,12 +1392,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       "title": "Build the Future of Mobility with ANAND",
       "ctas": [
         {
-          "label": "Partner with us",
+          "label": "Partner with Us",
           "href": "#contact",
           "primary": true
         },
         {
-          "label": "Contact us",
+          "label": "Contact Us",
           "href": "mailto:contact@anandgroupindia.com"
         }
       ]
@@ -1390,12 +1408,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "body": "ANAND grows by partnering with global technology leaders. Its joint ventures bring the engineering of some of the world's largest automotive suppliers to Indian manufacturing.",
     "ctas": [
       {
-        "label": "Explore our companies",
+        "label": "Explore Our Companies",
         "href": "#glance",
         "primary": true
       },
       {
-        "label": "Latest news",
+        "label": "Latest News",
         "href": "#news"
       }
     ],
@@ -1457,12 +1475,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       "title": "Grow with ANAND",
       "ctas": [
         {
-          "label": "Partner with us",
+          "label": "Partner with Us",
           "href": "#contact",
           "primary": true
         },
         {
-          "label": "Contact us",
+          "label": "Contact Us",
           "href": "mailto:contact@anandgroupindia.com"
         }
       ]
@@ -1473,12 +1491,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "body": "Almost all ANAND companies are successful partnership firms with a leading global automotive player. The core values of transparency, good governance and mutual trust have formed the foundation of these partnerships.",
     "ctas": [
       {
-        "label": "Explore products & solutions",
+        "label": "Explore Products & Solutions",
         "href": "#solutions",
         "primary": true
       },
       {
-        "label": "Partner with us",
+        "label": "Partner with Us",
         "href": "#contact"
       }
     ],
@@ -1621,12 +1639,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       "title": "Find the Right ANAND Company for You",
       "ctas": [
         {
-          "label": "Explore our companies",
+          "label": "Explore Our Companies",
           "href": "#",
           "primary": true
         },
         {
-          "label": "Contact us",
+          "label": "Contact Us",
           "href": "mailto:contact@anandgroupindia.com"
         }
       ]
@@ -1637,7 +1655,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     "body": "ANAND lives by the belief that business is 90% people. Founded by Deep C. Anand in 1961, the Group is governed today through the ANAND Supervisory Board.",
     "ctas": [
       {
-        "label": "Explore careers",
+        "label": "Explore Careers",
         "href": "#careers",
         "primary": true
       },
@@ -1707,12 +1725,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       "title": "Grow Your Career at ANAND",
       "ctas": [
         {
-          "label": "Explore careers",
+          "label": "Explore Careers",
           "href": "#careers",
           "primary": true
         },
         {
-          "label": "Join us",
+          "label": "Join Us",
           "href": "#"
         }
       ]
@@ -1728,7 +1746,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
         "primary": true
       },
       {
-        "label": "Our story",
+        "label": "Our Story",
         "href": "https://thesujanlife.com/our-story"
       }
     ],
@@ -1791,12 +1809,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       "title": "Plan Your SUJÁN Journey",
       "ctas": [
         {
-          "label": "Book a stay",
+          "label": "Book a Stay",
           "href": "https://thesujanlife.com",
           "primary": true
         },
         {
-          "label": "Contact reservations",
+          "label": "Contact Reservations",
           "href": "mailto:reservations@thesujanlife.com"
         }
       ]
@@ -1845,7 +1863,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     <div class="st-head">
       <div class="rv">
         <h2>One Group, Many Journeys <br>Across Mobility and Beyond</h2>
-        <a href="#partners" class="btn btn-primary">Explore our companies <i data-lucide="arrow-right" class="ic"></i></a>
+        <a href="#partners" class="btn btn-primary">Explore Our Companies <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
       <p class="lede rv">Beyond automotive, the Group continues to expand its impact through complementary businesses and initiatives, from clean mobility to conservation-led hospitality.</p>
     </div>
@@ -2016,19 +2034,33 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
       <div class="eyebrow">Driving mobility &amp; sustainability</div>
       <h2>Ready to Shape the Future of Mobility?</h2>
       <p>Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
-      <a href="#" class="btn btn-primary">Partner with us <i data-lucide="arrow-right" class="ic"></i></a>
+      <a href="#" class="btn btn-primary">Partner with Us <i data-lucide="arrow-right" class="ic"></i></a>
     </div>
     <div class="col rv" id="careers">
       <i data-lucide="users" class="ic"></i>
       <h3>Careers at ANAND</h3>
       <p>Join 22,000+ people across shop-floor excellence, engineering and people development.</p>
-      <a href="#" class="link">Explore careers<i data-lucide="chevron-right" class="ic"></i></a>
+      <a href="#" class="link">Explore Careers<i data-lucide="chevron-right" class="ic"></i></a>
     </div>
     <div class="col rv">
       <i data-lucide="building-2" class="ic"></i>
       <h3>Corporate Headquarters</h3>
       <p>1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016<br>+91-11-42092300</p>
       <a href="mailto:contact@anandgroupindia.com" class="link">contact@anandgroupindia.com<i data-lucide="chevron-right" class="ic"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER (mirrors Stripe's Sessions banner) -->
+<section class="cta-banner">
+  <div class="wrap">
+    <div class="cb-card rv">
+      <img class="cb-img" src="assets/news1-scaled-1.jpeg" alt="ANAND leadership speaking at a group event" loading="lazy">
+      <div class="cb-content">
+        <h2 class="cb-title">Join 22,000+ People Shaping the Future of Mobility</h2>
+        <a href="#" class="btn cb-btn">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a>
+        <img class="cb-logo" src="assets/logo.png" alt="ANAND">
+      </div>
     </div>
   </div>
 </section>
