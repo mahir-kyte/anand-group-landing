@@ -101,10 +101,10 @@
         <section class="np-col"><h4>News</h4><ul class="np-list"><li><a href="newsroom.html#news"><b>Latest news</b><span>Stories from across the group</span></a></li><li><a href="newsroom.html#coverage"><b>Media coverage</b><span>ANAND in the press</span></a></li><li><a href="newsroom.html#newsletter"><b>Newsletter</b><span>Past issues</span></a></li></ul></section><section class="np-col"><h4>For media</h4><ul class="np-list"><li><a href="newsroom.html#media-kit"><b>Media kit</b><span>Brand assets and downloads</span></a></li><li><a href="newsroom.html#media-contact"><b>Media contact</b><span>Press enquiries</span></a></li></ul></section>
         <aside class="np-aside">
         <div class="np-feature">
-          <span class="np-img"><img src="assets/Gabriel-India-to-acquire-nearly-30-pc-stake.jpg" alt=""></span>
-          <span class="np-fk">26 Aug 2026 · Press Release</span>
-          <b>Gabriel India partners with South Korea's HL Klemove for autonomous driving</b>
-          <a href="newsroom-article.html?slug=gabriel-india-limited-partners-with-south-koreas-hl-klemove-for-autonomous-drivi" class="np-more">Read More <i data-lucide="chevron-right" class="ic"></i></a>
+          <span class="np-img"><img src="assets/news/1.-mrs.-anjali-singh-executive-chairperson-of-anand-group-scaled.jpg" alt=""></span>
+          <span class="np-fk">23 Dec 2024 · Press Release</span>
+          <b>Inalfa Gabriel Sunroof Systems plans to expand beyond Chennai</b>
+          <a href="newsroom-article.html?slug=press-release-inalfa-gabriel-sunroof-systems-plans-to-expand-beyond-chennai-to-m" class="np-more">Read More <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         </aside>
         <div class="np-foot"><a href="newsroom.html" class="np-more">All News <i data-lucide="arrow-right" class="ic"></i></a></div>
@@ -129,40 +129,51 @@
           <a href="#coverage">Media Coverage</a>
           <a href="#newsletter">Newsletter</a>
           <a href="#media-kit">Media Kit</a>
+          <a href="#media-contact">Media Contact</a>
         </nav>
       </div>
     </div>
 
-    <!-- Featured stories: Stripe's NewsroomIndexCarousel (items with featured: true) -->
-    <section class="nw-hero" aria-roledescription="carousel" aria-label="Featured stories">
-      <div class="wrap">
-        <div class="nw-car" id="nwCar"></div>
-        <div class="nw-cnav" id="nwCnav"></div>
+    <!-- Featured stories: Stripe's NewsroomStoryCarousel (items with featured: true), with an intro on the left -->
+    <section class="nw-hero" aria-label="Latest updates">
+      <div class="wrap nw-grid">
+        <div class="nw-hero-intro rv">
+          <div class="eyebrow">Newsroom</div>
+          <h1>Latest From ANAND</h1>
+          <p>Press releases, milestones and stories from across the Group and its companies.</p>
+          <a class="link" href="#news">See All News <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        <div class="nw-story" id="nwStory" aria-roledescription="carousel"></div>
       </div>
     </section>
 
-    <!-- Guides row + media contact card -->
-    <section class="nw-guides" id="media-contact">
+    <!-- Guides row: one entry per newsroom type; each will get its own full page (see HANDOFF §8.14) -->
+    <section class="nw-guides">
       <div class="wrap nw-grid">
         <div class="nw-guide rv">
           <i data-lucide="newspaper" class="ic"></i>
           <h3 class="acc">Latest News</h3>
           <p>Press releases, milestones and events from across the Group.</p>
-          <a class="link" href="#news">See All News <i data-lucide="chevron-right" class="ic"></i></a>
+          <a class="link" href="#news" data-page="newsroom/news">See All News <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         <div class="nw-guide rv">
           <i data-lucide="megaphone" class="ic"></i>
           <h3 class="acc">Media Coverage</h3>
-          <p>ANAND and its companies in the press.</p>
-          <a class="link" href="#coverage">Read the Coverage <i data-lucide="chevron-right" class="ic"></i></a>
+          <p>ANAND and its companies in the business press.</p>
+          <a class="link" href="#coverage" data-page="newsroom/media-coverage">See All Coverage <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
         <div class="nw-guide rv">
           <i data-lucide="book-open" class="ic"></i>
-          <h3 class="acc">Newsletter and Media Kit</h3>
-          <p>Past issues of ANAND Interaction, the Group presentation and brand assets.</p>
-          <a class="link" href="#media-kit">Get the Media Kit <i data-lucide="chevron-right" class="ic"></i></a>
+          <h3 class="acc">Newsletter</h3>
+          <p>Every issue of ANAND Interaction, the Group newsletter.</p>
+          <a class="link" href="#newsletter" data-page="newsroom/newsletter">See All Newsletters <i data-lucide="chevron-right" class="ic"></i></a>
         </div>
-        <div class="nw-contact rv" id="nwContact"></div>
+        <div class="nw-guide rv">
+          <i data-lucide="folder-down" class="ic"></i>
+          <h3 class="acc">Media Kit</h3>
+          <p>The Group presentation, brand guidelines and photo gallery.</p>
+          <a class="link" href="#media-kit" data-page="newsroom/media-kit">See Full Media Kit <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
       </div>
     </section>
   </div>
@@ -172,6 +183,7 @@
     <div class="wrap">
       <div class="nw-news-head">
         <div><div class="eyebrow">Latest at ANAND</div><h2>News</h2></div>
+        <a class="btn btn-outline2" href="#news" data-page="newsroom/news">See All News <i data-lucide="arrow-right" class="ic"></i></a>
       </div>
       <div class="nw-filters" id="nwFilters" role="group" aria-label="Filter news"></div>
       <p class="nw-count" id="nwCount" aria-live="polite"></p>
@@ -188,7 +200,7 @@
           <div class="eyebrow">In the press</div>
           <h2>Media Coverage</h2>
           <p>How the business press covers ANAND and its companies.</p>
-          <a class="link" href="#news" data-filter="Media Coverage">View All Coverage <i data-lucide="chevron-right" class="ic"></i></a>
+          <a class="btn btn-outline2" href="#coverage" data-page="newsroom/media-coverage">See All Coverage <i data-lucide="arrow-right" class="ic"></i></a>
         </div>
         <div id="nwFeat"></div>
       </div>
@@ -199,7 +211,7 @@
   <!-- Newsletter -->
   <section class="nw-nl" id="newsletter">
     <div class="wrap">
-      <div class="sec-head rv"><div class="eyebrow">ANAND Newsletter</div><h2>ANAND Interaction</h2><p class="lede">The Group newsletter, with stories from our plants, people and partners.</p></div>
+      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">ANAND Newsletter</div><h2>ANAND Interaction</h2><p class="lede">The Group newsletter, with stories from our plants, people and partners.</p></div><a class="btn btn-outline2" href="#newsletter" data-page="newsroom/newsletter">See All Newsletters <i data-lucide="arrow-right" class="ic"></i></a></div>
       <div class="nw-nl-grid" id="nwIssues"></div>
     </div>
   </section>
@@ -221,8 +233,21 @@
         <div><b>87</b><span>Locations across 14 Indian states</span></div>
         <div><b>US$2.2B+</b><span>Group revenue</span></div>
       </div>
-      <div class="sec-head rv"><div class="eyebrow">Media kit</div><h2>Brand Assets and Downloads</h2></div>
+      <div class="sec-head sec-head--cta rv"><div><div class="eyebrow">Media kit</div><h2>Brand Assets and Downloads</h2></div><a class="btn btn-outline2" href="#media-kit" data-page="newsroom/media-kit">See Full Media Kit <i data-lucide="arrow-right" class="ic"></i></a></div>
       <div class="nw-kit" id="nwKit"></div>
+    </div>
+  </section>
+
+  <!-- Media contact: its own section above the closing banner -->
+  <section class="nw-mc" id="media-contact">
+    <div class="wrap nw-grid">
+      <div class="nw-mc-intro rv">
+        <div class="eyebrow">For media</div>
+        <h2>Media Contact</h2>
+        <p>For press enquiries, interviews and images, contact ANAND Group Corporate Communications.</p>
+        <a class="btn btn-outline2" href="#media-contact" data-page="newsroom/media-contact">See All Media Contacts <i data-lucide="arrow-right" class="ic"></i></a>
+      </div>
+      <div class="nw-contact rv" id="nwContact"></div>
     </div>
   </section>
 </main>

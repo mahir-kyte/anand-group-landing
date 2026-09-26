@@ -1,5 +1,5 @@
 {
- "_about": "Newsroom CMS feed for the ANAND design reference: a representative sample migrated from anandgroupindia.com on 26 Sep 2026 (20 full articles from Latest at ANAND across every category, the 12 newest media-coverage links, the 8 newest newsletters). On the live site this comes from WordPress (posts + ACF). Images are self-hosted in assets/news/ (original URLs kept in imageSource); PDFs and external links still point at the original hosts.",
+ "_about": "Newsroom CMS feed for the ANAND design reference: a representative sample migrated from anandgroupindia.com on 26 Sep 2026 (18 full articles from Latest at ANAND across every category, the 12 newest media-coverage links, the 8 newest newsletters). On the live site this comes from WordPress (posts + ACF). Images are self-hosted in assets/news/ (original URLs kept in imageSource); PDFs and external links still point at the original hosts.",
  "fields": {
   "id": "Old WordPress article id (arid) for migrated articles; slug otherwise",
   "slug": "URL slug: newsroom-article.html?slug=<slug> (on the live site /newsroom/news/<slug>/)",
@@ -67,58 +67,66 @@
   {
    "title": "VOL LXXIV, NOVEMBER 2020",
    "date": "2020-12-07",
-   "image": "assets/news/interaction-page-thumb.jpg",
+   "image": "assets/news/covers/interaction-page-thumb.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/12/ANAND-Interaction-Nov2020.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction"
+   "url": "https://www.anandgroupindia.com/Interaction",
+   "imageOriginal": "assets/news/interaction-page-thumb.jpg"
   },
   {
    "title": "VOL LXXIII, JUNE 2020",
    "date": "2020-06-30",
-   "image": "assets/news/jun2020new-1.png",
+   "image": "assets/news/covers/jun2020new-1.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/06/ANAND-Interaction-June2020.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=7067"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=7067",
+   "imageOriginal": "assets/news/jun2020new-1.png"
   },
   {
    "title": "VOL LXXII, FEBRUARY 2020",
    "date": "2020-02-06",
-   "image": "assets/news/feb2020.png",
+   "image": "assets/news/covers/feb2020.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/02/ANAND-Interaction-February2020.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6159"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6159",
+   "imageOriginal": "assets/news/feb2020.png"
   },
   {
    "title": "VOL LXXI, NOVEMBER 2019",
    "date": "2019-11-25",
-   "image": "assets/news/nov2019.png",
+   "image": "assets/news/covers/nov2019.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/11/ANAND-Interaction-November2019.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6062"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6062",
+   "imageOriginal": "assets/news/nov2019.png"
   },
   {
    "title": "VOL LXX, JUNE 2019",
    "date": "2019-06-20",
-   "image": "assets/news/june2019.png",
+   "image": "assets/news/covers/june2019.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/06/ANAND-Interaction-June2019.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=4577"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=4577",
+   "imageOriginal": "assets/news/june2019.png"
   },
   {
    "title": "VOL LXIX, FEBRUARY 2019",
    "date": "2019-02-25",
-   "image": "assets/news/feb2019.png",
+   "image": "assets/news/covers/feb2019.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/02/ANAND-Interaction-February2019.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3850"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3850",
+   "imageOriginal": "assets/news/feb2019.png"
   },
   {
    "title": "VOL LXVIII, NOVEMBER 2018",
    "date": "2018-11-30",
-   "image": "assets/news/nov2018.png",
+   "image": "assets/news/covers/nov2018.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2018/11/ANANDInteraction-November2018.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3688"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3688",
+   "imageOriginal": "assets/news/nov2018.png"
   },
   {
    "title": "VOL LXVII, JULY 2018",
    "date": "2018-07-01",
-   "image": "assets/news/junint.png",
+   "image": "assets/news/covers/junint.jpg",
    "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2018/09/ANANDInteraction-July2018.pdf",
-   "url": "https://www.anandgroupindia.com/Interaction/?page_id=2755"
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=2755",
+   "imageOriginal": "assets/news/junint.png"
   }
  ],
  "items": [
@@ -144,32 +152,6 @@
    "pdf": null,
    "legacyUrl": null,
    "featured": false
-  },
-  {
-   "id": 44562,
-   "slug": "gabriel-india-limited-partners-with-south-koreas-hl-klemove-for-autonomous-drivi",
-   "type": "article",
-   "title": "Gabriel India Limited partners with South Korea’s HL Klemove for Autonomous Driving including ADAS and Automotive Electronics as it accelerates its transformation into a diversified mobility solution conglomerate",
-   "date": "2026-08-26",
-   "categories": [
-    "Press Release"
-   ],
-   "companies": [
-    "Gabriel India",
-    "HL Klemove"
-   ],
-   "excerpt": "Pune, August 26, 2026: Gabriel India Limited (GIL), the NSE listed flagship company of the $2.2+ billion auto components manufacturer ANAND Group, has entered into a strategic joint venture with South Korea-based HL Klemove, under which Gabriel India will become a strategic shareholder in HL…",
-   "image": "assets/news/gil-2-1024x683.jpeg",
-   "imageAlt": "Gabriel India Limited partners with South Korea’s HL Klemove for Autonomous Driving including ADAS and Automotive Electronics as it accelerates its transformation into a diversified mobility solution conglomerate",
-   "body": "<p>Pune, August 26, 2026: Gabriel India Limited (GIL), the NSE listed flagship company of the $2.2+ billion auto components manufacturer ANAND Group, has entered into a strategic joint venture with South Korea-based HL Klemove, under which Gabriel India will become a strategic shareholder in HL Klemove India Private Limited. The partnership marks a significant step in Gabriel India&#8217;s strategy to expand its presence across high-growth automotive segments and participate in the growing demand for Autonomous Driving Solutions including Advanced Driver Assistance Systems (ADAS), and Automotive Electronic Products through this joint venture. As India&#8217;s automotive industry advances toward smarter and safer mobility, Autonomous Driving and Automotive Electronics technologies are becoming increasingly important. HL Klemove is amongst a select group of companies globally with established development and manufacturing capabilities in autonomous driving technologies including ADAS and automotive electronic<br>\ntechnologies. With this joint venture company, Gabriel India will participate in this high-growth segment, enabling deeper engagement with automakers and broadening its presence in an evolving mobility landscape. Commenting on this, Mr. Jaisal Singh, Vice Chairman of ANAND who spearheads the group’s M&amp;A, said, “As a key growth engine of the ANAND Group, Gabriel India is focused on building scale, enhancing competitiveness, and broadening its presence across high-growth automotive segments. Our latest joint venture with HL Klemove represents a strategic step forward in this endeavour.”</p><p>Mrs. Anjali Singh, Executive Chairperson of ANAND Group and Gabriel India Limited, said, “Bolstering our position across critical automotive systems while expanding our participation in future-oriented mobility and automotive technology segments, this new JV for Autonomous Driving and Automotive Electronics marks an important inflection point, enabling Gabriel India to further diversify its portfolio and strengthen its participation in emerging mobility segments.” Mr. Mahendra K Goyal, Group Chief Executive Officer of ANAND and Managing Director of Gabriel India Limited, said, “Beyond unlocking new opportunities for growth, this collaboration will foster<br>\ndeeper OEM engagement, expand our participation in future mobility solutions and create enduring value for all stakeholders.”</p><p>To form the joint venture, Gabriel India Limited will acquire a 30 per cent less one share stake in HL Klemove India for US$98.44 million (approximately ₹935 crore). Gabriel India Limited will, through HL Klemove India, develop| manufacture| and sell| a range of advanced mobility solutions, including radar, front cameras, lidar, automated driving and parking control units, with embedded ADAS software, as well as automotive electronics products such as<br>\nbrake ECUs, steering ECUs, chassis control units and torque sensors.</p><p>Building a Comprehensive Mobility Platform Over the last few years, Gabriel India Limited has been steadily diversifying its portfolio through strategic joint ventures in high-growth segments such as sunroofs, lubricants, EV fluids and precision fasteners. The partnership with HL Klemove builds on this momentum, broadening Gabriel India&#8217;s participation in the rapidly evolving Autonomous Driving and Automotive Electronics space through<br>\nHL Klemove India, while enhancing its competitive position and expanding its presence in a segment central to the future of mobility.</p><p><strong>About ANAND Group:<br>\n</strong><br>\nFounded in 1961, ANAND is a US$2.2 billion+ (approximately ₹22,000 crore) conglomerate, highly acclaimed in the manufacture of world-class products and systems for the automotive industry. The group comprises 25 operating companies, including 15 joint ventures and 4 technical collaborations and has championed the idea of ‘Make in India’ since its inception 65 years ago. The group designs and manufactures technologically advanced products and solutions in ride control, motors, drive train, climate control, engine cooling, brake systems, sunroofs, sealants and adhesives, electric motors, safety products, and electric power steering, among others for India and the world.<br>\nThe Group is spread over 87 locations across India and employs more than 22,000 people.</p><p><strong>About Gabriel India:<br>\n</strong><br>\nEstablished in 1961, Gabriel India Limited is the flagship company of the ANAND Group and one of India’s most trusted names in automotive component manufacturing. With a legacy spanning over six decades, Gabriel has evolved as a market leader in ride control products, including shock<br>\nabsorbers, struts, and front forks, serving every major automotive segment &#8211; two and three-wheelers, passenger cars, commercial vehicles, and railways.<br>\nWith a footprint across 25 countries, including Belgium, the USA, Australia, the Netherlands, Latin America, and Africa, and trusted partnerships with leading OEMs, including those in the growing electric vehicle (EV) segment, Gabriel continues to be at the forefront of India’s mobility revolution.</p><p><strong>About HL Klemove:<br>\n</strong><br>\nHL Klemove is a South Korea-headquartered autonomous driving and automotive electronics solutions company with end-to-end capabilities across perception, decision and control. Its portfolio spans advanced sensing technologies including radar and cameras, high-performance computing and<br>\ncontrol units, ADAS software, as well as automotive electronic control products including braking and steering controllers. HL Klemove holds a leading position in Korea’s autonomous driving market and has a strong track record of pioneering ADAS technologies. With more than 2,700 patents and a<br>\nglobal manufacturing and R&amp;amp;D network across Korea, the United States, China, India and Mexico,</p><p>the company provides advanced mobility solutions to leading automotive OEMs globally. The company recorded approximately KRW 1.8 trillion in revenue in 2025. In India, HL Klemove India also holds a leading position in the autonomous driving sector and was the first company in the country to localize the production of both ADAS radar and smart cameras.</p>",
-   "publisher": null,
-   "externalUrl": null,
-   "pdf": null,
-   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=44562",
-   "gallery": [],
-   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/gabriel-india-limited-partners-with-south-koreas-hl-klemove-for-autonomous-driving-including-adas-and-automotive-electronics-as-it-accelerates-its-transformation-into-a-diversified-mobility-s/",
-   "featured": true,
-   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2026/08/GIL-2.jpg-1-1024x683.jpeg"
   },
   {
    "id": "gabriel-india-to-acquire-nearly-30-pc-stake-in-south-korean-firms-subsidiary-for",
@@ -522,7 +504,7 @@
    "pdf": null,
    "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20567",
    "gallery": [],
-   "featured": false,
+   "featured": true,
    "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/12/Highest-Sales-Chakan-1200x900.jpg"
   },
   {
@@ -777,31 +759,6 @@
    "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/dana-anand-india-participates-in-the-cii-national-3m-competition",
    "featured": false,
    "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/11.png"
-  },
-  {
-   "id": 20332,
-   "slug": "jodalli-plant-recognised-as-the-most-improved-facility",
-   "type": "article",
-   "title": "Jodalli plant recognised as the Most Improved Facility",
-   "date": "2022-06-08",
-   "categories": [
-    "Highlights"
-   ],
-   "companies": [
-    "Dana Anand India"
-   ],
-   "excerpt": "On World Earth Day, Dana published its Annual Sustainability and Social Responsibility Report for the year 2021 entitled ‘A Better Way, A Better World’. At the event, Team Jodhalli was appreciated and recognised for its usage of Renewable Energy (88 per cent electricity consumed from solar energy)…",
-   "image": "assets/news/10.jpg",
-   "imageAlt": "Jodalli plant recognised as the Most Improved Facility",
-   "body": "<p>On World Earth Day, Dana published its Annual Sustainability and Social Responsibility Report for the year 2021 entitled ‘A Better Way, A Better World’. At the event, Team Jodhalli was appreciated and recognised for its usage of Renewable Energy (88 per cent electricity consumed from solar energy) and was declared the ‘Most Improved Facility’.</p>",
-   "publisher": null,
-   "externalUrl": null,
-   "pdf": null,
-   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20332",
-   "gallery": [],
-   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/jodalli-plant-recognised-as-the-most-improved-facility",
-   "featured": false,
-   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/10.png"
   },
   {
    "id": 20308,

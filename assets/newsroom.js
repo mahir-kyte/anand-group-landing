@@ -34,7 +34,7 @@
     root.querySelectorAll('.rv:not(.in)').forEach(el => io.observe(el));
   };
 
-  fetch('data/newsroom.json').then(r => r.json()).then(data => {
+  fetch('data/newsroom.json', {cache: 'no-cache'}).then(r => r.json()).then(data => {
     const items = data.items;
     if (page === 'newsroom') renderIndex(data, items); else renderArticle(data, items);
     icons();
@@ -44,36 +44,68 @@
   });
 
   function renderIndex(data, items) {
-    // featured carousel (Stripe's NewsroomIndexCarousel): up to 4 items marked featured
+    // featured stories (Stripe's NewsroomStoryCarousel): up to 4 items marked featured
     const feat = items.filter(i => i.featured && i.image).slice(0, 4);
-    const car = document.getElementById('nwCar');
-    car.innerHTML = `<div class="nw-track">${feat.map((it, i) => `
-      <article class="nw-slide" aria-roledescription="slide" aria-label="${i + 1} of ${feat.length}"${i ? ' aria-hidden="true"' : ''}>
-        <div class="nw-slide-copy">
-          <div class="acc acc--cat">${esc(label(it))}</div>
-          <h2><a href="${esc(href(it))}">${esc(it.title)}</a></h2>
-          <a class="link" href="${esc(href(it))}">Read More <i data-lucide="chevron-right" class="ic"></i></a>
-        </div>
-        <a class="nw-card" href="${esc(href(it))}" tabindex="-1" aria-hidden="true"><img src="${esc(it.image)}" alt=""></a>
-      </article>`).join('')}</div>`;
-    const nav = document.getElementById('nwCnav');
-    nav.style.setProperty('--n', feat.length);
-    nav.innerHTML = feat.map((it, i) => `<button type="button" aria-label="Show story ${i + 1}: ${esc(it.title)}"></button>`).join('') + '<span class="nw-cline"></span>';
-    const track = car.querySelector('.nw-track'), line = nav.querySelector('.nw-cline'), slides = [...car.querySelectorAll('.nw-slide')];
-    let cur = 0, timer = 0;
-    const go = i => {
-      cur = (i + feat.length) % feat.length;
-      track.style.transform = `translateX(${-cur * 100}%)`;
-      line.style.transform = `translateX(${cur * 100}%)`;
-      slides.forEach((s, j) => { s.setAttribute('aria-hidden', j !== cur); s.querySelectorAll('a').forEach(a => a.tabIndex = j === cur && !a.classList.contains('nw-card') ? 0 : -1); });
+    const COLORS = ['var(--navy-2)', 'var(--royal)', 'var(--navy)', 'var(--royal)'];
+    // tightly cropped company logos (assets/news/logos/<company-slug>.png)
+    const logoOf = name => `assets/news/logos/${name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}.png`;
+    // the story's lead company: the one named first in the headline (else its first tag)
+    const lead = it => {
+      const t = it.title.toLowerCase(), key = c => c.toLowerCase().split(' ')[0];
+      return [...it.companies].sort((x, y) => ((t.indexOf(key(x)) + 1 || 999) - (t.indexOf(key(y)) + 1 || 999)))[0] || 'ANAND Group';
     };
-    const play = () => { clearInterval(timer); if (!reduce && feat.length > 1) timer = setInterval(() => go(cur + 1), 7000); };
-    nav.querySelectorAll('button').forEach((b, i) => b.addEventListener('click', () => { go(i); play(); }));
-    const hero = document.querySelector('.nw-hero');
-    hero.addEventListener('mouseenter', () => clearInterval(timer));
-    hero.addEventListener('mouseleave', play);
-    hero.addEventListener('focusin', () => clearInterval(timer));
-    go(0); play();
+    const story = document.getElementById('nwStory');
+    story.innerHTML = `
+      <div class="nw-story-card">
+        ${feat.map((it, i) => `<div class="nw-story-bg${i ? '' : ' on'}" style="--c:${COLORS[i % COLORS.length]}"><img src="${esc(it.image)}" alt=""><span class="shade"></span></div>`).join('')}
+        ${feat.map((it, i) => `
+        <a class="nw-story-slide${i ? '' : ' on'}" href="${esc(href(it))}" aria-roledescription="slide" aria-label="${i + 1} of ${feat.length}: ${esc(it.title)}"${i ? ' tabindex="-1" aria-hidden="true"' : ''}>
+          <div class="nw-story-top"><span class="nw-story-chip"><img class="nw-story-logo" src="${esc(logoOf(lead(it)))}" alt="${esc(lead(it))}"></span><i data-lucide="newspaper" class="ic"></i></div>
+          <div class="nw-story-copy">
+            <p class="nw-story-k">${esc(label(it))} · ${esc(shortDate(it.date))}</p>
+            <h2>${esc(it.title)}</h2>
+            <span class="nw-story-cta">Read Story <i data-lucide="arrow-right" class="ic"></i></span>
+          </div>
+        </a>`).join('')}
+        <div class="nw-story-wipe" aria-hidden="true"></div>
+        <div class="nw-story-arrows">
+          <button type="button" class="nw-story-btn" data-dir="-1" aria-label="Previous story"><i data-lucide="arrow-left" class="ic"></i></button>
+          <button type="button" class="nw-story-btn" data-dir="1" aria-label="Next story"><i data-lucide="arrow-right" class="ic"></i></button>
+        </div>
+      </div>`;
+    // optical sizing: wide and tall logos get the same visual area (height = sqrt(area / aspect))
+    const fit = (img, area, min, max) => { const r = img.naturalWidth / img.naturalHeight; if (!r) return; img.style.height = Math.min(max, Math.max(min, Math.sqrt(area / r))) + 'px'; img.style.maxHeight = 'none'; };
+    story.querySelectorAll('.nw-story-logo').forEach(img => {
+      const tab = false, small = innerWidth < 640, run = () => fit(img, tab ? (small ? 1400 : 3600) : (small ? 1300 : 2600), tab ? 14 : 14, tab ? (small ? 30 : 44) : (small ? 26 : 36));
+      img.complete ? run() : img.addEventListener('load', run, {once: true});
+    });
+    const card = story.querySelector('.nw-story-card'), bgs = [...story.querySelectorAll('.nw-story-bg')], slides = [...story.querySelectorAll('.nw-story-slide')];
+    const wipe = story.querySelector('.nw-story-wipe');
+    let cur = 0, timer = 0, busy = false;
+    const show = i => {
+      bgs.forEach((b, j) => b.classList.toggle('on', j === i));
+      slides.forEach((s2, j) => { s2.classList.toggle('on', j === i); s2.setAttribute('aria-hidden', j !== i); s2.tabIndex = j === i ? 0 : -1; });
+      cur = i;
+    };
+    const go = i => {
+      i = (i + feat.length) % feat.length;
+      if (i === cur || busy) return;
+      if (reduce) { show(i); return; }
+      busy = true;
+      card.style.setProperty('--wc', COLORS[i % COLORS.length]);
+      const ease = 'cubic-bezier(.7,0,0,1)';
+      wipe.animate([{transform: 'translateX(-101%)'}, {transform: 'translateX(0)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished.then(() => {
+        show(i);
+        return wipe.animate([{transform: 'translateX(0)'}, {transform: 'translateX(101%)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished;
+      }).then(() => { busy = false; });
+    };
+    const play = () => { clearInterval(timer); if (!reduce && feat.length > 1) timer = setInterval(() => go(cur + 1), 8000); };
+    story.querySelectorAll('.nw-story-btn').forEach(b => b.addEventListener('click', e => { e.preventDefault(); go(cur + +b.dataset.dir); play(); }));
+    story.addEventListener('mouseenter', () => clearInterval(timer));
+    story.addEventListener('mouseleave', play);
+    story.addEventListener('focusin', () => clearInterval(timer));
+    story.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { go(cur + (e.key === 'ArrowRight' ? 1 : -1)); play(); } });
+    play();
 
     // media contact card
     const mc = data.mediaContact;
@@ -82,10 +114,12 @@
       <div><h4>Corporate communications:</h4><p>${mc.phone.map(esc).join('<br>')}</p></div>
       <div><h4>${esc(mc.company)}</h4><p>${esc(mc.address)}</p></div>`;
 
-    // news list: every item, filterable by category, company and year (the old site's three filters)
-    const cats = ['All', ...data.taxonomy.categories.filter(c => c !== 'Media Coverage' && items.some(i => i.categories.includes(c))), 'Media Coverage'];
-    const cos = [...new Set(items.flatMap(i => i.companies))].sort((a, b) => a.localeCompare(b));
-    const years = [...new Set(items.map(i => (i.date || '').slice(0, 4)).filter(Boolean))].sort().reverse();
+    // news list: our own articles only (items that link out to other sites stay in Media Coverage),
+    // filterable by category, company and year (the old site's three filters)
+    const news = items.filter(i => !isExt(i));
+    const cats = ['All', ...data.taxonomy.categories.filter(c => c !== 'Media Coverage' && news.some(i => i.categories.includes(c)))];
+    const cos = [...new Set(news.flatMap(i => i.companies))].sort((a, b) => a.localeCompare(b));
+    const years = [...new Set(news.map(i => (i.date || '').slice(0, 4)).filter(Boolean))].sort().reverse();
     const f = document.getElementById('nwFilters');
     f.innerHTML = cats.map(c => `<button type="button" class="nw-chip" data-cat="${esc(c)}" aria-pressed="${c === 'All'}">${esc(c)}</button>`).join('') +
       '<span class="sp"></span>' +
@@ -94,7 +128,7 @@
     const state = {cat: 'All', co: '', yr: '', shown: 8};
     const rows = document.getElementById('nwRows'), count = document.getElementById('nwCount'), more = document.getElementById('nwMore');
     const draw = () => {
-      const list = items.filter(i => (state.cat === 'All' || (state.cat === 'Media Coverage' ? isExt(i) : i.categories.includes(state.cat))) &&
+      const list = news.filter(i => (state.cat === 'All' || i.categories.includes(state.cat)) &&
         (!state.co || i.companies.includes(state.co)) && (!state.yr || (i.date || '').startsWith(state.yr)));
       rows.innerHTML = list.slice(0, state.shown).map(row).join('') || '<p class="nw-empty">No stories match these filters.</p>';
       count.textContent = list.length ? `Showing ${Math.min(state.shown, list.length)} of ${list.length}` : '';
@@ -109,7 +143,6 @@
     });
     f.addEventListener('change', e => { state[e.target.id === 'nwCo' ? 'co' : 'yr'] = e.target.value; state.shown = 8; draw(); });
     more.addEventListener('click', () => { state.shown += 8; draw(); });
-    document.querySelectorAll('[data-filter]').forEach(a => a.addEventListener('click', () => f.querySelector(`.nw-chip[data-cat="${a.dataset.filter}"]`)?.click()));
     draw();
 
     // media coverage: the newest story as a large navy card, then the next six as cards
@@ -133,7 +166,13 @@
     // newsletter issues
     document.getElementById('nwIssues').innerHTML = data.newsletters.map(n => `
       <div class="nw-issue rv">
-        <a class="im" href="${esc(n.pdf || n.url)}" target="_blank" rel="noopener"><img src="${esc(n.image)}" alt="${esc(n.title)} cover" loading="lazy"></a>
+        <a class="nw-shelf" href="${esc(n.pdf || n.url)}" target="_blank" rel="noopener" aria-label="${esc(n.title)} (PDF)">
+          <span class="nw-book"><span class="nw-book-3d">
+            <span class="nw-book-face"><img src="${esc(n.image)}" alt="" loading="lazy"><span class="nw-book-bind"></span></span>
+            <span class="nw-book-pages" aria-hidden="true"></span>
+            <span class="nw-book-back" aria-hidden="true"></span>
+          </span></span>
+        </a>
         <h4>${esc(n.title.replace(/^VOL\s+/i, 'Vol. ').replace(/\b([A-Z])([A-Z]{2,})\b(?=\s+\d{4})/, (m, f, r) => f + r.toLowerCase()))}</h4>
         <time datetime="${esc(n.date)}">${esc(fmtDate(n.date))}</time>
         <div class="links">${n.pdf ? `<a class="link" href="${esc(n.pdf)}" target="_blank" rel="noopener">Download PDF <i data-lucide="download" class="ic"></i></a>` : ''}</div>
@@ -222,6 +261,6 @@
   // related: same companies first, then same category, then newest
   function related(it, items) {
     const score = x => x.companies.filter(c => it.companies.includes(c)).length * 2 + (x.categories.some(c => it.categories.includes(c)) ? 1 : 0);
-    return items.filter(x => x.slug !== it.slug).map(x => [score(x), x]).sort((a, b) => b[0] - a[0] || (b[1].date || '').localeCompare(a[1].date || '')).slice(0, 3).map(x => x[1]);
+    return items.filter(x => x.slug !== it.slug && !isExt(x)).map(x => [score(x), x]).sort((a, b) => b[0] - a[0] || (b[1].date || '').localeCompare(a[1].date || '')).slice(0, 3).map(x => x[1]);
   }
 })();
