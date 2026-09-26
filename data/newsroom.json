@@ -1,0 +1,911 @@
+{
+ "_about": "Newsroom CMS feed for the ANAND design reference: a representative sample migrated from anandgroupindia.com on 26 Sep 2026 (20 full articles from Latest at ANAND across every category, the 12 newest media-coverage links, the 8 newest newsletters). On the live site this comes from WordPress (posts + ACF). Images are self-hosted in assets/news/ (original URLs kept in imageSource); PDFs and external links still point at the original hosts.",
+ "fields": {
+  "id": "Old WordPress article id (arid) for migrated articles; slug otherwise",
+  "slug": "URL slug: newsroom-article.html?slug=<slug> (on the live site /newsroom/news/<slug>/)",
+  "type": "article (full page on this site) | coverage (links out to the publisher or a PDF)",
+  "title": "Headline, as published",
+  "date": "Publish date, ISO",
+  "categories": "Achievement | Celebration | Corporate Announcements | Events | Highlights | Press Release | Media Coverage",
+  "companies": "Group companies the item is about. In this sample they are derived from company names in the text (the old company_belongs_to field was not migrated); confirm during the real migration",
+  "excerpt": "Listing summary",
+  "image": "Hero image (old featured image or first inline image), self-hosted in assets/news/",
+  "imageAlt": "Alt text",
+  "gallery": "Other inline images from the article",
+  "body": "Cleaned article HTML (p, strong, em, lists, links, headings, images)",
+  "publisher": "Media coverage: the publication",
+  "externalUrl": "Media coverage: link to the original article",
+  "pdf": "Attached PDF (scans of older coverage, releases)",
+  "legacyUrl": "Old URL, for 301 redirects",
+  "legacyPermalink": "Old WordPress permalink, for 301 redirects",
+  "featured": "Shown in the newsroom hero carousel (max 4)",
+  "imageSource": "Original URL of the image on anandgroupindia.com"
+ },
+ "taxonomy": {
+  "categories": [
+   "Achievement",
+   "Celebration",
+   "Corporate Announcements",
+   "Events",
+   "Highlights",
+   "Press Release",
+   "Media Coverage"
+  ],
+  "companies": []
+ },
+ "mediaContact": {
+  "name": "ANAND Group Corporate Communications",
+  "company": "ANAND Automotive Limited",
+  "address": "1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016",
+  "phone": [
+   "+91-11-26564542",
+   "+91-11-26564666"
+  ],
+  "email": "group.comms@anandgroupindia.com"
+ },
+ "mediaKit": [
+  {
+   "title": "Group Presentation",
+   "note": "September 2026",
+   "url": "https://www.anandgroupindia.com/wp-content/uploads/2017/11/ANAND-Group-Presentation-September-2026.pdf",
+   "image": "assets/news/t-companypresenation.png"
+  },
+  {
+   "title": "Brand Guidelines",
+   "note": "Logo and colour guide",
+   "url": "https://www.anandgroupindia.com/wp-content/uploads/2017/11/ANAND_BrandGuideline_Colour-guide.pdf",
+   "image": "assets/news/t-brandguidline-1-1.png"
+  },
+  {
+   "title": "Gallery Downloads",
+   "note": "Photos of plants, people and events",
+   "url": "https://www.anandgroupindia.com/newsroom-media/media-kit/gallery-downloads/",
+   "image": "assets/news/t-gallerydownload-1.jpg"
+  }
+ ],
+ "newsletters": [
+  {
+   "title": "VOL LXXIV, NOVEMBER 2020",
+   "date": "2020-12-07",
+   "image": "assets/news/interaction-page-thumb.jpg",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/12/ANAND-Interaction-Nov2020.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction"
+  },
+  {
+   "title": "VOL LXXIII, JUNE 2020",
+   "date": "2020-06-30",
+   "image": "assets/news/jun2020new-1.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/06/ANAND-Interaction-June2020.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=7067"
+  },
+  {
+   "title": "VOL LXXII, FEBRUARY 2020",
+   "date": "2020-02-06",
+   "image": "assets/news/feb2020.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2020/02/ANAND-Interaction-February2020.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6159"
+  },
+  {
+   "title": "VOL LXXI, NOVEMBER 2019",
+   "date": "2019-11-25",
+   "image": "assets/news/nov2019.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/11/ANAND-Interaction-November2019.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=6062"
+  },
+  {
+   "title": "VOL LXX, JUNE 2019",
+   "date": "2019-06-20",
+   "image": "assets/news/june2019.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/06/ANAND-Interaction-June2019.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=4577"
+  },
+  {
+   "title": "VOL LXIX, FEBRUARY 2019",
+   "date": "2019-02-25",
+   "image": "assets/news/feb2019.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2019/02/ANAND-Interaction-February2019.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3850"
+  },
+  {
+   "title": "VOL LXVIII, NOVEMBER 2018",
+   "date": "2018-11-30",
+   "image": "assets/news/nov2018.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2018/11/ANANDInteraction-November2018.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=3688"
+  },
+  {
+   "title": "VOL LXVII, JULY 2018",
+   "date": "2018-07-01",
+   "image": "assets/news/junint.png",
+   "pdf": "https://www.anandgroupindia.com/wp-content/uploads/2018/09/ANANDInteraction-July2018.pdf",
+   "url": "https://www.anandgroupindia.com/Interaction/?page_id=2755"
+  }
+ ],
+ "items": [
+  {
+   "id": "gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-ve",
+   "slug": "gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-ve",
+   "type": "coverage",
+   "title": "Gabriel India joins hands with South Korea’s HL Klemove – what’s inside the joint venture",
+   "date": "2026-08-27",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "Gabriel India",
+    "HL Klemove"
+   ],
+   "excerpt": "Gabriel India Ltd has signed a memorandum of understanding (MoU) with South Korean automotive technology company HL Klemove to tap the growing market for autonomous driving and automotive electronics in India. The partnership will focus on technologies such as Advanced Driver Assistance Systems…",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "Mint",
+   "externalUrl": "https://www.livemint.com/auto-news/autonomous-driving-technology-gabriel-india-joins-hands-with-south-koreas-hl-klemove-whats-inside-the-joint-venture-11787828253279.html",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": 44562,
+   "slug": "gabriel-india-limited-partners-with-south-koreas-hl-klemove-for-autonomous-drivi",
+   "type": "article",
+   "title": "Gabriel India Limited partners with South Korea’s HL Klemove for Autonomous Driving including ADAS and Automotive Electronics as it accelerates its transformation into a diversified mobility solution conglomerate",
+   "date": "2026-08-26",
+   "categories": [
+    "Press Release"
+   ],
+   "companies": [
+    "Gabriel India",
+    "HL Klemove"
+   ],
+   "excerpt": "Pune, August 26, 2026: Gabriel India Limited (GIL), the NSE listed flagship company of the $2.2+ billion auto components manufacturer ANAND Group, has entered into a strategic joint venture with South Korea-based HL Klemove, under which Gabriel India will become a strategic shareholder in HL…",
+   "image": "assets/news/gil-2-1024x683.jpeg",
+   "imageAlt": "Gabriel India Limited partners with South Korea’s HL Klemove for Autonomous Driving including ADAS and Automotive Electronics as it accelerates its transformation into a diversified mobility solution conglomerate",
+   "body": "<p>Pune, August 26, 2026: Gabriel India Limited (GIL), the NSE listed flagship company of the $2.2+ billion auto components manufacturer ANAND Group, has entered into a strategic joint venture with South Korea-based HL Klemove, under which Gabriel India will become a strategic shareholder in HL Klemove India Private Limited. The partnership marks a significant step in Gabriel India&#8217;s strategy to expand its presence across high-growth automotive segments and participate in the growing demand for Autonomous Driving Solutions including Advanced Driver Assistance Systems (ADAS), and Automotive Electronic Products through this joint venture. As India&#8217;s automotive industry advances toward smarter and safer mobility, Autonomous Driving and Automotive Electronics technologies are becoming increasingly important. HL Klemove is amongst a select group of companies globally with established development and manufacturing capabilities in autonomous driving technologies including ADAS and automotive electronic<br>\ntechnologies. With this joint venture company, Gabriel India will participate in this high-growth segment, enabling deeper engagement with automakers and broadening its presence in an evolving mobility landscape. Commenting on this, Mr. Jaisal Singh, Vice Chairman of ANAND who spearheads the group’s M&amp;A, said, “As a key growth engine of the ANAND Group, Gabriel India is focused on building scale, enhancing competitiveness, and broadening its presence across high-growth automotive segments. Our latest joint venture with HL Klemove represents a strategic step forward in this endeavour.”</p><p>Mrs. Anjali Singh, Executive Chairperson of ANAND Group and Gabriel India Limited, said, “Bolstering our position across critical automotive systems while expanding our participation in future-oriented mobility and automotive technology segments, this new JV for Autonomous Driving and Automotive Electronics marks an important inflection point, enabling Gabriel India to further diversify its portfolio and strengthen its participation in emerging mobility segments.” Mr. Mahendra K Goyal, Group Chief Executive Officer of ANAND and Managing Director of Gabriel India Limited, said, “Beyond unlocking new opportunities for growth, this collaboration will foster<br>\ndeeper OEM engagement, expand our participation in future mobility solutions and create enduring value for all stakeholders.”</p><p>To form the joint venture, Gabriel India Limited will acquire a 30 per cent less one share stake in HL Klemove India for US$98.44 million (approximately ₹935 crore). Gabriel India Limited will, through HL Klemove India, develop| manufacture| and sell| a range of advanced mobility solutions, including radar, front cameras, lidar, automated driving and parking control units, with embedded ADAS software, as well as automotive electronics products such as<br>\nbrake ECUs, steering ECUs, chassis control units and torque sensors.</p><p>Building a Comprehensive Mobility Platform Over the last few years, Gabriel India Limited has been steadily diversifying its portfolio through strategic joint ventures in high-growth segments such as sunroofs, lubricants, EV fluids and precision fasteners. The partnership with HL Klemove builds on this momentum, broadening Gabriel India&#8217;s participation in the rapidly evolving Autonomous Driving and Automotive Electronics space through<br>\nHL Klemove India, while enhancing its competitive position and expanding its presence in a segment central to the future of mobility.</p><p><strong>About ANAND Group:<br>\n</strong><br>\nFounded in 1961, ANAND is a US$2.2 billion+ (approximately ₹22,000 crore) conglomerate, highly acclaimed in the manufacture of world-class products and systems for the automotive industry. The group comprises 25 operating companies, including 15 joint ventures and 4 technical collaborations and has championed the idea of ‘Make in India’ since its inception 65 years ago. The group designs and manufactures technologically advanced products and solutions in ride control, motors, drive train, climate control, engine cooling, brake systems, sunroofs, sealants and adhesives, electric motors, safety products, and electric power steering, among others for India and the world.<br>\nThe Group is spread over 87 locations across India and employs more than 22,000 people.</p><p><strong>About Gabriel India:<br>\n</strong><br>\nEstablished in 1961, Gabriel India Limited is the flagship company of the ANAND Group and one of India’s most trusted names in automotive component manufacturing. With a legacy spanning over six decades, Gabriel has evolved as a market leader in ride control products, including shock<br>\nabsorbers, struts, and front forks, serving every major automotive segment &#8211; two and three-wheelers, passenger cars, commercial vehicles, and railways.<br>\nWith a footprint across 25 countries, including Belgium, the USA, Australia, the Netherlands, Latin America, and Africa, and trusted partnerships with leading OEMs, including those in the growing electric vehicle (EV) segment, Gabriel continues to be at the forefront of India’s mobility revolution.</p><p><strong>About HL Klemove:<br>\n</strong><br>\nHL Klemove is a South Korea-headquartered autonomous driving and automotive electronics solutions company with end-to-end capabilities across perception, decision and control. Its portfolio spans advanced sensing technologies including radar and cameras, high-performance computing and<br>\ncontrol units, ADAS software, as well as automotive electronic control products including braking and steering controllers. HL Klemove holds a leading position in Korea’s autonomous driving market and has a strong track record of pioneering ADAS technologies. With more than 2,700 patents and a<br>\nglobal manufacturing and R&amp;amp;D network across Korea, the United States, China, India and Mexico,</p><p>the company provides advanced mobility solutions to leading automotive OEMs globally. The company recorded approximately KRW 1.8 trillion in revenue in 2025. In India, HL Klemove India also holds a leading position in the autonomous driving sector and was the first company in the country to localize the production of both ADAS radar and smart cameras.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=44562",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/gabriel-india-limited-partners-with-south-koreas-hl-klemove-for-autonomous-driving-including-adas-and-automotive-electronics-as-it-accelerates-its-transformation-into-a-diversified-mobility-s/",
+   "featured": true,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2026/08/GIL-2.jpg-1-1024x683.jpeg"
+  },
+  {
+   "id": "gabriel-india-to-acquire-nearly-30-pc-stake-in-south-korean-firms-subsidiary-for",
+   "slug": "gabriel-india-to-acquire-nearly-30-pc-stake-in-south-korean-firms-subsidiary-for",
+   "type": "coverage",
+   "title": "Gabriel India to acquire nearly 30 pc stake in South Korean firm’s subsidiary for USD 98.44 mn",
+   "date": "2026-08-26",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "Gabriel India",
+    "HL Klemove"
+   ],
+   "excerpt": "Automotive components maker ANAND Group's flagship Gabriel India Ltd (GIL) on Wednesday said it will acquire a 30 per cent less one share stake in the Indian subsidiary of the South Korean company HL Klemove for USD 98.44 million (approximately Rs 935 crore).",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "PTI",
+   "externalUrl": "https://www.ptinews.com/detail/business/Gabriel-India-to-acquire-nearly-30-pc-stake-in-South-Korean-firm-s-subsidiary-for-USD-98-44-mn/4007262",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": "gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving",
+   "slug": "gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving",
+   "type": "coverage",
+   "title": "Gabriel India, South Korea’s HL Klemove form JV for autonomous driving",
+   "date": "2026-08-26",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "Gabriel India",
+    "HL Klemove"
+   ],
+   "excerpt": "Gabriel India Limited (GIL), the NSE listed flagship company of the $2.2+ billion auto components manufacturer ANAND Group, has entered into a strategic joint venture with South Korea-based HL Klemove to manufacture and sell autonomous driving solutions in the country.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "The Economic Times",
+   "externalUrl": "https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms?from=mdr",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/anand-in-media/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/",
+   "featured": false
+  },
+  {
+   "id": "cii-northern-region-appoints-anjali-singh-as-chairperson-for-202526",
+   "slug": "cii-northern-region-appoints-anjali-singh-as-chairperson-for-202526",
+   "type": "coverage",
+   "title": "CII Northern Region Appoints Anjali Singh as Chairperson for 2025–26",
+   "date": "2025-07-30",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANAND Group"
+   ],
+   "excerpt": "CII Northern Region Appoints Anjali Singh as Chairperson for 2025–26 Following the passing of Sunjay Kapur, ANAND Group’s Anjali Singh will lead industry initiatives across Northern India, focusing on regional reforms, ESG adoption, skill development, and SME digital transformation.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "Autocar Professional",
+   "externalUrl": "https://www.autocarpro.in/news/fada-urges-rbi-for-reforms-to-improve-ease-of-doing-business-in-auto-retail-sector-127721",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/anand-in-media/cii-northern-region-appoints-anjali-singh-as-chairperson-for-2025-26/",
+   "featured": false
+  },
+  {
+   "id": 22141,
+   "slug": "press-release-inalfa-gabriel-sunroof-systems-plans-to-expand-beyond-chennai-to-m",
+   "type": "article",
+   "title": "Press Release – Inalfa Gabriel Sunroof Systems plans to expand beyond Chennai to meet strong sunroof demand",
+   "date": "2024-12-23",
+   "categories": [
+    "Press Release"
+   ],
+   "companies": [
+    "Gabriel India",
+    "Inalfa Roof Systems",
+    "ANEVOLVE"
+   ],
+   "excerpt": "∙ IGSS plans to expand with new facilities in Western and Northern auto hubs in India ∙ The planned expansion aims to support key customers Hyundai Motor India and Kia India while broadening IGSS’s customer base",
+   "image": "assets/news/1.-mrs.-anjali-singh-executive-chairperson-of-anand-group-scaled.jpg",
+   "imageAlt": "Press Release – Inalfa Gabriel Sunroof Systems plans to expand beyond Chennai to meet strong sunroof demand",
+   "body": "<p><strong>Inalfa Gabriel Sunroof Systems plans to expand beyond Chennai to meet  strong sunroof demand </strong></p><p>∙ IGSS plans to expand with new facilities in Western and Northern auto hubs in India ∙ The planned expansion aims to support key customers Hyundai Motor India and Kia India  while broadening IGSS’s customer base </p><p><strong>Chennai, Tamil Nadu,</strong> December 19, 2024: Inalfa Gabriel Sunroof Systems Private Limited (IGSS), a partnership between Inalfa Roof Systems and Gabriel India Limited, the listed flagship of the $2.2-billion ANAND Group, plans to set up new plants in India’s Western and Northern auto hubs to meet the rising demand for sunroofs.</p><p>The announcement was made this week by the ANAND Executive Chairperson, <strong>Mrs. Anjali Singh</strong>, at the first-year anniversary celebration of IGSS’s state-of-the-art facility on the outskirts of Chennai, which is reaching full capacity.</p><p>Speaking on the occasion, Mrs. Singh, said: “To meet the rising demand for sunroofs due to the greater premiumisation of the auto sector, IGSS is looking to expand beyond Chennai to other auto hubs, namely the West and North.<br>\nWe plan to be closer to our valued anchor customers across the country and cater to their needs more efficiently via this planned expansion.”</p><p><strong>Mr. Jagdish Kumar, Chairman, IGSS, and Group CFO, ANAND Group, said:</strong> “Our first facility in Chennai is nearly operating at its full capacity, delivering high-quality sunroofs to our respected anchor customers Hyundai Motor India and Kia India. Notably, the plant has produced 130,000 sunroofs in just the 11 months of 2024.”<br>\nThe sunroof market in India is experiencing robust growth, driven by increasing customer demand for premiumisation and SUVs, as well as the growing trend of driving for holidays on a significantly improved highway network. IGSS initially chose Tamil Nadu for the state’s investor-friendly policies.<br>\nThe growth in the sunroof segment is enabled by the rising popularity of panoramic sunroofs, which offer expansive views and a sense of openness. Technological advancements, such as smart glass technology and electrically operated systems, are also contributing to the market&#8217;s expansion.<br>Mr. Kumar, speaking on the occasion, added: “With the sunroof market set to expand by 40% by 2029, IGSS is well-positioned to capitalise on the growing demand. The plan for new plants shows the commitment we have to continue to be the leading player in the sunroof sector.”</p><img src=\"assets/news/2.-mr.-jagdish-kumar-chairman-of-inalfa-gabriel-sunroof-systems-and-group-cfo-of-anand-scaled.jpg\" alt=\"\"><img src=\"assets/news/3.-mr.-georges-andary-ceo-of-inalfa-roof-systems-scaled.jpg\" alt=\"\"><p><strong>Mr. Georges Andary, CEO, Inalfa Roof Systems</strong>, who was visiting the plant for the first-year celebrations, said: “We believe there can be no potential global growth strategy in the automotive business without India at its core. India is one of the largest, most dynamic, and fast-growing automotive markets in the world. Inalfa, in collaboration with Gabriel India, sees major potential for further growth in the sunroof segment.”</p><p><strong>About IGSS</strong><br>\nInalfa Gabriel Sunroof Systems Private Limited is a collaboration between Gabriel India Limited, a flagship company of the ANAND Group, and Netherlands-based Inalfa Roof Systems, a global leader in sunroof technology. Operating its first plant near Chennai, Tamil Nadu, set up over a year ago, IGSS manufactures sunroof systems for India’s fast-growing passenger vehicle market, catering to leading OEMs.</p><p><strong>About ANAND Group</strong></p><p>ANAND is a $2.2-billion Group that has a legacy of over six decades, with over 20,000 employees and is a leader in manufacturing world-class products and systems for the automotive industry, with a focus on sustainable mobility. The Group has 24 companies, a number of them are JVs with 10 international partners, ranging from Europe to the US to Asia. It has also formed four technical collaborations. Complementing the Group is ANEVOLVE, a cleantech platform for mobility and beyond.</p><p>Gabriel India is the flagship of the ANAND Group. From being a single-product company in 1961, Gabriel India has transformed itself to become the most-trusted ride control products brand in India. Gabriel is also the leading manufacturer of shock absorbers for new generation vehicles in the 2 &amp; 3-wheeler segment in India, including EVs.</p><p><strong>About Inalfa Roof Systems </strong></p><p>Inalfa Roof Systems is a global automotive roof systems manufacturer, based in Venray, The Netherlands, with factories and development centres in Europe, Northern America, and Asia. Inalfa delivers roof systems to almost every major car and truck manufacturer in the world. Inalfa Roof Systems is also an engineering-driven company, specialised in the design, development, and manufacturing of innovative solutions on a global scale, meeting the highest quality standards. At Inalfa, the top priority is ensuring a positive customer and end user experience. For more information, please visit.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=22141",
+   "gallery": [
+    "assets/news/2.-mr.-jagdish-kumar-chairman-of-inalfa-gabriel-sunroof-systems-and-group-cfo-of-anand-scaled.jpg",
+    "assets/news/3.-mr.-georges-andary-ceo-of-inalfa-roof-systems-scaled.jpg"
+   ],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/press-release-inalfa-gabriel-sunroof-systems-plans-to-expand-beyond-chennai-to-meet-strong-sunroof-demand/",
+   "featured": true,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2024/12/1.-Mrs.-Anjali-Singh-Executive-Chairperson-of-ANAND-Group-scaled.jpg"
+  },
+  {
+   "id": 21468,
+   "slug": "customer-sustainability-award-to-dana-anand",
+   "type": "article",
+   "title": "Customer Sustainability Award to Dana Anand",
+   "date": "2024-03-15",
+   "categories": [
+    "Achievement",
+    "Highlights"
+   ],
+   "companies": [
+    "Dana Anand India"
+   ],
+   "excerpt": "Dana Anand India (P) Ltd. (DAIPL) is recognized with prestigious “Sustainability Award” for outstanding contribution for year 23 under Mahindra Supplier Excellence Awards during annual Mahindra & Mahindra annual supplier meet in February 2024..",
+   "image": "assets/news/whatsapp-image-2024-03-15-at-14.50.53-1200x798.jpeg",
+   "imageAlt": "Customer Sustainability Award to Dana Anand",
+   "body": "<p>Dana Anand India (P) Ltd. (DAIPL) is recognized with prestigious “Sustainability Award” for outstanding contribution for year 23 under Mahindra Supplier Excellence Awards during annual Mahindra &#038; Mahindra annual supplier meet in February 2024..</p><p>Mahindra and Mahindra (M&#038;M) is one of the key customers to Dana Anand India Pvt. Ltd. (DAIPL). M&#038;M conducts annual supplier meet every year in which supplier representatives are participating.</p><p>DAIPL is driving various projects under Environmental Sustainability related to Energy and GHG, Water and Waste Management.</p><p>As a part of Dana’s sustainability targets, DAIPL’s major operations have solar roof top energy generation plants of 1.5 Mw capacity installed. Locations at Chakan and Jodalli are also using offsite generate solar energy. This has helped to offset the carbon emissions.<br>\nApart from the energy and GHG, DAIPL has also implemented rainwater recharge projects at various locations.</p><p>This is one of the prestigious achievements for DAIPL as efforts of sustainability are recognized by esteemed customers like Mahindra and Mahindra.</p><p>In M&#038;M’s annual supplier meet about 450 suppliers participated and DAIPL is awarded for sustainability among all suppliers.</p><p>The award was received by DAIPL Chairperson Mrs. Anjali Singh along with Mr. Mahendra Goyal – Managing Director and Mr. Kaushik Trivedi – Head Business Development – DAIPL</p><p>DAIPL will continue its journey on sustainability to contribute to achieve Dana’s sustainability targets of GHG reduction.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=21468",
+   "gallery": [],
+   "featured": true,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2024/03/WhatsApp-Image-2024-03-15-at-14.50.53-1200x798.jpeg"
+  },
+  {
+   "id": "auto-expo-2023-anand-group-unfolds-new-cleantech-platform-anevolve-for-e-mobity",
+   "slug": "auto-expo-2023-anand-group-unfolds-new-cleantech-platform-anevolve-for-e-mobity",
+   "type": "coverage",
+   "title": "Auto Expo 2023: ANAND GROUP unfolds new cleantech platform ‘ANEVOLVE’ for e-mobity",
+   "date": "2023-01-16",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "ETAuto",
+   "externalUrl": "https://auto.economictimes.indiatimes.com/news/auto-components/auto-expo-2023-anand-group-unfolds-new-cleantech-platform-anevolve-for-e-mobility/96962472",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": "anand-group-launches-anevolve-a-cleantech-platform-at-auto-expo-2023",
+   "slug": "anand-group-launches-anevolve-a-cleantech-platform-at-auto-expo-2023",
+   "type": "coverage",
+   "title": "ANAND GROUP Launches ANEVOLVE, A Cleantech Platform At Auto Expo 2023",
+   "date": "2023-01-16",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "Anjali and Jaisal Singh, Chairperson and Vice Chairman respectively of ANAND GROUP, India’s leading auto component and systems Group, announced on Thursday their new cleantech platform ‘ANEVOLVE’ to create, design, and manufacture green technology solutions for electric mobility, as well as for other sectors.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "EMobility+",
+   "externalUrl": "https://emobilityplus.com/2023/01/16/anand-group-launches-anevolve-a-cleantech-platform-at-auto-expo-2023/",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": "anand-group-launches-anevolve-cleantech-platform-for-green-mobility",
+   "slug": "anand-group-launches-anevolve-cleantech-platform-for-green-mobility",
+   "type": "coverage",
+   "title": "ANAND GROUP launches ANEVOLVE cleantech platform for green mobility",
+   "date": "2023-01-15",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "Anjali and Jaisal Singh, Chairman and Vice Chairman respectively of ANAND GROUP, India’s leading auto component and systems Group, announced on Thursday their new cleantech platform ‘ANEVOLVE’ to create, design, and manufacture green technology solutions for electric mobility, as well as for other sectors.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "BusCoach India",
+   "externalUrl": "https://buscoachindia.com/anand-group-launches-anevolve-cleantech-platform-for-green-mobility/",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": "auto-expo-2023-in-conversation-with-sunil-kaul-president-and-cto-anand-group",
+   "slug": "auto-expo-2023-in-conversation-with-sunil-kaul-president-and-cto-anand-group",
+   "type": "coverage",
+   "title": "Auto Expo 2023 : In conversation with Sunil Kaul, President and CTO, ANAND GROUP",
+   "date": "2023-01-13",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANAND Group"
+   ],
+   "excerpt": "Tier 1 major ANAND GROUP forms a new business group that exclusively focuses on cleantech. It aims to generate INR 3,500 crore in 3 years from the new initiative. Sunil Kaul, President and CTO, ANAND GROUP, spells out the strategy and goals in detail, in this interview with ETAuto.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "ETAuto",
+   "externalUrl": "https://auto.economictimes.indiatimes.com/videos/auto-expo-2023-in-conversation-with-sunil-kaul-president-and-cto-anand-group/96973762",
+   "pdf": null,
+   "legacyUrl": null,
+   "featured": false
+  },
+  {
+   "id": "anand-forms-new-sustainability-company-will-invest-inr-1-000-crore",
+   "slug": "anand-forms-new-sustainability-company-will-invest-inr-1-000-crore",
+   "type": "coverage",
+   "title": "ANAND Forms New Sustainability Company, Will Invest INR 1,000 Crore",
+   "date": "2023-01-13",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "In a bid to create, design, and manufacture green technology solutions for electric mobility and other sectors, Anand Group’s Chairman Anjali Singh and Vice Chairman Jaisal Singh on Thursday announced their new cleantech platform ‘ANEVOLVE.’",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "Mobility Outlook",
+   "externalUrl": "https://www.mobilityoutlook.com/news/anand-forms-new-sustainability-company-will-invest-inr-1000-crore/",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anand-forms-new-sustainability-company-will-invest-inr-1000-crore",
+   "featured": false
+  },
+  {
+   "id": "anevolve-a-platform-for-green-tech-and-clean-mobility-solutions-announced-by-anj",
+   "slug": "anevolve-a-platform-for-green-tech-and-clean-mobility-solutions-announced-by-anj",
+   "type": "coverage",
+   "title": "‘ANEVOLVE’, a platform for green tech and clean mobility solutions, announced by Anjali and Jaisal Singh to complement the ANAND GROUP",
+   "date": "2023-01-13",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "ANEVOLVE aims for a turnover of at least ₹3,500-crore (US$ 423 million) within the next five years Announces three new cleantech partnerships with Japanese, Israeli, and British firms as part of the ANEVOLVE launch ANEVOLVE aims to invest ₹1,000 crore (US$ 120 million) in the short term as part of…",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "APN News",
+   "externalUrl": "https://www.apnnews.com/anevolve-a-platform-for-green-tech-and-clean-mobility-solutions-announced-by-anjali-and-jaisal-singh-to-complement-the-anand-group/",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anevolve-a-platform-for-green-tech-and-clean-mobility-solutions-announced-by-anjali-and-jaisal-singh-to-complement-the-anand-group",
+   "featured": false
+  },
+  {
+   "id": "anjali-and-jaisal-singh-announce-anevolve",
+   "slug": "anjali-and-jaisal-singh-announce-anevolve",
+   "type": "coverage",
+   "title": "Anjali and Jaisal Singh announce ‘ANEVOLVE’",
+   "date": "2023-01-13",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "Anjali and Jaisal Singh, Chairman and Vice Chairman respectively of ANAND, India’s leading auto component and systems Group, announced on Thursday their new cleantech platform ‘ANEVOLVE’ to create, design, and manufacture green technology solutions for electric mobility, as well as for other sectors.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "Adgully",
+   "externalUrl": "https://www.adgully.com/anjali-and-jaisal-singh-announce-anevolve-127290.html",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anjali-and-jaisal-singh-announce-anevolve",
+   "featured": false
+  },
+  {
+   "id": "anand-group-launches-cleantech-platform-anevolve",
+   "slug": "anand-group-launches-cleantech-platform-anevolve",
+   "type": "coverage",
+   "title": "ANAND GROUP launches cleantech platform ‘ANEVOLVE’",
+   "date": "2023-01-13",
+   "categories": [
+    "Media Coverage"
+   ],
+   "companies": [
+    "ANEVOLVE"
+   ],
+   "excerpt": "Anjali and Jaisal Singh, Chairman and Vice Chairman respectively of ANAND GROUP, India’s leading auto component and systems Group, announced on Thursday their new cleantech platform ‘ANEVOLVE’ to create, design, and manufacture green technology solutions for electric mobility, as well as for other sectors.",
+   "image": null,
+   "imageAlt": "",
+   "body": null,
+   "publisher": "MediaBrief",
+   "externalUrl": "https://mediabrief.com/anand-group-launches-cleantech-platform-anevolve/",
+   "pdf": null,
+   "legacyUrl": null,
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anand-group-launches-cleantech-platform-anevolve",
+   "featured": false
+  },
+  {
+   "id": 20574,
+   "slug": "ciis-5th-next-gen-e-mobility-summit-22",
+   "type": "article",
+   "title": "CII’s 5th next-gen e-mobility summit ’22",
+   "date": "2022-12-13",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "ANAND Group"
+   ],
+   "excerpt": "EVs can disrupt the mobility ecosystem and redefine urbanization for good, ANAND's Executive Chairperson Anjali Singh said at CII's 5th next-gen e-mobility summit '22",
+   "image": "assets/news/final-post-1200x600.jpg",
+   "imageAlt": "CII’s 5th next-gen e-mobility summit ’22",
+   "body": "<p>EVs can disrupt the mobility ecosystem and redefine urbanization for good, ANAND&#8217;s Executive Chairperson Anjali Singh said at CII&#8217;s 5th next-gen e-mobility summit &#8217;22 which she just chaired. Giving her welcome remarks, she told the delegates that e-mobility &#8220;possesses immense positive bearing on the global economy&#8221; but for India to really drive the transition successfully for future generations, “it needs a structured road map, with timelines, processes, well-researched impact studies, bold initiatives, and robust investments in technological research.&#8221; ANAND is already at the vanguard of the e-mobility transition working with leading OEMs and new clean mobility players.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20574",
+   "gallery": [],
+   "featured": true,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/12/Final-Post-1200x600.jpg"
+  },
+  {
+   "id": 20567,
+   "slug": "record-breaking-sales-for-chakan-and-satara",
+   "type": "article",
+   "title": "Record-breaking sales for Chakan and Satara",
+   "date": "2022-12-05",
+   "categories": [
+    "Achievement",
+    "Highlights"
+   ],
+   "companies": [
+    "ANAND Group"
+   ],
+   "excerpt": "The Chakan and Satara facilities continued their run of record-breaking sales, leading to great celebrations.",
+   "image": "assets/news/highest-sales-chakan-1200x900.jpg",
+   "imageAlt": "Record-breaking sales for Chakan and Satara",
+   "body": "<p>The Chakan and Satara facilities continued their run of record-breaking sales, leading to great celebrations. The plant head congratulated all employees on their efforts in achieving this milestone together. He also asked each employee to keep up the good work, to continue to maintain safety and quality norms so that this achievement can be repeated in the coming months</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20567",
+   "gallery": [],
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/12/Highest-Sales-Chakan-1200x900.jpg"
+  },
+  {
+   "id": 20557,
+   "slug": "annual-inr-1000-cr-turnover-celebrations-across-mats",
+   "type": "article",
+   "title": "Annual INR 1000 CR Turnover Celebrations across MATS",
+   "date": "2022-11-24",
+   "categories": [
+    "Celebration",
+    "Highlights"
+   ],
+   "companies": [
+    "Gabriel India",
+    "MAHLE ANAND Thermal Systems"
+   ],
+   "excerpt": "We are absolutely delighted to share that MAHLE ANAND Thermal Systems (MATS) crossed an annual turnover of INR 1000 CR, FTY 2022. This is just one recognition of many successes to come because of each employee’s passion, performance, and enthusiasm.",
+   "image": "assets/news/mats-1.jpg",
+   "imageAlt": "Annual INR 1000 CR Turnover Celebrations across MATS",
+   "body": "<p>We are absolutely delighted to share that MAHLE ANAND Thermal Systems (MATS) crossed an annual turnover of INR 1000 CR, FTY 2022. This is just one recognition of many successes to come because of each employee’s passion, performance, and enthusiasm. This milestone has been celebrated across all MATS plants. The celebration at MATS HO was graced by Mr. Manoj Kolhatkar (Group President &#038; Co- COO), Mr. Vinayak Hegde (COO MATS), Mr. Naresh Moily (COO DAIPL), Mr. Kshitikesh Parmeshwar (CTO MATS), Mr. Manoj Sharma (CHRO MATS), Mr. Vinod Razdan (CHRO Gabriel) and all leadership members of MATS. It’s a remarkable accomplishment and a true reflection of their superb performance. Heartiest Congratulations to one and all for this amazing achievement!</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20557",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/news/annual-inr-1000-cr-turnover-celebrations-across-mats/",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/11/mats-1.png"
+  },
+  {
+   "id": 20549,
+   "slug": "anand-cy-myutec-automotive-recently-organises-tree-plantation-drive",
+   "type": "article",
+   "title": "ANAND CY Myutec Automotive recently organises tree plantation drive",
+   "date": "2022-11-03",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "ANAND CY Myutec Automotive"
+   ],
+   "excerpt": "As part of their sustainability efforts, ANAND CY Myutec Automotive recently organised a tree plantation drive in the Indira Gandhi University, Meerpur, Rewari.",
+   "image": "assets/news/313977313_2430426093777972_7460285730154592144_n.jpg",
+   "imageAlt": "ANAND CY Myutec Automotive recently organises tree plantation drive",
+   "body": "<p>As part of their sustainability efforts, ANAND CY Myutec Automotive recently organised a tree plantation drive in the Indira Gandhi University, Meerpur, Rewari. Almost 2000 trees were planted by employees and students in the campus to promote carbon neutrality.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20549",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/news/anand-cy-myutec-automotive-recently-organises-tree-plantation-drive/",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/11/313977313_2430426093777972_7460285730154592144_n.png"
+  },
+  {
+   "id": 20442,
+   "slug": "mrs-anjali-singh-chairs-gabriel-indias-60th-annual-general-meeting",
+   "type": "article",
+   "title": "Mrs. Anjali Singh chairs Gabriel India’s 60th Annual General Meeting",
+   "date": "2022-08-04",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "Gabriel India"
+   ],
+   "excerpt": "Mrs. Anjali Singh, Executive Chairperson, Gabriel India and ANAND Group, chaired the 60th Annual General Meeting of Gabriel India, held on Thursday 4th August 2022.",
+   "image": "assets/news/gil-board.jpg",
+   "imageAlt": "Mrs. Anjali Singh chairs Gabriel India’s 60th Annual General Meeting",
+   "body": "<p>Mrs. Anjali Singh, Executive Chairperson, Gabriel India and ANAND Group, chaired the 60th Annual General Meeting of Gabriel India Limited, held on Thursday 4th August 2022. The AGM, which was conducted through an online meeting platform, was attended by the Gabriel Board of Directors and other senior representatives as well as shareholders. During the event, several key resolutions were unanimously passed.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20442",
+   "gallery": [],
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/09/gil-board.jpg"
+  },
+  {
+   "id": 20447,
+   "slug": "mahle-anand-thermal-systems-leadership-awareness-managers-programme-2022",
+   "type": "article",
+   "title": "MAHLE ANAND Thermal Systems Leadership Awareness Managers Programme 2022",
+   "date": "2022-07-14",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "MAHLE ANAND Thermal Systems"
+   ],
+   "excerpt": "The first batch of the MAHLE ANAND Thermal Systems Leadership Awareness Managers Programme (LAMP) 2022, consisting of 20 Consistent Performers, successfully completed their course.",
+   "image": "assets/news/lamp.jpg",
+   "imageAlt": "MAHLE ANAND Thermal Systems Leadership Awareness Managers Programme 2022",
+   "body": "<p>The first batch of the MAHLE ANAND Thermal Systems Leadership Awareness Managers Programme (LAMP) 2022, consisting of 20 Consistent Performers, successfully completed their course. The 21 days were an amazing learning experience, the purpose of which was to optimise self-awareness in order to adapt new habits and skills suitable for a changing world, and thus contribute to greater long-term success. The participants shared their Final Presentation with Executive Committee and senior management, and expressed their gratitude to Mr. Vinayak Hegde, COO, Mr. Vinod Razdan, HR Head, Mr. Srinivas Ananthanarayanan, Facilitator, CEO at People verse &#038; OD Team Mr. Praveen Mishra, Mr. Prajwal Kumar, Executive Committee members and HR team for their amazing support!</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20447",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/mahle-anand-thermal-systems-leadership-awareness-managers-programme-2022",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/09/lamp.jpg"
+  },
+  {
+   "id": 20310,
+   "slug": "anand-technology-day-2022-at-ashok-leyland-chennai",
+   "type": "article",
+   "title": "ANAND Technology Day 2022 at Ashok Leyland, Chennai",
+   "date": "2022-07-12",
+   "categories": [
+    "Events",
+    "Highlights"
+   ],
+   "companies": [
+    "ANAND Group"
+   ],
+   "excerpt": "ANAND Technology Day 2022 at Ashok Leyland, Chennai.",
+   "image": "assets/news/21.jpg",
+   "imageAlt": "ANAND Technology Day 2022 at Ashok Leyland, Chennai",
+   "body": "<p>ANAND Technology Day 2022 at Ashok Leyland, Chennai.<br>\nOn this day, the ANAND Group showcased its overall capabilities and expertise in developing new technologies for electric vehicles (EVs) and alternate fuels.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20310",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anand-technology-day-2022-at-ashok-leyland-chennai",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/21.png"
+  },
+  {
+   "id": 20312,
+   "slug": "anchemco-anand-and-ansysco-anand-organise-yoga-session",
+   "type": "article",
+   "title": "Anchemco ANAND and Ansysco ANAND organise yoga session",
+   "date": "2022-07-12",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "Anchemco ANAND",
+    "Ansysco ANAND"
+   ],
+   "excerpt": "Anchemco ANAND and Ansysco ANAND organised a yoga session for 18 employees to enhance their outlook and attitude towards work.",
+   "image": "assets/news/5.jpg",
+   "imageAlt": "Anchemco ANAND and Ansysco ANAND organise yoga session",
+   "body": "<p>Anchemco ANAND and Ansysco ANAND organised a yoga session for 18 employees to enhance their outlook and attitude towards work. The event was held at their company premises recently. A yoga trainer from Employees State Insurance (ESI), Parwanoo conducted the session.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20312",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anchemco-anand-and-ansysco-anand-organise-yoga-session",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/5.png"
+  },
+  {
+   "id": 20350,
+   "slug": "first-female-network-break-at-mahle-anand-filter-systems",
+   "type": "article",
+   "title": "First Female Network Break at MAHLE ANAND Filter Systems",
+   "date": "2022-06-22",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "MAHLE ANAND Filter Systems"
+   ],
+   "excerpt": "The Female Network Break at MAHLE ANAND Filter Systems (MAFS) held its first session on Monday 22nd June 2022.",
+   "image": "assets/news/6.jpg",
+   "imageAlt": "First Female Network Break at MAHLE ANAND Filter Systems",
+   "body": "<p>The Female Network Break at MAHLE ANAND Filter Systems (MAFS) held its first session on Monday 22nd June 2022. Ms. Shilpi Wadhwa, Head, Human Resources, MAFS and Dr. Pooja Hanspal, Health &#038; Wellness Coach on women’s health, conducted the session, which covered the following topics:</p><p>• Educate employees about PCOS and to overcome the challenges<br>\n• Adopt a healthy lifestyle inclusive of diet and workouts<br>\n• Monitoring your emotional well-being, managing stress, anxiety and sleep disorders</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20350",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/first-female-network-break-at-mahle-anand-filter-systems",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/6.png"
+  },
+  {
+   "id": 20318,
+   "slug": "joyson-anand-abhishek-safety-systems-donates-advance-life-support-ambulance",
+   "type": "article",
+   "title": "Joyson Anand Abhishek Safety Systems donates Advance Life Support Ambulance",
+   "date": "2022-06-16",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "Joyson ANAND Abhishek Safety Systems"
+   ],
+   "excerpt": "JAAI donated an Advance Life Support Ambulance to Shri Nitin Gadkari Ji, Minister of Road Transport & Highways of India, and Shri Mool Chand Sharma Ji, Transport Minister of Haryana, as a part of their CSR.",
+   "image": "assets/news/9.jpg",
+   "imageAlt": "Joyson Anand Abhishek Safety Systems donates Advance Life Support Ambulance",
+   "body": "<p>Joyson ANAND Abhishek Safety Systems (JAAI) donated an Advance Life Support Ambulance to Shri Nitin Gadkari Ji, Minister of Road Transport &#038; Highways of India, and Shri Mool Chand Sharma Ji, Transport Minister of Haryana, as a part of their Corporate Social Responsibility. Mr. Mahendra S. Rajawat, President &#038; MD, JAAI handed over the keys to the dignitaries. Also present at the event were Mr. Hisashi Takeuchi, Managing Director &#038; CEO of Maruti Suzuki and Mr. Kawazu Kunihiko, Minister &#038; Deputy Chief of Mission, Japan in India. This is in keeping with JAAI’s mission: ‘Safety is our middle name’.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20318",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/joyson-anand-abhishek-safety-systems-donates-advance-life-support-ambulance",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/9.png"
+  },
+  {
+   "id": 20320,
+   "slug": "world-environment-day-2022-celebrations",
+   "type": "article",
+   "title": "World Environment Day 2022 Celebrations",
+   "date": "2022-06-08",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "HL Mando Anand India"
+   ],
+   "excerpt": "The theme for this year’s World Environment Day is ‘Only One Earth’, focusing our attention on ‘Living Sustainability in Harmony with Nature’.",
+   "image": "assets/news/14.jpg",
+   "imageAlt": "World Environment Day 2022 Celebrations",
+   "body": "<p>The theme for this year’s World Environment Day is ‘Only One Earth’, focusing our attention on ‘Living Sustainability in Harmony with Nature’. This sentiment is shared by all at Mando Automotive India (MAIL) where we strive to live more sustainably, recycle and compost where possible, and reduce our energy consumption and waste wherever we can. All this is attainable by taking simple steps and working together as a global community. On this World Environment Day, a plantation drive was carried out on the MAIL campus in the presence of our honourable chief guests Mr. Madhusudan and Mr. Jeeva Kumar from Hyundai Motors India (SQA) team; Mando plant heads Mr. Jayakumar and Mr. Mahendraboopathy; production heads Mr. Kandavel and Mr. Kumaraguru; safety head Mr. Sureshkumar and his team; DGM Quality Mr. Vasudevan and his team; Manager Mr. Kingsly and Operating Engineers.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20320",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/world-environment-day-2022-celebrations",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/14.png"
+  },
+  {
+   "id": 20330,
+   "slug": "dana-anand-india-participates-in-the-cii-national-3m-competition",
+   "type": "article",
+   "title": "Dana Anand India participates in the CII National 3M Competition",
+   "date": "2022-06-08",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "Dana Anand India"
+   ],
+   "excerpt": "Dana Anand India, Chakan plant team comprising Mr. Rajesh Pradhan and Mr. Pankaj Jha won the Gold Award at the virtual competition held recently by the Confederation of Indian Industry, for their case study on improvement in the MUDA (Japanese word meaning Wastefulness) category. Almost 50 teams…",
+   "image": "assets/news/11.jpg",
+   "imageAlt": "Dana Anand India participates in the CII National 3M Competition",
+   "body": "<p>Dana Anand India, Chakan plant team comprising Mr. Rajesh Pradhan and Mr. Pankaj Jha won the Gold Award at the virtual competition held recently by the Confederation of Indian Industry, for their case study on improvement in the MUDA (Japanese word meaning Wastefulness) category. Almost 50 teams participated in the competition.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20330",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/dana-anand-india-participates-in-the-cii-national-3m-competition",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/11.png"
+  },
+  {
+   "id": 20332,
+   "slug": "jodalli-plant-recognised-as-the-most-improved-facility",
+   "type": "article",
+   "title": "Jodalli plant recognised as the Most Improved Facility",
+   "date": "2022-06-08",
+   "categories": [
+    "Highlights"
+   ],
+   "companies": [
+    "Dana Anand India"
+   ],
+   "excerpt": "On World Earth Day, Dana published its Annual Sustainability and Social Responsibility Report for the year 2021 entitled ‘A Better Way, A Better World’. At the event, Team Jodhalli was appreciated and recognised for its usage of Renewable Energy (88 per cent electricity consumed from solar energy)…",
+   "image": "assets/news/10.jpg",
+   "imageAlt": "Jodalli plant recognised as the Most Improved Facility",
+   "body": "<p>On World Earth Day, Dana published its Annual Sustainability and Social Responsibility Report for the year 2021 entitled ‘A Better Way, A Better World’. At the event, Team Jodhalli was appreciated and recognised for its usage of Renewable Energy (88 per cent electricity consumed from solar energy) and was declared the ‘Most Improved Facility’.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20332",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/jodalli-plant-recognised-as-the-most-improved-facility",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/10.png"
+  },
+  {
+   "id": 20308,
+   "slug": "anand-group-india-participates-in-ev-expo",
+   "type": "article",
+   "title": "ANAND Group India participates in EV Expo",
+   "date": "2022-06-06",
+   "categories": [
+    "Events",
+    "Highlights"
+   ],
+   "companies": [
+    "Gabriel India"
+   ],
+   "excerpt": "An impressive range of EV products from the ANAND Group companies were showcased at the ongoing EV Expo organised by the leading industry body, ACMA, and Hero MotoCorp.",
+   "image": "assets/news/7.jpg",
+   "imageAlt": "ANAND Group India participates in EV Expo",
+   "body": "<p>An impressive range of EV products from the ANAND Group companies were showcased at the ongoing EV Expo organised by the leading industry body, Automotive Component Manufacturers Association of India (ACMA), and Hero MotoCorp. Mr. Manoj Kolhatkar, Managing Director, Gabriel India, was present at the opening session, which was inaugurated by Dr. Arun Jaura, Chief Technology Officer, Hero MotoCorp.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20308",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anand-group-india-participates-in-ev-expo",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/07/7.png"
+  },
+  {
+   "id": 20039,
+   "slug": "foundation-day",
+   "type": "article",
+   "title": "Foundation Day",
+   "date": "2022-03-27",
+   "categories": [
+    "Events",
+    "Highlights"
+   ],
+   "companies": [
+    "CY Myutec ANAND"
+   ],
+   "excerpt": "CY Myutec ANAND celebrated its 14th Foundation Day recently. Employees and their family members gathered to commemorate the event, which was further enlivened by performances by employees.",
+   "image": "assets/news/post5.jpg",
+   "imageAlt": "Foundation Day",
+   "body": "<p>CY Myutec ANAND celebrated its 14th Foundation Day recently. Employees and their family members gathered to commemorate the event, which was further enlivened by performances by employees. This was also the time to felicitate employees who had done well under various categories.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=20039",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/foundation-day",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2022/05/post5.png"
+  },
+  {
+   "id": 14996,
+   "slug": "mando-automotive-india-celebrates-annual-day",
+   "type": "article",
+   "title": "Mando Automotive India Celebrates Annual Day",
+   "date": "2019-09-15",
+   "categories": [
+    "Celebration",
+    "Highlights"
+   ],
+   "companies": [
+    "HL Mando Anand India"
+   ],
+   "excerpt": "Mando Automotive India (MAIL) celebrated its 22nd Annual Day at Sri Venkateswara College of Engineering (SVCE) in Chennai. On the occasion, Mr. Se Joon Oh, Managing Director, and Mr. S. Sarathi, Joint Managing Director of MAIL, rewarded employees for their decade-long service. Employees presented…",
+   "image": "assets/news/mando-celebration.jpg",
+   "imageAlt": "Mando Automotive India Celebrates Annual Day",
+   "body": "<p>Mando Automotive India (MAIL) celebrated its 22nd Annual Day at Sri Venkateswara College of Engineering (SVCE) in Chennai. On the occasion, Mr. Se Joon Oh, Managing Director, and Mr. S. Sarathi, Joint Managing Director of MAIL, rewarded employees for their decade-long service. Employees presented cultural performances at the event.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=14996",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/mando-automotive-india-celebrating-annual-day",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2019/04/mando-celebration.png"
+  },
+  {
+   "id": 13862,
+   "slug": "anand-delhi-horse-show-2018",
+   "type": "article",
+   "title": "ANAND Delhi Horse Show 2018",
+   "date": "2018-12-07",
+   "categories": [
+    "Events"
+   ],
+   "companies": [
+    "Gabriel India",
+    "SUJÁN"
+   ],
+   "excerpt": "ANAND Group presented Delhi Horse Show 2018 on 7th and 8th December at The Army Equestrian Centre, Delhi Cantonment.",
+   "image": "assets/news/dhs.jpg",
+   "imageAlt": "ANAND Delhi Horse Show 2018",
+   "body": "<p>ANAND Group presented Delhi Horse Show 2018 on 7th and 8th December at The Army Equestrian Centre, Delhi Cantonment. SUJÁN and Gabriel India Limited were the proud co-sponsors of the biggest and most popular Horse Show in India.</p><p>ANAND Delhi Horse Show 2018 was a grand success. The huge gathering of audience, which included ANAND Group employees, not only witnessed ace riders in action but also experienced other fun filled activities. Mrs. Anjali Singh, Executive Chairperson, ANAND Group graced the event and also distributed prizes to the winners. A great mileage for ANAND Group and its companies through its association with the prestigious Delhi Horse Show.</p>",
+   "publisher": null,
+   "externalUrl": null,
+   "pdf": null,
+   "legacyUrl": "https://www.anandgroupindia.com/newsroom-media/latest-at-anand/news-detalis/?arid=13862",
+   "gallery": [],
+   "legacyPermalink": "https://www.anandgroupindia.com/latest-at-anand/anand-delhi-horse-show-2018/",
+   "featured": false,
+   "imageSource": "https://www.anandgroupindia.com/wp-content/uploads/2018/12/dhs.png"
+  }
+ ]
+}

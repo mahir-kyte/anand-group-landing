@@ -23,7 +23,7 @@ Last updated: 26 Sep 2026 (evening), after the second full consistency audit (co
 
 | What | Where |
 |---|---|
-| This page (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` + `assets/` |
+| The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, plus `assets/`, `data/`, `tools/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
 | WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
@@ -35,13 +35,19 @@ Last updated: 26 Sep 2026 (evening), after the second full consistency audit (co
 | Original Figma Stripe references | Figma file `rFZMc5AIzv9qN5hBhm4alh`, node `22-379` |
 
 **Files in the repo**
-- `index.html`: all HTML, CSS (inline `<style>`) and JS (inline `<script>`). No build step.
+- `index.html`: the home page. It is also the **source of the shared shell**: the nav, the dialog (bento details + Partner form), the CTA banner and the footer sit between `<!-- shell:NAME -->` and `<!-- /shell:NAME -->` markers.
+- `newsroom.html`, `newsroom-article.html`: the newsroom index and article template (§8.14, §8.15). They carry the same shell markers.
+- `tools/sync-shell.py`: copies the shell blocks from `index.html` into the other pages. **Edit the nav/footer/dialog/banner in `index.html` only, then run `python3 tools/sync-shell.py`.**
+- `assets/site.css` + `assets/site.js`: shared styles and behaviour for every page (moved out of `index.html` on 26 Sep; each JS block checks for its own elements, so pages without them skip it). The cobe globe module stays inline in `index.html`.
+- `assets/newsroom.css` + `assets/newsroom.js`: newsroom-only styles and the renderer for both newsroom pages.
+- `data/newsroom.json`: the newsroom CMS feed (§9). Pages fetch it, so they must be opened through the local server, not as files. No build step.
 - `assets/`
   - `oem/`: cropped OEM logos
   - `companies/`: 17 group-company logos
   - `leader-*.jpg`: headshots
   - `sujan-*` photos, plus `sujan-wordmark.svg` (gold) and `sujan-wordmark-navy.svg`
   - partner logos, news and product images
+  - `news/`: the newsroom sample's photos, newsletter covers and media-kit thumbnails
 - `.gitignore`: `.DS_Store`, `.claude/`. The file `.claude/launch.json` holds the preview config and is not committed.
 
 ## 3. Run it locally
@@ -399,10 +405,36 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 - **Bottom bar:** the © line and legal and social links.
 - Links are `#`.
 
+
+### 8.14 Newsroom index (`newsroom.html`, mirrors stripe.com/newsroom)
+Measured on stripe.com/newsroom and stripe.com/newsroom/news/* on 26 Sep 2026, then set in ANAND tokens.
+- **Grid:** Stripe's 4-column page grid (`.nw-grid`, 24px gutters). **Accented details** (`.acc`): 16px left padding with a 1px cyan tick beside the first line. Used for dates, categories and small titles; the same device as the trust feature row.
+- **Sub-nav** (`.nw-sub`, under the main bar, soft background): "Newsroom" on the left; Overview · Latest News · Media Coverage · Newsletter · Media Kit on the right (15px/500 cyan; current page ink).
+- **Featured carousel** (Stripe's NewsroomIndexCarousel): up to 4 items with `featured: true`. Text in columns 1–2 (category, `--fs-h2` title, "Read More ›"); a 540:368 picture card in columns 3–4 with Stripe's shadow. Slides move sideways; under them a 4px track split into one button per slide, with a cyan line sliding to the active one (0.5s `cubic-bezier(.33,1,.68,1)`). Autoplays every 7s; pauses on hover and focus; no autoplay with reduced motion.
+- **Guides row:** Latest News / Media Coverage / Newsletter and Media Kit (40px cyan Lucide icons: newspaper, megaphone, book-open), plus a white **media contact card** (group.comms@anandgroupindia.com, the two corporate numbers, ANAND Automotive Limited's address) with Stripe's shadow.
+- **News** (`#news`, white): the old site's three filters (category chips, company select, year select), "Showing X of Y", then rows: date | category + title + companies | 2:1 picture. Coverage rows link out (↗) and show the publication name on a soft tile instead of a photo. 8 rows, then "Load More".
+- **Media coverage** (`#coverage`, soft): Stripe's Stories block. Intro on the left; the newest story as a large navy card (publication name, date, title, excerpt, "Read on Mint ↗"); the next six as white cards.
+- **Newsletter** (`#newsletter`): the 8 newest issues of *ANAND Interaction* (cover, "Vol. LXXIV, November 2020", date, "Download PDF").
+- **About + media kit** (`#media-kit`, soft): Stripe's About page. Royal/cyan bar, "Engineering the Future of Mobility Since 1961", the same facts as the home page, then Group Presentation (Sept 2026), Brand Guidelines, Gallery Downloads.
+- **Phones:** single column; long headlines drop to `--fs-h3`; rows become title + small square picture.
+
+### 8.15 Newsroom article (`newsroom-article.html?slug=…`, mirrors stripe.com/newsroom/news/*)
+- **Head:** category (accented) and the title across columns 1–3 at `--fs-h2` (Stripe uses 56px, but ANAND headlines are much longer).
+- **Left column:** date (accented), Categories, Companies, attachment, then share links (LinkedIn, X, Email, Copy Link). Lucide has no brand icons, so share uses text labels with `share-2`/`mail`/`link`.
+- **Main (columns 2–4):** 2:1 hero picture, then the body at 18px/1.6 slate, max 800px; old line breaks are tidied (mid-sentence breaks become spaces, "•" lines become lists); extra images become a 2-up gallery; then an "About ANAND Group" boilerplate and the media contact.
+- **More From ANAND:** 3 related rows (most shared companies first, then same category, then newest) on soft, plus "All News".
+- **Title and meta description** are set from the item. An unknown slug shows a "We couldn't find that story" state with a link back.
+- **Images:** every picture slot shows a soft tile with the ANAND chevron mark until the photo loads (or if it fails).
+
 ---
 
 ## 9. CMS-style data
-- **`#cms-news`:** 7 news items (category, date, title, excerpt, image, imageAlt, source, url). Becomes the News posts.
+- **`#cms-news`** (home page newsroom carousel): 6 news items (category, date, title, excerpt, image, imageAlt, source, url). Becomes the News posts.
+- **`data/newsroom.json`** (newsroom pages): a **representative sample migrated from anandgroupindia.com** on 26 Sep 2026: 20 full articles from *Latest at ANAND* across every category (Press Release, Achievement, Celebration, Events, Highlights), the 12 newest media-coverage links, and the 8 newest newsletters. Also `taxonomy`, `mediaContact` and `mediaKit`.
+  - **Item fields (the CMS fields for a News post):** `id` (old WordPress `arid`), `slug`, `type` (`article` = full page here, `coverage` = links out), `title`, `date`, `categories`, `companies`, `excerpt`, `image`, `imageAlt`, `gallery`, `body` (cleaned HTML), `publisher`, `externalUrl`, `pdf`, `featured`, `legacyUrl` and `legacyPermalink` (old URLs, for 301 redirects).
+  - **How it was pulled:** the old site's WordPress REST API returns a server error, so the lists came from its Ajax Load More endpoint (`admin-ajax.php?action=alm_query_posts`) and each article from `news-detalis/?arid=<id>`. The old site has 399 *Latest* items (290 with full pages), 303 coverage items and 23 newsletters; the scripts are in `tools/migrate-news/` (README there). Ask before re-running: the old server started timing out after ~300 requests.
+  - **Companies** in the sample are derived from company names in each item's text; the old `company_belongs_to` field wasn't migrated. Check them during the real migration.
+  - **Images are self-hosted** in `assets/news/` (downloaded 26 Sep, mostly from anandgroupindia.com and 3 from the Internet Archive's copies while the old server was down); each item keeps the original URL in `imageSource`. PDFs and coverage links still point at their original hosts.
 - **`#cms-bento`:** modal content for each card (title, body, CTAs, checklist, graphics, extras, quote, footer).
   - `global.map` holds the partner markers.
   - `companies` holds the directory.
@@ -431,6 +463,8 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 | 10 | Bento graphics (revenue, companies, people, SUJÁN): swap in Mahir's 3D components at `[data-slot]` | Mahir |
 | 11 | Partner form: wire it to ANAND's inbox; add spam protection and consent text; confirm the product and country lists | GIDA + client |
 | 12 | **WordPress hasn't caught up** (§12) | Kyte + GIDA |
+| 14 | ~~Newsroom images~~: the 33 sample images are now self-hosted in `assets/news/` (3.5 MB; photo PNGs converted to JPEG, nothing wider than 1600px). On the real site, import them into the WordPress media library | done |
+| 15 | **Newsroom migration scope:** the reference has a 32-item sample. Decide how much of the 399 + 303 + 23 old items to migrate, confirm company tags, and set up 301 redirects from `legacyUrl`/`legacyPermalink` | Kyte + client |
 | 13 | **Hero reel:** now one optimised loop (`assets/hero-reel.mp4`). Still to do: get ANAND's permission for its and SUJÁN's footage, ideally the **master files** for a sharper re-cut, and replace the Pexels welding shot. The previous note on ANAND's site film still applies (the site copy is 2560×1182 and heavily compressed); host an optimised, short loop (10–20s, plus a poster frame) on the new site instead of streaming the 16 MB original | Kyte + client |
 
 ## 12. WordPress status (the gap)
@@ -455,6 +489,7 @@ The LocalWP site still has the **first concept** homepage. To match this referen
   - the trust section with the 6° cut
   - the CTA banner and Partner form
   - the full footer
+- **Newsroom templates:** a newsroom index and a single-news template (§8.14–8.15), with News posts carrying the §9 fields (categories and companies as taxonomies, ACF for publisher, external URL, PDF, featured, gallery), and the old news imported with 301 redirects.
 
 Follow the working notes (§2 rules, §7, §15). Back up the database and commit before starting.
 
