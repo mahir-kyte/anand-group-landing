@@ -51,8 +51,9 @@
   --error:#DF1B41;   /* form validation */
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{font-family:"Geist",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* no sideways page scroll on phones: clip (not hidden) on both html and body, so mobile Safari can't pan and position:sticky still works */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:"Geist",system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--white);font-size:var(--fs-body);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
@@ -227,9 +228,9 @@ section{position:relative}
 .st-title{font-size:var(--fs-body);line-height:1.45;color:var(--ink);padding-right:16px;text-wrap:balance}
 .st-link{margin-top:auto;display:inline-flex;align-items:center;gap:4px;color:var(--cyan);font-size:var(--fs-ui);font-weight:500;transition:color .2s}
 .st-link .ic{width:16px;height:16px;transition:transform .2s var(--ease)}
-@media (prefers-reduced-motion:no-preference){.st-media{transition:transform 800ms var(--st-hover)}}
+@media (prefers-reduced-motion:no-preference){.st-media img.ph{transition:transform 800ms var(--st-hover)}}
 @media (hover:hover) and (pointer:fine){
-  .st-card:hover .st-media{transform:scale(1.036)}
+  .st-card:hover .st-media img.ph{transform:scale(1.036)}   /* the photo zooms inside a fixed frame, so nothing gets clipped by the scroller */
   .st-card:hover .st-link{color:var(--navy)}
   .st-card:hover .st-link .ic{transform:translateX(2px)}
 }
@@ -2852,8 +2853,18 @@ if (wrap) {
       prev.disabled = sc.scrollLeft <= 2;
       next.disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 2;
     };
-    prev.onclick = () => sc.scrollBy({left: -step(), behavior: reduce ? 'auto' : 'smooth'});
-    next.onclick = () => sc.scrollBy({left: step(), behavior: reduce ? 'auto' : 'smooth'});
+    // move exactly one card per click: go to the next/previous card's snap position, not a relative distance
+    let target = null;
+    const go = dir => {
+      const st = step(), max = sc.scrollWidth - sc.clientWidth;
+      const from = target ?? sc.scrollLeft;
+      const x = from / st, i = dir > 0 ? Math.floor(x + .01) + 1 : Math.ceil(x - .01) - 1;   // from a part-way position (the end), step to the nearest card in that direction
+      target = Math.max(0, Math.min(i * st, max));
+      sc.scrollTo({left: target, behavior: reduce ? 'auto' : 'smooth'});
+    };
+    prev.onclick = () => go(-1);
+    next.onclick = () => go(1);
+    sc.addEventListener('scrollend', () => { target = null; });
     sc.addEventListener('scroll', update, {passive: true});
     addEventListener('resize', update);
     update();

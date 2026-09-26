@@ -133,6 +133,7 @@ The CSS rules use these tokens, not raw hex values. The only hardcoded colours l
 - **Width:** `--max:1348px`, which is 1300px of content plus 24px padding on each side.
 - **Section padding:** `.sec` 120px, 84px on phones.
 - **Radius:** `--radius:4px`.
+- **No sideways page scroll:** `overflow-x:clip` on both `html` and `body`. Use `clip`, not `hidden`: on phones `hidden` on body alone still lets Safari pan the page sideways, and `hidden` on both would make body its own scroller and break `position:sticky` (the CSR intro) and the nav's scroll listener. Carousels scroll inside their own containers, so they're unaffected.
 - **Breakpoints:**
   - 1360px: "Explore Careers" hides in the nav (below 1,360px)
   - 1200px: the nav collapses; several grids reflow
@@ -276,7 +277,8 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 - A split panel: image left, navy text right.
 - A thumbnail row whose active line is the 7s autoplay bar.
 - "View All News".
-- Content comes from the `#cms-news` feed (7 real stories).
+- Content comes from the `#cms-news` feed (6 real stories; the Livemint joint-venture story was dropped because its image was only two logos).
+- 56px top padding so the hero's bottom stripes don't crowd the eyebrow.
 
 ### 8.4 ANAND at a glance: Stripe bento (`section#glance`, soft)
 - **Cards** (five in total):
@@ -302,8 +304,8 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.7 Stories: Stripe case-study carousel (`section#verticals`, soft)
 - Six stories with real links.
-- **Cards:** 332×448 media with a white logo; the image zooms 1.036 on hover.
-- **Arrows:** white with a navy icon.
+- **Cards:** 332×448 media with a white logo. On hover **only the photo** zooms 1.036 inside a fixed frame (scaling the whole frame got clipped by the scroller).
+- **Arrows:** white with a navy icon. Each click moves **exactly one card** (card width + 16px gap, e.g. 348px at 1440): it goes to the next card's snap position rather than scrolling a set distance, and fast clicks stack (two clicks = two cards). The last step is shorter, just enough to line the final card up with the edge. The arrows disable at either end.
 
 ### 8.8 Products & solutions (`section#solutions`)
 - **Structure:** Stripe's ProductFeatureCard (from stripe.com/industries/retail).
@@ -439,7 +441,8 @@ The LocalWP site still has the **first concept** homepage. To match this referen
   - 1300px width
   - weights 400/500 only
   - no Geist Mono
-  - the new colour tokens: `on-dark`, `on-dark-2`, `tint`, `tint-2`, `faint`
+  - the new colour tokens: `on-dark`, `on-dark-2`, `tint`, `tint-2`, `faint`, `error`; the `fs-mega` size
+  - `overflow-x:clip` on html and body (not `hidden`), §6 Layout
 - **The mega menu and its mobile menu** (nav order now ends with the plain "Our Vision" link; the mobile accordion is generated from the desktop menu).
 - **Sections (new or rebuilt):**
   - the hero background film (one self-hosted loop, `assets/hero-reel.mp4`, with poster) with the inverted nav
