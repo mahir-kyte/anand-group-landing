@@ -119,7 +119,7 @@ Cyan tints in use: `#E6F7FD` and `#B3E7FA`. Only use tints of `#00AEEF`.
 - `--radius: 4px` everywhere.
 - Main breakpoints:
   - 1320px: the "Explore careers" nav button hides
-  - 1020px: the nav collapses to the menu button
+  - 1200px: the nav collapses to the menu button (1020px for other layout changes)
   - 940px: the bento and stories layouts change
   - 640px: phone
 
@@ -202,7 +202,8 @@ Every section's HTML starts with a `<!-- SECTION NAME -->` comment in `index.htm
   - hover intent of 80ms open and 180ms close
 - **Each panel** is `.np#np-{key}` with `--cols:N`: `section.np-col` columns (h4 heading + list of title/description) + `aside.np-aside` (soft background, featured card) + `.np-foot` "See all" link.
 - **Links are `#`.** Per the spec, links don't click through in the demo.
-- **Not built yet:** the **mobile menu**. `.menu-btn` shows at ≤1020px but does nothing.
+- **Widths:** the full nav needs ~1200px. At ≤1320px "Explore Careers" hides and the gaps tighten; **below 1200px it collapses to the menu button**. The logo never shrinks (`.nav-logo{flex:none}`); before this fix it was being squeezed as the nav ran out of room.
+- **Not built yet:** the **mobile menu**. `.menu-btn` shows below 1200px but does nothing.
 
 ### 8.2 Hero (`section.hero`)
 - Stripe-style slanted navy stripes band (`.stripes`) that runs below the hero into the newsroom so no white wedge shows.

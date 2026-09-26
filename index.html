@@ -78,7 +78,8 @@ section{position:relative}
 .nav-shell::before{content:"";position:absolute;inset:6px 0 0;background:#fff;border-radius:var(--radius);box-shadow:0 30px 60px -50px rgba(0,0,0,.1),0 30px 60px -10px rgba(2,26,44,.18);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
 .nav-shell.open::before{opacity:1;border-bottom-left-radius:0;border-bottom-right-radius:0;box-shadow:none}
 .nav-in{position:relative;padding:0 24px;height:72px;display:flex;align-items:center;gap:32px}
-.nav-logo img{height:22px;width:auto;display:block}
+.nav-logo{flex:none}
+.nav-logo img{height:22px;width:auto;max-width:none;display:block}
 .nav-links{display:flex;gap:26px;list-style:none;flex:1;margin:0;padding:0}
 .nav-trigger,.nav-link{display:flex;align-items:center;gap:4px;white-space:nowrap;font:inherit;font-size:var(--fs-ui);font-weight:500;padding:10px 0;background:none;border:0;cursor:pointer;color:var(--navy);transition:color .25s var(--ease)}
 .nav-trigger .ic{width:14px;height:14px;opacity:.6;transition:transform .3s var(--ease)}
@@ -127,7 +128,7 @@ section{position:relative}
   .nav-pop{transition:height .3s var(--ease),opacity .2s var(--ease),visibility .2s}
   .np{transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .5s cubic-bezier(.4,0,.2,1),visibility .25s}
 }
-@media (max-width:1320px){.nav-sec{display:none}.nav-links{gap:20px}}
+@media (max-width:1320px){.nav-sec{display:none}.nav-links{gap:18px}.nav-in{gap:28px}}
 
 /* ---------- HERO ---------- */
 /* bottom padding keeps the slanted band below the intro; it grows with width because the slant rises across wide screens */
@@ -747,10 +748,13 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
 .rv.in{opacity:1;transform:none}
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:1020px){
+/* the full nav needs ~1200px; below that it collapses to the menu button */
+@media (max-width:1199px){
   .nav-links,.nav-pop,.nav-overlay{display:none}
   .nav-in{justify-content:space-between}
   .menu-btn{display:block}
+}
+@media (max-width:1020px){
   .hero-grid,.about-grid,.p-top,.bb-grid,.bento-head{grid-template-columns:1fr}
   .nr-slide{grid-template-columns:1fr}
   .nr-media{min-height:0;aspect-ratio:16/9}
