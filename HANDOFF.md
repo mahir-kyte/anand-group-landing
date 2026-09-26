@@ -356,9 +356,12 @@ This banner is also the page's contact section; it replaced the old three-column
   - title: `--fs-h3`, weight 500
   - "Read more ›" appears only on hover or focus
 - **Hover:** the card lifts 8px while its line art moves down 8px (so the art appears to stay put), and the shadow swaps from medium (`0 13px 27px -5px …`) to XL (`0 50px 100px -20px …`), all 0.3s.
-- **Line art:** generated in JS from a seed per card.
-  - built on 63.5px cells (the lower ~55% of the card): pie arcs, stripes, rings, circles, diagonals, grid lines and one large arc
-  - stroke is a lighter tint of the card colour, fill is the card colour (so shapes cover the lines)
+- **Line art:** in **ANAND's own visual language, not Stripe's** (Stripe's arcs and rings were replaced on request). Generated in JS from a seed per card:
+  - the logo's **double chevron** as a large outline in the lower right
+  - four **speed lines** trailing it (forward motion)
+  - a **slanted parallelogram** frame and two **slanted panel edges** at the logo and hero-stripe angle (0.36 dx per dy)
+  - a small **»»»** marker in the lower left
+  - stroke is 1.25px in a lighter tint of the card colour; shapes are filled with the card colour so they sit over the lines
   - lines draw in (stroke-dashoffset, 3s ease-out, staggered) when the card scrolls into view
 - **Colours** (fill / stroke), ANAND palette only:
   - green #61A229 / #9CCB6E

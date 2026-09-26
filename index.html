@@ -308,8 +308,8 @@ section{position:relative}
 .gc-shadow::after{box-shadow:0 50px 100px -20px rgba(50,50,93,.25),0 30px 60px -30px rgba(0,0,0,.3);opacity:0}
 .gc-card{position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:22px 24px;background:var(--fill);border-radius:var(--radius);overflow:hidden}
 .gc-art{position:absolute;inset:0;width:100%;height:100%;transition:transform .3s}
-.gc-art path,.gc-art circle,.gc-art line{fill:var(--fill);stroke:var(--stroke);stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
-.gc-art.drawn path,.gc-art.drawn circle,.gc-art.drawn line{stroke-dashoffset:0;transition:stroke-dashoffset 3s ease-out var(--d,0ms)}
+.gc-art path,.gc-art circle,.gc-art line,.gc-art polygon{fill:var(--fill);stroke:var(--stroke);stroke-width:1.25;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+.gc-art.drawn path,.gc-art.drawn circle,.gc-art.drawn line,.gc-art.drawn polygon{stroke-dashoffset:0;transition:stroke-dashoffset 3s ease-out var(--d,0ms)}
 .gc-art line{fill:none}
 .gc-text{position:relative}
 .gc-cat{display:block;font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:12px}
@@ -322,7 +322,7 @@ section{position:relative}
 .gc:hover .gc-shadow::after{opacity:1}
 .gc:hover .gc-cta,.gc:focus-visible .gc-cta{opacity:1}
 .gc:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:var(--radius)}
-@media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-art path,.gc-art circle,.gc-art line{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-art path,.gc-art circle,.gc-art line,.gc-art polygon{stroke-dashoffset:0}}
 
 /* ---------- NEWSROOM CAROUSEL ---------- */
 .newsroom{background:var(--navy);color:#fff;padding:0 0 110px}
@@ -2588,26 +2588,33 @@ if (wrap) {
 
 
 
-  // guide-card line art (Stripe guides style): a 4-col grid of 63.5 cells, shapes drawn in when on screen
+  // guide-card line art in ANAND's own language: the logo's double chevron, slanted panels and speed lines (drawn in when on screen)
   (() => {
-    const S = 63.5, NS = 'http://www.w3.org/2000/svg';
+    const W = 254, H = 356, TOP = 168, SL = .36; // SL: slant of the italic logo / hero stripes (dx per dy)
     const rnd = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const P = pts => pts.map(p => p.map(v => +v.toFixed(1)).join(',')).join(' ');
+    // one chevron like the logo's: thickness t, height h, pointing right
+    const chev = (x, y, h, t) => P([[x, y], [x + t, y], [x + t + h / 2, y + h / 2], [x + t, y + h], [x, y + h], [x + h / 2, y + h / 2]]);
     document.querySelectorAll('.gc-art').forEach((svg, n) => {
-      const r = rnd(97 + n * 131), out = [];
-      const add = (tag, attrs) => out.push(`<${tag} pathLength="1" ${Object.entries(attrs).map(([k, v]) => `${k}="${v}"`).join(' ')} style="--d:${Math.round(r() * 600)}ms"/>`);
-      for (let x = S; x < 254; x += S) add('line', {x1: x, y1: 2.6 * S, x2: x, y2: 356});
-      for (let y = 3 * S; y < 356; y += S) add('line', {x1: 0, y1: y, x2: 254, y2: y});
-      for (let row = 3; row < 6; row++) for (let col = 0; col < 4; col++) {
-        const x = col * S, y = row * S - .4 * S, k = r();
-        if (k < .22) { const c = Math.floor(r() * 4), cx = x + (c % 2) * S, cy = y + (c > 1) * S, sx = c % 2 ? -1 : 1, sy = c > 1 ? -1 : 1;
-          add('path', {d: `M${cx} ${cy}h${sx * S}A${S} ${S} 0 0 ${sx * sy > 0 ? 1 : 0} ${cx} ${cy + sy * S}Z`}); }
-        else if (k < .38) for (let i = 1; i < 7; i++) add('line', {x1: x, y1: y + i * S / 7, x2: x + S, y2: y + i * S / 7});
-        else if (k < .54) [S / 2, S / 3, S / 6].forEach(rr => add('circle', {cx: x + S / 2, cy: y + S / 2, r: rr}));
-        else if (k < .66) add('circle', {cx: x + S / 2, cy: y + S / 2, r: S / 2});
-        else if (k < .76) add('line', {x1: x, y1: y + S, x2: x + S, y2: y});
-      }
-      const bx = Math.floor(r() * 3) * S, by = 3.6 * S; // one large arc per card
-      add('path', {d: `M${bx} ${by + 2 * S}A${2 * S} ${2 * S} 0 0 1 ${bx + 2 * S} ${by}V${by + 2 * S}Z`});
+      const r = rnd(211 + n * 977), out = [];
+      const d = () => `style="--d:${Math.round(r() * 700)}ms"`;
+      const line = (x1, y1, x2, y2) => out.push(`<line pathLength="1" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" ${d()}/>`);
+      const poly = pts => out.push(`<polygon pathLength="1" points="${pts}" ${d()}/>`);
+      // big double chevron (the logo mark), fully visible, lower right
+      const h = 104 + r() * 24, t = h * .42, gap = t + h * .16, total = gap + t + h / 2;
+      const bx = W - 22 - total, by = H - 26 - h;
+      // slanted panel edges behind everything
+      [18 + r() * 30, 96 + r() * 30].forEach(x => line(x, H, x + (H - TOP) * SL, TOP));
+      // slanted frame, upper left
+      const px = 14 + r() * 40, py = TOP + 12, pw = 64 + r() * 30, ph = 40;
+      poly(P([[px + ph * SL, py], [px + pw + ph * SL, py], [px + pw, py + ph], [px, py + ph]]));
+      // speed lines trailing the chevron
+      [.28, .42, .58, .72].forEach((k, i) => { const y = by + h * k, len = 40 + r() * 60 + (i % 2) * 20; line(bx - 8 - len, y, bx - 8, y); });
+      poly(chev(bx, by, h, t));
+      poly(chev(bx + gap, by, h, t));
+      // small >>> marker, lower left
+      const mx = 16, my = H - 30, mh = 12;
+      for (let i = 0; i < 3; i++) poly(chev(mx + i * 11, my, mh, 4));
       svg.innerHTML = out.join('');
     });
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }), {threshold: .2});
