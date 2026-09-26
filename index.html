@@ -22,6 +22,11 @@
   --line:#E3E8EE;
   --soft:#F6F9FC;
   --white:#FFFFFF;
+  --on-dark:#A9C1D6;    /* body text on navy */
+  --on-dark-2:#88A3BB;  /* secondary text on navy */
+  --tint:#E6F7FD;       /* cyan tint (badges, pills, soft icon boxes) */
+  --tint-2:#B3E7FA;     /* stronger cyan tint (borders) */
+  --faint:#9AA8B8;      /* placeholders, disabled */
   --grad:linear-gradient(90deg,var(--cyan),var(--royal));
   --shadow-lg:0 12px 32px -12px rgba(2,26,44,.18);
   --shadow-md:none;
@@ -118,7 +123,7 @@ section{position:relative}
 .np-btn{align-self:flex-start;margin-top:6px}
 .np-quote{margin-top:22px;background:var(--navy);color:#fff;border-radius:var(--radius);padding:16px}
 .np-quote p{font-size:var(--fs-ui);line-height:1.35;margin-bottom:8px}
-.np-quote span{font-size:var(--fs-label);color:#A9C1D6}
+.np-quote span{font-size:var(--fs-label);color:var(--on-dark)}
 .np-aside .np-list{gap:12px}
 /* page behind blurs while a menu is open */
 .nav-overlay{position:fixed;inset:72px 0 0;z-index:40;background:rgba(246,249,252,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease)}
@@ -158,7 +163,7 @@ section{position:relative}
 .c-head{display:block}
 .c-head small{display:block;font-size:var(--fs-label);color:var(--muted);margin-bottom:2px}
 .c-head b{color:var(--ink);font-size:var(--fs-small);font-weight:500}
-.pill{font-size:var(--fs-label);font-weight:500;padding:2px 8px;border-radius:var(--radius);background:#E6F7FD;color:var(--royal);white-space:nowrap}
+.pill{font-size:var(--fs-label);font-weight:500;padding:2px 8px;border-radius:var(--radius);background:var(--tint);color:var(--royal);white-space:nowrap}
 .c-img{flex:1;margin-top:14px;border-radius:var(--radius);overflow:hidden;background:#2a2a2a;position:relative}
 .c-img .pill{position:absolute;top:10px;left:10px;background:#fff}
 .c-img img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
@@ -218,7 +223,7 @@ section{position:relative}
 .st-ctrl{display:flex;justify-content:flex-end;gap:8px;margin-bottom:24px}
 .st-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:var(--radius);cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--navy);transition:background .2s,color .2s,border-color .2s}
 .st-btn:hover:not(:disabled){background:var(--navy);border-color:var(--navy);color:#fff}
-.st-btn:disabled{cursor:default;background:transparent;border-color:var(--line);color:#B8C2CC}
+.st-btn:disabled{cursor:default;background:transparent;border-color:var(--line);color:var(--faint)}
 .st-btn .ic{width:18px;height:18px}
 .st-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .st-clip{overflow:hidden;container-type:inline-size}
@@ -273,7 +278,7 @@ section{position:relative}
 .dark .band .b3{right:0;width:20%;background:var(--cyan)}
 .dark .eyebrow{color:var(--cyan)}
 .dark h2{color:#fff}
-.dark .lede{color:#A9C1D6}
+.dark .lede{color:var(--on-dark)}
 .dark-inner{position:relative;z-index:2}
 /* Vision & strategy: mirrors Stripe's "Why Stripe" stat row, on dark */
 .v-head{max-width:880px}
@@ -282,7 +287,7 @@ section{position:relative}
 .v-stats>div{padding-left:16px;border-left:1px solid rgba(255,255,255,.14)}
 .v-stats .n{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.1;color:var(--cyan);font-variant-numeric:tabular-nums}
 .v-stats .n::before{content:"";display:block;width:1px;height:18px;background:var(--cyan);margin:0 0 10px -17px}
-.v-stats p{color:#A9C1D6;font-size:var(--fs-body);line-height:1.6;margin-top:10px}
+.v-stats p{color:var(--on-dark);font-size:var(--fs-body);line-height:1.6;margin-top:10px}
 .v-stats p a{color:var(--cyan)}
 .v-stats p a:hover{color:#fff}
 
@@ -293,24 +298,23 @@ section{position:relative}
 .gs-intro{grid-column:1/3;grid-row:1;position:relative;z-index:1;max-width:520px}
 .gs-intro .lede{margin:20px 0 28px}
 .gs-col{grid-row:1;display:flex;flex-direction:column;gap:24px}
-.gs-a{grid-column:2;padding-top:420px}
-.gs-b{grid-column:3;padding-top:180px}
-.gs-c{grid-column:4}
-.gc{--fill:#0B4EA2;--stroke:#5584C4;position:relative;display:block;aspect-ratio:254/356;color:#fff;transition:transform .3s}
-.gc--green{--fill:#61A229;--stroke:#9CCB6E}
+.gs-a{grid-column:2;padding-top:var(--gs-a,360px)}
+.gs-b{grid-column:3;padding-top:240px}
+.gs-c{grid-column:4;padding-top:120px}
+.gc{--fill:var(--royal);--stroke:#5584C4;position:relative;display:block;aspect-ratio:254/356;color:#fff;transition:transform .3s}
+.gc--green{--fill:var(--green);--stroke:#9CCB6E}
 .gc--dkgreen{--fill:#3F7A1C;--stroke:#7AAA55}
-.gc--royal{--fill:#0B4EA2;--stroke:#5584C4}
-.gc--cyan{--fill:#00AEEF;--stroke:#66CEF5}
-.gc--navy{--fill:#06294A;--stroke:#3D5A78}
+.gc--royal{--fill:var(--royal);--stroke:#5584C4}
+.gc--cyan{--fill:var(--cyan);--stroke:#66CEF5}
+.gc--navy{--fill:var(--navy-2);--stroke:#3D5A78}
 .gc-shadow{position:absolute;inset:0}
 .gc-shadow::before,.gc-shadow::after{content:"";position:absolute;inset:0;border-radius:var(--radius);transition:opacity .3s}
 .gc-shadow::before{box-shadow:0 13px 27px -5px rgba(50,50,93,.25),0 8px 16px -8px rgba(0,0,0,.3)}
 .gc-shadow::after{box-shadow:0 50px 100px -20px rgba(50,50,93,.25),0 30px 60px -30px rgba(0,0,0,.3);opacity:0}
 .gc-card{position:relative;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:22px 24px;background:var(--fill);border-radius:var(--radius);overflow:hidden}
 .gc-art{position:absolute;inset:0;width:100%;height:100%;transition:transform .3s}
-.gc-art path,.gc-art circle,.gc-art line,.gc-art polygon{fill:var(--fill);stroke:var(--stroke);stroke-width:1.25;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
-.gc-art.drawn path,.gc-art.drawn circle,.gc-art.drawn line,.gc-art.drawn polygon{stroke-dashoffset:0;transition:stroke-dashoffset 3s ease-out var(--d,0ms)}
-.gc-art line{fill:none}
+.gc-mark{fill:var(--stroke);opacity:0;transform:translateX(-24px);transition:opacity .9s ease-out,transform 1.2s cubic-bezier(.22,1,.36,1)}
+.gc-art.drawn .gc-mark{opacity:.55;transform:none}
 .gc-text{position:relative}
 .gc-cat{display:block;font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:12px}
 .gc-title{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;color:#fff}
@@ -322,7 +326,7 @@ section{position:relative}
 .gc:hover .gc-shadow::after{opacity:1}
 .gc:hover .gc-cta,.gc:focus-visible .gc-cta{opacity:1}
 .gc:focus-visible{outline:2px solid var(--cyan);outline-offset:4px;border-radius:var(--radius)}
-@media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-art path,.gc-art circle,.gc-art line,.gc-art polygon{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.gc,.gc-art{transition:none}.gc-mark{opacity:.55;transform:none;transition:none}}
 
 /* ---------- NEWSROOM CAROUSEL ---------- */
 .newsroom{background:var(--navy);color:#fff;padding:0 0 110px}
@@ -335,15 +339,15 @@ section{position:relative}
 .nr-stage{display:grid;border-radius:var(--radius);overflow:hidden;background:var(--navy-2);touch-action:pan-y}
 .nr-slide{grid-area:1/1;display:grid;grid-template-columns:1.35fr 1fr;opacity:0;visibility:hidden;transition:opacity .7s var(--ease),visibility .7s}
 .nr-slide.on{opacity:1;visibility:visible}
-.nr-media{position:relative;overflow:hidden;min-height:440px;background:#0B2A44}
+.nr-media{position:relative;overflow:hidden;min-height:440px;background:var(--navy-2)}
 .nr-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 7s linear}
 .nr-slide.on .nr-media img{transform:scale(1)}
 .nr-body{display:flex;flex-direction:column;align-items:flex-start;padding:40px 44px}
 .nr-tag{border-radius:var(--radius);font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,174,239,.5);padding:5px 10px;margin-bottom:auto}
-.nr-meta{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin:28px 0 12px}
+.nr-meta{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-2);margin:28px 0 12px}
 .nr-meta span{color:#fff}
 .nr-body h3{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
-.nr-body p{color:#A9C1D6;font-size:var(--fs-body);line-height:1.6;margin-bottom:24px}
+.nr-body p{color:var(--on-dark);font-size:var(--fs-body);line-height:1.6;margin-bottom:24px}
 .nr-read{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);font-weight:500;color:#fff;border-bottom:1px solid var(--cyan);padding-bottom:2px}
 .nr-read:hover{color:var(--cyan)}
 .nr-read .ic{transition:transform .2s var(--ease)}
@@ -354,10 +358,10 @@ section{position:relative}
 .nr-th{position:relative;flex:0 0 calc((100% - 56px) / 3);display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;padding:20px 0 0;margin:0;border:0;border-radius:var(--radius);background:none;color:inherit;text-align:left;font:inherit;cursor:pointer;scroll-snap-align:start}
 .nr-th .bar{position:absolute;left:0;right:0;top:0;height:2px;border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.14)}
 .nr-th .bar i{display:block;height:100%;width:0;background:var(--cyan)}
-.nr-th .im{aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius);background:#0B2A44}
+.nr-th .im{aspect-ratio:16/10;overflow:hidden;border-radius:var(--radius);background:var(--navy-2)}
 .nr-th img{width:100%;height:100%;object-fit:cover;opacity:.6;transition:opacity .3s}
-.nr-th time{display:block;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:#88A3BB;margin-bottom:6px}
-.nr-th h4{font-size:var(--fs-ui);font-weight:500;line-height:1.4;color:#A9C1D6;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
+.nr-th time{display:block;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--on-dark-2);margin-bottom:6px}
+.nr-th h4{font-size:var(--fs-ui);font-weight:500;line-height:1.4;color:var(--on-dark);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:color .3s}
 .nr-th:hover h4,.nr-th.on h4{color:#fff}
 .nr-th:hover img,.nr-th.on img{opacity:1}
 .nr-th:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
@@ -379,7 +383,7 @@ section{position:relative}
 .bento-entry{position:absolute;right:16px;top:16px;width:38px;height:38px;z-index:3;pointer-events:none}
 .bento-entry::before,.bento-entry::after{content:"";position:absolute;inset:0;border-radius:var(--radius)}
 .bento-entry::before{opacity:0;background:var(--cyan)}
-.bento-entry::after{background:#E6F7FD}
+.bento-entry::after{background:var(--tint)}
 .bento-entry-wrap{position:relative;z-index:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 .bento-entry svg{width:14px;height:14px;overflow:visible}
 .bento-entry svg path{fill:var(--cyan)}
@@ -544,7 +548,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-dialog[data-status=initial]{transform:translateY(200px)}
 .bd-dialog[data-status=open]{transform:none;transition-duration:.8s;transition-timing-function:cubic-bezier(.22,1,.36,1)}
 .bd-dialog[data-status=close]{transform:translateY(100px);transition-duration:.3s}
-.bd-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border:0;border-radius:var(--radius);background:#E6F7FD;color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
+.bd-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border:0;border-radius:var(--radius);background:var(--tint);color:var(--navy);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
 .bd-close:hover{background:var(--cyan);color:#fff}
 .bd-close .ic{width:18px;height:18px}
 .bd-close:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
@@ -559,7 +563,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-list{grid-column:8/span 5;list-style:none;display:flex;flex-direction:column;margin-top:3px}
 .bd-list li{display:flex;gap:10px;color:var(--slate);font-size:var(--fs-body);line-height:1.5;padding:12px 0}
 .bd-list li+li{border-top:1px solid var(--line)}
-.bd-list li i{flex:none;width:18px;height:18px;border-radius:50%;background:#E6F7FD;color:var(--cyan);display:grid;place-items:center;margin-top:3px}
+.bd-list li i{flex:none;width:18px;height:18px;border-radius:50%;background:var(--tint);color:var(--cyan);display:grid;place-items:center;margin-top:3px}
 .bd-list li i .ic{width:12px;height:12px;stroke-width:3}
 .bd-graphics{display:grid;grid-template-columns:7fr 5fr;gap:16px}
 .bd-graphics.one{grid-template-columns:1fr}
@@ -595,7 +599,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-leaders small{display:block;color:var(--cyan);font-size:var(--fs-small);margin:2px 0 10px}
 .bd-leaders p{color:var(--slate);font-size:var(--fs-ui);line-height:1.55}
 .bd-details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 16px}
-.bd-details div i{width:36px;height:36px;border-radius:var(--radius);border:1px solid #B3E7FA;display:grid;place-items:center;color:var(--cyan);margin-bottom:14px}
+.bd-details div i{width:36px;height:36px;border-radius:var(--radius);border:1px solid var(--tint-2);display:grid;place-items:center;color:var(--cyan);margin-bottom:14px}
 .bd-details div i .ic{width:18px;height:18px}
 .bd-details b{display:block;font-weight:500;color:var(--ink);margin-bottom:6px}
 .bd-details p{color:var(--slate);font-size:var(--fs-ui);line-height:1.55;padding-right:16px}
@@ -603,7 +607,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-quote{text-align:center;max-width:860px;margin:0 auto}
 .bd-quote .logo{height:22px;width:auto;margin:0 auto 24px}
 .bd-quote .logo[src*="sujan"]{filter:brightness(.6) saturate(1.3);height:26px}
-.bd-quote q{display:block;font-size:var(--fs-quote);line-height:1.3;letter-spacing:-.02em;color:#425466;quotes:"\201C" "\201D"}
+.bd-quote q{display:block;font-size:var(--fs-quote);line-height:1.3;letter-spacing:-.02em;color:var(--slate);quotes:"\201C" "\201D"}
 .bd-quote .by{margin-top:24px;font-size:var(--fs-body);color:var(--slate)}
 .bd-quote .by b{color:var(--ink);font-weight:500}
 .bd-footer{display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center}
@@ -653,7 +657,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .pm-tip.show{opacity:1;transform:none}
 .pm-tip .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
 .pm-tip .hd b{font-weight:500;color:var(--ink);font-size:var(--fs-small)}
-.pm-tip .hd span{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid #B3E7FA;border-radius:2px;padding:2px 6px;white-space:nowrap}
+.pm-tip .hd span{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid var(--tint-2);border-radius:2px;padding:2px 6px;white-space:nowrap}
 .pm-tip .pr{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
 .bd-g .pm-tip .pr img,.bd-overlay>.pm-tip .pr img{position:static;inset:auto;width:auto;height:auto;max-width:64px;max-height:22px;object-fit:contain;justify-self:start}
 .pm-tip .pr div{font-size:var(--fs-ui-sm);color:var(--slate);line-height:1.4}
@@ -696,12 +700,12 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .pf-f label{font-size:var(--fs-small);color:var(--ink);line-height:1.3}
 .pf-f label em{font-style:normal;color:var(--cyan)}
 .pf-in{width:100%;height:44px;padding:0 15px;font:inherit;font-size:var(--fs-body);color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:var(--radius);outline:3px solid transparent;transition:border-color .3s cubic-bezier(.25,1,.5,1),outline-color .3s cubic-bezier(.25,1,.5,1)}
-.pf-in::placeholder{color:#9AA8B8}
-.pf-in:hover{border-color:#C9D4E0}
+.pf-in::placeholder{color:var(--faint)}
+.pf-in:hover{border-color:var(--faint)}
 .pf-in:focus{border-color:var(--cyan);outline-color:rgba(0,174,239,.2)}
 .pf-in.bad{border-color:#DF1B41;outline-color:rgba(223,27,65,.12)}
 select.pf-in{appearance:none;-webkit-appearance:none;padding-right:40px;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23021A2C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right 16px center;cursor:pointer}
-select.pf-in:invalid{color:#9AA8B8}
+select.pf-in:invalid{color:var(--faint)}
 textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
 .pf-pair{display:grid;grid-template-columns:104px minmax(0,1fr);gap:8px}
 .pf-err{font-size:var(--fs-label);color:#DF1B41;margin-top:-2px}
@@ -710,7 +714,7 @@ textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
 .pf-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:24px}
 .pf-next{border:0;cursor:pointer;font-family:inherit}
 .pf-done{margin-top:40px;display:grid;gap:24px;justify-items:start}
-.pf-done .ok{width:48px;height:48px;border-radius:50%;background:#E6F7FD;color:var(--cyan);display:grid;place-items:center}
+.pf-done .ok{width:48px;height:48px;border-radius:50%;background:var(--tint);color:var(--cyan);display:grid;place-items:center}
 .pf-done .ok svg{width:22px;height:22px}
 @media (max-width:639px){
   .bd-dialog.is-form{width:100%;margin:auto 0 0;padding:24px 20px 32px}
@@ -718,27 +722,57 @@ textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
   .pf-f{grid-column:1/-1}
   .pf-foot{padding-left:0}
 }
+/* Scale, governance & credibility: mirrors stripe.com/payments */
+#beyond{padding-bottom:0}
+#trust{position:relative;z-index:2;background:var(--soft);padding:120px 0 160px;margin-top:-125px}
+/* slanted top at the same 6deg as the hero/vision stripes, cutting into the CSR cards, with brand stripes on the edge */
+.tr-cut{position:absolute;left:0;right:0;top:0;height:320px;background:var(--soft);transform:skewY(-6deg);transform-origin:0 0;pointer-events:none}
+.tr-cut i{position:absolute;left:0;bottom:100%;display:block}
+.tr-cut .c1{width:34%;height:40px;background:var(--royal)}
+.tr-cut .c2{width:19%;height:34px;bottom:calc(100% + 40px);background:var(--cyan)}
+#trust>.wrap{position:relative}
+.tr-feats{margin-top:112px}
+.tr-top{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.tr-col{display:flex;flex-direction:column}
+.tr-h{font-size:var(--fs-h2);margin-bottom:20px}
+.tr-p{font-size:var(--fs-lede);color:var(--slate);line-height:1.6;max-width:540px;margin-bottom:40px}
+.tr-stat{flex:1;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:40px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);text-align:center}
+.tr-num{font-size:clamp(72px,9vw,128px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--cyan);font-variant-numeric:tabular-nums}
+.tr-num span{letter-spacing:-.02em}
+.tr-stat p{font-size:var(--fs-body);color:var(--ink);max-width:340px}
+.tr-stat b{font-weight:500}
+.tr-tiles{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tr-tile{display:flex;align-items:center;gap:16px;padding:22px 20px;border-radius:var(--radius);color:#fff;font-size:var(--fs-ui);font-weight:500;line-height:1.4;min-height:108px}
+.tr-tile .ic{flex:none;width:32px;height:32px;stroke-width:1.5}
+.tr--royal{background:var(--royal)}.tr--cyan{background:var(--cyan)}.tr--navy2{background:var(--navy-2)}
+.tr-feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.tr-feat .ic{width:40px;height:40px;color:var(--cyan);stroke-width:1.5;margin-bottom:24px}
+.tr-feat h3{position:relative;font-size:var(--fs-title);margin-bottom:10px}
+.tr-feat h3::before{content:"";position:absolute;left:-17px;top:2px;bottom:2px;width:1px;background:var(--cyan)}
+.tr-feat{padding-left:16px;border-left:1px solid var(--line)}
+.tr-feat p{font-size:var(--fs-body);color:var(--slate);line-height:1.6}
 /* CTA banner (mirrors Stripe's Sessions banner); also the page's contact section */
-.cta-banner{padding:0 0 96px}
+.cta-banner{background:var(--soft);padding:0 0 96px}
 .cb-card{position:relative;display:flex;min-height:clamp(440px,40vw,544px);border-radius:var(--radius);overflow:hidden;background:var(--navy)}
 .cb-img{position:absolute;top:0;bottom:0;left:34%;width:66%;height:100%;object-fit:cover;object-position:50% 22%}
-.cb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 34%,rgba(2,26,44,.55) 50%,rgba(2,26,44,0) 66%),linear-gradient(0deg,rgba(2,26,44,.7) 0%,rgba(2,26,44,0) 30%);pointer-events:none}
+.cb-card::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 34%,rgba(2,26,44,.55) 50%,rgba(2,26,44,0) 66%),linear-gradient(0deg,rgba(2,26,44,.88) 0%,rgba(2,26,44,.55) 22%,rgba(2,26,44,0) 45%),radial-gradient(60% 45% at 100% 0%,rgba(2,26,44,.55),rgba(2,26,44,0));pointer-events:none}
 .cb-content{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:40px;padding:clamp(24px,3.4vw,48px)}
+.cb-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px}
 .cb-main{max-width:min(520px,48%)}
 .cb-title{color:#fff;margin-bottom:16px}
-.cb-lede{color:#A9C1D6;font-size:var(--fs-lede);line-height:1.6;margin-bottom:28px;max-width:460px}
+.cb-lede{color:var(--on-dark);font-size:var(--fs-lede);line-height:1.6;max-width:460px}
 .cb-actions{display:flex;flex-wrap:wrap;gap:12px}
 .cb-btn{background:#fff;color:var(--cyan)}
 .cb-btn:hover{background:var(--cyan);color:#fff}
 .cb-btn-2{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
 .cb-btn-2:hover{background:#fff;color:var(--navy);box-shadow:none}
-.cb-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
-.cb-hq{font-style:normal;font-size:var(--fs-small);color:#A9C1D6;line-height:1.5;max-width:420px}
+.cb-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cb-hq{font-style:normal;font-size:var(--fs-small);color:var(--on-dark);line-height:1.5;max-width:420px;text-align:right;text-shadow:0 1px 8px rgba(2,26,44,.5)}
 .cb-hq b{display:block;color:#fff;font-weight:500;margin-bottom:2px}
 .cb-hq a{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4)}
 .cb-hq a:hover{text-decoration-color:#fff}
 .cb-hq .nw{white-space:nowrap}
-.cb-logo{height:24px;width:auto;flex:none;filter:brightness(0) invert(1)}
+.cb-logo{height:24px;width:auto;flex:none;margin-top:4px;filter:brightness(0) invert(1)}
 @media (max-width:939px){
   .cb-main{max-width:62%}
 }
@@ -748,6 +782,8 @@ textarea.pf-in{height:88px;padding:11px 15px;resize:vertical;line-height:1.5}
   .cb-main{max-width:none}
   .cb-img{position:relative;order:2;left:auto;width:100%;height:240px;object-position:62% 18%;-webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 35%);mask-image:linear-gradient(180deg,transparent 0%,#000 35%)}
   .cb-foot{flex-direction:column;align-items:flex-start}
+  .cb-top{flex-direction:column-reverse;gap:24px}
+  .cb-hq{text-align:left}
   .cb-logo{height:20px}
 }
 footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-small)}
@@ -792,14 +828,17 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .f-cta{margin-top:0}
   .f-comp-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
   .v-stats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .tr-feats{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
   .gs{grid-template-columns:repeat(3,minmax(0,1fr))}
+    #trust{margin-top:0}
   .gs-intro{grid-column:1/-1;max-width:640px;margin-bottom:24px}
   .gs-col{display:contents}
   .gs-a,.gs-b,.gs-c{padding-top:0}
   .gc{grid-row:auto;grid-column:auto}
 }
 @media (max-width:1020px){
-  .hero-grid,.about-grid,.bento-head{grid-template-columns:1fr}
+  .hero-grid,.about-grid,.bento-head,.tr-top{grid-template-columns:1fr}
+  .tr-top{gap:72px}
   .nr-slide{grid-template-columns:1fr}
   .nr-media{min-height:0;aspect-ratio:16/9}
   .nr-body{padding:28px 28px 32px}
@@ -829,8 +868,12 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .sol-b{padding:24px}
   .sec-head--cta{flex-direction:column;align-items:flex-start;gap:24px}
   .v-stats{grid-template-columns:1fr;margin-top:48px}
+  .tr-tiles,.tr-feats{grid-template-columns:1fr}
+    .tr-stat{min-height:240px}
   .gs{grid-template-columns:1fr}
-  .gc{aspect-ratio:1/1}
+    .gc{aspect-ratio:1/1}
+  #trust{padding-bottom:96px}
+  .tr-cut .c1{height:22px}.tr-cut .c2{height:18px;bottom:calc(100% + 22px)}
   .gc-art{-webkit-mask-image:linear-gradient(180deg,transparent 35%,#000 65%);mask-image:linear-gradient(180deg,transparent 35%,#000 65%)}
   .newsroom{padding-bottom:80px}
   .bento-sec{padding:84px 0}
@@ -1924,10 +1967,10 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
     </div>
     <div class="facts">
       <div class="fact rv"><div class="n" data-count="1961" data-plain>1961</div><p>Year the Group was established</p></div>
-      <div class="fact rv"><div class="n" data-count="25">25</div><p>Companies in the ANAND family</p></div>
+      <div class="fact rv"><div class="n" data-count="17">17</div><p>Companies in the ANAND family</p></div>
       <div class="fact rv"><div class="n" data-count="22000" data-suffix="+">22,000+</div><p>Employees across the Group</p></div>
       <div class="fact rv"><div class="n" data-count="87">87</div><p>Locations in India and abroad</p></div>
-      <div class="fact rv"><div class="n">$2.2B+</div><p>Group revenue</p></div>
+      <div class="fact rv"><div class="n">US$2.2B+</div><p>Group revenue</p></div>
     </div>
   </div>
 </section>
@@ -1966,7 +2009,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
         <li class="st-item"><a class="st-card" href="https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms" target="_blank" rel="noopener">
           <span class="st-media"><img class="ph" src="assets/Gabriel-India-South-Koreas-HL-Klemove.jpg" alt="" loading="lazy"><img class="st-logo " src="assets/HL-Klemove.png" alt=""></span>
           <span class="st-title">Gabriel India and HL Klemove form a joint venture to bring autonomous driving to India.</span>
-          <span class="st-link">Read the story<i data-lucide="chevron-right" class="ic"></i></span>
+          <span class="st-link">Read the Story<i data-lucide="chevron-right" class="ic"></i></span>
         </a></li>
         <li class="st-item"><a class="st-card" href="https://www.anandgroupindia.com/mahleanandthermalsystems/" target="_blank" rel="noopener">
           <span class="st-media"><img class="ph" src="assets/thermal-management.png" alt="" loading="lazy"><img class="st-logo " src="assets/mahle.png" alt=""></span>
@@ -2090,6 +2133,14 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
             <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
           </span>
         </a>
+        <a class="gc gc--cyan" href="#">
+          <span class="gc-shadow" aria-hidden="true"></span>
+          <span class="gc-card">
+            <svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg>
+            <span class="gc-text"><span class="gc-cat">Community &amp; livelihoods</span><h3 class="gc-title">1,000+ Self-Help Groups Supported with 170 mn in Micro-Credit</h3></span>
+            <span class="gc-cta">Read more <i data-lucide="chevron-right" class="ic"></i></span>
+          </span>
+        </a>
       </div>
       <div class="gs-col gs-b">
         <a class="gc gc--royal" href="#">
@@ -2131,24 +2182,64 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   </div>
 </section>
 
+<!-- SCALE, GOVERNANCE & CREDIBILITY (mirrors stripe.com/payments "Reliability is revenue / Compliance at the core" + feature row;
+     content from the ANAND Group Corporate Presentation, Jan 2026, and anandgroupindia.com) -->
+<section class="sec" id="trust">
+  <div class="tr-cut" aria-hidden="true"><i class="c1"></i><i class="c2"></i></div>
+  <div class="wrap">
+    <div class="tr-top">
+      <div class="tr-col rv">
+        <h2 class="tr-h">Built for Scale</h2>
+        <p class="tr-p">From 87 locations across 14 states, ANAND supplies India's leading vehicle makers and one of the country's largest aftermarket networks. Gabriel India is the only suspension maker with a meaningful presence across two-wheelers, cars, commercial vehicles and railways.</p>
+        <div class="tr-stat">
+          <div class="tr-num">40<span>%+</span></div>
+          <p>aftermarket share for <b>Gabriel India</b>, the No. 1 brand in India (FY 2025)</p>
+        </div>
+      </div>
+      <div class="tr-col rv">
+        <h2 class="tr-h">Governance at the Core</h2>
+        <p class="tr-p">Governance at ANAND is anchored in safety, integrity, quality and inclusivity. Ethics is not a goal but a lived practice, overseen by an independent Group Supervisory Board.</p>
+        <div class="tr-tiles">
+          <div class="tr-tile tr--royal"><i data-lucide="landmark" class="ic"></i><span>Independent Group Supervisory Board with dedicated committees</span></div>
+          <div class="tr-tile tr--cyan"><i data-lucide="shield-check" class="ic"></i><span>Group Ethics Committee and Integrity Matters hotline</span></div>
+          <div class="tr-tile tr--navy2"><i data-lucide="messages-square" class="ic"></i><span>360-degree feedback at every level, one of the first in India</span></div>
+          <div class="tr-tile tr--royal"><i data-lucide="badge-check" class="ic"></i><span>ANAND House of Quality, with 200+ certified Six Sigma belts</span></div>
+          <div class="tr-tile tr--cyan"><i data-lucide="globe" class="ic"></i><span>CSR aligned with the UN SDGs through SNS Foundation since 1976</span></div>
+          <div class="tr-tile tr--navy2"><i data-lucide="award" class="ic"></i><span>India's Best Workplaces for Women 2019, Great Place to Work®</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="tr-feats">
+      <div class="tr-feat rv"><i data-lucide="map-pin" class="ic"></i><h3>Close to Every Auto Hub</h3><p>Plants and offices across 14 Indian states, from Gurugram and Pune to Chennai and Hosur, keep ANAND close to its customers.</p></div>
+      <div class="tr-feat rv"><i data-lucide="handshake" class="ic"></i><h3>Trusted by Leading OEMs</h3><p>Supplying Maruti Suzuki, Tata Motors, Mahindra, Toyota, Honda, Hyundai, Bajaj, TVS and many more across two-wheelers, cars, trucks and tractors.</p></div>
+      <div class="tr-feat rv"><i data-lucide="flask-conical" class="ic"></i><h3>Engineering Depth</h3><p>Gabriel India alone employs 80+ R&amp;D specialists, the most in its industry, across technology centres in India and Belgium.</p></div>
+      <div class="tr-feat rv"><i data-lucide="trophy" class="ic"></i><h3>Recognised for Excellence</h3><p>Honoured at the ACMA Excellence Awards 2025 and at the supplier conferences of Maruti Suzuki, Tata Motors and Mahindra.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA BANNER (mirrors Stripe's Sessions banner) -->
 <section class="cta-banner" id="contact">
   <div class="wrap">
     <div class="cb-card rv" id="careers">
       <img class="cb-img" src="assets/news1-scaled-1.jpeg" alt="ANAND leadership speaking at a group event" loading="lazy">
       <div class="cb-content">
-        <div class="cb-main">
-          <div class="eyebrow">Driving mobility &amp; sustainability</div>
-          <h2 class="cb-title">Ready to Shape the Future of Mobility?</h2>
-          <p class="cb-lede">Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
+        <div class="cb-top">
+          <div class="cb-main">
+            <div class="eyebrow">Driving mobility &amp; sustainability</div>
+            <h2 class="cb-title">Ready to Shape the Future of Mobility?</h2>
+            <p class="cb-lede">Whether you want to partner, innovate or grow with us, let's write the next chapter of mobility together.</p>
+          </div>
+          <img class="cb-logo" src="assets/logo.png" alt="ANAND">
+        </div>
+        <div class="cb-foot">
           <div class="cb-actions">
             <a href="#contact" class="btn cb-btn" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
             <a href="#" class="btn cb-btn cb-btn-2">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a>
           </div>
-        </div>
-        <div class="cb-foot">
           <address class="cb-hq"><b>Corporate Headquarters</b>1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016<br><span class="nw">+91-11-42092300</span> · <a href="mailto:contact@anandgroupindia.com">contact@anandgroupindia.com</a></address>
-          <img class="cb-logo" src="assets/logo.png" alt="ANAND">
         </div>
       </div>
     </div>
@@ -2588,35 +2679,15 @@ if (wrap) {
 
 
 
-  // guide-card line art in ANAND's own language: the logo's double chevron, slanted panels and speed lines (drawn in when on screen)
+  // guide-card art: one large filled ANAND double chevron (the logo mark), cropped by the card edge; slides in on scroll
   (() => {
-    const W = 254, H = 356, TOP = 168, SL = .36; // SL: slant of the italic logo / hero stripes (dx per dy)
-    const rnd = seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const W = 254, H = 356;
     const P = pts => pts.map(p => p.map(v => +v.toFixed(1)).join(',')).join(' ');
-    // one chevron like the logo's: thickness t, height h, pointing right
     const chev = (x, y, h, t) => P([[x, y], [x + t, y], [x + t + h / 2, y + h / 2], [x + t, y + h], [x, y + h], [x + h / 2, y + h / 2]]);
-    document.querySelectorAll('.gc-art').forEach((svg, n) => {
-      const r = rnd(211 + n * 977), out = [];
-      const d = () => `style="--d:${Math.round(r() * 700)}ms"`;
-      const line = (x1, y1, x2, y2) => out.push(`<line pathLength="1" x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" ${d()}/>`);
-      const poly = pts => out.push(`<polygon pathLength="1" points="${pts}" ${d()}/>`);
-      // big double chevron (the logo mark), fully visible, lower right
-      const h = 104 + r() * 24, t = h * .42, gap = t + h * .16, total = gap + t + h / 2;
-      const bx = W - 22 - total, by = H - 26 - h;
-      // slanted panel edges behind everything
-      [18 + r() * 30, 96 + r() * 30].forEach(x => line(x, H, x + (H - TOP) * SL, TOP));
-      // slanted frame, upper left
-      const px = 14 + r() * 40, py = TOP + 12, pw = 64 + r() * 30, ph = 40;
-      poly(P([[px + ph * SL, py], [px + pw + ph * SL, py], [px + pw, py + ph], [px, py + ph]]));
-      // speed lines trailing the chevron
-      [.28, .42, .58, .72].forEach((k, i) => { const y = by + h * k, len = 40 + r() * 60 + (i % 2) * 20; line(bx - 8 - len, y, bx - 8, y); });
-      poly(chev(bx, by, h, t));
-      poly(chev(bx + gap, by, h, t));
-      // small >>> marker, lower left
-      const mx = 16, my = H - 30, mh = 12;
-      for (let i = 0; i < 3; i++) poly(chev(mx + i * 11, my, mh, 4));
-      svg.innerHTML = out.join('');
-    });
+    const h = 200, t = h * .42, gap = t + h * .12, total = gap + t + h / 2;
+    const bx = W - total + 34, by = H - h + 36; // crop a little off the right and bottom
+    const mark = `<g class="gc-mark"><polygon points="${chev(bx, by, h, t)}"/><polygon points="${chev(bx + gap, by, h, t)}"/></g>`;
+    document.querySelectorAll('.gc-art').forEach(svg => { svg.innerHTML = mark; });
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); } }), {threshold: .2});
     document.querySelectorAll('.gc-art').forEach(el => io.observe(el));
   })();

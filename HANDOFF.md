@@ -2,16 +2,22 @@
 
 Read this first. It lets anyone (a person or a new Claude chat) pick up the ANAND Group landing-page design reference from where it stands. It covers the context, the rules, the design system, the language, how each section works, and the open items.
 
-Last updated: 26 Sep 2026 · latest commit `61f27dc` on `main`.
+Last updated: 26 Sep 2026, after a full consistency audit (content, type, colours). For the latest commit, run `git log -1`.
 
 ---
 
 ## 1. What this is
 
-- **Client:** ANAND Group (New Delhi auto-components group, founded 1961). Agency: **Kyte** (IA, design, SEO). Engineering partner: **GIDA** (Sanket), who handles engineering, hosting and QA.
-- **This folder** is a **single-page design reference** for the new ANAND Group website. It is a static HTML page inspired by **stripe.com/in**: Stripe's layout, interactions and motion are copied closely, with ANAND's content, colours and logo.
-- The real site will be rebuilt in **WordPress (block editor + ACF)** from this reference. The reference is the source of truth for the look. WordPress is the source of truth for how it gets built.
-- **The working method:** Mahir reviews visually, one section at a time. A request is often "make this exactly like Stripe's X" (with a screenshot or URL), followed by small visual fixes. Match Stripe's exact mechanics (timings, easings, sizes), then apply the ANAND tokens.
+- **Client:** ANAND Group (New Delhi auto-components group, founded 1961).
+- **Agency:** **Kyte** (IA, design, SEO).
+- **Engineering partner:** **GIDA** (Sanket), who handles engineering, hosting and QA.
+- **This folder** is a **single-page design reference** for the new ANAND Group website: a static HTML page modelled closely on **stripe.com/in** (layout, interactions and motion), with ANAND's content, colours and logo.
+- **What happens next:** the real site will be rebuilt in **WordPress (block editor + ACF)** from this reference.
+  - The reference is the source of truth for the **look**.
+  - WordPress is the source of truth for **how it's built**.
+- **Working method:** Mahir reviews visually, one section at a time.
+  - Requests are usually "make this like Stripe's X" (with a screenshot or URL) or small visual fixes.
+  - When copying Stripe, **measure the real values** on stripe.com (sizes, easing, timing, shadows), then apply the ANAND tokens.
 
 ## 2. Where things are
 
@@ -20,24 +26,23 @@ Last updated: 26 Sep 2026 · latest commit `61f27dc` on `main`.
 | This page (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` + `assets/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
-| Technical reference (WordPress) | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, landing page in §7, open items in §15, history in §17 |
-| Client context and people | `Claude Wordpress Context/ANAND_Gabriel_Project_Context (1).md` |
+| WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
+| Client context, people, open client questions | `Claude Wordpress Context/ANAND_Gabriel_Project_Context (1).md` |
 | Call transcripts | `Claude Wordpress Context/ANAND_Gabriel_Call_Transcripts.md` |
-| Nav spec | `Anand & Gabriel/Docs/ANAND_demo_top-nav.txt` |
-| Site audit | `Anand & Gabriel/Audit/` |
-| WordPress site (LocalWP, the only copy) | `/Users/mahirmalde/Local Sites/anand-group/app/public` → `http://anand-group.local` (theme `anand-theme`, plugin `anand-blocks`; its `wp-content` has its own `CLAUDE.md`) |
+| Nav / IA spec | `Anand & Gabriel/Docs/ANAND_demo_top-nav.txt` |
+| Main content source | ANAND Group Corporate Presentation, Jan 2026: `anandgroupindia.com/wp-content/uploads/2026/06/ANAND-Group-Corporate-Presentation.pdf` |
+| WordPress site (LocalWP, the only copy) | `/Users/mahirmalde/Local Sites/anand-group/app/public` → `http://anand-group.local` |
 | Original Figma Stripe references | Figma file `rFZMc5AIzv9qN5hBhm4alh`, node `22-379` |
 
-### Files in the repo
-- `index.html` (~150 KB): all HTML, CSS (inline `<style>`) and JS (inline `<script>`). There is no build step.
+**Files in the repo**
+- `index.html`: all HTML, CSS (inline `<style>`) and JS (inline `<script>`). No build step.
 - `assets/`
-  - `oem/`: OEM logos, cropped tight (toyota, honda, bmw, marutisuzuki, tatamotors, mahindrarise, hyundai, volkswagen)
-  - `companies/`: 17 group-company logos from anandgroupindia.com
-  - `leader-*.jpg`: leadership headshots
-  - `sujan-*.jpg` and `sujan-wordmark.svg`: SUJÁN photos and wordmark
-  - news images, partner logos (`kyb.png`, `koni.png`, `Yamaha.png`), `global.png`, `global-partners.jpeg`, etc.
-- `.gitignore`: `.DS_Store`, `.claude/`
-- `.claude/launch.json` (git-ignored): the preview config
+  - `oem/`: cropped OEM logos
+  - `companies/`: 17 group-company logos
+  - `leader-*.jpg`: headshots
+  - `sujan-*` photos, plus `sujan-wordmark.svg` (gold) and `sujan-wordmark-navy.svg`
+  - partner logos, news and product images
+- `.gitignore`: `.DS_Store`, `.claude/`. The file `.claude/launch.json` holds the preview config and is not committed.
 
 ## 3. Run it locally
 
@@ -47,408 +52,388 @@ macOS blocks the preview tool from starting a server inside `Documents`, so star
 cd "/Users/mahirmalde/Documents/Documents/Work/Kyte/Anand Group/Anand & Gabriel/Anand Moodboard/anand-landing" && python3 -m http.server 5178 --bind 127.0.0.1
 ```
 
-Then open `http://localhost:5178`. The preview pane attaches with `.claude/launch.json`:
-`{"version":"0.0.1","configurations":[{"name":"anand-landing","url":"http://localhost:5178","port":5178}]}`
+Open `http://localhost:5178`. The preview pane attaches with `.claude/launch.json`: `{"version":"0.0.1","configurations":[{"name":"anand-landing","url":"http://localhost:5178","port":5178}]}`
 
-**External libraries (CDN, no npm):**
-- Google Fonts: **Geist** (weights 300–600). Geist Mono was dropped on purpose; don't reintroduce it.
-- **Lucide** 1.48.0 UMD (icons; call `lucide.createIcons()` after injecting HTML)
-- **cobe** 2.0.1 ESM (`https://cdn.jsdelivr.net/npm/cobe@2.0.1/dist/index.esm.js`), loaded in a `<script type="module">` for the globe
+**External libraries** (from CDNs, no npm):
+- Google Fonts **Geist** (300–600). Geist Mono was dropped on purpose.
+- **Lucide** 1.48.0 UMD icons. Call `lucide.createIcons()` after injecting HTML.
+- **cobe** 2.0.1 ESM, for the globe.
+- Nothing else. Phosphor Icons was tried and removed.
 
 ## 4. Git workflow
-- **Only commit and push when Mahir asks** ("push to github"). The repo is private.
-- The repo-level git user is `Mahir <mahir@kyte-agency.com>`.
-- End each commit message with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
-- Write short, plain commit messages that say what changed visually (e.g. "Nav text at 15px to match site; white text on blue button hover").
-- History: `21a1fdb` concept → `e050573` newsroom + bento → `b5839f6` globe, map, headshots, 1300px → `35e8911` SUJÁN card → `a7342bf` stories carousel, directory → `e83e772` polish → `ef509a1` mega menu → `61f27dc` nav type.
+- **Only commit and push when Mahir says "push to github".** The repo is private.
+- The git user is `Mahir <mahir@kyte-agency.com>`. End commit messages with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
+- Write short commit messages that say what changed visually.
 
 ---
 
 ## 5. Rules to follow
 
-### Project rules (from `CLAUDE.md`, mainly for the WordPress build)
+### Project rules (from `CLAUDE.md`; mainly for the WordPress build)
 1. WordPress + block editor + ACF. **No page builders.**
 2. All design values are `theme.json` tokens, and blocks store token slugs. **No digit right after a letter in token slugs.**
-3. Component-first: granular blocks → sections of nested blocks → pages. Prefer styled core blocks.
+3. Build component-first: granular blocks → sections of nested blocks → pages. Prefer styled core blocks.
 4. Custom blocks render in PHP. Sections are generated (`npm run patterns`), never hand-written.
-5. Code goes **up** through git and content comes **down** from the shared server. **Never push a local database up.** Back up the DB and commit before big changes.
-6. After changing a page outside the editor, reload the editor **without saving**. (A stale editor tab once overwrote the homepage.)
-7. Keep the context files current: **update the relevant section** (don't append a chronological section) and **add a line to the History table**.
+5. Code goes **up** through git and content comes **down** from the shared server. **Never push a local database up.** Back up the database and commit before big changes.
+6. After changing a page outside the editor, reload the editor **without saving**.
+7. Keep the context files current: update the relevant section (don't append a chronological one) and add a History row.
 8. **Write for Mahir in plain language.** He is a designer, not a WordPress developer.
-9. **Confirm before destructive or outward-facing actions** (deleting, pushing, publishing, messaging).
+9. **Confirm before destructive or outward-facing actions.**
 
-### Preferences Mahir has given in this project (keep applying them)
-- **Copy Stripe precisely** when asked: the same interaction, timing, easing, layout proportions and modal. Don't reinterpret.
-- **Clean, not "AI-looking".** Flat tiles, few or no shadows, no decorative glows unless asked, no gimmicks. Remove repetitive content: if a fact appears twice in a card, drop one.
-- **No gradient text.** Ever.
-- **One light blue only: `#00AEEF`** (the logo cyan). Every light-blue use, tint or accent derives from it.
-- **Buttons: a blue (cyan) fill always has white text,** including hover states (e.g. the white button turns cyan on hover with white text).
-- **Hover on tiles and cards is not brand blue.** Use a neutral tone for the card background; the text or title can turn blue.
-- **4px corner radius on everything** (buttons, cards, images, modals). An earlier "sharp / 0 radius" direction was replaced by 4px.
-- **All icons from one library (Lucide),** with the same stroke and size treatment.
-- **Title Case for headings and titles.** Exception: news headlines stay exactly as published.
-- **Content is real, never invented.** Source only from anandgroupindia.com (plus its partner map and annual figures) and thesujanlife.com. If something is an assumption, flag it in the code comment and in the handoff.
-- **Consistent type sizes.** Nav text matches body UI text (15px). Don't let a component drift smaller than the rest of the site.
-- **Content width is 1300px** across all sections.
-- Break up sections with a slightly darker neutral background (`--soft`), not lines, where asked.
+### Mahir's design preferences (always apply)
+- **Copy Stripe precisely** when asked: the same interaction, timing, easing, proportions and modal. Don't reinterpret.
+- **Clean, not "AI-looking":**
+  - flat tiles, few shadows, no decorative glows unless asked
+  - remove repeated content
+- **No gradient text, ever.** Gradients are for shapes only.
+- **Blues:**
+  - **One light blue: `#00AEEF`** (the logo cyan). All tints derive from it.
+  - Where "blue tones only" is asked (e.g. the governance tiles), use **three**: royal, cyan and navy-2.
+- **Anything with a blue fill has white text,** including on hover.
+- **Card and tile hovers are not brand blue:** use a neutral background and let the text turn blue.
+- **4px corner radius on everything.**
+- **Icons come from one library: Lucide.** No custom-drawn icons and no second icon library. The only custom SVG is the ANAND logo mark in the CSR cards.
+- **Title Case** for headings, card titles and button labels (§7).
+- **All-caps eyebrows** above sections.
+- **Content is real, never invented.** Sources are anandgroupindia.com, the Jan 2026 corporate presentation and thesujanlife.com. Flag anything unconfirmed in §11.
+- **Consistency:** one type scale, one weight for emphasis (500), the same numbers everywhere (§7).
+- **Content width 1300px.**
+- **Section breaks:**
+  - neutral `--soft` backgrounds, not lines
+  - slanted cuts at **6°** with royal and cyan stripes (hero, Vision, the cut into the credibility section)
 
 ---
 
-## 6. Design system
+## 6. Design system (all tokens are in `:root` in `index.html`)
 
-### Colour tokens (`:root` in `index.html`)
+### Colours
 | Token | Hex | Use |
 |---|---|---|
-| `--navy` / `--ink` | `#021A2C` | Text, dark sections, the hero band, button hover |
-| `--navy-2` | `#06294A` | The second dark tone |
-| `--royal` | `#0B4EA2` | Deep blue accent (glows, the globe) |
-| `--cyan` | `#00AEEF` | **Logo cyan**: primary buttons, links, eyebrows, the only light blue |
-| `--green` | `#61A229` | Sustainability accents only |
-| `--slate` | `#425466` | Body copy, lede |
-| `--muted` | `#6B7C93` | Secondary text, captions |
-| `--line` | `#E3E8EE` | Borders and dividers |
-| `--soft` | `#F6F9FC` | Section-break background, the neutral hover background |
-| `--white` | `#FFFFFF` | |
+| `--navy` / `--ink` | `#021A2C` | Text, dark sections, button hover |
+| `--navy-2` | `#06294A` | Second dark tone (tiles, image placeholders) |
+| `--royal` | `#0B4EA2` | Deep blue: stripes, tiles, accents |
+| `--cyan` | `#00AEEF` | **Logo cyan**: buttons, links, eyebrows, numbers, icons |
+| `--green` | `#61A229` | Sustainability only (CSR cards) |
+| `--slate` | `#425466` | Body text |
+| `--muted` | `#6B7C93` | Secondary text |
+| `--line` | `#E3E8EE` | Borders, dividers |
+| `--soft` | `#F6F9FC` | Neutral section background (newsroom, bento, stories, trust, CTA banner) |
+| `--on-dark` | `#A9C1D6` | Body text on navy |
+| `--on-dark-2` | `#88A3BB` | Secondary text on navy |
+| `--tint` / `--tint-2` | `#E6F7FD` / `#B3E7FA` | Cyan tints (soft icon boxes, borders) |
+| `--faint` | `#9AA8B8` | Placeholders, disabled |
 
-Cyan tints in use: `#E6F7FD` and `#B3E7FA`. Only use tints of `#00AEEF`.
-`--grad` (cyan → royal) is for **shapes only, never text**. `--shadow-md` is `none` on purpose.
+The CSS rules use these tokens, not raw hex values. The only hardcoded colours left are:
+- white and black (for masks)
+- `#2a2a2a` behind product photos
+- the form error red `#DF1B41`
+- the CSR card fill/tint pairs (§8.10)
 
 ### Layout
-- `--max: 1348px` = **1300px content** + 24px side padding (`.wrap`).
-- Section padding: `.sec{padding:120px 0}`.
-- `--radius: 4px` everywhere.
-- Main breakpoints:
-  - 1320px: the "Explore careers" nav button hides
-  - 1200px: the nav collapses to the menu button (1020px for other layout changes)
-  - 940px: the bento and stories layouts change
+- **Width:** `--max:1348px`, which is 1300px of content plus 24px padding on each side.
+- **Section padding:** `.sec` 120px, 84px on phones.
+- **Radius:** `--radius:4px`.
+- **Breakpoints:**
+  - 1320px: "Explore Careers" hides in the nav
+  - 1200px: the nav collapses; several grids reflow
+  - 1020px, 940px: layout steps
   - 640px: phone
 
-### Typography: Geist only (no Geist Mono)
-**Every font size is a token in `:root`. Never write a raw px size.** The scale below replaced 33 ad-hoc sizes (audit, 26 Sep 2026).
+### Typography: Geist only
+**Every font size is a token. Never use raw px sizes.** An audit on 26 Sep confirmed every visible text element uses these.
 
 | Token | Size | Used for |
 |---|---|---|
-| `--fs-display` | clamp(40px, 5.6vw, 64px) | h1 (hero) |
-| `--fs-h2` | clamp(28px, 3.4vw, 38px) | Section headings, modal headings, CTA heading |
-| `--fs-h3` | clamp(22px, 2.2vw, 28px) | Card titles (bento), newsroom headline, beyond-business cards, modal subheads |
-| `--fs-quote` | clamp(22px, 2.4vw, 30px) | Pull quotes |
-| `--fs-stat` | clamp(32px, 3.6vw, 44px) | Big counters (About facts, partner numbers) |
-| `--fs-lede` | 18px | Intro paragraph under a section heading |
-| `--fs-title` | 17px | Small card titles, featured-card titles, leader names |
-| `--fs-body` | 16px | Paragraphs (body default) |
-| `--fs-ui` | 15px | Buttons, nav, links, list items, card descriptions |
-| `--fs-small` | 14px | Secondary text: descriptions under items, captions, footer |
-| `--fs-ui-sm` | 13px | Section eyebrows; text inside product-style graphics (hero cards, bento graphics, map tooltip) |
-| `--fs-num` | 24px | Big numbers inside graphics |
-| `--fs-label` | 12px | Captions and all-caps labels |
+| `--fs-display` | clamp(40,5.6vw,64) | Hero h1 |
+| `--fs-h2` | clamp(28,3.4vw,38) | Every section heading, including the banner, trust and modals |
+| `--fs-h3` | clamp(22,2.2vw,28) | Card titles (bento, CSR, products), newsroom headline, Vision stat numbers |
+| `--fs-quote` | clamp(22,2.4vw,30) | Pull quotes |
+| `--fs-stat` | clamp(32,3.6vw,44) | About facts |
+| `--fs-lede` | 18 | Intro paragraphs |
+| `--fs-title` | 17 | Small titles (feature row, leaders) |
+| `--fs-body` | 16 | Paragraphs |
+| `--fs-ui` | 15 | Buttons, nav, links, tile text |
+| `--fs-small` | 14 | Secondary text, footer |
+| `--fs-ui-sm` | 13 | Eyebrows; text inside product-style graphics |
+| `--fs-num` | 24 | Numbers inside graphics |
+| `--fs-label` | 12 | Captions and all-caps labels |
+
+**Exceptions:**
+- The trust section's **40%+** is `clamp(72px,9vw,128px)`, with "%+" the same size as the digits.
+- Globe labels are 11px.
 
 **Weights:**
-- 400 for text and big stats.
-- **500 for all emphasis**: headings, card titles, labels, buttons and footer headings.
+- 400 for text and stats; **500 for all emphasis**.
 - 300 only for pull quotes.
-- **Never 600 or bold.** The only exception is avatar initials.
-Headings use tight negative tracking, in the Stripe style.
+- **Never 600 or bold.**
 
-**Stats:** the About facts use this style (the Vision section uses the Stripe "Why Stripe" variant with cyan numbers, see §8.11):
-- `--fs-stat`, weight 400, line-height 1.1
-- a 1px line on the left with an 18px cyan tick at the top
-- a 14px label under the figure
+**Labels:**
+- Section eyebrow: `.eyebrow`, 13px, weight 500, cyan, **ALL CAPS**, letter-spacing .08em. Write it in sentence case in the HTML.
+- In-card labels: 12px, ALL CAPS, .08em, muted.
+- Captions: 12px, sentence case, muted.
 
-**Label rules (one style each):**
-- **Section eyebrow** (the small cyan text above a section heading): `.eyebrow`, `--fs-ui-sm` (13px), weight 500, cyan, **ALL CAPS**, letter-spacing .08em. Write it in sentence case in the HTML; CSS capitalises it.
-- **In-card key label** (a label above a value, or a group heading inside a card or menu, e.g. HEADQUARTERS, PARTNERS AROUND THE WORLD, JOINT VENTURE PARTNERS): `--fs-label`, **ALL CAPS**, letter-spacing .08em, muted grey (cyan in the dark partners section).
-- **Dates and map/globe tags:** Geist, all caps, .08em, `--fs-label` (globe labels 11px).
-- **Captions** (e.g. "JV partners' global revenue, US$ Bn"): `--fs-label`, sentence case, muted.
-
-### Buttons (`.btn`: 15px/500, padding 9px 16px 9px 18px, 4px radius)
+### Buttons (`.btn`: 15px/500, 42px tall, 4px radius)
 | Class | Default | Hover |
 |---|---|---|
-| `.btn-primary` | cyan fill, white text | navy fill, white text |
-| `.btn-light` (on dark) | white fill, navy text | **cyan fill, white text** |
-| `.btn-outline2` (secondary) | white, `--line` border, cyan text | subtle |
-| `.btn-ghost` | text-only, cyan | — |
+| `.btn-primary` | cyan fill, white text | navy fill |
+| `.btn-light` (on dark backgrounds) | white fill, navy text | cyan fill, white text |
+| `.btn-outline2` | white, `--line` border, cyan text | subtle |
+| `.cb-btn` / `.cb-btn-2` (banner) | white with cyan text / white outline | cyan / white fill |
 
-Arrow chevrons (›) sit after the label on primary CTAs, e.g. "Partner with us ›".
+Primary CTAs end with a chevron (›). Every "Partner with Us" button opens the form (§8.12).
 
 ### Motion
-- The site's default easing is `--ease: cubic-bezier(.2,.7,.2,1)`.
-- **Stripe card easing:** `cubic-bezier(.165,.84,.44,1)` over **800ms** for bento growth and carousel media zoom.
-- **Stripe modal:** in `cubic-bezier(.22,1,.36,1)` over .8s, from translateY(200px); out over .3s to translateY(100px). Content fades up in a stagger (`.bd-reveal`).
-- Mega menu hover intent: **80ms** open, **180ms** close.
-- Newsroom autoplay: **7s**.
-- Keep motion subtle. No bouncing and no parallax on this page.
+- Default easing: `--ease: cubic-bezier(.2,.7,.2,1)`.
+- **Stripe card easing:** `cubic-bezier(.165,.84,.44,1)`, 800ms (bento grow, media zoom 1.036).
+- **Stripe modal:** in over 0.8s with `cubic-bezier(.22,1,.36,1)` from translateY(200px); out over 0.3s.
+- **Mega menu:** 80ms open intent, 180ms close intent.
+- **Newsroom autoplay:** 7s.
+- **CSR cards:** 8px hover lift. The ANAND mark slides in when the card scrolls into view.
+- **Sections:** fade up on scroll (`.rv` → `.in`).
 
 ### Icons
-Use Lucide only (`<i data-lucide="name">`), with the same stroke everywhere. Don't mix in inline SVG icon sets. Custom SVG is fine for arrows or graphics built to Stripe's shapes.
+Lucide only (`<i data-lucide>`), with the same stroke everywhere. The four trust feature icons are 40px cyan at stroke 1.5.
 
 ---
 
-## 7. Language and copy
-- **Voice:** confident, factual and restrained, like an established industrial group and not a startup. Short sentences. No hype words or buzzword stacks.
-- **Title Case** for headings, card titles and **all button and link labels** ("Partner with Us", "View All News", "Explore Our Companies"). Small words (a, an, the, and, or, for, of, on, in, to, at, by, with) stay lowercase unless they come first. Nav menu labels and menu item names stay sentence case, as in the nav spec (e.g. "A Global Mobility Group, Built on Six Decades of Partnership"). Keep "&" in names such as "Sustainability & CSR".
-- **Brand spellings:** **ANAND** (capitals), **SUJÁN** (with the accent), Gabriel India, ANEVOLVE and Anevolve as on the source, HL Klemove, MAHLE ANAND, Joyson ANAND, and the partner names as on ANAND's partner map.
-- **UK/Indian English** (programme, honours, enquiries). Currency is "US$2.2B+". Use "22,000+ people", "87 locations" and "17 companies".
-- **Facts in use** (from anandgroupindia.com, CY 2024):
-  - founded 1961 · HQ New Delhi · 87 locations · 17 companies · 22,000+ people · revenue US$2.2B+
-  - an **8% RoS target**
-  - top JV partners by revenue share: Forvia 29.5, Valeo 23.8, Henkel 23.3, MAHLE 13.9, Dana 10.3
-- **When writing for Mahir** (chat replies, notes): plain language, short, with no WordPress or code jargon unless it's needed.
+## 7. Language, copy and facts
+- **Voice:** confident, factual, restrained. Short sentences, no hype.
+- **Title Case:**
+  - Applies to headings, card titles and all button and link labels, e.g. "Partner with Us", "View All News", "Read the Story".
+  - Small words (a, an, the, and, or, for, of, on, in, to, at, by, with) stay lowercase unless they come first.
+  - Units stay lowercase ("sq km", "mn").
+- **Sentence case** for nav menu labels, menu items and footer link lists, matching the nav spec.
+- **UK/Indian English:** programme, honours, enquiries, lakh.
+- **Brand spellings:** ANAND, SUJÁN, Gabriel India, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND.
+- **Numbers used everywhere (must match):**
+
+| Fact | Value | Source |
+|---|---|---|
+| Founded | 1961 | site |
+| Companies | **17** | anandgroupindia.com. The Jan 2026 presentation says 23; see §11. |
+| People | 22,000+ | site, presentation |
+| Locations | 87, across 14 Indian states | site, presentation |
+| Revenue | **US$2.2B+**. Always write "US$", never "$". | presentation |
+| JV partners / technical collaborations | 11 / 4 | presentation partner list |
+| Targets | top 3 in each segment · 8% return on sales · 2% of sales on R&D | presentation, site |
+| Gabriel aftermarket share | >40%, No. 1 in India (FY 2025) | presentation |
+| JV partners' revenue (CY 2024) | Forvia 29.5, Valeo 23.8, Henkel 23.3, MAHLE 13.9, Dana 10.3 (US$ Bn) | partner map |
 
 ---
 
-## 8. The page, section by section (top to bottom)
+## 8. The page, section by section (in page order)
 
-Every section's HTML starts with a `<!-- SECTION NAME -->` comment in `index.html`.
+Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.1 Nav: Stripe mega menu (`header.nav#nav`)
-- **Structure:** from `Docs/ANAND_demo_top-nav.txt`.
-  - Items: About ANAND ▾ · Vision & strategy (plain link) · Our companies ▾ · Sustainability & CSR ▾ · Careers ▾ · Newsroom ▾
-  - Right side: "Explore careers" (outline) and "Partner with us ›" (primary)
+- **Items** (from `Docs/ANAND_demo_top-nav.txt`): About ANAND ▾ · Vision & strategy · Our companies ▾ · Sustainability & CSR ▾ · Careers ▾ · Newsroom ▾, plus "Explore Careers" (outline) and "Partner with Us ›".
 - **Mechanics** (copied from Stripe):
-  - a white card bar with one shared panel (`#navPop`) attached underneath
-  - the panel content slides ±20% translateX depending on the direction you move
-  - the panel height animates; the other labels dim
-  - the page behind blurs (`#navOverlay`, `backdrop-filter: blur(6px)`)
-  - hover intent of 80ms open and 180ms close
-- **Each panel** is `.np#np-{key}` with `--cols:N`: `section.np-col` columns (h4 heading + list of title/description) + `aside.np-aside` (soft background, featured card) + `.np-foot` "See all" link.
-- **Links are `#`.** Per the spec, links don't click through in the demo.
-- **Widths:** the full nav needs ~1200px. At ≤1320px "Explore Careers" hides and the gaps tighten; **below 1200px it collapses to the menu button**. The logo never shrinks (`.nav-logo{flex:none}`); before this fix it was being squeezed as the nav ran out of room.
-- **Not built yet:** the **mobile menu**. `.menu-btn` shows below 1200px but does nothing.
+  - a white bar with one shared panel underneath
+  - the panel slides ±20% depending on direction, and its height animates
+  - other labels dim and the page behind blurs
+  - hover intent 80/180ms; Esc and click-outside close; Arrow Down opens from the keyboard
+- **Widths:**
+  - the nav needs about 1200px
+  - at ≤1320px "Explore Careers" hides
+  - below 1200px it collapses to the menu button
+- The logo never shrinks (`.nav-logo{flex:none}`).
+- **Not built:** the mobile menu. The button does nothing yet.
 
 ### 8.2 Hero (`section.hero`)
 - **Left:**
-  - eyebrow "SINCE 1961", with no "ANAND Mobility" (the logo already says it) and no chip
+  - eyebrow "SINCE 1961"
   - h1 "Engineering the Future of Mobility"
-  - a plain lede with no bold words
-  - one button, "Explore Solutions" (the "Our Partners" button was removed)
-- **Right** (a product-style mockup; every figure matches the rest of the page):
-  - **Main card:** a sidebar with the real ANAND logo and the Portfolio list (Chassis active). The body shows "Gabriel India · Two-wheeler", the title "25.4 Dia Rear Suspension", and the product photo with an "In production" tag.
-  - **Revenue card:** US$2.2B+ group revenue (no logo or header), then Companies 17 · People 22,000+ · Locations 87. The invented sparkline and "FY26" were removed.
-  - **JV card:** the Gabriel × HL Klemove logos, "New joint venture" and "Bringing autonomous-driving technology to India".
-  - The two small cards float gently.
-- **Background:** Stripe-style slanted navy stripes run below the hero into the newsroom. Bottom padding is `calc(170px + max(0px,(100vw - 1348px)*.0792))`, and 40px on mobile.
-- **Class names:** the JV logo row is `.jv-logos`, not `.logos`, which is the OEM section's class.
+  - plain lede
+  - one button, "Explore Solutions"
+- **Right:** a product mockup with real logos and figures:
+  - **Main card:** the ANAND logo sidebar with the Portfolio list, and the Gabriel "25.4 Dia Rear Suspension" photo with an "In production" tag.
+  - **Revenue card:** US$2.2B+ · 17 companies · 22,000+ people · 87 locations.
+  - **JV card:** Gabriel × HL Klemove.
+- **Background:** slanted navy stripes run into the newsroom.
 
-### 8.3 Newsroom (`section#news.newsroom`, navy)
-- Header "Newsroom / Latest at ANAND" and one white button, "View all news" (`#` for now).
-- A **split panel**: image left, navy text panel right. (Text over images was hard to read, so it was split.)
-- A thumbnail row below. The active thumb's top line is also the **7s autoplay progress bar**.
-- Pauses on hover and focus. Swipe and arrow keys work.
-- **Content comes from the JSON feed** `#cms-news` (see §9).
+### 8.3 Newsroom (`section#news`, navy)
+- A split panel: image left, navy text right.
+- A thumbnail row whose active line is the 7s autoplay bar.
+- "View All News".
+- Content comes from the `#cms-news` feed (7 real stories).
 
-### 8.4 ANAND at a glance: Stripe bento (`section#glance.bento-sec`, soft background)
-- h2: "A Global Mobility Group, Built on Six Decades of Partnership".
-- Five `button.bento-card[data-bento]`. From 940px the grid is 3 columns: **global** spans 2, and the top row is a third shorter.
-- **Card hover** (Stripe):
-  - a clip-path "grow" of 6px vertically (4px on the large card), scaled horizontally by aspect ratio
-  - a mouse-following radial-gradient border (`--mouse-x/y`)
-  - the title and expand button shift, and the expand button fills cyan
-  - 800ms `cubic-bezier(.165,.84,.44,1)`
-- **Cards:**
-  1. **global** (large):
-     - a **cobe globe**: New Delhi HQ, 8 partner-country markers and arcs; CSS anchor-positioned labels (New Delhi, USA, France, Germany, Korea · Japan), hidden in browsers without `position-anchor`
-     - a mini bento on the right: Headquarters New Delhi · Locations 87 · Partners around the world
-     - cyan and royal glows (glows were requested here only)
-  2. **revenue:** US$2.2B+, the 8% RoS target, and bars for the top 5 JV partners (CY 2024).
-  3. **companies:** "17 Companies, One Unified Group". A repeating logo grid (duplicate logos are `aria-hidden`) with a bottom mask fade.
-  4. **people:** "22,000+ People, Led with Purpose". A leadership card with headshots (Deep C. Anand, Anjali Singh, Mahendra K. Goyal). The photo starts at 210px with a short fade, so no head is covered.
-  5. **sujan:** "Experiential Luxury, Rooted in Conservation". The leopard-on-rocks photo (`sujan-leopard-rocks.jpg`) with a navy fade at the top so the title can be white. A white panel at the bottom matches the other cards: the navy SUJÁN wordmark (`sujan-wordmark-navy.svg`) with a HOSPITALITY label, then the 3 camps, each with a thumbnail and its place. On hover only the photo zooms (1.036, 800ms); the camp thumbnails stay still. (This replaced a weak "ANAND Way" card.)
-- **Modal** (Stripe `hds-dialog`):
-  - Overlay `rgb(229 237 245/.8)` with blurred cyan and royal orbs.
-  - Opens and closes with the modal motion in §6.
-  - Esc, outside click and a close button work; focus is trapped; the page scroll locks (`html.bd-lock`).
-  - Modal layout: header + checklist → 7:5 graphic → extras → quote → footer CTA.
-  - **The global modal** has a **full-width interactive partner map**, a port of the shadcn WorldMap:
-    - a pre-generated dotted map, run-length encoded (~4 KB) and drawn on canvas
-    - SVG arcs with moving dots
-    - markers placed with dotted-map `getPin` (x,y in a 198×100 viewBox)
-    - hover, focus or tap a marker for a card with the logo, revenue and employees; on phones the card docks to the bottom of the screen
-  - **The companies modal** has a directory of 17 equal-height tiles (`a.bd-co`: logo, name, products, link) with a **neutral hover** (soft background, blue text).
-- **Placeholders:** the other card graphics are marked `[data-slot]` and are meant to be swapped for Mahir's final 3D components.
+### 8.4 ANAND at a glance: Stripe bento (`section#glance`, soft)
+- **Cards** (five in total):
+  - Global footprint: a cobe globe plus a mini bento
+  - US$2.2B+ revenue: the ANAND logo and three figures (US$2.2B+, 8% return-on-sales target, 11 global JV partners), then JV-partner bars with dividers
+  - 17 Companies: logo grid
+  - 22,000+ People: headshots
+  - SUJÁN: leopard photo with a white panel showing the navy wordmark and the 3 camps with thumbnails
+- **Hover** (Stripe's): clip-path grow, a pointer-following border, and the expand button turns cyan.
+- **Modals:**
+  - built from the `#cms-bento` feed; the checklist items have dividers
+  - the global modal has the interactive partner map
+  - the companies modal has a directory of 17 companies
+- The four other card graphics are placeholders (`[data-slot]`) for Mahir's 3D components.
 
 ### 8.5 OEM logos (`section.logos`)
-- A border above and below, and an infinite marquee (JS duplicates the track).
-- The logos are cropped files in `assets/oem/`, with per-logo inline heights so the wordmarks look equal: toyota 50, honda 42, bmw 50, marutisuzuki 20, tatamotors 19, mahindrarise 28, hyundai 21, volkswagen 52.
+- Eyebrow "TRUSTED BY THE WORLD'S LEADING OEMS".
+- A marquee of cropped logos with per-logo heights.
 
 ### 8.6 About (`#about`)
-The facts count up on scroll. The divider line above it was removed on request.
+- **Facts:** 1961 · **17** companies · 22,000+ · 87 · **US$2.2B+**. They count up on scroll.
+- **Fact style:** a cyan tick on a grey line.
 
-### 8.7 Stories: Stripe case-study carousel (`section#verticals.stories`, soft background)
-- h2 on two lines: "One Group, Many Journeys / Across Mobility and Beyond" (nowrap on desktop), with an "Explore our companies" button and a lede.
-- Arrows (`.st-btn`): white with a navy icon, navy on hover, faded when disabled.
-- Six cards (332×448 media, a white logo over the image, media scale 1.036 on hover over 800ms): Gabriel, SUJÁN, ANEVOLVE, HL Klemove JV, MAHLE ANAND and Joyson ANAND, each with a real link.
+### 8.7 Stories: Stripe case-study carousel (`section#verticals`, soft)
+- Six stories with real links.
+- **Cards:** 332×448 media with a white logo; the image zooms 1.036 on hover.
+- **Arrows:** white with a navy icon.
 
-### 8.8 CTA banner, above the footer (`section.cta-banner#contact`)
-This banner is also the page's contact section; it replaced the old three-column CTA/contact block.
-- **Styled on Stripe's Sessions banner:**
-  - a navy photo card with a 4px radius, at least 440–544px tall
-  - a white headline in the standard section h2 style (`--fs-h2`, weight 500) and an 18px lede (`--fs-lede`), like every other section
-  - standard-size buttons (15px, 42px tall), like every other button on the page
-  - the white ANAND logo in the bottom-right corner
-- **Content:**
-  - eyebrow "Driving mobility & sustainability"
-  - h2 "Ready to Shape the Future of Mobility?" with the partner/innovate/grow line under it
-  - buttons: "Partner with Us" (white with cyan text; turns cyan with white text on hover) and "Explore Careers" (white outline; turns white with navy text on hover)
-  - bottom strip: Corporate Headquarters address, phone and email
-- **Photo:** `news1-scaled-1.jpeg` (Mahendra K. Goyal at an ANAND event), on the right and fading into navy on the left.
-- **On phones** the text stacks on navy and the photo sits at the bottom of the card.
-- **Anchors:** `#contact` (the nav's "Partner with Us") and `#careers` (the nav's "Explore Careers") both land here.
+### 8.8 Products & solutions (`section#solutions`)
+- **Structure:** Stripe's ProductFeatureCard (from stripe.com/industries/retail).
+- **Header:** the intro text on the left and an "Explore All Products ›" button on the right.
+- **Grid:** 3 columns with a 20px gap (16px at 2 columns).
+- **Each card:**
+  - white, with Stripe's shadow
+  - a 3:2 photo inset 4px with a grey-blue bottom fade
+  - a badge with a Lucide icon
+  - a title in `--fs-h3`, a paragraph naming the real companies and products, and "Explore … ›"
+- **Areas:** Chassis, Emission control, Powertrain, Safety, Thermal management, E-mobility.
 
-### 8.8a Partner with Us form (opens in the bento modal shell)
-- **What opens it:** every "Partner with Us" button (the nav, the CTA banner, and the CTAs inside the bento modals). It's a delegated click: any link or button with `data-partner` or the label "Partner with Us". Clicked from inside an open modal, the modal swaps its content to the form in place.
-- **Shell:** the same slide-up motion, Esc/outside-click close and focus trap as the bento modals. The dialog gets `.is-form` (760px wide, 36/40px padding, Stripe's soft card shadow). The overlay gets `.is-form`: **a plain navy overlay at 60% (`rgba(2,26,44,.6)`) with no gradient orbs**, because the orbs don't read behind a small dialog.
-- **Layout:** a **single-step** form that fits in one screen without scrolling (about 660px tall):
-  - a 760px dialog, centred vertically
-  - labels sit above 44px-tall fields on a 12-column grid:
-    - Name / Email (6/6)
-    - Mobile / Country (6/6)
-    - Company / Products (6/6)
-    - Description (an 88px textarea)
-  - "All fields are mandatory" and "Submit ›" at the bottom
-  - on phones, everything stacks in one column
-- The field styling (radius, border, cyan focus ring, label size) follows stripe.com/in/contact/sales.
-- **Fields** (from anandgroupindia.com/contact-us, all mandatory, in this order; salutation dropped and first/last name merged into one Name field on request): Name, Email, Mobile number (with country code), Country (India by default), Company, Products interested (the nav's four product groups plus Aftermarket and Other), Description.
-- **Validation:** on Submit, each empty or invalid field gets a red border and an inline message, and focus jumps to the first one.
-- **Submit** shows a "Thank You, {first name}" screen. **Nothing is sent: this is a design reference.** The WordPress build needs to wire it to ANAND's enquiry inbox (GIDA), plus spam protection and consent text, which are open items.
-
-### 8.10 Footer
-- **Coverage:** covers **every item in the nav spec** (`Docs/ANAND_demo_top-nav.txt`), with the spec's column names as all-caps sub-labels and items in sentence case.
-- **Top band:** a 5-column grid:
-  - **Brand:** the logo, the HQ address, phone and email, and a "Partner with Us" button that opens the form.
-  - **About ANAND:** Who we are / Leadership & governance / Direction (Vision & strategy), then "About ANAND ›".
-  - **Sustainability & CSR:** Sustainability / SNS Foundation (7) / ANAND School (4) / Donate, then "Sustainability & CSR ›".
-  - **Careers:** Life at ANAND / People development / Join us (Explore opportunities), then "Careers at ANAND ›".
-  - **Newsroom:** News / For media, then "All news ›".
-- **Our companies band:** full width, with "All companies ›" on the right and 5 columns listing every company:
-  - Chassis, body & safety (6)
-  - Powertrain & drivetrain (6)
-  - Thermal, emissions & fluids (6)
-  - Electronics & e-mobility (3)
-  - Beyond automotive (SUJÁN, Anevolve, Technology partners)
-- **Labels added for the footer** (not in the spec): "Direction" and "Join us"; confirm them.
-- **Bottom bar:** © line; Code of Conduct, Privacy, Cookies, Terms, LinkedIn, Instagram.
-- **Layout by width:**
-  - below 1200px: the brand block takes its own row, then 4 section columns, and the companies band goes to 3 columns
-  - ≤1020px and phones: 2 columns
-- **Links are `#`,** like the nav.
-
-### 8.11 Vision & Strategy (`section.dark#vision`), copying Stripe's "Why Stripe" stat row (stripe.com/industries/retail)
-- **Why it exists:** it replaced the old dark "Our companies / Partners" section, whose content was already covered by the bento. It fills the "Vision & strategy" nav item.
-- **Kept:** the dark navy background and the slanted cyan/royal band at the top. **Removed:** the animated line wave, the focus cards and the CTA (simplified on request).
-- **Content:** from the **ANAND Group Corporate Presentation, Jan 2026**.
+### 8.9 Vision & Strategy (`section.dark#vision`)
+- **Structure:** Stripe's "Why Stripe" stat row, on dark navy.
+- **Top:** 6° slanted stripes, with 300px of top padding.
+- **Text:**
   - eyebrow "VISION & STRATEGY"
-  - h2 "Creating Value Sustainably, Through Excellence and Good Governance" (the vision)
-  - a wide lede on the three pillars
-- **Four stats:** a cyan tick plus a faint line on the left, the number in cyan (`--fs-h3`, weight 500), and a 16px description with key terms as cyan links (`#`):
-  1. **Top 3:** in each segment (automotive, future tech with ANEVOLVE, hospitality with SUJÁN)
-  2. **8%:** return on sales target, as the Group aims to grow ahead of the market
-  3. **2%:** of sales for R&D, backed by the Gabriel technology centres (Chakan, Hosur, Belgium)
-  4. **600:** suppliers developed through the VSME programme since 2009
-- **Grid by width:** 4 columns; 2 below 1200px; 1 on phones.
+  - h2 "Creating Value Sustainably, Through Excellence and Good Governance"
+  - wide lede
+- **4 stats:** each has a cyan tick, a cyan number (`--fs-h3`), and a 16px description with cyan key terms.
+  - Top 3
+  - 8%
+  - 2%
+  - 600 suppliers (VSME)
 
-### 8.12 Sustainability & CSR (`section#beyond`), copying stripe.com/guides
+### 8.10 Sustainability & CSR (`section#beyond`)
+- **Structure:** stripe.com/guides.
+- **Left:** an intro with "Explore Sustainability & CSR ›".
+- **Right: 6 guide cards in staggered columns**, 2 per column.
+  - The columns start at 360, 240 and 120px, a 120px step.
+  - Card format: 254:356, category in 12px caps, title in `--fs-h3`, and "Read more ›" on hover.
+  - **Art:** one large **filled ANAND double chevron** (the logo mark) in a lighter tint of the card colour at 55% opacity. It's cropped by the card edge and slides in on scroll.
+  - Hover: an 8px lift and a bigger shadow.
+- **Colours** (card fill / mark tint):
+  - green `#61A229` / `#9CCB6E`
+  - dark green `#3F7A1C` / `#7AAA55`
+  - royal `#0B4EA2` / `#5584C4`
+  - cyan `#00AEEF` / `#66CEF5`
+  - navy-2 `#06294A` / `#3D5A78`
+- **Cards** (SNS Foundation figures from the Jan 2026 presentation):
+  - 100 sq km protected
+  - 1,000+ self-help groups / 170 mn micro-credit
+  - 3.78 lakh students
+  - 27 lakh people (health)
+  - solar, wind and Miyawaki forests
+  - 45,000+ trained, 80% women
+- **Bottom of the cards: a 6° diagonal cut.**
+  - The next section's `.tr-cut` is a soft-grey block with `skewY(-6deg)` and royal and cyan stripes on its edge.
+  - `#trust` is pulled up 125px, so the cut crosses the lower card of every column through the art only.
+  - Tablets and phones use a flatter cut and thinner stripes.
+
+### 8.11 Scale, governance & credibility (`section#trust`, soft)
+- **Structure:** stripe.com/payments.
+- **Top gap:** 120px below the cut.
+- **Built for Scale:**
+  - a paragraph
+  - a **white bordered panel** with the cyan **40%+**: Gabriel India's aftermarket share, No. 1 brand (FY 2025)
+- **Governance at the Core:** a paragraph and six tiles.
+  - Colours: **three blues only**, royal / cyan / navy-2, two tiles each, with no neighbours matching.
+  - Each tile has a white Lucide icon and 15px/500 text.
+  - Topics: Supervisory Board; Ethics Committee and Integrity Matters hotline; 360° feedback; ANAND House of Quality (200+ Six Sigma belts); UN SDG CSR since 1976; India's Best Workplaces for Women 2019.
+- **Feature row:** 4 columns, 112px below the top block, each with a 40px cyan Lucide icon and a titled line.
+  - Close to Every Auto Hub
+  - Trusted by Leading OEMs
+  - Engineering Depth
+  - Recognised for Excellence
+- **Bottom padding:** 160px (96px on phones) before the banner.
+
+### 8.12 CTA banner and contact (`section.cta-banner#contact`, soft background)
+- **Structure:** Stripe's Sessions banner. Anchors `#contact` and `#careers` both land here.
+- **Card:** a navy photo card (Mahendra K. Goyal at an ANAND event).
 - **Layout:**
-  - left intro: eyebrow "SUSTAINABILITY & CSR", h2 "Progress That Reaches Past the Factory Floor", lede, "Explore Sustainability & CSR ›"
-  - on the right, **5 guide cards in staggered columns** on a 4-column grid: col 2 has 1 card starting 420px down, col 3 has 2 cards starting 180px down, col 4 has 2 cards at the top
-- **Card** (Stripe's GuidesCard values):
-  - 254:356 aspect, padding 22/24, 4px radius, flex column (text top, CTA bottom)
-  - category label: 12px caps (our label rule) at 72% white
-  - title: `--fs-h3`, weight 500
-  - "Read more ›" appears only on hover or focus
-- **Hover:** the card lifts 8px while its line art moves down 8px (so the art appears to stay put), and the shadow swaps from medium (`0 13px 27px -5px …`) to XL (`0 50px 100px -20px …`), all 0.3s.
-- **Line art:** in **ANAND's own visual language, not Stripe's** (Stripe's arcs and rings were replaced on request). Generated in JS from a seed per card:
-  - the logo's **double chevron** as a large outline in the lower right
-  - four **speed lines** trailing it (forward motion)
-  - a **slanted parallelogram** frame and two **slanted panel edges** at the logo and hero-stripe angle (0.36 dx per dy)
-  - a small **»»»** marker in the lower left
-  - stroke is 1.25px in a lighter tint of the card colour; shapes are filled with the card colour so they sit over the lines
-  - lines draw in (stroke-dashoffset, 3s ease-out, staggered) when the card scrolls into view
-- **Colours** (fill / stroke), ANAND palette only:
-  - green #61A229 / #9CCB6E
-  - dark green #3F7A1C / #7AAA55
-  - royal #0B4EA2 / #5584C4
-  - cyan #00AEEF / #66CEF5
-  - navy #06294A / #3D5A78
-- **Cards** (figures from the ANAND Corporate Presentation, Jan 2026):
-  - Community & wildlife: 100 sq km of wilderness protected in Rajasthan
-  - Education & diversity: 3.78 lakh students through 100+ partner schools
-  - Health & hygiene: health services for 27 lakh people in rural India
-  - Sustainability: solar power, wind energy and Miyawaki forests
-  - Skill development: 45,000+ young people trained, 80% women
-- **Responsive:**
-  - below 1200px: 3 columns, no stagger
-  - 640–760px: 2 columns
-  - phones: 1 column, 1:1 cards, with the art masked away from the text
-- **Links:** "Read more" and the section CTA are `#`.
+  - **top left:** eyebrow, h2 "Ready to Shape the Future of Mobility?" and lede
+  - **top right:** the white ANAND logo over a dark corner fade
+  - **bottom left:** "Partner with Us" and "Explore Careers"
+  - **bottom right:** the headquarters address, phone and email, right-aligned over a strong bottom fade
+- **Phones:** logo → text → buttons → address, with the photo at the bottom.
+- **Partner with Us form:**
+  - Opened by every "Partner with Us" (`data-partner` or the label), in the bento modal shell over a plain 60% navy overlay.
+  - Layout: a single 760px step that fits one screen. Fields: Name / Email · Mobile (code) / Country · Company / Products · Description, all mandatory.
+  - Inline validation, then "Thank You, {first name}".
+  - **Nothing is sent** (design reference).
 
-### 8.13 Products & solutions (`section#solutions`), copying Stripe's ProductFeatureCard (stripe.com/industries/retail)
-- **Card:**
-  - white, 4px radius, Stripe's shadow `0 18px 36px -18px rgba(0,0,0,.1), 0 30px 45px -30px rgba(50,50,93,.25)`
-  - graphic inset 4px (3:2 product photo) with Stripe's bottom fade `linear-gradient(rgba(190,201,220,0), rgba(190,201,220,.4))`; the photo zooms 1.036 on hover
-  - body with 32px padding: a product badge (soft background, cyan Lucide icon, 12px label), a title (`--fs-h3`, weight 500), a 16px paragraph and an "Explore … ›" link (`#`)
-- **Grid:** 3 columns (Stripe uses 2; 3 keeps six products to two rows); 2 columns at ≤1020px; 1 on phones.
-- **Content** (areas from the portfolio; companies and products from the Corporate Presentation's product pages):
-  - Chassis (Gabriel India, HL Mando Anand)
-  - Emission control (Faurecia Clean Mobility, MAHLE ANAND)
-  - Powertrain (Dana Anand, ANAND CY Myutec, ANAND I-Power)
-  - Safety (Joyson ANAND Abhishek, HL Mando ABS/ESC)
-  - Thermal management (MAHLE ANAND Thermal)
-  - E-mobility (ANEVOLVE)
-
-### 8.9 After the stories
-Products & solutions (§8.13) · Vision & Strategy (§8.11) · Sustainability & CSR (§8.12) · CTA banner and contact (§8.8) · Footer (HQ: 1, Sri Aurobindo Marg, Hauz Khas, New Delhi 110016 · +91-11-42092300).
-These sections date from the first concept and haven't had a Stripe-exact pass yet.
+### 8.13 Footer
+- **Coverage:** every item in the nav spec.
+- **Top band:** brand (logo, headquarters, "Partner with Us"), then About ANAND, Sustainability & CSR, Careers and Newsroom, with the spec's column names as caps sub-labels.
+- **Our companies band:** all 21 companies, grouped by product area, plus Beyond automotive.
+- **Bottom bar:** the © line and legal and social links.
+- Links are `#`.
 
 ---
 
-## 9. CMS-style data (in `index.html`)
-Content is kept in JSON blocks so it maps cleanly to WordPress or ACF later:
-- `<script type="application/json" id="cms-news">`: 7 news items, each with `category, date, title, excerpt, image, imageAlt, source, url`. In WordPress this becomes the latest posts (news).
-- `<script type="application/json" id="cms-bento">`: modal content keyed by `global | revenue | companies | people | sujan`:
-  - heading, checklist, graphic, extras, quote and CTA
-  - `global.map`: partner markers with coordinates, logo, revenue and employees
-  - `companies`: the directory items (name, products, logo, url)
+## 9. CMS-style data
+- **`#cms-news`:** 7 news items (category, date, title, excerpt, image, imageAlt, source, url). Becomes the News posts.
+- **`#cms-bento`:** modal content for each card (title, body, CTAs, checklist, graphics, extras, quote, footer).
+  - `global.map` holds the partner markers.
+  - `companies` holds the directory.
+- **Edit the JSON, not the rendering JS.**
 
-The JS renders the newsroom and the modals from these feeds. **To change content, edit the JSON, not the rendering code.**
-
----
-
-## 10. Content sources and credits
-- **ANAND:** anandgroupindia.com (company pages, leadership, partner map, news), logos and figures from the same site. The news images and headlines are ANAND's published stories.
-- **SUJÁN:** thesujanlife.com (the photos, wordmark and camp names).
-- **OEM logos:** the public brand marks, cropped.
-- **Stripe:** only the layout and interaction patterns are copied. None of Stripe's content or assets are used.
+## 10. Sources
+- **ANAND:**
+  - anandgroupindia.com: companies, leadership, partner map, news, awards article, contact form fields
+  - **ANAND Group Corporate Presentation, Jan 2026**: vision, targets, product portfolio, SNS Foundation, governance, HR programmes
+- **SUJÁN:** thesujanlife.com.
+- **OEM and partner logos:** public brand marks.
+- **Stripe:** only layout, interaction and motion patterns. No Stripe content or assets.
 
 ## 11. Open items and things to confirm
 | # | Item | Owner |
 |---|---|---|
-| 1 | **Mobile nav menu** isn't built (the `.menu-btn` does nothing) | Kyte |
-| 2 | Real links for the nav items and "View all news" (all `#`) | after the IA is signed off |
-| 3 | Company links for **APAG CoSyst, HL Klemove and Jinhap**; these currently fall back to ANAND's companies page | confirm with the client |
-| 4 | **Deep C. Anand photo:** a 1951 B&W crop that wasn't captioned on the source; confirm it's him | client |
-| 5 | **SUJÁN image usage rights** | client |
-| 6 | Nav: Federal-Mogul ANAND Sealings, Federal-Mogul ANAND Bearings and Valeo Service India are left out; confirm. Also confirm Haldex ANAND India's description | client |
-| 7 | Bento graphics for revenue, companies, people and sujan are placeholders; swap in Mahir's 3D components at `[data-slot]` | Mahir |
-| 8 | Confirm the product copy (companies and products per area) with the client | Kyte + client |
-| 9 | **The WordPress build hasn't caught up** (see §12) | Kyte + GIDA |
-| 10 | Partner form: wire the submission to ANAND's enquiry inbox; confirm the product list, the country list and consent/privacy text | GIDA + client |
+| 1 | **Mobile / tablet nav menu** isn't built (the menu button does nothing below 1200px) | Kyte |
+| 2 | Real links for the nav, footer, "View All News" and all `#` CTAs | after IA sign-off |
+| 3 | **Official company count:** the page says 17 (anandgroupindia.com); the Jan 2026 presentation says 23, and the nav spec lists 21 | client |
+| 4 | **Figures to confirm:** 40%+ aftermarket share; "170 mn" micro-credit (currency not stated); award wording (ACMA 2025; Great Place to Work 2019, which may be too old) | client |
+| 5 | Company links for APAG CoSyst, HL Klemove and Jinhap | client |
+| 6 | **Deep C. Anand photo** (an uncaptioned 1951 crop): confirm it's him | client |
+| 7 | **SUJÁN image usage rights** | client |
+| 8 | Nav spec: Federal-Mogul entities and Valeo Service India left out; Haldex description; footer-only labels "Direction" and "Join us" | client |
+| 9 | Product copy for each area (companies and products) | Kyte + client |
+| 10 | Bento graphics (revenue, companies, people, SUJÁN): swap in Mahir's 3D components at `[data-slot]` | Mahir |
+| 11 | Partner form: wire it to ANAND's inbox; add spam protection and consent text; confirm the product and country lists | GIDA + client |
+| 12 | **WordPress hasn't caught up** (§12) | Kyte + GIDA |
 
 ## 12. WordPress status (the gap)
-The LocalWP site (`http://anand-group.local`) has the **older** homepage (the first concept: navbar, hero, stats, story cards and a news list). It still needs:
-- the newsroom carousel (latest-posts feed)
-- the bento plus modals (ACF-driven content)
-- the stories carousel
-- the mega menu
-- the 4px radius token
-- the 1300px content width
+The LocalWP site still has the **first concept** homepage. To match this reference it needs:
+- **Tokens:**
+  - the new type scale
+  - 4px radius
+  - 1300px width
+  - weights 400/500 only
+  - no Geist Mono
+  - the new colour tokens: `on-dark`, `on-dark-2`, `tint`, `tint-2`, `faint`
+- **The mega menu and its mobile menu.**
+- **Sections (new or rebuilt):**
+  - the hero mockup
+  - the newsroom carousel
+  - the bento and its dialog
+  - stories
+  - product cards
+  - Vision
+  - CSR guide cards with the ANAND mark
+  - the trust section with the 6° cut
+  - the CTA banner and Partner form
+  - the full footer
 
-Follow the working notes (§2 rules, §7 landing page, §15 "Build next") and the project rules in §5 above. **Back up the DB and commit before starting.**
+Follow the working notes (§2 rules, §7, §15). Back up the database and commit before starting.
 
-## 13. How to take on a new request (checklist)
-1. Read this file and `CLAUDE.md`. Start the local server (§3) and look at the current state in the preview.
-2. If the request references Stripe, open stripe.com/in and **measure the real values** (sizes, easing, timings, colours) before building. Then map them to the ANAND tokens.
-3. Use only the tokens in §6 and follow the preferences in §5 (cyan only, white text on blue, neutral hovers, 4px, Title Case, no gradient text, no heavy shadows).
-4. Use real content only. Flag any assumptions.
-5. Check desktop (≥1300), tablet (~900) and phone (375) in the preview, and look for console errors.
-6. Update this file and the working notes (the relevant section plus a History row) when something structural changes.
-7. Commit and push **only when asked**.
+## 13. How to take on a new request
+1. Read this file and `CLAUDE.md`, start the local server (§3) and look at the current state.
+2. If the request references Stripe, open the Stripe page and **measure** the values before building, then map them to the tokens in §6.
+3. Use only tokens. Follow §5, use the numbers in §7 and use real content only.
+4. Check desktop (1440), the preview pane (~1050), tablet and phone (375), and check for console errors.
+5. Update this file and the working notes: the relevant section plus a History row.
+6. Commit and push **only when asked**.
