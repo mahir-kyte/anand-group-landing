@@ -25,6 +25,7 @@ Last updated: 27 Sep 2026, after the white home hero with the stories card (film
 |---|---|
 | The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, `design-system.html`, plus `assets/`, `data/`, `tools/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
+| Gabriel India reference | `Anand Moodboard/gabriel-landing/` (sibling folder, hero only, same design system; its own `HANDOFF.md`; port 5179; not in git yet) |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
 | WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
 | Client context, people, open client questions | `Claude Wordpress Context/ANAND_Gabriel_Project_Context (1).md` |
@@ -273,7 +274,9 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - eyebrow "SINCE 1961" (cyan)
   - h1 "Engineering the / Future of Mobility" in navy, **two lines**, with a forced break before "Future" (`br.br-lg`, hidden below 640px so phones wrap naturally)
   - lede in `--slate`
-  - one button, "Explore Solutions"
+  - one button, "Explore Solutions ›" (chevron, as every primary CTA)
+  - **facts row** (`.hero-facts`, shared with the Gabriel hero): 17 · Companies in the ANAND family, 22,000+ · People across the Group, US$2.2B+ · Group revenue (labels word for word as §7). `--fs-num` figures with the cyan tick on a hairline, `--fs-small` muted labels; 18px figures on phones so three fit a row
+- The layout is identical to the Gabriel India hero (`../gabriel-landing/`); only the content differs (ANAND's card plays the film and switches by company logos).
 - **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
   - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.
   - **The hero film plays inside the card** (`.hs-reel`, 75% over navy), under each story's colour: a 30% wash in the story colour (navy-2 / royal / navy, alternating) plus a shade from the bottom for the text. White logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story at `--fs-num` (24px; `min(var(--fs-num), var(--fs-h3))` so it's 22px on phones; 3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the film's slight zoom and lifts the copy.
