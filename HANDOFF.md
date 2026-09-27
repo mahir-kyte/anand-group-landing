@@ -275,7 +275,8 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - h1 "Companies Shaping / the Future of Mobility" in navy, **two lines** (27 Sep; it leads with ANAND as a group of companies; it replaced "Engineering the Future of Mobility"), with a forced break before "the" (`br.br-lg`, hidden below 640px so phones wrap naturally)
   - lede in `--slate`, shortened on 27 Sep: "A global mobility group bringing world-class technology and manufacturing expertise to the world's leading automakers."
   - one button, "Explore Solutions ›" (chevron, as every primary CTA)
-  - **facts row** (`.hero-facts`, shared with the Gabriel hero, 36px below the button): 17 · Companies in the ANAND family, 22,000+ · People across the Group, US$2.2B+ · Group revenue (labels word for word as §7). `--fs-num` figures with the cyan tick on a hairline, `--fs-small` muted labels; 18px figures on phones so three fit a row
+  - spacing: h1 → lede 16px, lede → button 24px (tightened 27 Sep; was 24/32)
+  - **facts row** (`.hero-facts`, shared with the Gabriel hero, 36px below the button): 17 · Companies in the ANAND family, 22,000+ · People across the Group, US$2.2B+ · Group revenue (labels word for word as §7). `--fs-num` figures with the cyan tick **beside** the figure on the hairline (absolutely placed, like `.acc`, so there's no empty band above the number), `--fs-small` muted labels; 18px figures on phones so three fit a row
 - The layout is identical to the Gabriel India hero (`../gabriel-landing/`); only the content differs (ANAND's card plays the film and switches by company logos).
 - **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
   - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.
