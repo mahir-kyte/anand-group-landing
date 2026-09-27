@@ -137,7 +137,7 @@ section{position:relative}
 
 /* ---------- HERO ---------- */
 /* bottom padding keeps the slanted band below the intro; it grows with width because the slant rises across wide screens */
-.hero{background:var(--navy);padding:150px 0 calc(300px + max(0px, (100vw - 1348px) * .0792));overflow:hidden}
+.hero{background:var(--white);padding:150px 0 calc(180px + max(0px, (100vw - 1348px) * .0792));overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:minmax(0,720px);gap:48px;position:relative;z-index:2}
 .hero h1{margin-bottom:24px}
 .hero h1 .g{color:var(--cyan)}
@@ -152,26 +152,26 @@ section{position:relative}
 .stripes .s4{top:44px;left:0;width:14%;background:var(--cyan)}
 
 /* hero UI mockup */
-/* Hero background film + navy wash (text sits on it in white) */
-.hero-reel{position:absolute;top:0;left:0;width:100%;height:calc(100% - 100px);z-index:0;background:var(--navy)} /* stops where the navy band starts (100px above the hero bottom), so films are stretched less */
+/* Hero on white: navy text; the film plays inside the stories card (.hs-reel) */
+.hero+.newsroom{margin-top:-1px}   /* closes a sub-pixel white seam between the hero's navy band and the newsroom */
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;opacity:0;transition:opacity .7s ease}
 .hero-video.is-on{opacity:1}
-.hero-wash{position:absolute;top:0;left:0;right:0;height:calc(100% - 100px);z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(2,26,44,.55) 0,rgba(2,26,44,0) 180px),linear-gradient(90deg,rgba(2,26,44,.88) 0%,rgba(2,26,44,.6) 45%,rgba(2,26,44,.25) 100%)}
 .hero .eyebrow{color:var(--cyan)}
-.hero h1,.hero h1 .g{color:#fff}
+.hero h1,.hero h1 .g{color:var(--navy)}
 @media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "…Future / of Mobility" on tablet and up; phones wrap naturally */
 /* Hero stories (Stripe newsroom "Stories"): a photo card on the right of the hero; the company logos below it switch
    slides. Changing story: a colour panel wipes across (0.6s + 0.6s, cubic-bezier(.7,0,0,1)) while the layers swap
    underneath; autoplay 8s, paused on hover/focus. Hover: the photo settles, the copy lifts and the CTA fades in. */
-.hero-grid--story{grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:64px;align-items:center}
-.hero--story{padding-bottom:calc(420px + max(0px, (100vw - 1348px) * .0792))}   /* room for the card's logo row above the slanted stripes */
-.hs{min-width:0}
+.hero-grid--story{grid-template-columns:minmax(0,640px) minmax(0,1fr);gap:48px;align-items:center}   /* 640px keeps the h1 on two lines: "Engineering the Future / of Mobility" */
+.hs{min-width:0;position:relative;top:88px}   /* sits lower than the text on desktop, further over the slash; layout (and the slash) stay put */
 .hs-card{position:relative;aspect-ratio:713/456;border-radius:var(--radius);overflow:hidden;background:var(--navy);box-shadow:0 30px 60px -12px rgba(0,0,0,.45),0 18px 36px -18px rgba(0,0,0,.5);isolation:isolate}
-.hs-bg{position:absolute;inset:0;background:var(--c);opacity:0;transition:opacity .6s ease}
+.hs-reel{position:absolute;inset:0;background:var(--navy)}
+.hs-reel .hero-video{opacity:.75;transform:scale(1.03);transition:transform .4s ease}
+.hs-card:hover .hs-reel .hero-video{transform:scale(1)}
+.hs-bg{position:absolute;inset:0;opacity:0;transition:opacity .6s ease}   /* the story colour over the film: a light wash plus a shade from the bottom for the text */
+.hs-bg::before{content:"";position:absolute;inset:0;background:var(--c);opacity:.3}
 .hs-bg.on{opacity:1}
-.hs-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transform:scale(1.03);transition:transform .4s ease}
-.hs-bg .shade{position:absolute;left:0;right:0;top:0;height:135%;background:linear-gradient(180deg,transparent 15%,var(--c) 66%);transition:transform .5s ease}
-.hs-card:hover .hs-bg img{transform:scale(1)}
+.hs-bg .shade{position:absolute;left:0;right:0;top:0;height:135%;background:linear-gradient(180deg,transparent 25%,var(--c) 70%);transition:transform .5s ease}
 .hs-card:hover .hs-bg .shade{transform:translateY(-8%)}
 .hs-wipe{position:absolute;inset:0;z-index:3;background:var(--wc,var(--royal));transform:translateX(-101%);pointer-events:none}
 .hs-slide{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:28px 32px;color:#fff;opacity:0;visibility:hidden}
@@ -196,10 +196,13 @@ section{position:relative}
 .hs-tab:hover img{opacity:.8}
 .hs-tab[aria-selected=true] img{opacity:1}
 .hs-tab:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
-@media (prefers-reduced-motion:reduce){.hs-bg,.hs-bg img,.hs-bg .shade,.hs-copy,.hs-cta{transition:none}}
+@media (prefers-reduced-motion:reduce){.hs-bg,.hs-reel .hero-video,.hs-bg .shade,.hs-copy,.hs-cta{transition:none}}
 @media (max-width:1199px){
   .hero-grid--story{grid-template-columns:minmax(0,1fr);gap:56px}
-  .hs{max-width:760px}
+  .hs{max-width:760px;top:0}
+  /* stacked: the logo row sits on white above the slash, so the logos turn dark and the band starts just below them */
+  .hero{padding-bottom:340px}
+  .hs-tab img{filter:brightness(0)}
 }
 @media (max-width:639px){
   .hs-slide{padding:20px}
@@ -210,7 +213,7 @@ section{position:relative}
   .hs-tab{height:52px}
   .hs-tab img{max-height:18px}
 }
-.hero .lede{color:rgba(255,255,255,.82);max-width:560px}
+.hero .lede{color:var(--slate);max-width:560px}
 
 /* ---------- LOGOS ---------- */
 .logos{padding:56px 0 40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -921,8 +924,7 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   .nav-cta .btn-primary{display:none}
   .hero{padding-top:112px}
   .stripes{height:900px}
-  .hero{padding-bottom:400px}
-  .hero-wash{background:linear-gradient(180deg,rgba(2,26,44,.75) 0%,rgba(2,26,44,.6) 100%)}
+  .hero{padding-bottom:340px}
   .sec{padding:84px 0}
   .facts{grid-template-columns:1fr 1fr}
   .sol-grid{grid-template-columns:1fr}

@@ -399,7 +399,7 @@
 
   // nav state
   const nav = document.getElementById('nav');
-  const heroEl = document.querySelector('.hero');
+  const heroEl = document.querySelector('.hero--film');   // only a full-bleed film hero gets the see-through bar; the white hero uses the filled bar
   const onScroll = () => {
     const past = !heroEl || scrollY > heroEl.querySelector('.hero-grid').offsetTop - 72 - 24; // fill before the bar reaches the hero text; pages without the film hero always use the filled bar
     nav.classList.toggle('on-hero', !past);

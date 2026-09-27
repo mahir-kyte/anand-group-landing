@@ -2,7 +2,7 @@
 
 Read this first. It lets anyone (a person or a new Claude chat) pick up the ANAND Group landing-page design reference from where it stands. It covers the context, the rules, the design system, the language, how each section works, and the open items.
 
-Last updated: 27 Sep 2026, after the third full consistency audit (content, type, colours, hovers) across all three pages, the newsroom's Recent Highlights carousel and the sticky article sidebar. For the latest commit, run `git log -1`.
+Last updated: 27 Sep 2026, after the white home hero with the stories card (film inside it), the design system page, the third full consistency audit, the newsroom's Recent Highlights carousel and the sticky article sidebar. For the latest commit, run `git log -1`.
 
 ---
 
@@ -258,7 +258,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - below 1200px it collapses to the menu button
 - The logo never shrinks (`.nav-logo{flex:none}`). **The nav logo and the footer logo link to the home page** (`index.html`).
 - **Two states:**
-  - **Over the hero film (`.nav.on-hero`):** transparent bar, white logo (filter), white links and chevrons, and "Explore Careers" as a white outline. "Partner with Us" stays cyan.
+  - **Over a full-bleed film hero (`.nav.on-hero`, only when the hero has `.hero--film`; none does now):** transparent bar, white logo (filter), white links and chevrons, and "Explore Careers" as a white outline. "Partner with Us" stays cyan. The current white hero uses the normal filled bar.
   - **Past the film (`.nav.scrolled`):** the normal filled white, blurred bar with dark content.
   - The bar fills as soon as it would reach the hero text: at `.hero-grid` top − 72px (nav height) − 24px, about 114px of scroll.
   - **Menu open:** whenever a menu is open, the bar shows the white card with dark text in either state (`.nav-shell.open`).
@@ -266,30 +266,30 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - It's **built in JS from the desktop mega menu**, so editing the desktop menu updates both. Each dropdown becomes an accordion item (one open at a time) with its column headings as small caps labels, the "Beyond automotive" list, and the panel's "See all" link. "Our Vision" stays a plain link. "Explore Careers" and "Partner with Us" sit full width at the bottom.
   - While open: the bar turns solid white with the normal logo (`.nav.m-open`), the page can't scroll behind it, and Esc, tapping any link, or widening past 1200px closes it. "Partner with Us" closes the menu and opens the partner form.
 
-### 8.2 Hero (`section.hero`)
-- **Background reel:** one edited, upscaled loop in the repo: `assets/hero-reel.mp4` (15.5s, 1920×1080, H.264, ~5.8 MB) plus `assets/hero-reel-poster.jpg`.
-  - Plain `<video muted loop playsinline>`; it plays only while on screen, and with reduced motion it stays on the poster.
-  - **Shots:** ANAND flag → ANAND building → factory floor → robot arm → robotic car-body welding (Pexels 4468754, **temporary**) → aerial coast road → SUJÁN camp at dawn → dusk over the hills → lantern-lit dinner (slowed to 65%). ANAND shots avoid the film's graphics and titles; SUJÁN shots avoid animals. 0.7s crossfades.
-  - **Sources:** ANAND homepage film (anandgroupindia.com) and SUJÁN main film (`sujan.b-cdn.net`); both need ANAND's permission. Cut by Kyte, upscaled by Mahir.
-  - **Master files:** `Anand Moodboard/hero-reel/` (outside the repo): `ANAND-hero-reel-final-1920x1080.mp4` (high-quality master), `ANAND-hero-reel-final-web.mp4` (same as the site file), and `Final/` (the two upscaled halves it was joined from).
-  - The reel stops 100px above the hero bottom, where the navy band starts (the band sits at `bottom:-680px`; it was moved 80px lower so more of the video shows).
-  - **For the real site:** edit one short optimised loop from ANAND's and SUJÁN's master files, then remove the Pexels clip.
-- **Navy wash for legibility:** a gradient from the top (for the nav) plus a gradient from the left (.88 → .25). On phones it's an even .75 → .6.
-- **Layout:** two columns at 1,200px and up: text (max 520px) on the left, the **stories card** on the right, vertically centred (`.hero-grid--story`). Below 1,200px the card stacks under the text (max 760px wide).
-- **Text** (white):
+### 8.2 Hero (`section.hero`, white)
+- **Background:** white. The nav uses its normal filled bar here (the see-through `.nav.on-hero` state only applies to a full-bleed film hero, `.hero--film`, which the site no longer has).
+- **Layout:** two columns at 1,200px and up: text (max **640px**, so the h1 sits on two lines) on the left, the **stories card** on the right (`.hero-grid--story`, 48px gap, centred, then the card is nudged **88px lower** with `position:relative; top:88px` so it sits further over the slash without moving the slash). Below 1,200px the card stacks under the text (max 760px wide).
+- **Text** (navy on white):
   - eyebrow "SINCE 1961" (cyan)
-  - h1 "Engineering the Future / of Mobility", **all white**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally). In the 520px column it reads "Engineering the / Future / of Mobility" on desktop
-  - lede in 82% white
+  - h1 "Engineering the Future / of Mobility" in navy, **two lines**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally)
+  - lede in `--slate`
   - one button, "Explore Solutions"
 - **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
   - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.
-  - Card 713:456 (square on phones): the photo at 50% over a colour (navy-2 / royal / navy, alternating) with a shade from the bottom; white logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story (3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the photo zoom and lifts the copy, as on the newsroom hero.
-  - **Logo row below** (Stripe's tabs): six white logos, 6 across (3×2 on phones); the current one is full strength, the rest 45% (80% on hover). Clicking one switches slides.
+  - **The hero film plays inside the card** (`.hs-reel`, 75% over navy), under each story's colour: a 30% wash in the story colour (navy-2 / royal / navy, alternating) plus a shade from the bottom for the text. White logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story (3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the film's slight zoom and lifts the copy.
+  - Card 713:456 (square on phones).
+  - **Logo row below** (Stripe's tabs): six logos, 6 across (3×2 on phones); the current one is full strength, the rest 45% (80% on hover). Clicking one switches slides. On desktop the row sits on the navy slash, so the logos are white; when stacked (below 1,200px) it sits on white, so the logos are dark.
   - **Changing slide:** a panel in the next story's colour wipes across (0.6s), the story swaps under it, and it wipes off (0.6s), `cubic-bezier(.7,0,0,1)`. Autoplay every 8s, paused on hover, keyboard focus and while off screen; arrow keys also work. Reduced motion swaps instantly.
-  - Markup is static in `index.html`; behaviour is in `site.js`. On the real site it's a block fed from the company CPT (logo, photo, label, line, link).
-- **Band:** the slanted navy band with royal and cyan stripes runs below into the newsroom.
-- **Padding:** `150px 0 calc(300px + …)`; with the stories card, `calc(420px + …)` at the bottom (`.hero--story`) so the logo row clears the stripes; 400px bottom on phones.
-- **History:** first a product mockup, then a Stripe-style video carousel (portrait, then landscape); both were replaced by this single background film on request. The stories card was added on 27 Sep.
+  - Markup is static in `index.html`; behaviour is in `site.js`. On the real site it's a block fed from the company CPT (logo, label, line, link) plus the film.
+- **The film** (`assets/hero-reel.mp4`, 15.5s, 1920×1080, H.264, ~5.8 MB, plus `assets/hero-reel-poster.jpg`):
+  - Plain `<video muted loop playsinline>` inside the card; it plays only while on screen, and with reduced motion it stays on the poster.
+  - **Shots:** ANAND flag → ANAND building → factory floor → robot arm → robotic car-body welding (Pexels 4468754, **temporary**) → aerial coast road → SUJÁN camp at dawn → dusk over the hills → lantern-lit dinner (slowed to 65%). ANAND shots avoid the film's graphics and titles; SUJÁN shots avoid animals. 0.7s crossfades.
+  - **Sources:** ANAND homepage film (anandgroupindia.com) and SUJÁN main film (`sujan.b-cdn.net`); both need ANAND's permission. Cut by Kyte, upscaled by Mahir.
+  - **Master files:** `Anand Moodboard/hero-reel/` (outside the repo): `ANAND-hero-reel-final-1920x1080.mp4` (high-quality master), `ANAND-hero-reel-final-web.mp4` (same as the site file), and `Final/` (the two upscaled halves it was joined from).
+  - **For the real site:** edit one short optimised loop from ANAND's and SUJÁN's master files, then remove the Pexels clip.
+- **Band:** the slanted navy band with royal and cyan stripes runs below into the newsroom (a 1px overlap, `.hero+.newsroom{margin-top:-1px}`, hides a sub-pixel seam now that the hero is white).
+- **Padding:** `150px 0 calc(180px + …)` on desktop, so the slash rises behind the stories card: the card and its logo row sit above it and overlap the stripes on purpose, as Mahir asked. 340px bottom when stacked (tablet and phone) so the band starts just below the logo row.
+- **History:** first a product mockup, then a Stripe-style video carousel, then a full-bleed background film with white text on navy; on 27 Sep the stories card was added, the hero turned white and the film moved into the card.
 
 ### 8.3 Newsroom (`section#news`, navy)
 - A split panel: image left, navy text right.
