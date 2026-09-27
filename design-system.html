@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System | ANAND Group</title>
+<meta name="description" content="The ANAND design reference's tokens, type, components, motion and language rules, rendered from the live site styles.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="https://www.anandgroupindia.com/wp-content/uploads/2026/08/favicon-32x32-1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/newsroom.css">
+<style>
+/* Design-system page only. Everything shown below uses the real site classes from site.css / newsroom.css;
+   these rules only lay the specimens out. Tokens only, like the rest of the site. */
+.ds{padding:72px 0 120px}
+.ds-grid{display:grid;grid-template-columns:200px minmax(0,1fr);gap:64px}
+.ds-toc{position:sticky;top:112px;align-self:start;display:flex;flex-direction:column;border-left:1px solid var(--line)}
+.ds-toc a{padding:6px 16px;font-size:var(--fs-small);color:var(--slate);transition:color .2s}
+.ds-toc a:hover{color:var(--cyan)}
+.ds-toc a.on{color:var(--navy);font-weight:500;box-shadow:inset 1px 0 0 var(--cyan);margin-left:-1px}
+.ds-intro{max-width:760px;margin-bottom:24px}
+.ds-intro h1{font-size:var(--fs-h2);font-weight:500;letter-spacing:-.02em;line-height:1.15;margin:4px 0 16px}
+.ds-intro .lede{max-width:640px}
+.ds-sec{padding:72px 0;border-top:1px solid var(--line);scroll-margin-top:96px}
+.ds-sec:first-of-type{border-top:0}
+.ds-sec>h2{margin-bottom:12px}
+.ds-sec>.ds-note{max-width:680px;margin-bottom:40px}
+.ds-note{font-size:var(--fs-body);color:var(--slate);line-height:1.6}
+.ds-note b{color:var(--ink);font-weight:500}
+.ds-h3{font-size:var(--fs-title);font-weight:500;color:var(--ink);margin:48px 0 16px}
+.ds-h3:first-child{margin-top:0}
+.ds-k{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+code,.ds-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:var(--fs-label);color:var(--navy);background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:1px 6px;overflow-wrap:anywhere}
+
+/* principles */
+.ds-rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px;margin-top:48px}
+.ds-rules>div{border-left:1px solid var(--line)}
+.ds-rules h3{margin-bottom:8px}
+.ds-rules p{font-size:var(--fs-small);color:var(--slate);line-height:1.6;padding:0 8px 0 16px}
+
+/* colour */
+.ds-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.ds-sw{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}
+.ds-sw i{display:block;height:88px;background:var(--c)}
+.ds-sw div{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px}
+.ds-sw b{font-size:var(--fs-small);font-weight:500;color:var(--ink)}
+.ds-sw span{font-size:var(--fs-label);color:var(--muted);line-height:1.45}
+.ds-sw .hex{font-variant-numeric:tabular-nums;color:var(--slate)}
+.ds-pairs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+.ds-pair{border-radius:var(--radius);overflow:hidden;background:var(--c);color:#fff;aspect-ratio:4/3;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.ds-pair::after{content:"";position:absolute;right:-18px;top:-18px;width:72px;height:72px;background:var(--t);opacity:.55;transform:skewX(-20deg)}
+.ds-pair b{font-size:var(--fs-small);font-weight:500;position:relative;z-index:1}
+.ds-pair span{font-size:var(--fs-label);color:rgba(255,255,255,.72);position:relative;z-index:1}
+.ds-onfill{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ds-onfill>div{background:var(--royal);border-radius:var(--radius);padding:20px;color:#fff;display:flex;flex-direction:column;gap:6px}
+.ds-onfill>div:nth-child(2){background:var(--navy)}
+.ds-onfill>div:nth-child(3){background:var(--cyan)}
+.ds-onfill .a{font-size:var(--fs-title);font-weight:500}
+.ds-onfill .b{font-size:var(--fs-small);color:rgba(255,255,255,.72)}
+.ds-onfill .c{font-size:var(--fs-small);color:rgba(255,255,255,.82);line-height:1.5}
+
+/* type */
+.ds-type{border-top:1px solid var(--line)}
+.ds-trow{display:grid;grid-template-columns:150px 110px minmax(0,1fr);gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+.ds-trow .t{font-size:var(--fs-small);font-weight:500;color:var(--ink)}
+.ds-trow .px{font-size:var(--fs-small);color:var(--muted);font-variant-numeric:tabular-nums}
+.ds-trow .px small{display:block;font-size:var(--fs-label);color:var(--faint)}
+.ds-trow .s{color:var(--ink);line-height:1.2;letter-spacing:-.01em;overflow-wrap:anywhere}
+.ds-trow .u{display:block;font-size:var(--fs-label);color:var(--muted);letter-spacing:0;margin-top:6px}
+.ds-weights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ds-weights>div{border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.ds-weights .w{font-size:var(--fs-h3);color:var(--ink);letter-spacing:-.02em;margin:10px 0 6px}
+.ds-weights p{font-size:var(--fs-small);color:var(--slate);line-height:1.5}
+.ds-labels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ds-labels>div{border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:12px}
+.ds-labels .eyebrow{margin:0}
+.ds-labels .cap{font-size:var(--fs-label);color:var(--muted)}
+
+/* layout */
+.ds-specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ds-specs>div{border-left:1px solid var(--line);padding-left:16px}
+.ds-specs .n{font-size:var(--fs-num);color:var(--navy);letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin:6px 0}
+.ds-specs p{font-size:var(--fs-small);color:var(--slate);line-height:1.5}
+.ds-bps{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.ds-bps>div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:24px;padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--fs-small);color:var(--slate)}
+.ds-bps b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.ds-slant{position:relative;height:260px;border-radius:var(--radius);overflow:hidden;background:var(--navy);margin-top:16px}
+.ds-slant .band{position:absolute;top:-2px;left:0;right:0;height:max(120px,10.6vw);transform:skewY(-6deg);transform-origin:0 0;background:var(--white)}
+.ds-slant .band i{position:absolute;bottom:-26px;height:26px;display:block}
+.ds-slant .b1{left:0;width:26%;background:var(--cyan)}
+.ds-slant .b2{left:0;width:12%;bottom:-52px!important;background:var(--royal)}
+.ds-slant .b3{right:0;width:20%;background:var(--cyan)}
+.ds-slant p{position:absolute;left:24px;bottom:20px;font-size:var(--fs-small);color:var(--on-dark)}
+
+/* buttons */
+.ds-panel{border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.ds-panel--soft{background:var(--soft)}
+.ds-panel--navy{background:var(--navy);border-color:var(--navy)}
+.ds-panel--cyan{background:var(--cyan);border-color:var(--cyan)}
+.ds-panel--royal{background:var(--royal);border-color:var(--royal)}
+.ds-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ds-btns .ds-panel{flex-direction:column;align-items:flex-start}
+.ds-cls{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:var(--fs-label);color:var(--muted);margin-bottom:-4px}
+.ds-panel--navy .ds-cls,.ds-panel--cyan .ds-cls,.ds-panel--royal .ds-cls{color:rgba(255,255,255,.82)}
+.ds-tbl{width:100%;border-collapse:collapse;font-size:var(--fs-small)}
+.ds-tbl th{text-align:left;font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:0 16px 10px 0;border-bottom:1px solid var(--line)}
+.ds-tbl td{padding:12px 16px 12px 0;border-bottom:1px solid var(--line);color:var(--slate);vertical-align:top;line-height:1.5}
+.ds-tbl td:first-child{color:var(--ink);font-weight:500;white-space:nowrap}
+.ds-scroll{overflow-x:auto}
+
+/* icons */
+.ds-icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.ds-icons div{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 8px 14px;border:1px solid var(--line);border-radius:var(--radius);font-size:var(--fs-label);color:var(--muted);text-align:center}
+.ds-icons .ic{width:24px;height:24px;color:var(--cyan)}
+.ds-isizes{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end}
+.ds-isizes div{display:flex;flex-direction:column;align-items:flex-start;gap:10px;font-size:var(--fs-label);color:var(--muted)}
+.ds-isizes .ic{color:var(--cyan)}
+
+/* components */
+.ds-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ds-tiles{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ds-gc{display:grid;grid-template-columns:repeat(3,minmax(0,254px));gap:24px}
+.ds-hl{display:flex;gap:16px;overflow-x:auto;padding:8px 0 16px}
+.ds-hl .nw-hl-card{flex:0 0 264px}
+.ds-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.ds-guides{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.ds-guides .nw-guide>.ic{width:40px;height:40px;stroke-width:1.5;color:var(--cyan);margin:0 0 20px 16px}
+.ds-dark{background:var(--navy-2);border-radius:var(--radius);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ds-dark p{color:var(--on-dark);font-size:var(--fs-small)}
+
+/* motion */
+.ds-ease{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.ds-ease>div{display:grid;grid-template-columns:220px minmax(0,1fr) 88px;gap:24px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.ds-ease b{display:block;font-size:var(--fs-small);font-weight:500;color:var(--ink)}
+.ds-ease span{font-size:var(--fs-label);color:var(--muted);line-height:1.5}
+.ds-track{position:relative;height:28px;border-radius:var(--radius);background:var(--soft)}
+.ds-dot{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:var(--radius);background:var(--cyan)}
+.ds-track.go .ds-dot{left:calc(100% - 28px);transition-property:left;transition-duration:var(--d);transition-timing-function:var(--e)}
+.ds-play{height:34px;padding:0 12px}
+
+/* language */
+.ds-lang{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.ds-lang>div{border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.ds-lang h3{font-size:var(--fs-title);font-weight:500;margin-bottom:12px}
+.ds-lang ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ds-lang li{font-size:var(--fs-small);color:var(--slate);line-height:1.55;padding-left:16px;position:relative}
+.ds-lang li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--cyan)}
+.ds-lang li b{color:var(--ink);font-weight:500}
+.ds-yes{color:var(--green)}
+.ds-no{color:var(--error);text-decoration:line-through}
+
+@media (max-width:1199px){
+  .ds-grid{grid-template-columns:minmax(0,1fr);gap:0}
+  .ds-toc{display:none}
+}
+@media (max-width:939px){
+  .ds-rules,.ds-row,.ds-guides,.ds-labels,.ds-weights,.ds-onfill{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-specs,.ds-facts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .ds-lang,.ds-btns{grid-template-columns:1fr}
+  .ds-gc{grid-template-columns:repeat(2,minmax(0,254px))}
+  .ds-ease>div{grid-template-columns:1fr 88px}
+  .ds-ease .ds-track{grid-column:1/-1;grid-row:2}
+}
+@media (max-width:639px){
+  .ds{padding-top:40px}
+  .ds-sec{padding:56px 0}
+  .ds-rules,.ds-row,.ds-guides,.ds-labels,.ds-weights,.ds-onfill,.ds-pairs,.ds-tiles{grid-template-columns:1fr}
+  .ds-swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ds-pair{aspect-ratio:auto;min-height:88px}
+  .ds-gc{grid-template-columns:minmax(0,254px)}
+  .ds-trow{grid-template-columns:1fr 1fr;gap:6px 16px}
+  .ds-trow .s{grid-column:1/-1}
+  .ds-bps>div{grid-template-columns:80px minmax(0,1fr);gap:16px}
+}
+@media (prefers-reduced-motion:reduce){.ds-track.go .ds-dot{transition:none}}
+</style>
+</head>
+<body data-page="design-system">
+
+<!-- shell:header (shared; edit here, then run: python3 tools/sync-shell.py) -->
+<!-- NAV (mega menu mirrors stripe.com; structure from Docs/ANAND_demo_top-nav.txt) -->
+<header class="nav" id="nav">
+  <div class="nav-shell" id="navShell">
+    <div class="nav-in">
+      <a href="index.html" class="nav-logo" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
+      <ul class="nav-links">
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-about" data-panel="about">About ANAND<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-companies" data-panel="companies">Our companies<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-sustain" data-panel="sustain">Sustainability &amp; CSR<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-careers" data-panel="careers">Careers<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><button class="nav-trigger" type="button" aria-expanded="false" aria-controls="np-news" data-panel="news">Newsroom<i data-lucide="chevron-down" class="ic"></i></button></li>
+      <li><a class="nav-link" href="#vision">Our Vision</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#careers" class="btn btn-outline2 nav-sec">Explore Careers</a>
+        <a href="#contact" class="btn btn-primary" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mMenu"><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="nav-pop" id="navPop">
+    <div class="np" id="np-about" data-panel="about" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>Who we are</h4><ul class="np-list"><li><a href="#"><b>The ANAND Way</b><span>Our principles and beliefs</span></a></li><li><a href="#"><b>Heritage</b><span>Our story since 1961</span></a></li><li><a href="#"><b>Awards &amp; recognition</b><span>Group awards and honours</span></a></li></ul></section><section class="np-col"><h4>Leadership &amp; governance</h4><ul class="np-list"><li><a href="#"><b>Leadership</b><span>Our leadership team and board</span></a></li><li><a href="#"><b>Chairperson&#x27;s message</b><span>A word from our Chairperson</span></a></li><li><a href="#"><b>Corporate governance</b><span>Governance and code of conduct</span></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <img class="np-portrait" src="assets/leader-anjali-singh.jpg" alt="">
+          <span class="np-fk">Featured</span>
+          <b>Chairperson's message</b>
+          <p>Anjali Singh, Chairperson of the ANAND Supervisory Board, on the Group's next chapter.</p>
+          <a href="#" class="np-more">Read the Message <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">About ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-companies" data-panel="companies" style="--cols:4">
+      <div class="np-grid">
+        <section class="np-col"><h4>Chassis, body &amp; safety</h4><ul class="np-list"><li><a href="#"><b>Gabriel India</b><span>Shock absorbers, struts and front forks</span></a></li><li><a href="#"><b>HL Mando Anand India</b><span>Brakes, steering and suspension</span></a></li><li><a href="#"><b>Joyson ANAND Abhishek Safety Systems</b><span>Seat belts, airbags and steering wheels</span></a></li><li><a href="#"><b>Henkel ANAND India</b><span>Sealants, adhesives and NVH products</span></a></li><li><a href="#"><b>Inalfa Roof Systems</b><span>Sunroof systems</span></a></li><li><a href="#"><b>Haldex ANAND India</b><span>Commercial-vehicle brake components</span></a></li></ul></section><section class="np-col"><h4>Powertrain &amp; drivetrain</h4><ul class="np-list"><li><a href="#"><b>Dana Anand India</b><span>Axles and driveshafts</span></a></li><li><a href="#"><b>ANAND CY Myutec Automotive (ACYM)</b><span>Synchroniser rings</span></a></li><li><a href="#"><b>CY Myutec ANAND</b><span>Synchroniser rings</span></a></li><li><a href="#"><b>ANAND I-Power</b><span>Piston rings and cast-iron components</span></a></li><li><a href="#"><b>Valeo Friction Materials India</b><span>Clutch facings</span></a></li><li><a href="#"><b>Jinhap Gabriel Auto India</b><span>Precision bolts and fasteners</span></a></li></ul></section><section class="np-col"><h4>Thermal, emissions &amp; fluids</h4><ul class="np-list"><li><a href="#"><b>MAHLE ANAND Thermal Systems</b><span>Air conditioning and engine cooling</span></a></li><li><a href="#"><b>MAHLE ANAND Filter Systems</b><span>Filters and air-intake systems</span></a></li><li><a href="#"><b>Faurecia Clean Mobility</b><span>Exhaust systems and catalytic converters</span></a></li><li><a href="#"><b>SK Enmove Gabriel India</b><span>Engine oils and e-fluids</span></a></li><li><a href="#"><b>Anchemco ANAND</b><span>Coolants, brake fluids and AdBlue</span></a></li><li><a href="#"><b>Ansysco ANAND</b><span>Lubricants and car-care products</span></a></li></ul></section><section class="np-col"><h4>Electronics &amp; e-mobility</h4><ul class="np-list"><li><a href="#"><b>HL Klemove</b><span>Autonomous driving, ADAS and automotive electronics</span></a></li><li><a href="#"><b>APAG CoSyst</b><span>Lighting and electronic control systems</span></a></li><li><a href="#"><b>Anevolve Mando eMobility</b><span>EV motors and controllers</span></a></li></ul></section>
+        <aside class="np-aside">
+        <h4>Beyond automotive</h4>
+        <ul class="np-list">
+          <li><a href="#"><b>SUJÁN</b><span>Luxury camps and palaces</span></a></li>
+          <li><a href="#"><b>ANEVOLVE</b><span>ANAND's future-tech platform</span></a></li>
+          <li><a href="#"><b>Technology partners</b><span>KONI, KYB and Yamaha Motor Hydraulic Systems</span></a></li>
+        </ul>
+        <div class="np-quote">
+          <p>“Power of People, Power of Partnership”</p>
+          <span>11 global JV partners · 4 technical collaborations</span>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">All Companies <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-sustain" data-panel="sustain" style="--cols:3">
+      <div class="np-grid">
+        <section class="np-col"><h4>Sustainability</h4><ul class="np-list"><li><a href="#"><b>Our approach</b><span>Group sustainability commitments</span></a></li></ul></section><section class="np-col"><h4>SNS Foundation</h4><ul class="np-list"><li><a href="#"><b>About SNSF</b><span>Vision, mission and associations</span></a></li><li><a href="#"><b>Education</b></a></li><li><a href="#"><b>Skill development</b></a></li><li><a href="#"><b>Health &amp; hygiene</b></a></li><li><a href="#"><b>Community conservation</b></a></li><li><a href="#"><b>Projects &amp; impact</b><span>Stories from the ground</span></a></li><li><a href="#"><b>Financial reports</b></a></li></ul></section><section class="np-col"><h4>ANAND School</h4><ul class="np-list"><li><a href="#"><b>About the school</b></a></li><li><a href="#"><b>Admissions</b></a></li><li><a href="#"><b>Curriculum</b></a></li><li><a href="#"><b>Achievements</b></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-fk">Featured</span>
+          <b>Donate</b>
+          <p>Support the SNS Foundation's work in education, skills, health and conservation.</p>
+          <a href="#" class="btn btn-primary np-btn">Donate <i data-lucide="arrow-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">Sustainability &amp; CSR <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-careers" data-panel="careers" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>Life at ANAND</h4><ul class="np-list"><li><a href="#"><b>Culture at ANAND</b><span>How we work</span></a></li><li><a href="#"><b>Diversity &amp; inclusion</b></a></li><li><a href="#"><b>Shop floor excellence</b></a></li></ul></section><section class="np-col"><h4>People development</h4><ul class="np-list"><li><a href="#"><b>ANAND U</b></a></li><li><a href="#"><b>ALDP &amp; ATA</b></a></li><li><a href="#"><b>VSME &amp; VLFM</b></a></li><li><a href="#"><b>External programmes</b></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-img"><img src="assets/ANAND-banner-scaled-1.jpeg" alt=""></span>
+          <b>Join us</b>
+          <p>Explore opportunities across the Group.</p>
+          <a href="#" class="np-more">View Openings <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="#" class="np-more">Careers at ANAND <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    <div class="np" id="np-news" data-panel="news" style="--cols:2">
+      <div class="np-grid">
+        <section class="np-col"><h4>News</h4><ul class="np-list"><li><a href="newsroom.html#news"><b>Latest news</b><span>Stories from across the group</span></a></li><li><a href="newsroom.html#coverage"><b>Media coverage</b><span>ANAND in the press</span></a></li><li><a href="newsroom.html#newsletter"><b>Newsletter</b><span>Past issues</span></a></li></ul></section><section class="np-col"><h4>For media</h4><ul class="np-list"><li><a href="newsroom.html#media-kit"><b>Media kit</b><span>Brand assets and downloads</span></a></li><li><a href="newsroom.html#media-contact"><b>Media contact</b><span>Press enquiries</span></a></li></ul></section>
+        <aside class="np-aside">
+        <div class="np-feature">
+          <span class="np-img"><img src="assets/news/1.-mrs.-anjali-singh-executive-chairperson-of-anand-group-scaled.jpg" alt=""></span>
+          <span class="np-fk">23 Dec 2024 · Press Release</span>
+          <b>Inalfa Gabriel Sunroof Systems plans to expand beyond Chennai</b>
+          <a href="newsroom-article.html?slug=press-release-inalfa-gabriel-sunroof-systems-plans-to-expand-beyond-chennai-to-m" class="np-more">Read More <i data-lucide="chevron-right" class="ic"></i></a>
+        </div>
+        </aside>
+        <div class="np-foot"><a href="newsroom.html" class="np-more">All News <i data-lucide="arrow-right" class="ic"></i></a></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</header>
+<div class="nav-overlay" id="navOverlay" aria-hidden="true"></div>
+<div class="m-menu" id="mMenu" aria-hidden="true"><nav class="m-in" aria-label="Menu"></nav></div>
+<!-- /shell:header -->
+
+<main class="ds">
+  <div class="wrap ds-grid">
+    <nav class="ds-toc" aria-label="On this page">
+      <a href="#principles">Principles</a>
+      <a href="#colour">Colour</a>
+      <a href="#type">Typography</a>
+      <a href="#layout">Layout and Shape</a>
+      <a href="#buttons">Buttons and Hovers</a>
+      <a href="#icons">Icons</a>
+      <a href="#components">Components</a>
+      <a href="#motion">Motion</a>
+      <a href="#language">Language</a>
+    </nav>
+
+    <div>
+      <section class="ds-sec" id="principles">
+        <div class="ds-intro">
+          <div class="eyebrow">Design system</div>
+          <h1>ANAND Design System</h1>
+          <p class="lede">The tokens, type, components, motion and writing rules behind the ANAND website. Every specimen on this page is drawn with the live site styles, so it can't drift from the pages it describes. The written reference is <code>HANDOFF.md</code> §5–§7.</p>
+        </div>
+        <div class="ds-rules">
+          <div><h3 class="acc">Copy Stripe Precisely</h3><p>When a section follows Stripe, match its interaction, timing, easing and proportions. Measure the real values; don't reinterpret.</p></div>
+          <div><h3 class="acc">Clean, Not Decorated</h3><p>Flat tiles, few shadows, no glows. No gradient text, ever: gradients are for shapes only.</p></div>
+          <div><h3 class="acc">One Light Blue</h3><p>The logo cyan <code>#00AEEF</code> is the only light blue. Anything with a blue fill carries white text.</p></div>
+          <div><h3 class="acc">Tokens Only</h3><p>Every colour, font size and radius is a token. No raw pixel font sizes, no stray hex values.</p></div>
+          <div><h3 class="acc">Neutral Hovers</h3><p>Hover adds a light grey fill and a text colour change. Borders never turn brand-coloured.</p></div>
+          <div><h3 class="acc">Real Content Only</h3><p>Copy comes from anandgroupindia.com, the Jan 2026 corporate presentation and thesujanlife.com. Nothing invented.</p></div>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="colour">
+        <div class="eyebrow">Colour</div>
+        <h2>Colour Tokens</h2>
+        <p class="ds-note">Hex values below are read from the live stylesheet. Navy and cyan carry the brand; green is for sustainability only. The rules use these tokens, never raw hex.</p>
+        <h3 class="ds-h3">Brand</h3>
+        <div class="ds-swatches" id="dsBrand"></div>
+        <h3 class="ds-h3">Text and Neutrals</h3>
+        <div class="ds-swatches" id="dsNeutral"></div>
+        <h3 class="ds-h3">CSR Card Pairs</h3>
+        <p class="ds-note" style="margin-bottom:16px">A fill plus a lighter tint for the ANAND chevron mark (at 55%). Used by the CSR cards, the newsroom coverage carousel and Recent Highlights. The only hardcoded colours in the system.</p>
+        <div class="ds-pairs" id="dsPairs"></div>
+        <h3 class="ds-h3">Text on Colour</h3>
+        <div class="ds-onfill">
+          <div><span class="a">White for Titles</span><span class="b">White at 72% · dates and meta</span><span class="c">White at 82% for excerpts and body text on a coloured card. No other opacities.</span></div>
+          <div><span class="a">Same on Navy</span><span class="b">14 Mar 2026 · Mint</span><span class="c">On the navy sections, body text uses the on-dark tokens instead.</span></div>
+          <div><span class="a">Same on Cyan</span><span class="b">Press release</span><span class="c">Blue fills always take white text, including on hover.</span></div>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="type">
+        <div class="eyebrow">Typography</div>
+        <h2>Geist, on One Scale</h2>
+        <p class="ds-note">Geist is the only typeface. <b>Every font size is a token</b>; the size column shows what each one renders at on this screen. Fluid sizes use <code>clamp()</code> and shrink on smaller screens.</p>
+        <div class="ds-type" id="dsType"></div>
+        <h3 class="ds-h3">Weights</h3>
+        <div class="ds-weights">
+          <div><span class="ds-k">400 · Regular</span><div class="w" style="font-weight:400">US$2.2B+ Revenue</div><p>Running text and stat numbers.</p></div>
+          <div><span class="ds-k">500 · Medium</span><div class="w" style="font-weight:500">Partner with Us</div><p>All emphasis: headings, titles, buttons, labels.</p></div>
+          <div><span class="ds-k">300 · Light</span><div class="w" style="font-weight:300">"A pull quote"</div><p>Pull quotes only. Never 600 or bold.</p></div>
+        </div>
+        <h3 class="ds-h3">Labels</h3>
+        <div class="ds-labels">
+          <div><span class="ds-k">Section eyebrow</span><div class="eyebrow">Vision &amp; strategy</div><p class="cap">13px, 500, cyan, all caps, .08em. Written in sentence case in the HTML.</p></div>
+          <div><span class="ds-k">In-card label</span><span class="ds-k" style="color:var(--muted)">Community &amp; wildlife</span><p class="cap">12px, all caps, .08em, muted (white at 72% on colour).</p></div>
+          <div><span class="ds-k">Caption</span><span class="cap">Anjali Singh, Executive Chairman</span><p class="cap">12px, sentence case, muted.</p></div>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="layout">
+        <div class="eyebrow">Layout and shape</div>
+        <h2>Grid, Corners and Cuts</h2>
+        <p class="ds-note">One content width, one corner radius and one slant angle, used everywhere.</p>
+        <div class="ds-specs">
+          <div><span class="ds-k">Content width</span><div class="n">1300px</div><p><code>--max: 1348px</code> including 24px side padding.</p></div>
+          <div><span class="ds-k">Corner radius</span><div class="n">4px</div><p><code>--radius</code> on every card, button, tile and image.</p></div>
+          <div><span class="ds-k">Section padding</span><div class="n">120 / 84px</div><p>Desktop / phone. Section breaks use <code>--soft</code> backgrounds, not lines.</p></div>
+          <div><span class="ds-k">Slant</span><div class="n">6°</div><p>With royal and cyan stripes. The band height is at least <code>10.6vw</code> so it reaches the corner on wide screens.</p></div>
+        </div>
+        <h3 class="ds-h3">The 6° Cut</h3>
+        <div class="ds-slant" aria-hidden="true"><div class="band"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div><p>Hero, Vision, the trust section and the newsroom's News break.</p></div>
+        <h3 class="ds-h3">Breakpoints</h3>
+        <div class="ds-bps">
+          <div><b>1,360px</b><span>"Explore Careers" hides in the nav.</span></div>
+          <div><b>1,200px</b><span>The nav collapses to the phone menu; several grids reflow.</span></div>
+          <div><b>1,020 / 940px</b><span>Layout steps (columns drop from 3–4 to 2).</span></div>
+          <div><b>640px</b><span>Phone: single columns, 84px section padding.</span></div>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="buttons">
+        <div class="eyebrow">Buttons and hovers</div>
+        <h2>Buttons</h2>
+        <p class="ds-note">15px, weight 500, 42px tall, 4px corners. <b>Primary CTAs end with a chevron.</b> Hover over each one to see its state.</p>
+        <div class="ds-btns">
+          <div class="ds-panel"><span class="ds-cls">.btn-primary</span><a class="btn btn-primary" href="#buttons">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a></div>
+          <div class="ds-panel"><span class="ds-cls">.btn-outline2</span><a class="btn btn-outline2" href="#buttons">Explore Careers</a></div>
+          <div class="ds-panel ds-panel--navy"><span class="ds-cls">.btn-light (on dark)</span><a class="btn btn-light" href="#buttons">Read the Story <i data-lucide="chevron-right" class="ic"></i></a></div>
+          <div class="ds-panel ds-panel--cyan"><span class="ds-cls">.cb-btn / .cb-btn-2 (banner)</span><span style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn cb-btn" href="#buttons">Partner with Us <i data-lucide="chevron-right" class="ic"></i></a><a class="btn cb-btn cb-btn-2" href="#buttons">Explore Careers <i data-lucide="chevron-right" class="ic"></i></a></span></div>
+          <div class="ds-panel"><span class="ds-cls">.link</span><a class="link" href="#buttons">See All News <i data-lucide="chevron-right" class="ic"></i></a></div>
+          <div class="ds-panel ds-panel--soft"><span class="ds-cls">.st-btn (carousel arrows)</span><span style="display:flex;gap:8px"><button type="button" class="st-btn" disabled aria-label="Previous"><i data-lucide="chevron-left" class="ic"></i></button><button type="button" class="st-btn" aria-label="Next"><i data-lucide="chevron-right" class="ic"></i></button></span></div>
+          <div class="ds-panel ds-panel--royal"><span class="ds-cls">.nw-story-arrows (frosted, on imagery)</span><div class="nw-story-arrows"><button type="button" class="nw-story-btn" aria-label="Previous"><i data-lucide="chevron-left" class="ic"></i></button><button type="button" class="nw-story-btn" aria-label="Next"><i data-lucide="chevron-right" class="ic"></i></button></div></div>
+          <div class="ds-panel"><span class="ds-cls">.nw-chip (filters)</span><div class="nw-filters" style="margin:0"><button type="button" class="nw-chip" aria-pressed="true">All</button><button type="button" class="nw-chip" aria-pressed="false">Press Release</button><button type="button" class="nw-chip" aria-pressed="false">Events</button></div></div>
+        </div>
+        <h3 class="ds-h3">The Hover Rule</h3>
+        <div class="ds-scroll">
+          <table class="ds-tbl">
+            <thead><tr><th>Element</th><th>Hover</th><th>Never</th></tr></thead>
+            <tbody>
+              <tr><td>Cards, tiles, chips, outlined and arrow buttons</td><td><code>--soft</code> fill + text colour change; border stays <code>--line</code></td><td>Brand-coloured border or a whole card turning blue</td></tr>
+              <tr><td>Filled buttons</td><td>Fill darkens (cyan → navy); text stays white</td><td>Dark text on a blue fill</td></tr>
+              <tr><td>Coloured cards (CSR, highlights)</td><td>Lift (4–8px) with a soft shadow</td><td>A border or fill change</td></tr>
+              <tr><td>Text links</td><td>Colour change; the arrow nudges 2px</td><td>Underline on hover for CTAs</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="icons">
+        <div class="eyebrow">Icons</div>
+        <h2>Lucide, and Only Lucide</h2>
+        <p class="ds-note">One library (Lucide 1.48), one stroke. Accent icons are cyan. The only custom SVG is the ANAND chevron mark on the CSR cards. These are the icons the site uses today.</p>
+        <div class="ds-icons" id="dsIcons"></div>
+        <h3 class="ds-h3">Sizes</h3>
+        <div class="ds-isizes">
+          <div><i data-lucide="chevron-right" class="ic" style="width:16px;height:16px"></i>14–16px · inline with links and buttons</div>
+          <div><i data-lucide="badge-check" class="ic" style="width:18px;height:18px"></i>18px · beside 14–15px labels</div>
+          <div><i data-lucide="landmark" class="ic" style="width:32px;height:32px;stroke-width:1.5"></i>32px · governance tiles</div>
+          <div><i data-lucide="globe" class="ic" style="width:40px;height:40px;stroke-width:1.5"></i>40px · feature icons (stroke 1.5)</div>
+        </div>
+      </section>
+
+      <section class="ds-sec" id="components">
+        <div class="eyebrow">Components</div>
+        <h2>Building Blocks</h2>
+        <p class="ds-note">The recurring pieces, drawn with their real classes. Each maps to a block (or a core block with a style) in the WordPress build.</p>
+
+        <h3 class="ds-h3">Accented Detail · <code>.acc</code></h3>
+        <p class="ds-note" style="margin-bottom:20px">A cyan tick beside the first line, on a neutral hairline that runs only where there is content beside it and breaks at gaps.</p>
+        <div class="ds-guides">
+          <div class="nw-guide"><i data-lucide="newspaper" class="ic"></i><h3 class="acc">Latest News</h3><p>Press releases, milestones and events from across the Group.</p><a class="link" href="#components">See All News <i data-lucide="chevron-right" class="ic"></i></a></div>
+          <div class="nw-guide"><i data-lucide="megaphone" class="ic"></i><h3 class="acc">Media Coverage</h3><p>How the business press covers ANAND and its companies.</p><a class="link" href="#components">See All Coverage <i data-lucide="chevron-right" class="ic"></i></a></div>
+          <div class="nw-guide"><i data-lucide="folder-down" class="ic"></i><h3 class="acc">Media Kit</h3><p>Logos, brand guidelines, the Group presentation and photography.</p><a class="link" href="#components">See Full Media Kit <i data-lucide="chevron-right" class="ic"></i></a></div>
+        </div>
+
+        <h3 class="ds-h3">Facts · <code>.fact</code></h3>
+        <div class="ds-facts">
+          <div class="fact"><div class="n">17</div><p>Companies in the ANAND family</p></div>
+          <div class="fact"><div class="n">22,000+</div><p>People across the Group</p></div>
+          <div class="fact"><div class="n">87</div><p>Locations across 14 Indian states</p></div>
+          <div class="fact"><div class="n">US$2.2B+</div><p>Group revenue</p></div>
+        </div>
+
+        <h3 class="ds-h3">Tiles · <code>.tr-tile</code></h3>
+        <div class="tr-tiles ds-tiles">
+          <div class="tr-tile tr--royal"><i data-lucide="landmark" class="ic"></i><span>Independent Group Supervisory Board with dedicated committees</span></div>
+          <div class="tr-tile tr--cyan"><i data-lucide="shield-check" class="ic"></i><span>Group Ethics Committee and Integrity Matters hotline</span></div>
+          <div class="tr-tile tr--navy2"><i data-lucide="messages-square" class="ic"></i><span>360-degree feedback at every level, one of the first in India</span></div>
+        </div>
+
+        <h3 class="ds-h3">CSR Cards · <code>.gc</code></h3>
+        <div class="ds-gc">
+          <a class="gc gc--dkgreen" href="#components"><span class="gc-shadow" aria-hidden="true"></span><span class="gc-card"><svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg><span class="gc-text"><span class="gc-cat">Community &amp; wildlife</span><h3 class="gc-title">100 sq km of Wilderness Protected in Rajasthan</h3></span><span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span></span></a>
+          <a class="gc gc--royal" href="#components"><span class="gc-shadow" aria-hidden="true"></span><span class="gc-card"><svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg><span class="gc-text"><span class="gc-cat">Card fill</span><h3 class="gc-title">Royal, With the Tint as the Mark</h3></span><span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span></span></a>
+          <a class="gc gc--cyan" href="#components"><span class="gc-shadow" aria-hidden="true"></span><span class="gc-card"><svg class="gc-art" viewBox="0 0 254 356" preserveAspectRatio="xMidYMax slice" aria-hidden="true"></svg><span class="gc-text"><span class="gc-cat">Card fill</span><h3 class="gc-title">Cyan, White Text Always</h3></span><span class="gc-cta">Read More <i data-lucide="chevron-right" class="ic"></i></span></span></a>
+        </div>
+
+        <h3 class="ds-h3">Highlight Cards · <code>.nw-hl-card</code></h3>
+        <div class="ds-hl">
+          <a class="nw-hl-card" href="#components" style="--c:var(--cyan)"><h4>ANAND GROUP launches ANEVOLVE cleantech platform for green mobility</h4><span class="nw-hl-date">BusCoach India · 15 Jan 2023</span><p>Title first, then publication and date at 72%, a five-line excerpt at 82%, and the link pinned to the bottom.</p><span class="nw-hl-link">Read Article <i data-lucide="arrow-up-right" class="ic"></i></span></a>
+          <a class="nw-hl-card" href="#components" style="--c:var(--royal)"><h4>Colours cycle in a fixed order</h4><span class="nw-hl-date">Cyan · royal · navy-2 · navy · dark green · green</span><p>The last card never repeats the first card's colour where the loop joins.</p><span class="nw-hl-link">Read Article <i data-lucide="arrow-up-right" class="ic"></i></span></a>
+          <a class="nw-hl-card" href="#components" style="--c:var(--navy-2)"><h4>Hover lifts, never borders</h4><span class="nw-hl-date">4px lift · soft shadow</span><p>On coloured cards a grey fill would hide the colour, so the hover is a lift instead.</p><span class="nw-hl-link">Read Article <i data-lucide="arrow-up-right" class="ic"></i></span></a>
+        </div>
+
+        <h3 class="ds-h3">Section Head</h3>
+        <div class="sec-head" style="margin-bottom:0">
+          <div class="eyebrow">In the press</div>
+          <h2>Media Coverage</h2>
+          <p class="lede">Eyebrow (sentence case, shown in caps), an h2 in Title Case, then an 18px lede no wider than 520px.</p>
+        </div>
+
+        <h3 class="ds-h3">On Dark</h3>
+        <div class="ds-dark"><p>Body text on navy uses <code>--on-dark</code>; secondary text uses <code>--on-dark-2</code>.</p><a class="nr-read" href="#components">Read the Story <i data-lucide="arrow-up-right" class="ic"></i></a></div>
+      </section>
+
+      <section class="ds-sec" id="motion">
+        <div class="eyebrow">Motion</div>
+        <h2>Easing and Timing</h2>
+        <p class="ds-note">Measured from Stripe where a section copies it. Sections fade up on scroll. Everything respects reduced motion.</p>
+        <div class="ds-ease" id="dsEase"></div>
+      </section>
+
+      <section class="ds-sec" id="language">
+        <div class="eyebrow">Language</div>
+        <h2>Voice, Case and Facts</h2>
+        <p class="ds-note">Confident, factual, restrained. Short sentences, no hype. UK/Indian English: programme, honours, enquiries, lakh.</p>
+        <div class="ds-lang">
+          <div>
+            <h3>Case</h3>
+            <ul>
+              <li><b>Title Case</b> for headings, card titles and every button or link label: "Partner with Us", "See All News".</li>
+              <li>Small words stay lowercase unless first: a, an, the, and, or, for, of, on, in, to, at, by, with. Units stay lowercase: "sq km", "mn".</li>
+              <li><b>Sentence case</b> for nav menu labels, menu items and footer link lists.</li>
+              <li><b>All caps</b> for eyebrows and in-card labels, through CSS only.</li>
+              <li>Press headlines keep the publisher's own casing.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Spelling and Numbers</h3>
+            <ul>
+              <li>Currency: <span class="ds-yes">US$2.2B+</span>, <span class="ds-yes">US$408M</span>; never <span class="ds-no">$2.2 bn</span>. Rupee figures follow the source.</li>
+              <li>Brands: ANAND, SUJÁN, Gabriel India, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND.</li>
+              <li>ANEVOLVE in caps as the platform; the company keeps "Anevolve Mando eMobility".</li>
+              <li>"People", not "employees". "Our Vision" in the nav; the section eyebrow reads "Vision &amp; strategy".</li>
+            </ul>
+          </div>
+        </div>
+        <h3 class="ds-h3">Numbers That Must Match Everywhere</h3>
+        <div class="ds-scroll">
+          <table class="ds-tbl">
+            <thead><tr><th>Fact</th><th>Value</th><th>Source</th></tr></thead>
+            <tbody>
+              <tr><td>Founded</td><td>1961</td><td>anandgroupindia.com</td></tr>
+              <tr><td>Companies</td><td>17 (the Jan 2026 presentation says 23; open with the client)</td><td>anandgroupindia.com</td></tr>
+              <tr><td>People</td><td>22,000+</td><td>Site, presentation</td></tr>
+              <tr><td>Locations</td><td>87, across 14 Indian states</td><td>Site, presentation</td></tr>
+              <tr><td>Revenue</td><td>US$2.2B+</td><td>Presentation</td></tr>
+              <tr><td>JV partners / technical collaborations</td><td>11 / 4</td><td>Presentation</td></tr>
+              <tr><td>Targets</td><td>Top 3 in each segment · 8% return on sales · 2% of sales on R&amp;D</td><td>Presentation, site</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- shell:dialog (shared; edit here, then run: python3 tools/sync-shell.py) -->
+<div class="bd-overlay" id="bdOverlay" hidden>
+  <div class="bd-orbs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="bd-dialog" id="bdDialog" role="dialog" aria-modal="true" aria-labelledby="bdTitle" tabindex="-1">
+    <button class="bd-close" id="bdClose" aria-label="Close"><i data-lucide="x" class="ic"></i></button>
+    <div class="bd-body" id="bdBody"></div>
+  </div>
+</div>
+<!-- /shell:dialog -->
+
+<!-- shell:footer (shared; edit here, then run: python3 tools/sync-shell.py) -->
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <a href="index.html" aria-label="ANAND home"><img src="assets/logo.png" alt="ANAND"></a>
+        <p>ANAND Corporate Headquarters<br>1, Sri Aurobindo Marg, Hauz Khas,<br>New Delhi 110016<br>+91-11-42092300<br><a href="mailto:contact@anandgroupindia.com">contact@anandgroupindia.com</a></p>
+        <a href="#contact" class="btn btn-primary f-cta" data-partner>Partner with Us <i data-lucide="chevron-right" class="ic"></i></a>
+      </div>
+      <div class="f-col"><h5>About ANAND</h5><h6>Who we are</h6><ul><li><a href="#">The ANAND Way</a></li><li><a href="#">Heritage</a></li><li><a href="#">Awards &amp; recognition</a></li></ul><h6>Leadership &amp; governance</h6><ul><li><a href="#">Leadership</a></li><li><a href="#">Chairperson's message</a></li><li><a href="#">Corporate governance</a></li></ul><h6>Direction</h6><ul><li><a href="#">Our Vision</a></li></ul><a class="f-more" href="#">About ANAND <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Sustainability &amp; CSR</h5><h6>Sustainability</h6><ul><li><a href="#">Our approach</a></li></ul><h6>SNS Foundation</h6><ul><li><a href="#">About SNSF</a></li><li><a href="#">Education</a></li><li><a href="#">Skill development</a></li><li><a href="#">Health &amp; hygiene</a></li><li><a href="#">Community conservation</a></li><li><a href="#">Projects &amp; impact</a></li><li><a href="#">Financial reports</a></li></ul><h6>ANAND School</h6><ul><li><a href="#">About the school</a></li><li><a href="#">Admissions</a></li><li><a href="#">Curriculum</a></li><li><a href="#">Achievements</a></li></ul><ul><li><a href="#">Donate</a></li></ul><a class="f-more" href="#">Sustainability &amp; CSR <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Careers</h5><h6>Life at ANAND</h6><ul><li><a href="#">Culture at ANAND</a></li><li><a href="#">Diversity &amp; inclusion</a></li><li><a href="#">Shop floor excellence</a></li></ul><h6>People development</h6><ul><li><a href="#">ANAND U</a></li><li><a href="#">ALDP &amp; ATA</a></li><li><a href="#">VSME &amp; VLFM</a></li><li><a href="#">External programmes</a></li></ul><h6>Join us</h6><ul><li><a href="#">Explore opportunities</a></li></ul><a class="f-more" href="#">Careers at ANAND <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-col"><h5>Newsroom</h5><h6>News</h6><ul><li><a href="newsroom.html#news">Latest news</a></li><li><a href="newsroom.html#coverage">Media coverage</a></li><li><a href="newsroom.html#newsletter">Newsletter</a></li></ul><h6>For media</h6><ul><li><a href="newsroom.html#media-kit">Media kit</a></li><li><a href="newsroom.html#media-contact">Media contact</a></li></ul><a class="f-more" href="newsroom.html">All News <i data-lucide="chevron-right" class="ic"></i></a></div>
+    </div>
+    <div class="f-companies">
+      <div class="f-comp-head"><h5>Our companies</h5><a class="f-more" href="#">All Companies <i data-lucide="chevron-right" class="ic"></i></a></div>
+      <div class="f-comp-grid"><div><h6>Chassis, body &amp; safety</h6><ul><li><a href="#">Gabriel India</a></li><li><a href="#">HL Mando Anand India</a></li><li><a href="#">Joyson ANAND Abhishek Safety Systems</a></li><li><a href="#">Henkel ANAND India</a></li><li><a href="#">Inalfa Roof Systems</a></li><li><a href="#">Haldex ANAND India</a></li></ul></div><div><h6>Powertrain &amp; drivetrain</h6><ul><li><a href="#">Dana Anand India</a></li><li><a href="#">ANAND CY Myutec Automotive</a></li><li><a href="#">CY Myutec ANAND</a></li><li><a href="#">ANAND I-Power</a></li><li><a href="#">Valeo Friction Materials India</a></li><li><a href="#">Jinhap Gabriel Auto India</a></li></ul></div><div><h6>Thermal, emissions &amp; fluids</h6><ul><li><a href="#">MAHLE ANAND Thermal Systems</a></li><li><a href="#">MAHLE ANAND Filter Systems</a></li><li><a href="#">Faurecia Clean Mobility</a></li><li><a href="#">SK Enmove Gabriel India</a></li><li><a href="#">Anchemco ANAND</a></li><li><a href="#">Ansysco ANAND</a></li></ul></div><div><h6>Electronics &amp; e-mobility</h6><ul><li><a href="#">HL Klemove</a></li><li><a href="#">APAG CoSyst</a></li><li><a href="#">Anevolve Mando eMobility</a></li></ul></div><div><h6>Beyond automotive</h6><ul><li><a href="#">SUJÁN</a></li><li><a href="#">ANEVOLVE</a></li><li><a href="#">Technology partners</a></li></ul></div></div>
+    </div>
+    <div class="f-bottom">
+      <span>© 2026 ANAND Group. All rights reserved.</span>
+      <div><a href="#">Code of Conduct</a><a href="#">Privacy</a><a href="#">Cookies</a><a href="#">Terms</a><a href="https://www.linkedin.com/company/anandgroupindia/">LinkedIn</a><a href="https://www.instagram.com/anand.group.india/">Instagram</a></div>
+    </div>
+  </div>
+</footer>
+<!-- /shell:footer -->
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+<script>
+(() => {
+  const root = getComputedStyle(document.documentElement);
+  const v = t => root.getPropertyValue(t).trim();
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+  // colour swatches: the hex comes from the live stylesheet
+  const sw = list => list.map(([t, name, use]) => `
+    <div class="ds-sw"><i style="--c:var(${t})"></i><div><b>${name}</b><span class="hex">${t} · ${esc(v(t).toUpperCase())}</span><span>${use}</span></div></div>`).join('');
+  document.getElementById('dsBrand').innerHTML = sw([
+    ['--navy', 'Navy / Ink', 'Text, dark sections, button hover'],
+    ['--navy-2', 'Navy 2', 'Second dark tone: tiles, placeholders'],
+    ['--royal', 'Royal', 'Stripes, tiles, accents'],
+    ['--cyan', 'Cyan', 'The logo cyan: buttons, links, eyebrows, icons'],
+    ['--green', 'Green', 'Sustainability only'],
+    ['--tint', 'Tint', 'Soft icon boxes, badges'],
+    ['--tint-2', 'Tint 2', 'Stronger cyan tint (borders)'],
+    ['--error', 'Error', 'Form validation only']
+  ]);
+  document.getElementById('dsNeutral').innerHTML = sw([
+    ['--slate', 'Slate', 'Body text'],
+    ['--muted', 'Muted', 'Secondary text, labels'],
+    ['--faint', 'Faint', 'Placeholders, disabled'],
+    ['--line', 'Line', 'Borders, dividers, hairlines'],
+    ['--soft', 'Soft', 'Neutral sections, hover fill'],
+    ['--on-dark', 'On Dark', 'Body text on navy'],
+    ['--on-dark-2', 'On Dark 2', 'Secondary text on navy'],
+    ['--white', 'White', 'Page, cards, text on colour']
+  ]);
+  document.getElementById('dsPairs').innerHTML = [
+    ['var(--royal)', '#5584C4', 'Royal', '--royal · #5584C4'],
+    ['#3F7A1C', '#7AAA55', 'Dark Green', '#3F7A1C · #7AAA55'],
+    ['var(--cyan)', '#66CEF5', 'Cyan', '--cyan · #66CEF5'],
+    ['var(--navy-2)', '#3D5A78', 'Navy 2', '--navy-2 · #3D5A78'],
+    ['var(--green)', '#9CCB6E', 'Green', '--green · #9CCB6E']
+  ].map(([c, t, n, s]) => `<div class="ds-pair" style="--c:${c};--t:${t}"><b>${n}</b><span>${s}</span></div>`).join('');
+
+  // type scale: each token rendered at its own size, with the size it resolves to on this screen
+  const type = [
+    ['--fs-mega', 'The trust section\'s 40%+', '40%+'],
+    ['--fs-display', 'Hero h1', 'Engineering the Future of Mobility'],
+    ['--fs-stat', 'About facts', '22,000+'],
+    ['--fs-h2', 'Every section heading', 'Creating Value Sustainably'],
+    ['--fs-quote', 'Pull quotes (weight 300)', '"Ethics is a lived practice."'],
+    ['--fs-h3', 'Card titles, newsroom headline', '100 sq km of Wilderness Protected'],
+    ['--fs-num', 'Numbers inside graphics', 'US$10.3B'],
+    ['--fs-lede', 'Intro paragraphs', 'A global mobility solutions group of 17 automotive companies.'],
+    ['--fs-title', 'Small titles', 'Press and Media Enquiries'],
+    ['--fs-body', 'Paragraphs', 'Through joint ventures and technical collaborations with world leaders.'],
+    ['--fs-ui', 'Buttons, nav, links, tiles', 'See All News'],
+    ['--fs-small', 'Secondary text, footer', 'Gabriel India · Inalfa Roof Systems'],
+    ['--fs-ui-sm', 'Eyebrows, text in graphics', 'VISION & STRATEGY'],
+    ['--fs-label', 'Captions and all-caps labels', 'COMMUNITY & WILDLIFE']
+  ];
+  const probe = document.createElement('span'); document.body.appendChild(probe);
+  document.getElementById('dsType').innerHTML = type.map(([t, use, sample]) => {
+    probe.style.fontSize = `var(${t})`;
+    const px = getComputedStyle(probe).fontSize, raw = v(t);
+    const w = t === '--fs-quote' ? 300 : t === '--fs-h2' || t === '--fs-h3' || t === '--fs-title' || t === '--fs-ui' ? 500 : 400;
+    return `<div class="ds-trow"><span class="t">${t}</span><span class="px">${px}<small>${esc(raw.startsWith('clamp') ? 'fluid' : 'fixed')}</small></span><span class="s" style="font-size:var(${t});font-weight:${w}">${esc(sample)}<span class="u">${esc(use)}</span></span></div>`;
+  }).join('');
+  probe.remove();
+
+  // icons in use across the site
+  const icons = ['chevron-right', 'chevron-left', 'chevron-down', 'arrow-right', 'arrow-up-right', 'arrow-left', 'x', 'check', 'download', 'folder-down', 'newspaper', 'megaphone', 'mail', 'link', 'share-2', 'map-pin', 'globe', 'landmark', 'shield-check', 'badge-check', 'messages-square', 'handshake', 'building-2', 'award', 'trophy', 'car', 'cog', 'wrench', 'zap', 'wind', 'thermometer', 'flask-conical', 'trees', 'heart-pulse', 'graduation-cap', 'book-open'];
+  document.getElementById('dsIcons').innerHTML = icons.map(n => `<div><i data-lucide="${n}" class="ic"></i>${n}</div>`).join('');
+
+  // motion: each easing plays across a track
+  const ease = [
+    ['Site default', '--ease · cubic-bezier(.2,.7,.2,1)', 'cubic-bezier(.2,.7,.2,1)', 600],
+    ['Stripe cards', 'Bento grow, media zoom · 800ms', 'cubic-bezier(.165,.84,.44,1)', 800],
+    ['Stripe modal', 'Dialog in · 800ms from 200px below', 'cubic-bezier(.22,1,.36,1)', 800],
+    ['Colour wipe and slides', 'Newsroom carousels · 600ms each way', 'cubic-bezier(.7,0,0,1)', 600]
+  ];
+  const ee = document.getElementById('dsEase');
+  ee.innerHTML = ease.map(([n, d, e, ms], i) => `
+    <div><span><b>${n}</b><span>${d}</span></span><div class="ds-track" style="--e:${e};--d:${ms}ms"><i class="ds-dot"></i></div><button type="button" class="btn btn-outline2 ds-play" data-i="${i}">Play</button></div>`).join('');
+  ee.addEventListener('click', e => {
+    const b = e.target.closest('.ds-play'); if (!b) return;
+    const tr = b.parentElement.querySelector('.ds-track');
+    if (tr.classList.contains('go')) { tr.classList.remove('go'); void tr.offsetWidth; }
+    tr.classList.add('go');
+  });
+
+  // table of contents: highlight the section in view
+  const links = [...document.querySelectorAll('.ds-toc a')];
+  const io = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + en.target.id));
+  }), {rootMargin: '-30% 0px -60% 0px'});
+  document.querySelectorAll('.ds-sec').forEach(s => io.observe(s));
+})();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -117,7 +117,7 @@
 <!-- /shell:header -->
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero hero--story">
   <!-- Background reel: one edited, upscaled loop (assets/hero-reel.mp4, 15.5s, 1920x1080, ~5.8 MB) with a poster frame.
        Shots: ANAND flag, building, factory, robot arm -> car-body welding (Pexels 4468754, temporary) -> coast road ->
        SUJÁN camp at dawn, dusk over the hills, lantern dinner. Sources: ANAND homepage film, SUJÁN main film (need ANAND's OK). -->
@@ -126,13 +126,59 @@
   </div>
   <div class="hero-wash" aria-hidden="true"></div>
   <div class="stripes" aria-hidden="true"><span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span></div>
-  <div class="wrap hero-grid">
+  <div class="wrap hero-grid hero-grid--story">
     <div class="rv">
       <div class="eyebrow">Since 1961</div>
       <h1>Engineering the <span class="g">Future<br class="br-lg"> of Mobility</span></h1>
       <p class="lede">A global mobility solutions group bringing together world-class technologies and deep manufacturing expertise to serve leading automotive manufacturers across the world.</p>
       <div class="hero-ctas">
         <a href="#solutions" class="btn btn-primary">Explore Solutions <i data-lucide="arrow-right" class="ic"></i></a>
+      </div>
+    </div>
+
+    <!-- Hero stories: Stripe newsroom "Stories" card (photo, white logo, headline; the company logos below switch slides,
+         a colour wipe between slides, autoplay 8s). Same six stories as the Stories section; behaviour in site.js (#heroStory). -->
+    <div class="hs" id="heroStory" aria-roledescription="carousel" aria-label="Group companies">
+      <div class="hs-card">
+        <div class="hs-bg on" style="--c:var(--navy-2)"><img src="assets/news2-scaled-1.jpeg" alt=""><span class="shade"></span></div>
+        <div class="hs-bg" style="--c:var(--royal)"><img src="assets/sujan-leopard-rocks.jpg" alt="" loading="lazy"><span class="shade"></span></div>
+        <div class="hs-bg" style="--c:var(--navy)"><img src="assets/e-mobility.png" alt="" loading="lazy"><span class="shade"></span></div>
+        <div class="hs-bg" style="--c:var(--royal)"><img src="assets/Gabriel-India-South-Koreas-HL-Klemove.jpg" alt="" loading="lazy"><span class="shade"></span></div>
+        <div class="hs-bg" style="--c:var(--navy-2)"><img src="assets/thermal-management.png" alt="" loading="lazy"><span class="shade"></span></div>
+        <div class="hs-bg" style="--c:var(--royal)"><img src="assets/safety.png" alt="" loading="lazy"><span class="shade"></span></div>
+        <a class="hs-slide on" href="https://www.anandgroupindia.com/gabrielindia/" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="1 of 6: Gabriel India">
+          <span class="hs-top"><img class="hs-logo" src="assets/Gabriel.png" alt="Gabriel India"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Flagship since 1961</span><span class="hs-title">Gabriel India, ANAND's flagship since 1961, makes shock absorbers, struts and front forks for leading OEMs.</span><span class="hs-cta">Explore Gabriel India <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <a class="hs-slide" href="https://thesujanlife.com" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="2 of 6: SUJÁN" tabindex="-1" aria-hidden="true">
+          <span class="hs-top"><img class="hs-logo" src="assets/sujan-wordmark.svg" alt="SUJÁN"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Beyond automotive</span><span class="hs-title">SUJÁN redefines experiential luxury through conservation-led hospitality in Rajasthan.</span><span class="hs-cta">Discover SUJÁN <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <a class="hs-slide" href="https://www.anandgroupindia.com/anevolvemandoemobility/" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="3 of 6: ANEVOLVE" tabindex="-1" aria-hidden="true">
+          <span class="hs-top"><img class="hs-logo" src="assets/ANEVOLVE.png" alt="ANEVOLVE"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Clean mobility</span><span class="hs-title">ANEVOLVE, ANAND's future-tech platform, is advancing solutions for clean mobility.</span><span class="hs-cta">Explore ANEVOLVE <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <a class="hs-slide" href="https://economictimes.indiatimes.com/industry/auto/auto-news/gabriel-india-south-koreas-hl-klemove-form-jv-for-autonomous-driving/articleshow/133541512.cms" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="4 of 6: HL Klemove" tabindex="-1" aria-hidden="true">
+          <span class="hs-top"><img class="hs-logo" src="assets/HL-Klemove.png" alt="HL Klemove"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Joint venture</span><span class="hs-title">Gabriel India and HL Klemove form a joint venture to bring autonomous driving to India.</span><span class="hs-cta">Read the Story <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <a class="hs-slide" href="https://www.anandgroupindia.com/mahleanandthermalsystems/" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="5 of 6: MAHLE ANAND" tabindex="-1" aria-hidden="true">
+          <span class="hs-top"><img class="hs-logo" src="assets/mahle.png" alt="MAHLE ANAND"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Thermal systems</span><span class="hs-title">MAHLE ANAND builds air conditioning, engine cooling and filter systems for India's automakers.</span><span class="hs-cta">Explore MAHLE ANAND <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <a class="hs-slide" href="https://www.anandgroupindia.com/joysonanandabhisheksafetysystems/" target="_blank" rel="noopener" aria-roledescription="slide" aria-label="6 of 6: Joyson ANAND" tabindex="-1" aria-hidden="true">
+          <span class="hs-top"><img class="hs-logo" src="assets/Joyson.png" alt="Joyson ANAND"><i data-lucide="arrow-up-right" class="ic"></i></span>
+          <span class="hs-copy"><span class="hs-k">Safety systems</span><span class="hs-title">Joyson ANAND Abhishek makes seat belts, airbags and steering wheels that keep drivers safe.</span><span class="hs-cta">Explore Joyson ANAND <i data-lucide="arrow-right" class="ic"></i></span></span>
+        </a>
+        <div class="hs-wipe" aria-hidden="true"></div>
+      </div>
+      <div class="hs-tabs" role="tablist" aria-label="Choose a company">
+        <button type="button" class="hs-tab" role="tab" aria-selected="true" aria-label="Gabriel India" data-i="0"><img src="assets/Gabriel.png" alt=""></button>
+        <button type="button" class="hs-tab" role="tab" aria-selected="false" aria-label="SUJÁN" data-i="1"><img src="assets/sujan-wordmark.svg" alt=""></button>
+        <button type="button" class="hs-tab" role="tab" aria-selected="false" aria-label="ANEVOLVE" data-i="2"><img src="assets/ANEVOLVE.png" alt=""></button>
+        <button type="button" class="hs-tab" role="tab" aria-selected="false" aria-label="HL Klemove" data-i="3"><img src="assets/HL-Klemove.png" alt=""></button>
+        <button type="button" class="hs-tab" role="tab" aria-selected="false" aria-label="MAHLE ANAND" data-i="4"><img src="assets/mahle.png" alt=""></button>
+        <button type="button" class="hs-tab" role="tab" aria-selected="false" aria-label="Joyson ANAND" data-i="5"><img src="assets/Joyson.png" alt=""></button>
       </div>
     </div>
 

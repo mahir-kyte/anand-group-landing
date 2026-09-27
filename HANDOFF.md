@@ -23,7 +23,7 @@ Last updated: 27 Sep 2026, after the third full consistency audit (content, type
 
 | What | Where |
 |---|---|
-| The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, plus `assets/`, `data/`, `tools/` |
+| The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, `design-system.html`, plus `assets/`, `data/`, `tools/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
 | WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
@@ -37,6 +37,7 @@ Last updated: 27 Sep 2026, after the third full consistency audit (content, type
 **Files in the repo**
 - `index.html`: the home page. It is also the **source of the shared shell**: the nav, the dialog (bento details + Partner form), the CTA banner and the footer sit between `<!-- shell:NAME -->` and `<!-- /shell:NAME -->` markers.
 - `newsroom.html`, `newsroom-article.html`: the newsroom index and article template (§8.14, §8.15). They carry the same shell markers.
+- `design-system.html`: a browsable **design system page** (principles, colour, type scale, layout and the 6° cut, buttons and the hover rule, icons, components, motion, language and facts). It loads the real `site.css`/`newsroom.css` and reads token values from the live stylesheet, so specimens can't drift. When you add a token, component, icon or rule, add it there too. `noindex`; not linked from the nav.
 - `tools/sync-shell.py`: copies the shell blocks from `index.html` into the other pages. **Edit the nav/footer/dialog/banner in `index.html` only, then run `python3 tools/sync-shell.py`.**
 - `assets/site.css` + `assets/site.js`: shared styles and behaviour for every page (moved out of `index.html` on 26 Sep; each JS block checks for its own elements, so pages without them skip it). The cobe globe module stays inline in `index.html`.
 - `assets/newsroom.css` + `assets/newsroom.js`: newsroom-only styles and the renderer for both newsroom pages.
@@ -58,7 +59,7 @@ macOS blocks the preview tool from starting a server inside `Documents`, so star
 cd "/Users/mahirmalde/Documents/Documents/Work/Kyte/Anand Group/Anand & Gabriel/Anand Moodboard/anand-landing" && python3 -m http.server 5178 --bind 127.0.0.1
 ```
 
-Open `http://localhost:5178`. The preview pane attaches with `.claude/launch.json`: `{"version":"0.0.1","configurations":[{"name":"anand-landing","url":"http://localhost:5178","port":5178}]}`
+Open `http://localhost:5178`. To let phones or colleagues on the same Wi-Fi open it, use `--bind 0.0.0.0` instead and share `http://<this Mac's IP>:5178` (find the IP with `ipconfig getifaddr en0`; allow Python through the macOS firewall if asked). Only people on the same network can reach it. The preview pane attaches with `.claude/launch.json`: `{"version":"0.0.1","configurations":[{"name":"anand-landing","url":"http://localhost:5178","port":5178}]}`
 
 **External libraries** (from CDNs, no npm):
 - Google Fonts **Geist** (300–600). Geist Mono was dropped on purpose.
@@ -274,14 +275,21 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - The reel stops 100px above the hero bottom, where the navy band starts (the band sits at `bottom:-680px`; it was moved 80px lower so more of the video shows).
   - **For the real site:** edit one short optimised loop from ANAND's and SUJÁN's master files, then remove the Pexels clip.
 - **Navy wash for legibility:** a gradient from the top (for the nav) plus a gradient from the left (.88 → .25). On phones it's an even .75 → .6.
-- **Text** (one column, max 720px, white):
+- **Layout:** two columns at 1,200px and up: text (max 520px) on the left, the **stories card** on the right, vertically centred (`.hero-grid--story`). Below 1,200px the card stacks under the text (max 760px wide).
+- **Text** (white):
   - eyebrow "SINCE 1961" (cyan)
-  - h1 "Engineering the Future / of Mobility", **all white**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally)
+  - h1 "Engineering the Future / of Mobility", **all white**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally). In the 520px column it reads "Engineering the / Future / of Mobility" on desktop
   - lede in 82% white
   - one button, "Explore Solutions"
+- **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
+  - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.
+  - Card 713:456 (square on phones): the photo at 50% over a colour (navy-2 / royal / navy, alternating) with a shade from the bottom; white logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story (3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the photo zoom and lifts the copy, as on the newsroom hero.
+  - **Logo row below** (Stripe's tabs): six white logos, 6 across (3×2 on phones); the current one is full strength, the rest 45% (80% on hover). Clicking one switches slides.
+  - **Changing slide:** a panel in the next story's colour wipes across (0.6s), the story swaps under it, and it wipes off (0.6s), `cubic-bezier(.7,0,0,1)`. Autoplay every 8s, paused on hover, keyboard focus and while off screen; arrow keys also work. Reduced motion swaps instantly.
+  - Markup is static in `index.html`; behaviour is in `site.js`. On the real site it's a block fed from the company CPT (logo, photo, label, line, link).
 - **Band:** the slanted navy band with royal and cyan stripes runs below into the newsroom.
-- **Padding:** `150px 0 calc(300px + …)`; 400px bottom on phones so the band clears the text.
-- **History:** first a product mockup, then a Stripe-style video carousel (portrait, then landscape); both were replaced by this single background film on request.
+- **Padding:** `150px 0 calc(300px + …)`; with the stories card, `calc(420px + …)` at the bottom (`.hero--story`) so the logo row clears the stripes; 400px bottom on phones.
+- **History:** first a product mockup, then a Stripe-style video carousel (portrait, then landscape); both were replaced by this single background film on request. The stories card was added on 27 Sep.
 
 ### 8.3 Newsroom (`section#news`, navy)
 - A split panel: image left, navy text right.

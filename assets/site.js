@@ -359,6 +359,42 @@
     if (reduce) { v.removeAttribute('src'); v.load(); return; }
     new IntersectionObserver(([e]) => { e.isIntersecting ? v.play().catch(() => {}) : v.pause(); }).observe(box);
   })();
+
+  // hero stories (Stripe newsroom "Stories"): the logo tabs switch slides; a panel in the next story's colour wipes
+  // across, the story swaps under it, and it wipes off. Autoplay 8s, paused on hover/focus and while off screen.
+  (() => {
+    const root = document.getElementById('heroStory'); if (!root) return;
+    const card = root.querySelector('.hs-card'), wipe = root.querySelector('.hs-wipe');
+    const bgs = [...root.querySelectorAll('.hs-bg')], slides = [...root.querySelectorAll('.hs-slide')], tabs = [...root.querySelectorAll('.hs-tab')];
+    const n = slides.length, ease = 'cubic-bezier(.7,0,0,1)';
+    let cur = 0, busy = false, timer = 0, hover = false, seen = true;
+    const show = i => {
+      bgs.forEach((b, j) => b.classList.toggle('on', j === i));
+      slides.forEach((s, j) => { s.classList.toggle('on', j === i); s.setAttribute('aria-hidden', j !== i); s.tabIndex = j === i ? 0 : -1; });
+      tabs.forEach((t, j) => t.setAttribute('aria-selected', j === i));
+      cur = i;
+    };
+    const go = i => {
+      i = (i + n) % n;
+      if (i === cur || busy) return;
+      if (reduce) { show(i); return; }
+      busy = true;
+      card.style.setProperty('--wc', bgs[i].style.getPropertyValue('--c'));
+      tabs.forEach((t, j) => t.setAttribute('aria-selected', j === i));   // the tab answers the click straight away
+      wipe.animate([{transform: 'translateX(-101%)'}, {transform: 'translateX(0)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished.then(() => {
+        show(i);
+        return wipe.animate([{transform: 'translateX(0)'}, {transform: 'translateX(101%)'}], {duration: 600, easing: ease, fill: 'forwards'}).finished;
+      }).then(() => { busy = false; });
+    };
+    const play = () => { clearInterval(timer); if (!reduce && n > 1 && !hover && seen) timer = setInterval(() => go(cur + 1), 8000); };
+    tabs.forEach(t => t.addEventListener('click', () => { go(+t.dataset.i); play(); }));
+    root.addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { go(cur + (e.key === 'ArrowRight' ? 1 : -1)); play(); } });
+    root.addEventListener('mouseenter', () => { hover = true; clearInterval(timer); });
+    root.addEventListener('mouseleave', () => { hover = false; play(); });
+    root.addEventListener('focusin', () => { hover = true; clearInterval(timer); });
+    root.addEventListener('focusout', () => { hover = false; play(); });
+    new IntersectionObserver(([e]) => { seen = e.isIntersecting; seen ? play() : clearInterval(timer); }).observe(root);
+  })();
   lucide.createIcons();
 
   // nav state

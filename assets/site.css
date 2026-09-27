@@ -160,6 +160,56 @@ section{position:relative}
 .hero .eyebrow{color:var(--cyan)}
 .hero h1,.hero h1 .g{color:#fff}
 @media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "…Future / of Mobility" on tablet and up; phones wrap naturally */
+/* Hero stories (Stripe newsroom "Stories"): a photo card on the right of the hero; the company logos below it switch
+   slides. Changing story: a colour panel wipes across (0.6s + 0.6s, cubic-bezier(.7,0,0,1)) while the layers swap
+   underneath; autoplay 8s, paused on hover/focus. Hover: the photo settles, the copy lifts and the CTA fades in. */
+.hero-grid--story{grid-template-columns:minmax(0,520px) minmax(0,1fr);gap:64px;align-items:center}
+.hero--story{padding-bottom:calc(420px + max(0px, (100vw - 1348px) * .0792))}   /* room for the card's logo row above the slanted stripes */
+.hs{min-width:0}
+.hs-card{position:relative;aspect-ratio:713/456;border-radius:var(--radius);overflow:hidden;background:var(--navy);box-shadow:0 30px 60px -12px rgba(0,0,0,.45),0 18px 36px -18px rgba(0,0,0,.5);isolation:isolate}
+.hs-bg{position:absolute;inset:0;background:var(--c);opacity:0;transition:opacity .6s ease}
+.hs-bg.on{opacity:1}
+.hs-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5;transform:scale(1.03);transition:transform .4s ease}
+.hs-bg .shade{position:absolute;left:0;right:0;top:0;height:135%;background:linear-gradient(180deg,transparent 15%,var(--c) 66%);transition:transform .5s ease}
+.hs-card:hover .hs-bg img{transform:scale(1)}
+.hs-card:hover .hs-bg .shade{transform:translateY(-8%)}
+.hs-wipe{position:absolute;inset:0;z-index:3;background:var(--wc,var(--royal));transform:translateX(-101%);pointer-events:none}
+.hs-slide{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:space-between;padding:28px 32px;color:#fff;opacity:0;visibility:hidden}
+.hs-slide.on{opacity:1;visibility:visible}
+.hs-slide:focus-visible{outline:2px solid var(--cyan);outline-offset:-4px;border-radius:var(--radius)}
+.hs-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.hs-logo{height:28px;width:auto;max-width:200px;object-fit:contain;object-position:left top;filter:brightness(0) invert(1)}
+.hs-top .ic{width:22px;height:22px;flex:none;opacity:.85}
+.hs-copy{display:flex;flex-direction:column;transform:translateY(34px);transition:transform .6s cubic-bezier(.7,0,0,1)}
+.hs-k{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:10px}
+.hs-title{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.01em;line-height:1.25;max-width:560px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hs-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:var(--fs-ui);font-weight:500;opacity:0;transition:opacity .6s cubic-bezier(.7,0,0,1)}
+.hs-cta .ic{width:16px;height:16px;transition:transform .2s var(--ease)}
+.hs-card:hover .hs-copy,.hs-slide:focus-visible .hs-copy{transform:none}
+.hs-card:hover .hs-cta,.hs-slide:focus-visible .hs-cta{opacity:1}
+.hs-card:hover .hs-cta .ic{transform:translateX(3px)}
+@media (hover:none){.hs-copy{transform:none}.hs-cta{opacity:1}}
+/* the logo row: one tab per company, white logos; the current one is full strength, the rest faded */
+.hs-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:8px}
+.hs-tab{height:64px;display:grid;place-items:center;padding:0 10px;border:0;background:transparent;cursor:pointer;border-radius:var(--radius)}
+.hs-tab img{max-height:22px;max-width:100%;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.45;transition:opacity .3s}
+.hs-tab:hover img{opacity:.8}
+.hs-tab[aria-selected=true] img{opacity:1}
+.hs-tab:focus-visible{outline:2px solid var(--cyan);outline-offset:-2px}
+@media (prefers-reduced-motion:reduce){.hs-bg,.hs-bg img,.hs-bg .shade,.hs-copy,.hs-cta{transition:none}}
+@media (max-width:1199px){
+  .hero-grid--story{grid-template-columns:minmax(0,1fr);gap:56px}
+  .hs{max-width:760px}
+}
+@media (max-width:639px){
+  .hs-slide{padding:20px}
+  .hs-logo{height:22px}
+  .hs-card{aspect-ratio:1/1}
+  .hs-title{-webkit-line-clamp:5}
+  .hs-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .hs-tab{height:52px}
+  .hs-tab img{max-height:18px}
+}
 .hero .lede{color:rgba(255,255,255,.82);max-width:560px}
 
 /* ---------- LOGOS ---------- */
