@@ -307,7 +307,7 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
   - Global footprint: a cobe globe plus a mini bento
   - US$2.2B+ revenue: the ANAND logo and three figures (US$2.2B+, 8% return-on-sales target, 11 global JV partners), then JV-partner bars with dividers
   - 17 Companies: logo grid
-  - 22,000+ People: headshots
+  - 22,000+ People: a leaders list over the event photo, in this order: Deep C. Anand (Founder), Anjali Singh (Chairperson, Supervisory Board), Mahendra K. Goyal (CEO & MD, Gabriel India), **Jaisal Singh (Vice Chairman, Executive Board)**, added 28 Sep with his headshot (`assets/leader-jaisal-singh.jpg`, 240×240, cropped from his profile page on anandgroupindia.com). The event photo behind the list starts 122px into its box (it was 70px) so Mahendra K. Goyal's head clears the four-name list; add about 51px per extra name. The People modal's Leadership block lists the same four, two by two (`.bd-leaders`); his entry uses his official titles: Vice Chairman, ANAND Executive Board; Director on the Group Supervisory Board; Founder of SUJÁN; launched ANEVOLVE with Anjali Singh in 2023.
   - SUJÁN: leopard photo with a white panel showing the navy wordmark and the 3 camps with thumbnails
 - **Hover** (Stripe's): clip-path grow, a pointer-following border, and the expand button turns cyan.
 - **Modals:**
@@ -487,6 +487,7 @@ Measured on stripe.com/newsroom and stripe.com/newsroom/news/* on 26 Sep 2026, t
 | 11 | Partner form: wire it to ANAND's inbox; add spam protection and consent text; confirm the product and country lists | GIDA + client |
 | 12 | **WordPress hasn't caught up** (§12) | Kyte + GIDA |
 | 14 | ~~Newsroom images~~: the sample images (31 after two articles were removed) are self-hosted in `assets/news/` (3.5 MB; photo PNGs converted to JPEG, nothing wider than 1600px). On the real site, import them into the WordPress media library | done |
+| 16 | ~~Jaisal Singh headshot~~: added from his profile page (a screenshot crop, since the server blocks downloads); ask for the original for the real site | client |
 | 15 | **Newsroom migration scope:** the reference has a 30-item sample. Decide how much of the 399 + 303 + 23 old items to migrate, confirm company tags, and set up 301 redirects from `legacyUrl`/`legacyPermalink` | Kyte + client |
 | 13 | **Hero reel:** now one optimised loop (`assets/hero-reel.mp4`). Still to do: get ANAND's permission for its and SUJÁN's footage, ideally the **master files** for a sharper re-cut, and replace the Pexels welding shot. The previous note on ANAND's site film still applies (the site copy is 2560×1182 and heavily compressed); host an optimised, short loop (10–20s, plus a poster frame) on the new site instead of streaming the 16 MB original | Kyte + client |
 

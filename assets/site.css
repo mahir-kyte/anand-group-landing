@@ -548,7 +548,7 @@ section{position:relative}
 
 /* 4 · people & leadership */
 /* photo starts at the middle of the leadership card; a short fade keeps the speaker's head clear */
-.g-ppl .g-photo{position:absolute;left:0;right:0;top:210px;bottom:0;background:url(news1-scaled-1.jpeg) no-repeat center top 70px/auto calc(100% - 20px)}
+.g-ppl .g-photo{position:absolute;left:0;right:0;top:210px;bottom:0;background:url(news1-scaled-1.jpeg) no-repeat center top 122px/auto calc(100% - 20px)}   /* 122px: clears the four-name list (a fifth row needs +51px) */
 .g-ppl .g-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(#fff 0%,rgba(255,255,255,0) 22%)}
 .g-ppl .g-lead{left:20px;right:20px;top:136px;padding:6px 14px;z-index:3}
 .g-ppl .g-lead div{display:flex;gap:10px;align-items:center;padding:9px 0;border-top:1px solid var(--line)}
@@ -641,7 +641,7 @@ html.bd-lock body{padding-right:var(--sbw,0px)}
 .bd-co .tx span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:var(--fs-small);line-height:1.45}
 .bd-co .ic{width:16px;height:16px;color:var(--muted);align-self:start;transition:transform .2s var(--ease),color .2s}
 .bd-co:hover .ic{color:var(--cyan);transform:translate(2px,-2px)}
-.bd-leaders{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bd-leaders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}   /* four leaders, two by two */
 .bd-leaders div{border:1px solid var(--line);border-radius:var(--radius);padding:24px}
 .bd-leaders .g-av{width:52px;height:52px;font-size:var(--fs-body);margin-bottom:18px}
 .bd-leaders b{display:block;font-weight:500;font-size:var(--fs-title);color:var(--ink)}
