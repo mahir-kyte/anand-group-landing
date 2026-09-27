@@ -163,7 +163,7 @@ The CSS rules use these tokens, not raw hex values. The only hardcoded colours l
 | `--fs-ui` | 15 | Buttons, nav, links, tile text |
 | `--fs-small` | 14 | Secondary text, footer |
 | `--fs-ui-sm` | 13 | Eyebrows; text inside product-style graphics |
-| `--fs-num` | 24 | Numbers inside graphics |
+| `--fs-num` | 24 | Numbers inside graphics; the hero stories card headline |
 | `--fs-label` | 12 | Captions, all-caps labels, globe and map labels, avatar initials |
 | `--fs-mega` | clamp(72,9vw,128) | The single oversized figure: the trust section's **40%+** ("%+" the same size as the digits) |
 
@@ -268,15 +268,15 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.2 Hero (`section.hero`, white)
 - **Background:** white. The nav uses its normal filled bar here (the see-through `.nav.on-hero` state only applies to a full-bleed film hero, `.hero--film`, which the site no longer has).
-- **Layout:** two columns at 1,200px and up: text (max **640px**, so the h1 sits on two lines) on the left, the **stories card** on the right (`.hero-grid--story`, 48px gap, centred, then the card is nudged **88px lower** with `position:relative; top:88px` so it sits further over the slash without moving the slash). Below 1,200px the card stacks under the text (max 760px wide).
+- **Layout:** two columns at 1,200px and up: text (max **560px**, enough for "Future of Mobility" at 64px; the rest of the width goes to the card, about 692×443 at 1440px) on the left, the **stories card** on the right (`.hero-grid--story`, 48px gap, centred, then the card is nudged **88px lower** with `position:relative; top:88px` so it sits further over the slash without moving the slash). Below 1,200px the card stacks under the text (max 760px wide).
 - **Text** (navy on white):
   - eyebrow "SINCE 1961" (cyan)
-  - h1 "Engineering the Future / of Mobility" in navy, **two lines**, with a forced break before "of" (`br.br-lg`, hidden below 640px so phones wrap naturally)
+  - h1 "Engineering the / Future of Mobility" in navy, **two lines**, with a forced break before "Future" (`br.br-lg`, hidden below 640px so phones wrap naturally)
   - lede in `--slate`
   - one button, "Explore Solutions"
 - **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
   - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.
-  - **The hero film plays inside the card** (`.hs-reel`, 75% over navy), under each story's colour: a 30% wash in the story colour (navy-2 / royal / navy, alternating) plus a shade from the bottom for the text. White logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story (3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the film's slight zoom and lifts the copy.
+  - **The hero film plays inside the card** (`.hs-reel`, 75% over navy), under each story's colour: a 30% wash in the story colour (navy-2 / royal / navy, alternating) plus a shade from the bottom for the text. White logo top-left, `arrow-up-right` top-right; an all-caps label, the one-line story at `--fs-num` (24px; `min(var(--fs-num), var(--fs-h3))` so it's 22px on phones; 3 lines max, 5 on phones) and, on hover, the CTA ("Explore Gabriel India →"). Hover also settles the film's slight zoom and lifts the copy.
   - Card 713:456 (square on phones).
   - **Logo row below** (Stripe's tabs): six logos, 6 across (3×2 on phones); the current one is full strength, the rest 45% (80% on hover). Clicking one switches slides. On desktop the row sits on the navy slash, so the logos are white; when stacked (below 1,200px) it sits on white, so the logos are dark.
   - **Changing slide:** a panel in the next story's colour wipes across (0.6s), the story swaps under it, and it wipes off (0.6s), `cubic-bezier(.7,0,0,1)`. Autoplay every 8s, paused on hover, keyboard focus and while off screen; arrow keys also work. Reduced motion swaps instantly.

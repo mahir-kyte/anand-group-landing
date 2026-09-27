@@ -158,11 +158,11 @@ section{position:relative}
 .hero-video.is-on{opacity:1}
 .hero .eyebrow{color:var(--cyan)}
 .hero h1,.hero h1 .g{color:var(--navy)}
-@media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "…Future / of Mobility" on tablet and up; phones wrap naturally */
+@media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "Engineering the / Future of Mobility" on tablet and up; phones wrap naturally */
 /* Hero stories (Stripe newsroom "Stories"): a photo card on the right of the hero; the company logos below it switch
    slides. Changing story: a colour panel wipes across (0.6s + 0.6s, cubic-bezier(.7,0,0,1)) while the layers swap
    underneath; autoplay 8s, paused on hover/focus. Hover: the photo settles, the copy lifts and the CTA fades in. */
-.hero-grid--story{grid-template-columns:minmax(0,640px) minmax(0,1fr);gap:48px;align-items:center}   /* 640px keeps the h1 on two lines: "Engineering the Future / of Mobility" */
+.hero-grid--story{grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:48px;align-items:center}   /* 560px text column (fits "Future of Mobility" at 64px), the rest goes to the card */
 .hs{min-width:0;position:relative;top:88px}   /* sits lower than the text on desktop, further over the slash; layout (and the slash) stay put */
 .hs-card{position:relative;aspect-ratio:713/456;border-radius:var(--radius);overflow:hidden;background:var(--navy);box-shadow:0 30px 60px -12px rgba(0,0,0,.45),0 18px 36px -18px rgba(0,0,0,.5);isolation:isolate}
 .hs-reel{position:absolute;inset:0;background:var(--navy)}
@@ -182,7 +182,7 @@ section{position:relative}
 .hs-top .ic{width:22px;height:22px;flex:none;opacity:.85}
 .hs-copy{display:flex;flex-direction:column;transform:translateY(34px);transition:transform .6s cubic-bezier(.7,0,0,1)}
 .hs-k{font-size:var(--fs-label);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72);margin-bottom:10px}
-.hs-title{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.01em;line-height:1.25;max-width:560px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.hs-title{font-size:min(var(--fs-num),var(--fs-h3));font-weight:500;letter-spacing:-.01em;line-height:1.25;max-width:560px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .hs-cta{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:var(--fs-ui);font-weight:500;opacity:0;transition:opacity .6s cubic-bezier(.7,0,0,1)}
 .hs-cta .ic{width:16px;height:16px;transition:transform .2s var(--ease)}
 .hs-card:hover .hs-copy,.hs-slide:focus-visible .hs-copy{transform:none}
