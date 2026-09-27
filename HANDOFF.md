@@ -25,7 +25,7 @@ Last updated: 27 Sep 2026, after the white home hero with the stories card (film
 |---|---|
 | The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, `design-system.html`, plus `assets/`, `data/`, `tools/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
-| Gabriel India reference | `Anand Moodboard/gabriel-landing/` (sibling folder, hero only, same design system; its own `HANDOFF.md`; port 5179; not in git yet) |
+| Gabriel India reference | `Anand Moodboard/gabriel-landing/` (sibling folder, hero only, same design system; its own `HANDOFF.md`; port 5179; private repo `mahir-kyte/gabriel-landing`). Its hero uses the first ANAND hero (the 24 Sep product mockup, git `21a1fdb`); the stories-card version is `hero-stories.html` |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
 | WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
 | Client context, people, open client questions | `Claude Wordpress Context/ANAND_Gabriel_Project_Context (1).md` |
@@ -269,13 +269,13 @@ Each section's HTML starts with a `<!-- NAME -->` comment in `index.html`.
 
 ### 8.2 Hero (`section.hero`, white)
 - **Background:** white. The nav uses its normal filled bar here (the see-through `.nav.on-hero` state only applies to a full-bleed film hero, `.hero--film`, which the site no longer has).
-- **Layout:** two columns at 1,200px and up: text (max **560px**, enough for "Future of Mobility" at 64px; the rest of the width goes to the card, about 692×443 at 1440px) on the left, the **stories card** on the right (`.hero-grid--story`, 48px gap, centred, then the card is nudged **88px lower** with `position:relative; top:88px` so it sits further over the slash without moving the slash). Below 1,200px the card stacks under the text (max 760px wide).
+- **Layout:** two columns at 1,200px and up: text (max **600px**, enough for "the Future of Mobility" at 64px; the rest of the width goes to the card, about 652×417 at 1440px) on the left, the **stories card** on the right (`.hero-grid--story`, 48px gap, centred, then the card is nudged **88px lower** with `position:relative; top:88px` so it sits further over the slash without moving the slash). Below 1,200px the card stacks under the text (max 760px wide).
 - **Text** (navy on white):
   - eyebrow "SINCE 1961" (cyan)
-  - h1 "Engineering the / Future of Mobility" in navy, **two lines**, with a forced break before "Future" (`br.br-lg`, hidden below 640px so phones wrap naturally)
-  - lede in `--slate`
+  - h1 "Companies Shaping / the Future of Mobility" in navy, **two lines** (27 Sep; it leads with ANAND as a group of companies; it replaced "Engineering the Future of Mobility"), with a forced break before "the" (`br.br-lg`, hidden below 640px so phones wrap naturally)
+  - lede in `--slate`, shortened on 27 Sep: "A global mobility group bringing world-class technology and manufacturing expertise to the world's leading automakers."
   - one button, "Explore Solutions ›" (chevron, as every primary CTA)
-  - **facts row** (`.hero-facts`, shared with the Gabriel hero): 17 · Companies in the ANAND family, 22,000+ · People across the Group, US$2.2B+ · Group revenue (labels word for word as §7). `--fs-num` figures with the cyan tick on a hairline, `--fs-small` muted labels; 18px figures on phones so three fit a row
+  - **facts row** (`.hero-facts`, shared with the Gabriel hero, 36px below the button): 17 · Companies in the ANAND family, 22,000+ · People across the Group, US$2.2B+ · Group revenue (labels word for word as §7). `--fs-num` figures with the cyan tick on a hairline, `--fs-small` muted labels; 18px figures on phones so three fit a row
 - The layout is identical to the Gabriel India hero (`../gabriel-landing/`); only the content differs (ANAND's card plays the film and switches by company logos).
 - **Stories card** (`#heroStory`, mirrors the "Stories" block on stripe.com/newsroom):
   - The six company stories from the Stories section (Gabriel India, SUJÁN, ANEVOLVE, HL Klemove, MAHLE ANAND, Joyson ANAND), each linking out.

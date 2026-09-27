@@ -158,18 +158,18 @@ section{position:relative}
 .hero-video.is-on{opacity:1}
 .hero .eyebrow{color:var(--cyan)}
 .hero h1,.hero h1 .g{color:var(--navy)}
-@media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "Engineering the / Future of Mobility" on tablet and up; phones wrap naturally */
+@media (max-width:639px){.hero h1 .br-lg{display:none}}   /* the headline breaks "Companies Shaping / the Future of Mobility" on tablet and up; phones wrap naturally */
 /* Hero stories (Stripe newsroom "Stories"): a photo card on the right of the hero; the company logos below it switch
    slides. Changing story: a colour panel wipes across (0.6s + 0.6s, cubic-bezier(.7,0,0,1)) while the layers swap
    underneath; autoplay 8s, paused on hover/focus. Hover: the photo settles, the copy lifts and the CTA fades in. */
 /* Hero facts: three figures under the button, with the same cyan tick on a hairline as the About facts */
-.hero-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px;max-width:520px}
+.hero-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px;max-width:520px}
 .hero-facts>div{padding-left:16px;border-left:1px solid var(--line)}
 .hero-facts dt{font-size:var(--fs-num);font-weight:400;letter-spacing:-.02em;line-height:1.1;color:var(--navy);font-variant-numeric:tabular-nums}
 .hero-facts dt::before{content:"";display:block;width:1px;height:18px;background:var(--cyan);margin:0 0 10px -17px}
 .hero-facts dd{margin-top:6px;font-size:var(--fs-small);color:var(--muted);line-height:1.45}
 @media (max-width:639px){.hero-facts{gap:12px}.hero-facts>div{padding-left:12px}.hero-facts dt{font-size:var(--fs-lede)}.hero-facts dt::before{margin-left:-13px}}   /* three figures fit a phone row */
-.hero-grid--story{grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:48px;align-items:center}   /* 560px text column (fits "Future of Mobility" at 64px), the rest goes to the card */
+.hero-grid--story{grid-template-columns:minmax(0,600px) minmax(0,1fr);gap:48px;align-items:center}   /* 600px text column (fits "the Future of Mobility" at 64px), the rest goes to the card */
 .hs{min-width:0;position:relative;top:88px}   /* sits lower than the text on desktop, further over the slash; layout (and the slash) stay put */
 .hs-card{position:relative;aspect-ratio:713/456;border-radius:var(--radius);overflow:hidden;background:var(--navy);box-shadow:0 30px 60px -12px rgba(0,0,0,.45),0 18px 36px -18px rgba(0,0,0,.5);isolation:isolate}
 .hs-reel{position:absolute;inset:0;background:var(--navy)}
