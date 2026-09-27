@@ -25,7 +25,7 @@ Last updated: 27 Sep 2026, after the white home hero with the stories card (film
 |---|---|
 | The pages (the repo) | `Anand & Gabriel/Anand Moodboard/anand-landing/`: `index.html` (home), `newsroom.html`, `newsroom-article.html`, `design-system.html`, plus `assets/`, `data/`, `tools/` |
 | GitHub | `https://github.com/mahir-kyte/anand-group-landing` (**private**), branch `main` |
-| Gabriel India reference | `Anand Moodboard/gabriel-landing/` (sibling folder, hero only, same design system; its own `HANDOFF.md`; port 5179; private repo `mahir-kyte/gabriel-landing`). Its hero uses the first ANAND hero (the 24 Sep product mockup, git `21a1fdb`); the stories-card version is `hero-stories.html` |
+| Gabriel India reference | `Anand Moodboard/gabriel-landing/` (sibling folder with the hero and a dark Products & solutions section, same design system; its own `HANDOFF.md`; port 5179; private repo `mahir-kyte/gabriel-landing`). Its hero uses the first ANAND hero (the 24 Sep product mockup, git `21a1fdb`); the stories-card version is `hero-stories.html` |
 | Project rules | `Anand & Gabriel/CLAUDE.md` |
 | WordPress technical reference | `Anand & Gabriel/Claude Wordpress Context/ANAND_Website_Rebuild_Working_Notes.md`: rules in §2, tokens in §5, landing page in §7, next steps in §15, history in §17 |
 | Client context, people, open client questions | `Claude Wordpress Context/ANAND_Gabriel_Project_Context (1).md` |
