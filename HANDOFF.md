@@ -216,7 +216,8 @@ Lucide only (`<i data-lucide>`, v1.48.0), with the same stroke everywhere. Colou
   - Applies to headings, card titles and all button and link labels, e.g. "Partner with Us", "View All News", "Read the Story".
   - Small words (a, an, the, and, or, for, of, on, in, to, at, by, with) stay lowercase unless they come first.
   - Units stay lowercase ("sq km", "mn").
-- **Sentence case** for nav menu labels, menu items and footer link lists, matching the nav spec.
+- **Top-level nav labels and footer column headings are Title Case** (About ANAND, Our Companies, Sustainability & CSR, Careers, Newsroom, Our Vision); "Our companies" was fixed on 28 Sep.
+- **Sentence case** for the items inside the menus and the footer link lists, matching the nav spec.
   - Exception: "see all" links inside menus and the footer ("All Companies", "All News") are link labels, so Title Case.
 - **Press headlines stay in sentence case** (the newsroom stories quote the publisher's headline); everything we write is Title Case.
 - **Currency:** "US$" with no space and a capital B/M: US$2.2B+, US$10.3B, US$408M. Axis labels may say "US$ Bn". Rupee figures follow the source ("₹316.6 crore", "Rs 94.8 crore") because they quote headlines.
