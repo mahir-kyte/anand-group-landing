@@ -55,7 +55,7 @@ h2{font-size:var(--fs-h2)}
 h3{font-size:var(--fs-title);letter-spacing:-.01em;line-height:1.35}
 .lede{color:var(--slate);font-size:var(--fs-lede);line-height:1.6;max-width:520px}
 .lede b{color:var(--ink);font-weight:500}
-.btn{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);font-weight:500;padding:9px 16px 9px 18px;border-radius:var(--radius);transition:background .2s,color .2s,opacity .2s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-ui);font-weight:500;padding:9px 16px 9px 18px;border-radius:var(--radius);transition:background .2s,color .2s,opacity .2s;white-space:nowrap;border:0;cursor:pointer}   /* border:0 so <button class="btn"> matches the links (outline variants set their own border) */
 .ic{width:16px;height:16px;stroke-width:1.75;flex:none}
 .btn .ic,.link .ic{transition:transform .2s var(--ease)}
 .btn:hover .ic,.link:hover .ic{transform:translateX(2px)}
@@ -960,3 +960,28 @@ footer{border-top:1px solid var(--line);padding:64px 0 40px;font-size:var(--fs-s
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
 }
+
+/* ---------- Password screen (assets/gate.js), private preview from 28 Sep 2026 ----------
+   While locked, everything except the screen is hidden (the class is set before the page paints, so nothing flashes). */
+html.is-locked{overflow:hidden}
+html.is-locked body>:not(.pw){display:none!important}
+.pw{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:24px;background:var(--soft);overflow:hidden;transition:opacity .4s var(--ease)}
+.pw.pw-out{opacity:0;pointer-events:none}
+.pw-card{position:relative;z-index:2;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:flex-start;padding:40px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-lg)}
+.pw-logo{height:22px;width:auto;margin-bottom:32px}
+.pw-card .eyebrow{margin-bottom:10px}
+.pw-title{font-size:var(--fs-h3);font-weight:500;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
+.pw-text{margin:12px 0 24px;font-size:var(--fs-small);line-height:1.6;color:var(--slate)}
+.pw-label{font-size:var(--fs-label);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.pw-in{width:100%;height:44px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius);font:inherit;font-size:var(--fs-body);color:var(--ink);background:#fff;outline:none;transition:border-color .2s,box-shadow .2s}
+.pw-in:focus{border-color:var(--cyan);box-shadow:0 0 0 3px var(--tint)}
+.pw-in.bad{border-color:var(--error);box-shadow:0 0 0 3px rgba(223,27,65,.12)}
+.pw-err{margin-top:8px;font-size:var(--fs-small);color:var(--error)}
+.pw-btn{margin-top:20px;width:100%;justify-content:center}
+/* the brand's 6° slant, bottom right */
+.pw-stripes{position:absolute;right:0;bottom:0;width:60%;height:120px;transform:skewY(-6deg);transform-origin:100% 100%;pointer-events:none}
+.pw-stripes span{position:absolute;right:0;height:36px}
+.pw-stripes span:first-child{bottom:36px;width:70%;background:var(--cyan)}
+.pw-stripes span:last-child{bottom:0;width:100%;background:var(--royal)}
+@media (max-width:639px){.pw-card{padding:28px 24px}.pw-stripes{width:90%;height:90px}}
+@media (prefers-reduced-motion:reduce){.pw{transition:none}}
